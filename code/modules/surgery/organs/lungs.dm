@@ -54,8 +54,13 @@
 /obj/item/organ/internal/lungs/emp_act()
 	if(!is_robotic() || emp_proof)
 		return
+
 	if(owner)
-		owner.LoseBreath(40 SECONDS)
+		var/losstime = 40 SECONDS
+		if(HAS_TRAIT(owner, TRAIT_ADVANCED_CYBERIMPLANTS))
+			losstime /= 2
+
+		owner.LoseBreath(losstime)
 
 /obj/item/organ/internal/lungs/insert(mob/living/carbon/target, special = ORGAN_MANIPULATION_DEFAULT)
 	..()
@@ -139,7 +144,7 @@
 			H.clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
 
 	//Exhale
-	breath.oxygen -= gas_breathed
+	breath.oxygen = max(breath.oxygen - gas_breathed, 0)
 	breath.carbon_dioxide += gas_breathed
 	gas_breathed = 0
 
@@ -304,36 +309,6 @@
 	S.reagents.add_reagent("salbutamol", 5)
 	return S
 
-/obj/item/organ/internal/lungs/plasmaman
-	name = "plasma filter"
-	desc = "A spongy rib-shaped mass for filtering plasma from the air."
-	icon = 'icons/obj/species_organs/plasmaman.dmi'
-	icon_state = "lungs"
-
-	safe_oxygen_min = 0 //We don't breath this
-	safe_toxins_min = 16 //We breathe THIS!
-	safe_toxins_max = 0
-
-/obj/item/organ/internal/lungs/vox
-	name = "Vox lungs"
-	desc = "They're filled with dust....wow."
-	icon = 'icons/obj/species_organs/vox.dmi'
-	icon_state = "lungs"
-
-	safe_oxygen_min = 0 //We don't breathe this
-	safe_oxygen_max = 0.05 //This is toxic to us
-	safe_nitro_min = 16 //We breathe THIS!
-	oxy_damage_type = TOX //And it poisons us
-
-/obj/item/organ/internal/lungs/drask
-	icon = 'icons/obj/species_organs/drask.dmi'
-
-	cold_message = "an invigorating coldness"
-	cold_level_1_damage = -COLD_GAS_DAMAGE_LEVEL_1 //They heal when the air is cold
-	cold_level_2_damage = -COLD_GAS_DAMAGE_LEVEL_2
-	cold_level_3_damage = -COLD_GAS_DAMAGE_LEVEL_3
-	cold_damage_types = list(BRUTE = 0.5, BURN = 0.25)
-
 /obj/item/organ/internal/lungs/cybernetic
 	name = "cybernetic lungs"
 	desc = "A cybernetic version of the lungs found in traditional humanoid entities. It functions the same as an organic lung and is merely meant as a replacement."
@@ -387,3 +362,17 @@
 	cold_level_1_threshold = 200
 	cold_level_2_threshold = 140
 	cold_level_3_threshold = 100
+
+/obj/item/organ/internal/lungs/cybernetic/upgraded/insert(mob/living/carbon/human/target, special)
+	. = ..()
+
+	if(HAS_TRAIT(target, TRAIT_ADVANCED_CYBERIMPLANTS))
+		target.physiology.oxy_mod -= 0.5
+		ADD_TRAIT(target, TRAIT_CYBERIMP_IMPROVED, UNIQUE_TRAIT_SOURCE(src))
+
+/obj/item/organ/internal/lungs/cybernetic/upgraded/remove(mob/living/carbon/human/target, special)
+	if(HAS_TRAIT_FROM(target, TRAIT_CYBERIMP_IMPROVED, UNIQUE_TRAIT_SOURCE(src)))
+		target.physiology.oxy_mod += 0.5
+		REMOVE_TRAIT(target, TRAIT_CYBERIMP_IMPROVED, UNIQUE_TRAIT_SOURCE(src))
+
+	. = ..()

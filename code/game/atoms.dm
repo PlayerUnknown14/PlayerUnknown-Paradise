@@ -1,11 +1,3 @@
-// Падежи русского языка
-#define NOMINATIVE 1 // Именительный: кто это? Клоун и ассистуха
-#define GENITIVE 2 // Родительный: откусить кусок от кого? От клоуна и ассистухи
-#define DATIVE 3 // Дательный: дать полный доступ кому? Клоуну и ассистухе
-#define ACCUSATIVE 4 // Винительный: обвинить кого? Клоуна и ассистуху
-#define INSTRUMENTAL 5 // Творительный: возить по полу кем? Клоуном и ассистухой
-#define PREPOSITIONAL 6 // Предложный: прохладная история о ком? О клоуне и об ассистухе
-
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
@@ -13,6 +5,7 @@
 	var/level = 2
 	var/flags = NONE
 	var/flags_2 = NONE
+	var/flags_ricochet = NONE
 	var/list/fingerprints
 	var/list/fingerprints_time
 	var/list/fingerprintshidden
@@ -48,6 +41,8 @@
 	var/explosion_block = 0
 	//Value used in multiz_explosions. it set here, so may some objects that cover the floor, may also impact the explosion
 	var/explosion_vertical_block = 0
+
+	var/list/orbiters
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
@@ -108,6 +103,7 @@
 	var/base_pixel_y = 0
 
 	var/tts_seed = "Arthas"
+	var/tts_atom_say_effect = SOUND_EFFECT_RADIO
 
 /atom/New(loc, ...)
 	SHOULD_CALL_PARENT(TRUE)
@@ -179,14 +175,21 @@
 	if(!T)
 		return
 
+	if(is_reserved_level(T.z))
+		for(var/obj/docking_port/mobile/mobile in SSshuttle.mobile)
+			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
+				for(var/area/shuttle/shuttle_area in mobile.shuttle_areas)
+					if(T in shuttle_area)
+						return TRUE
+
 	if(!is_admin_level(T.z))//if not, don't bother
 		return
 
-	//check for centcomm shuttles
-	for(var/centcom_shuttle in list("emergency", "pod1", "pod2", "pod3", "pod4", "ferry"))
-		var/obj/docking_port/mobile/M = SSshuttle.getShuttle(centcom_shuttle)
-		if(T in M.areaInstance)
-			return TRUE
+	//Check for centcom shuttles
+	for(var/obj/docking_port/mobile/mobile in SSshuttle.mobile)
+		if(EMERGENCY_ESCAPED_OR_ENDGAMED)
+			if(T in mobile.areaInstance)
+				return TRUE
 
 	//finally check for centcom itself
 	return istype(T.loc, /area/centcom)
@@ -331,6 +334,12 @@
 /atom/proc/is_open_container()
 	return is_refillable() && is_drainable()
 
+/atom/proc/setOpened()
+	return
+
+/atom/proc/setClosed()
+	return
+
 /// Is this atom injectable into other atoms
 /atom/proc/is_injectable(mob/user, allowmobs = TRUE)
 	return reagents && (container_type & (INJECTABLE|REFILLABLE))
@@ -397,39 +406,34 @@
 
 //All atoms
 /atom/proc/examine(mob/user, infix = "", suffix = "")
-	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/f_name = "\a [src][infix]."
+	var/f_name = "."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
-		if(gender == PLURAL)
-			f_name = "some "
-		else
-			f_name = "a "
 		if(blood_color != "#030303")
-			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			f_name = span_danger(", в кровавых следах.")
 		else
-			f_name += "oil-stained [name][infix]."
-	. = list("[bicon(src)] That's [f_name] [suffix]")
+			f_name = ", в масляных следах."
+	. = list("[bicon(src)] Это [declent_ru(NOMINATIVE)][f_name] [suffix]")
 	if(desc)
 		. += desc
 
 	if(reagents)
 		if(container_type & TRANSPARENT)
-			. += "<span class='notice'>It contains:</span>"
+			. += span_notice("Внутри содержится:")
 			if(reagents.reagent_list.len)
 				if(user.can_see_reagents()) //Show each individual reagent
 					for(var/I in reagents.reagent_list)
 						var/datum/reagent/R = I
-						. += "<span class='notice'>[R.volume] units of [R.name]</span>"
+						. += span_notice("[R.volume] единиц[declension_ru(R.volume, "у", "ы", "")] [R.name].")
 				else //Otherwise, just show the total volume
 					if(reagents && reagents.reagent_list.len)
-						. += "<span class='notice'>[reagents.total_volume] units of various reagents.</span>"
+						. += span_notice("[reagents.total_volume] единиц[declension_ru(reagents.total_volume, "у", "ы", "")] различных веществ.")
 			else
-				. += "<span class='notice'>Nothing.</span>"
+				. += span_notice("Ничего.")
 		else if(container_type & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
-				. += "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>"
+				. += span_notice("Осталось ещё [reagents.total_volume] единиц[declension_ru(reagents.total_volume, "у", "ы", "")].")
 			else
-				. += "<span class='danger'>It's empty.</span>"
+				. += span_danger("Внутри ничего нет.")
 
 	//Detailed description
 	var/descriptions
@@ -630,8 +634,19 @@
 /atom/proc/ex_act()
 	return
 
-/atom/proc/blob_act(obj/structure/blob/B)
-	SEND_SIGNAL(src, COMSIG_ATOM_BLOB_ACT, B)
+/**
+ * React to a hit by a blob objecd
+ *
+ * default behaviour is to send the [COMSIG_ATOM_BLOB_ACT] signal
+ */
+/atom/proc/blob_act(obj/structure/blob/attacking_blob)
+	var/blob_act_result = SEND_SIGNAL(src, COMSIG_ATOM_BLOB_ACT, attacking_blob)
+	if(blob_act_result & COMPONENT_CANCEL_BLOB_ACT)
+		return FALSE
+	return TRUE
+
+/atom/proc/blob_vore_act(obj/structure/blob/special/core/voring_core)
+	return TRUE
 
 /atom/proc/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume, global_overlay = TRUE)
 	SEND_SIGNAL(src, COMSIG_ATOM_FIRE_ACT, exposed_temperature, exposed_volume)
@@ -1192,8 +1207,6 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 /atom/proc/ratvar_act()
 	return
 
-/atom/proc/handle_ricochet(obj/item/projectile/P)
-	return
 
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
@@ -1217,9 +1230,8 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 			if(M.client.prefs.toggles2 & PREFTOGGLE_2_RUNECHAT)
 				M.create_chat_message(src, message, list("italics"))
 
-			var/effect = SOUND_EFFECT_RADIO
 			var/traits = TTS_TRAIT_RATE_MEDIUM
-			INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_cast, src, M, message_tts, tts_seed, TRUE, effect, traits)
+			INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_cast, src, M, message_tts, tts_seed, TRUE, tts_atom_say_effect, traits)
 
 	if(length(speech_bubble_hearers))
 		var/image/I = image('icons/mob/talk.dmi', src, "[bubble_icon][say_test(message)]", FLY_LAYER)
@@ -1260,6 +1272,13 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 
 /atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
 	return
+
+/atom/proc/atom_emote(emote)
+	if(!emote)
+		return
+	visible_message(span_game_emote("<span class='name'>[src]</span> [emote]"), span_game_emote("Вы слышите, как что-то [emote]."))
+
+	runechat_emote(src, emote)
 
 /atom/vv_edit_var(var_name, var_value)
 	var/old_light_flags = light_flags
@@ -1335,7 +1354,10 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 	var/turf/curturf = get_turf(src)
 	if(curturf)
 		.["Jump to turf"] = "?_src_=holder;adminplayerobservecoodjump=1;X=[curturf.x];Y=[curturf.y];Z=[curturf.z]"
+	.["Atom say"] = "?_src_=vars;atom_say=[UID()]"
 	.["Add reagent"] = "?_src_=vars;addreagent=[UID()]"
+	.["Edit reagents"] = "?_src_=vars;editreagents=[UID()]"
+	.["Transform editor"] = "?_src_=vars;matrix_tester=[UID()]"
 	.["Trigger explosion"] = "?_src_=vars;explode=[UID()]"
 	.["Trigger EM pulse"] = "?_src_=vars;emp=[UID()]"
 
@@ -1469,9 +1491,9 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 		// OR (much more likely) the thing is unlabeled yet.
 		default_value = ""
 	if(!prompt)
-		prompt = "What would you like the label on [src] to be?"
+		prompt = "Что вы хотите написать на этикетке [declent_ru(GENITIVE)]?"
 
-	var/t = input(user, prompt, "Renaming [src]", default_value)  as text | null
+	var/t = input(user, prompt, "Переименование [declent_ru(GENITIVE)]", default_value)  as text | null
 	if(isnull(t))
 		// user pressed Cancel
 		return null
@@ -1480,13 +1502,13 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 	if(!user)
 		return null
 	else if(implement && implement.loc != user)
-		to_chat(user, "<span class='warning'>You no longer have the pen to rename [src].</span>")
+		balloon_alert(user, "ваша ручка недоступна!")
 		return null
 	else if(!in_range(src, user))
-		to_chat(user, "<span class='warning'>You cannot rename [src] from here.</span>")
+		balloon_alert(user, "слишком далеко!")
 		return null
 	else if (user.incapacitated())
-		to_chat(user, "<span class='warning'>You cannot rename [src] in your current state.</span>")
+		balloon_alert(user, "невозможно в данный момент!")
 		return null
 
 
@@ -1500,8 +1522,14 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 
 	if(actually_rename)
 		if(t == "")
+			if(ru_names)
+				for(var/i = 1; i <= 6; i++)
+					ru_names[i] = "[initial(ru_names[i])]"
 			name = "[initial(name)]"
 		else
+			if(ru_names)
+				for(var/i = 1; i <= 6; i++)
+					ru_names[i] = "[initial(ru_names[i])] - [t]"
 			name = "[prefix][t]"
 	return t
 
@@ -1543,6 +1571,18 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 /atom/proc/get_visible_gender()	// Used only in /mob/living/carbon/human and /mob/living/simple_animal/hostile/morph
 	return gender
 
+/atom/proc/handle_ricochet(obj/item/projectile/ricocheting_projectile)
+	var/turf/p_turf = get_turf(ricocheting_projectile)
+	var/face_direction = get_dir(src, p_turf) || get_dir(src, ricocheting_projectile)
+	var/face_angle = dir2angle(face_direction)
+	var/incidence_s = GET_ANGLE_OF_INCIDENCE(face_angle, (ricocheting_projectile.Angle + 180))
+	var/a_incidence_s = abs(incidence_s)
+	if(a_incidence_s > 90 && a_incidence_s < 270)
+		return FALSE
+	var/new_angle_s = SIMPLIFY_DEGREES(face_angle + incidence_s)
+	ricocheting_projectile.set_angle(new_angle_s)
+	visible_message(span_warning("[ricocheting_projectile] reflects off [src]!"))
+	return TRUE
 
 /// Whether the mover object can avoid being blocked by this atom, while arriving from (or leaving through) the border_dir.
 /atom/proc/CanPass(atom/movable/mover, border_dir)
@@ -1720,3 +1760,7 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
  */
 /atom/proc/relaydrive(mob/living/user, direction)
 	return !(SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
+
+///returns how much the object blocks an explosion. Used by subtypes.
+/atom/proc/get_explosion_block()
+	CRASH("Unimplemented get_explosion_block()")
