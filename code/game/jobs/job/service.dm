@@ -23,6 +23,7 @@
 	)
 	exp_type = EXP_TYPE_SERVICE
 	outfit = /datum/outfit/job/hop
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/hop
 	name = JOB_TITLE_HOP
@@ -52,6 +53,7 @@
 	exp_requirements = 300
 	exp_type = EXP_TYPE_SERVICE
 	paycheck = PAYCHECK_CREW
+	hidden_from_job_prefs = TRUE
 
 /datum/job/service/bartender
 	title = JOB_TITLE_BARTENDER
@@ -62,6 +64,7 @@
 	minimal_access = list(ACCESS_BAR, ACCESS_WEAPONS, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Barman", "Barkeeper", "Drink Artist")
 	outfit = /datum/outfit/job/bartender
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/bartender
 	name = JOB_TITLE_BARTENDER
@@ -93,6 +96,7 @@
 	minimal_access = list(ACCESS_KITCHEN, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Cook", "Culinary Artist", "Butcher")
 	outfit = /datum/outfit/job/chef
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/chef
 	name = JOB_TITLE_CHEF
@@ -134,6 +138,7 @@
 	minimal_access = list(ACCESS_HYDROPONICS, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Hydroponicist", "Botanical Researcher")
 	outfit = /datum/outfit/job/botanist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/botanist
 	name = JOB_TITLE_BOTANIST
@@ -159,6 +164,7 @@
 	minimal_access = list(ACCESS_CLOWN, ACCESS_THEATRE, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Performance Artist", "Comedian", "Jester")
 	outfit = /datum/outfit/job/clown
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/clown
 	name = JOB_TITLE_CLOWN
@@ -368,6 +374,7 @@
 	minimal_access = list(ACCESS_MIME, ACCESS_THEATRE, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Panthomimist")
 	outfit = /datum/outfit/job/mime
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/mime
 	name = JOB_TITLE_MIME
@@ -414,6 +421,7 @@
 	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Custodial Technician", "Sanitation Technician")
 	outfit = /datum/outfit/job/janitor
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/janitor
 	name = JOB_TITLE_JANITOR
@@ -432,6 +440,7 @@
 	minimal_access = list(ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Journalist")
 	outfit = /datum/outfit/job/librarian
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/librarian
 	name = JOB_TITLE_LIBRARIAN
@@ -456,6 +465,7 @@
 	minimal_access = list(ACCESS_MORGUE, ACCESS_CHAPEL_OFFICE, ACCESS_CREMATORIUM, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Priest", "Monk", "Preacher", "Reverend", "Oracle", "Nun", "Imam", "Exorcist")
 	outfit = /datum/outfit/job/chaplain
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/chaplain
 	name = JOB_TITLE_CHAPLAIN

@@ -12,6 +12,7 @@
 			ACCESS_KEYCARD_AUTH, ACCESS_SEC_DOORS, ACCESS_PSYCHIATRIST, ACCESS_MAINT_TUNNELS, ACCESS_PARAMEDIC, ACCESS_MINERAL_STOREROOM)
 	exp_type = EXP_TYPE_MEDICAL
 	outfit = /datum/outfit/job/cmo
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/cmo
 	name = JOB_TITLE_CMO
@@ -44,6 +45,7 @@
 	exp_requirements = 600
 	exp_type = EXP_TYPE_MEDICAL
 	paycheck = PAYCHECK_CREW
+	hidden_from_job_prefs = TRUE
 
 /datum/job/medical/doctor
 	title = JOB_TITLE_DOCTOR
@@ -54,6 +56,7 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Surgeon", "Nurse")
 	outfit = /datum/outfit/job/doctor
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/doctor
 	name = JOB_TITLE_DOCTOR
@@ -138,6 +141,7 @@
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_MAINT_TUNNELS)
 	outfit = /datum/outfit/job/coroner
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/coroner
 	name = JOB_TITLE_CORONER
@@ -172,6 +176,7 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Pharmacist", "Pharmacologist")
 	outfit = /datum/outfit/job/chemist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/chemist
 	name = JOB_TITLE_CHEMIST
@@ -199,6 +204,7 @@
 	access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY, ACCESS_CHEMISTRY, ACCESS_VIROLOGY, ACCESS_GENETICS, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_GENETICS, ACCESS_RESEARCH, ACCESS_MAINT_TUNNELS)
 	outfit = /datum/outfit/job/geneticist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/geneticist
 	name = JOB_TITLE_GENETICIST
@@ -226,6 +232,7 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_VIROLOGY, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Pathologist", "Microbiologist")
 	outfit = /datum/outfit/job/virologist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/virologist
 	name = JOB_TITLE_VIROLOGIST
@@ -253,6 +260,7 @@
 	minimal_access = list(ACCESS_MEDICAL, ACCESS_PSYCHIATRIST, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Psychologist", "Therapist")
 	outfit = /datum/outfit/job/psychiatrist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/psychiatrist
 	name = JOB_TITLE_PSYCHIATRIST
@@ -285,6 +293,7 @@
 	access = list(ACCESS_PARAMEDIC, ACCESS_MEDICAL, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_MORGUE, ACCESS_SURGERY)
 	minimal_access=list(ACCESS_PARAMEDIC, ACCESS_MEDICAL, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_MORGUE, ACCESS_SURGERY)
 	outfit = /datum/outfit/job/paramedic
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/paramedic
 	name = JOB_TITLE_PARAMEDIC

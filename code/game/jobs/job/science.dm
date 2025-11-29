@@ -18,6 +18,7 @@
 		/datum/job_objective/further_research,
 	)
 	outfit = /datum/outfit/job/rd
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/rd
 	name = JOB_TITLE_RD
@@ -53,6 +54,7 @@
 	required_objectives = list(
 		/datum/job_objective/further_research,
 	)
+	hidden_from_job_prefs = TRUE
 
 /datum/job/science/scientist
 	title = JOB_TITLE_SCIENTIST
@@ -63,6 +65,7 @@
 	minimal_access = list(ACCESS_TOX, ACCESS_TOX_STORAGE, ACCESS_RESEARCH, ACCESS_XENOBIOLOGY, ACCESS_XENOARCH, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS)
 	alt_titles = list("Anomalist", "Plasma Researcher", "Xenobiologist", "Chemical Researcher")
 	outfit = /datum/outfit/job/scientist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/scientist
 	name = JOB_TITLE_SCIENTIST
@@ -126,6 +129,7 @@
 	minimal_access = list(ACCESS_ROBOTICS, ACCESS_TECH_STORAGE, ACCESS_MORGUE, ACCESS_RESEARCH, ACCESS_MINERAL_STOREROOM, ACCESS_MAINT_TUNNELS) //As a job that handles so many corpses, it makes sense for them to have morgue access.
 	alt_titles = list("Biomechanical Engineer", "Mechatronic Engineer")
 	outfit = /datum/outfit/job/roboticist
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/roboticist
 	name = JOB_TITLE_ROBOTICIST

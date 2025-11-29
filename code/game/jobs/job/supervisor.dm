@@ -9,6 +9,7 @@
 	disabilities_allowed = 0
 	insurance_type = INSURANCE_TYPE_DELUXE
 	paycheck = PAYCHECK_COMMAND
+	hidden_from_job_prefs = TRUE
 
 /datum/job/captain
 	title = JOB_TITLE_CAPTAIN
@@ -33,6 +34,7 @@
 	outfit = /datum/outfit/job/captain
 	insurance_type = INSURANCE_TYPE_DELUXE
 	paycheck = PAYCHECK_MAX
+	hidden_from_job_prefs = FALSE
 
 /datum/job/captain/get_access()
 	return get_all_accesses()
@@ -101,6 +103,7 @@
 	alt_titles = list("NT Consultant", "Central Command Consultant")
 	outfit = /datum/outfit/job/nanotrasenrep
 	paycheck = PAYCHECK_MAX
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/nanotrasenrep
 	name = JOB_TITLE_REPRESENTATIVE
@@ -151,6 +154,7 @@
 	outfit = /datum/outfit/job/blueshield
 	insurance_type = INSURANCE_TYPE_DELUXE
 	paycheck = PAYCHECK_COMMAND
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/blueshield
 	name = JOB_TITLE_BLUESHIELD
@@ -203,6 +207,7 @@
 	alt_titles = list("Judge")
 	outfit = /datum/outfit/job/judge
 	paycheck = PAYCHECK_MAX
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/judge
 	name = JOB_TITLE_JUDGE
@@ -246,6 +251,7 @@
 	outfit = /datum/outfit/job/lawyer
 	insurance_type = INSURANCE_TYPE_DELUXE
 	paycheck = PAYCHECK_COMMAND
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/lawyer
 	name = JOB_TITLE_LAWYER

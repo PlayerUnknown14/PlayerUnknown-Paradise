@@ -18,6 +18,7 @@
 	)
 	exp_type = EXP_TYPE_ENGINEERING
 	outfit = /datum/outfit/job/chief_engineer
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/chief_engineer
 	name = JOB_TITLE_CHIEF
@@ -52,6 +53,7 @@
 	exp_requirements = 600
 	exp_type = EXP_TYPE_ENGINEERING
 	paycheck = PAYCHECK_CREW
+	hidden_from_job_prefs = TRUE
 
 /datum/job/engineering/engineer
 	title = JOB_TITLE_ENGINEER
@@ -62,6 +64,7 @@
 	minimal_access = list(ACCESS_EVA, ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_CONSTRUCTION, ACCESS_MINERAL_STOREROOM)
 	alt_titles = list("Maintenance Technician", "Engine Technician", "Electrician")
 	outfit = /datum/outfit/job/engineer
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/engineer
 	name = JOB_TITLE_ENGINEER
@@ -132,6 +135,7 @@
 	minimal_access = list(ACCESS_EVA, ACCESS_ATMOSPHERICS, ACCESS_MAINT_TUNNELS, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_EMERGENCY_STORAGE, ACCESS_CONSTRUCTION, ACCESS_MINERAL_STOREROOM, ACCESS_TECH_STORAGE)
 	alt_titles = list("Atmospheric Technician")
 	outfit = /datum/outfit/job/atmos
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/atmos
 	name = JOB_TITLE_ATMOSTECH
@@ -158,6 +162,7 @@
 	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP, ACCESS_TECH_STORAGE, ACCESS_MAINT_TUNNELS, ACCESS_MECHANIC, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_MINERAL_STOREROOM, ACCESS_EMERGENCY_STORAGE)
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_EMERGENCY_STORAGE, ACCESS_MECHANIC, ACCESS_EXTERNAL_AIRLOCKS, ACCESS_MINERAL_STOREROOM)
 	outfit = /datum/outfit/job/mechanic
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/mechanic
 	name = JOB_TITLE_MECHANIC

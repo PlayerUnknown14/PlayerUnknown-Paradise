@@ -7,6 +7,7 @@
 	minimal_access = list(ACCESS_RC_ANNOUNCE, ACCESS_KEYCARD_AUTH, ACCESS_HEADS_VAULT, ACCESS_ALL_PERSONAL_LOCKERS, ACCESS_HEADS, ACCESS_SECURITY, ACCESS_EVA, ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_QM, ACCESS_MINT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_MINERAL_STOREROOM)
 	alt_titles = list("Chief Supply Manager")
 	outfit = /datum/outfit/job/qm
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/qm
 	name = JOB_TITLE_QUARTERMASTER
@@ -35,6 +36,7 @@
 	exp_requirements = 600
 	exp_type = EXP_TYPE_SUPPLY
 	paycheck = PAYCHECK_CREW
+	hidden_from_job_prefs = TRUE
 
 /datum/job/supply/cargo_tech
 	title = JOB_TITLE_CARGOTECH
@@ -45,6 +47,7 @@
 	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING, ACCESS_MINERAL_STOREROOM)
 	alt_titles = list("Supply Manager", "Loader")
 	outfit = /datum/outfit/job/cargo_tech
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/cargo_tech
 	name = JOB_TITLE_CARGOTECH
@@ -66,6 +69,7 @@
 	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM)
 	alt_titles = list("Spelunker")
 	outfit = /datum/outfit/job/mining
+	hidden_from_job_prefs = FALSE
 	insurance_type = INSURANCE_TYPE_EXTENDED
 
 /datum/outfit/job/mining
@@ -128,6 +132,7 @@
 	minimal_access = list(ACCESS_MINING, ACCESS_MINT, ACCESS_MINING_STATION, ACCESS_MAILSORTING, ACCESS_MAINT_TUNNELS, ACCESS_MINERAL_STOREROOM, ACCESS_MEDICAL, ACCESS_MORGUE, ACCESS_SURGERY)
 	alt_titles = list("Lavaland Health Officer")
 	outfit = /datum/outfit/job/mining_medic
+	hidden_from_job_prefs = FALSE
 	insurance_type = INSURANCE_TYPE_EXTENDED
 	exp_type = EXP_TYPE_MEDICAL
 

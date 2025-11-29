@@ -20,6 +20,7 @@
 	exp_type = EXP_TYPE_SECURITY
 	disabilities_allowed_slightly = 0
 	outfit = /datum/outfit/job/hos
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/hos
 	name = JOB_TITLE_HOS
@@ -64,6 +65,7 @@
 	disabilities_allowed_slightly = 0
 	insurance_type = INSURANCE_TYPE_DELUXE
 	paycheck = PAYCHECK_CREW
+	hidden_from_job_prefs = TRUE
 
 /datum/job/security/warden
 	title = JOB_TITLE_WARDEN
@@ -77,6 +79,7 @@
 	minimal_player_age = 21
 	exp_requirements = 2100
 	outfit = /datum/outfit/job/warden
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/warden
 	name = JOB_TITLE_WARDEN
@@ -117,6 +120,7 @@
 	alt_titles = list("Forensic Technician")
 	blocked_race_for_job = list(SPECIES_VOX)
 	outfit = /datum/outfit/job/detective
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/detective
 	name = JOB_TITLE_DETECTIVE
@@ -168,6 +172,7 @@
 	law_level = LAW_LEVEL_SEC
 	alt_titles = list("Security Trainer", "Patrol Officer", "Security Cadet")
 	outfit = /datum/outfit/job/officer
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/officer
 	name = JOB_TITLE_OFFICER
@@ -225,6 +230,7 @@
 	blocked_race_for_job = list(SPECIES_VOX)
 	exp_type = EXP_TYPE_MEDICAL
 	outfit = /datum/outfit/job/brigdoc
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/brigdoc
 	name = JOB_TITLE_BRIGDOC
@@ -254,6 +260,7 @@
 	minimal_access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_COURT, ACCESS_MAINT_TUNNELS, ACCESS_WEAPONS, ACCESS_PILOT, ACCESS_EXTERNAL_AIRLOCKS)
 	law_level = LAW_LEVEL_SEC
 	outfit = /datum/outfit/job/pilot
+	hidden_from_job_prefs = FALSE
 
 /datum/outfit/job/pilot
 	name = JOB_TITLE_PILOT
