@@ -1,47 +1,37 @@
-/*
- * Returns:
- *	#RRGGBB(AA) on success, null on failure
- */
-GLOBAL_LIST_INIT(random_color_list, list("#00aedb","#a200ff","#f47835","#d41243","#d11141","#00b159","#00aedb","#f37735","#ffc425","#008744","#0057e7","#d62d20","#ffa700"))
-
-/proc/mix_color_from_reagents(const/list/reagent_list)
+/proc/mix_color_from_reagents(list/reagent_list)
 	if(!istype(reagent_list))
 		return
 
-	var/color
-	var/reagent_color
+	var/mixcolor
 	var/vol_counter = 0
 	var/vol_temp
-	// see libs/IconProcs/IconProcs.dm
-	for(var/datum/reagent/reagent in reagent_list)
-		if(reagent.id == "blood" && reagent.data && reagent.data["blood_color"])
-			reagent_color = reagent.data["blood_color"]
-		else
-			reagent_color = reagent.color
 
-		vol_temp = reagent.volume
+	for(var/datum/reagent/R in reagent_list)
+		vol_temp = R.volume
 		vol_counter += vol_temp
 
-		if(isnull(color))
-			color = reagent.color
-		else if(length(color) >= length(reagent_color))
-			color = BlendRGB(color, reagent_color, vol_temp/vol_counter)
+		if(!mixcolor)
+			mixcolor = R.color
+
+		else if (length(mixcolor) >= length(R.color))
+			mixcolor = BlendRGB(mixcolor, R.color, vol_temp/vol_counter)
 		else
-			color = BlendRGB(reagent_color, color, vol_temp/vol_counter)
-	return color
+			mixcolor = BlendRGB(R.color, mixcolor, vol_temp/vol_counter)
 
-/proc/get_color_matrix_from_reagents(reagents)
-	var/color_str = mix_color_from_reagents(reagents)
-	var/list/mixed_color = rgb2num(color_str)
+	return mixcolor
 
-	var/r = mixed_color[1] / 255
-	var/g = mixed_color[2] / 255
-	var/b = mixed_color[3] / 255
+/proc/reagent_threshold_overlay(datum/reagents/reagents, fill_icon, fill_prefix, list/fill_icon_thresholds)
+	RETURN_TYPE(/mutable_appearance)
 
-	return list(
-		0.5, 0,   0,   0,
-		0,   0.5, 0,   0,
-		0,   0,   0.5, 0,
-		0,   0,   0,   1,
-		r, g, b, 0
-	)
+	var/threshold = null
+	for(var/i in 1 to fill_icon_thresholds.len)
+		if(ROUND_UP(100 * reagents.total_volume / reagents.maximum_volume) >= fill_icon_thresholds[i])
+			threshold = i
+
+	if(threshold)
+		var/fill_name = "[fill_prefix][fill_icon_thresholds[threshold]]"
+		var/mutable_appearance/filling = mutable_appearance(fill_icon, fill_name)
+		filling.color = mix_color_from_reagents(reagents.reagent_list)
+		return filling
+
+	return null

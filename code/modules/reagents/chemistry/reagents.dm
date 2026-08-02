@@ -1,351 +1,321 @@
+/// A single reagent
 /datum/reagent
-	var/name = "Реагент"
-	var/id = "reagent"
-	var/tags = 0
+	abstract_type = /datum/reagent
+
+	/// Datums don't have names by default.
+	var/name = ""
+	/// Datums don't have descriptions by default.
 	var/description = ""
-	var/datum/reagents/holder = null
-	var/reagent_state = SOLID
-	var/list/data = null
-	var/volume = 0
-	var/metabolization_rate = REAGENTS_METABOLISM
-	var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
-	var/shock_reduction = 0
-	var/heart_rate_increase = 0
-	var/heart_rate_decrease = 0
-	var/heart_rate_stop = 0
-	var/penetrates_skin = FALSE //Whether or not a reagent penetrates the skin
-	/// Shows how the reagent penetrates the protection from clothing in TOUCH reactions. Should be [0-1]. 0 by default, 1 - full penetration.
-	var/clothing_penetration = 0
-	//Processing flags, defines the type of mobs the reagent will affect
-	//By default, all reagents will ONLY affect organics, not synthetics. Re-define in the reagent's definition if the reagent is meant to affect synths
-	var/process_flags = ORGANIC
-	var/harmless = FALSE //flag used for attack logs
-	var/can_synth = TRUE //whether or not a mech syringe gun and synthesize this reagent
-	var/overdose_threshold = 0
-	var/addiction_chance = 0
-	var/addiction_chance_additional = 100 // If we want to lower the chance of addiction even more, set this
-	var/addiction_threshold = 0 // How much of a chem do we have to absorb before we can start rolling for its ill effects?
-	var/minor_addiction = FALSE
-	var/addiction_stage = 1
-	var/last_addiction_dose = 0
-	var/overdosed = FALSE // You fucked up and this is now triggering it's overdose effects, purge that shit quick.
-	var/current_cycle = 1
-	var/drink_icon = null
-	var/drink_name = "стакан... чего?"
-	var/drink_desc = "Вы понятия не имеете, чем это может быть."
-	var/taste_mult = 1 //how easy it is to taste - the more the easier
+	/// J/(K*mol)
+	var/specific_heat = SPECIFIC_HEAT_DEFAULT
+	/// For chat messages like `"Вы чувствуете вкус ..."`
 	var/taste_description = "метафорической соли"
-	var/addict_supertype = /datum/reagent
-	var/devil_regen_ignored = FALSE
-
-	// For chemical fire
-	var/chemfiresupp = FALSE
-	var/intensitymod = 0
-	var/durationmod = 0
-	var/radiusmod = 0
-	// For chemical fire from flamethrowers
-	var/intensityfire = 0
-	var/durationfire = 0
-	var/rangefire = 0 // Set to -1 if you want an infinite range
-	var/flameshape = FLAMESHAPE_LINE
-	var/fire_penetrating = FALSE // Whether it can damage fire-immune xenos
-	// For both chemical fires
-	var/burn_sprite = "dynamic"
-	var/burncolor = "#f88818"
-	var/burncolormod = 1
-	var/fire_type = FIRE_VARIANT_DEFAULT //Unique types of fire not modeled by chemfire (1 = Armor Shredding Greenfire). Effects in flamer.dm
-
-	// borer roundstart reagents located at GLOB.borer_reagents.
-	/// borer special chemical description.
-	var/chemdesc
-	var/chemuse = 30
-	var/quantity = 10
-
-	var/metabolizing
+	/// How this taste compares to others. Higher values means it is more noticable
+	var/taste_mult = 1
+	/// Reagent holder this belongs to
+	var/datum/reagents/holder = null
+	/// Special data associated with the reagent that will be passed on upon transfer to a new holder.
+	var/list/data
+	/// Increments everytime on_mob_life is called
+	var/current_cycle = 0
+	/// Pretend this is moles
+	var/volume = 0
+	/// pH of the reagent
+	var/ph = 7
+	/// Purity of the reagent - for use with internal reaction mechanics only.
+	/// Use var below (`creation_purity`) if you're writing purity effects into a reagent's use mechanics.
+	var/purity = 1
+	/// The purity of the reagent on creation (i.e. when it's added to a mob and its purity split it into 2 chems;
+	/// the purity of the resultant chems are kept as 1, this tracks what the purity was before that)
+	var/creation_purity = 1
+	/// The molar mass of the reagent - if you're adding a reagent that doesn't have a recipe, just add a random number between 10 - 800.
+	/// Higher numbers are "harder" but it's mostly arbitary.
+	var/mass
+	/// Color of our substance.
+	var/color = COLOR_BLACK // rgb: 0, 0, 0
+	/// How fast the reagent is metabolized by the mob.
+	var/metabolization_rate = REAGENTS_METABOLISM
+	/// Above this overdoses happen
+	var/overdose_threshold = 0
+	/// If `TRUE`, the mob will experience overdose effects.
+	var/overdosed = FALSE
+	/// If `TRUE`, the reagent will be metabolized even by liverless mobs.
+	var/self_consuming = FALSE
+	/// Affects how far it travels when sprayed.
+	var/reagent_weight = 1
+	/// Is it currently metabolizing.
+	var/metabolizing = FALSE
+	/// Are we from a material? We might wanna know that for special stuff. Like metalgen. Is replaced with a ref of the material on New()
+	var/datum/material/material
+	/// The set of exposure methods this penetrates skin with.
+	var/penetrates_skin = VAPOR
+	/// See fermi_readme.dm REAGENT_DEAD_PROCESS, REAGENT_INVISIBLE, REAGENT_SNEAKYNAME, REAGENT_SPLITRETAINVOL, REAGENT_CANSYNTH, REAGENT_IMPURE
+	var/chemical_flags = NONE
+	/// If the impurity is below 0.5, replace ALL of the chem with inverse_chem upon metabolising.
+	var/inverse_chem_val = 0.25
+	/// What chem is metabolised when purity is below inverse_chem_val.
+	var/inverse_chem = /datum/reagent/inverse
+	/// How hot this reagent burns when it's on fire - `null` means it can't burn.
+	var/burning_temperature = null
+	/// How much is consumed when it is burnt per second.
+	var/burning_volume = 0.5
+	/**
+	 * Lazyassoc list of `addiction typepath` to `threshold value`.
+	 *
+	 * `threshold value` can be interpreted as the number of units that must be consumed before an addiction is formed.
+	 *
+	 * Ex: `list(/datum/addiction/stimulants = 50)` -> "become addicted to stimulants after metabolizing 50 units of this reagent".
+	 */
+	var/list/addiction_types = null
+	/// The affected organ_flags, if the reagent damages/heals organ damage of an affected mob.
+	/// See "Organ defines for carbon mobs" in `/code/_DEFINES/surgery.dm`
+	var/affected_organ_flags = ORGAN_ORGANIC
+	/// The affected bodytype, if the reagent damages/heals bodyparts (Brute/Fire) of an affected mob.
+	/// See "Bodytype defines" in `/code/_DEFINES/mobs.dm`
+	var/affected_bodytype = BODYTYPE_ORGANIC
+	/// The affected biotype, if the reagent damages/heals toxin damage of an affected mob.
+	/// See "Mob bio-types flags" in `/code/_DEFINES/mobs.dm`
+	var/affected_biotype = MOB_ORGANIC
+	/// A list of traits to apply while the reagent is being metabolized.
 	var/list/metabolized_traits
+	/// A list of traits to apply while the reagent is in a mob.
+	var/list/added_traits
+	/// Multiplier of the amount purged by reagents such as calomel, multiver, syniver etc.
+	var/purge_multiplier = 1
+
+	/// The default reagent container for the reagent, used for icon generation.
+	var/obj/default_container = /obj/item/reagent_containers/cup/bottle
 
 /datum/reagent/New()
-	addict_supertype = type
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
 
+/**
+	if(material)
+		material = SSmaterials.get_material(material)
+	if(glass_price)
+		AddElement(/datum/element/venue_price, glass_price)
+*/
+	if(!mass)
+		mass = rand(10, 800)
+
+/// This should only be called by the holder, so it's already handled clearing its references
 /datum/reagent/Destroy()
 	. = ..()
 	holder = null
-	if(islist(data))
-		data.Cut()
-	data = null
 
-/datum/reagent/proc/reaction_temperature(exposed_temperature, exposed_volume) //By default we do nothing.
+/// Applies this reagent to an [/atom]
+/datum/reagent/proc/expose_atom(atom/exposed_atom, reac_volume, methods = TOUCH)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = 0
+	. |= SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_ATOM, exposed_atom, reac_volume, methods)
+	. |= SEND_SIGNAL(exposed_atom, COMSIG_ATOM_EXPOSE_REAGENT, src, reac_volume, methods)
+
+/// Applies this reagent to a [/mob/living]
+/datum/reagent/proc/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_MOB, exposed_mob, methods, reac_volume, show_message, touch_protection) & COMPONENT_NO_EXPOSE_REAGENTS)
+		return
+
+	if(isnull(exposed_mob.reagents)) // lots of simple mobs do not have a reagents holder
+		return
+
+	if(exposed_mob.reagent_expose(src, methods, reac_volume, show_message, touch_protection) & COMPONENT_NO_EXPOSE_REAGENTS)
+		return
+
+	if(penetrates_skin & methods) // models things like vapors which penetrate the skin
+		var/amount = round(reac_volume * clamp((1 - touch_protection), 0, 1), 0.1)
+		if(amount >= 0.5)
+			exposed_mob.reagents.add_reagent(type, amount, data, holder.chem_temp, purity)
+
+/// Applies this reagent to an [/obj]
+/datum/reagent/proc/expose_obj(obj/exposed_obj, reac_volume, methods=TOUCH, show_message=TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_OBJ, exposed_obj, reac_volume, methods, show_message)
+
+/// Applies this reagent to a [/turf]
+/datum/reagent/proc/expose_turf(turf/exposed_turf, reac_volume)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_TURF, exposed_turf, reac_volume)
+
+///Called whenever a reagent is on fire, or is in a holder that is on fire. (WIP)
+/datum/reagent/proc/burn(datum/reagents/holder)
 	return
 
-/datum/reagent/proc/reaction_mob(mob/living/M, method = REAGENT_TOUCH, volume, show_message = TRUE) // Some reagents transfer on touch, others don't; dependent on if they penetrate the skin or not.
-	if(holder)  // for catching rare runtimes
-		if(method == REAGENT_TOUCH && penetrates_skin && M.reagents && volume >= 1)
-			M.reagents.add_reagent(id, volume)
 
-		if(method == REAGENT_INGEST) //Yes, even Xenos can get addicted to drugs.
-			var/can_become_addicted = M.reagents.reaction_check(M, src)
-			if(can_become_addicted)
-				if(count_by_type(M.reagents.addiction_list, addict_supertype) > 0)
-					to_chat(M, span_notice("Вы чувствуете себя немногим лучше, но надолго ли?")) // sate_addiction handles this now, but kept this for the feed back.
+///Called to begin metabolization and return the volume of reagent to metabolize
+/datum/reagent/proc/compute_metabolization(mob/living/carbon/affected_mob, seconds_per_tick)
+	var/metabolizing_out = metabolization_rate * seconds_per_tick
+	if(!(chemical_flags & REAGENT_UNAFFECTED_BY_METABOLISM))
+		if(chemical_flags & REAGENT_REVERSE_METABOLISM)
+			metabolizing_out /= affected_mob.metabolism_efficiency
+		else
+			metabolizing_out *= affected_mob.metabolism_efficiency
 
-		return TRUE
+	if(!metabolizing)
+		metabolizing = TRUE
+		on_mob_metabolize(affected_mob)
 
-/datum/reagent/proc/reaction_obj(obj/O, volume)
+	return min(metabolizing_out, volume)
+
+/**
+ * Ticks on mob Life() for as long as the reagent remains in the mob's reagents.
+ *
+ * Usage: Parent should be called first using . = ..()
+ *
+ * Exceptions: If the holder var needs to be accessed, call the parent afterward that as it can become null if the reagent is fully removed.
+ *
+ * Returns: UPDATE_MOB_HEALTH only if you need to update the health of a mob (this is only needed when damage is dealt to the mob)
+ *
+ * Arguments
+ * * mob/living/carbon/affected_mob - the mob which the reagent currently is inside of
+ * * seconds_per_tick - the time in server seconds between proc calls (when performing normally it will be 2)
+ * * times_fired - the number of times the owner's Life() tick has been called aka The number of times SSmobs has fired
+ *
+ */
+/datum/reagent/proc/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, metabolization_ratio)
+	SHOULD_CALL_PARENT(TRUE)
+
+///Metabolizes a portion of the reagent after on_mob_life() is called
+/datum/reagent/proc/metabolize_reagent(mob/living/carbon/affected_mob, seconds_per_tick, metabolized_volume)
+	if(isnull(holder))
+		return
+	volume -= metabolized_volume
+	holder.update_total()
+
+/// Called in burns.dm *if* the reagent has the REAGENT_AFFECTS_WOUNDS process flag
+/datum/reagent/proc/on_burn_wound_processing(datum/wound/burn/flesh/burn_wound)
 	return
 
-/datum/reagent/proc/reaction_turf(turf/T, volume, color)
-	return
+/**
+ * Intercepts the reagent transfer/copy operation to do some work before it takes place.
+ * Used to perform some reaction work. Return TRUE To cancel the operation
+ *
+ * Arguments
+ *
+ * * datum/reagents/target - the target holder we are being transferred to
+ * * amount - the amount of reagent being transferred
+ * * copy_only - if TRUE we don't remove ourself from the holder because its a reagent copy & not transfer operation
+*/
+/datum/reagent/proc/intercept_reagents_transfer(datum/reagents/target, amount, copy_only)
+	return FALSE
 
-/datum/reagent/proc/on_mob_life(mob/living/M)
-	current_cycle++
-	var/total_depletion_rate = metabolization_rate * M.metabolism_efficiency * M.digestion_ratio // Cache it
+/// Called when this reagent is first added to a mob
+/datum/reagent/proc/on_mob_add(mob/living/affected_mob, amount)
+	// Scale the overdose threshold of the chem by the difference between the default and creation purity.
+	overdose_threshold += (src.creation_purity - initial(purity)) * overdose_threshold
+	if(added_traits)
+		affected_mob.add_traits(added_traits, "base:[type]")
 
-	handle_addiction(M, total_depletion_rate)
-	sate_addiction(M)
-
-	holder.remove_reagent(id, total_depletion_rate) //By default it slowly disappears.
-	return STATUS_UPDATE_NONE
+/// Called when this reagent is removed while inside a mob
+/datum/reagent/proc/on_mob_delete(mob/living/affected_mob)
+	affected_mob.clear_mood_event("[type]_overdose")
+	REMOVE_TRAITS_IN(affected_mob, "base:[type]")
 
 /// Called when this reagent first starts being metabolized by a liver
 /datum/reagent/proc/on_mob_metabolize(mob/living/affected_mob)
 	SHOULD_CALL_PARENT(TRUE)
 	if(metabolized_traits)
-		affected_mob.add_traits(metabolized_traits, "metabolize:[type]")
+		affected_mob.add_traits(metabolized_traits, METABOLIZATION_TRAIT(type))
 
 /// Called when this reagent stops being metabolized by a liver
-/datum/reagent/proc/on_mob_end_metabolize(mob/living/affected_mob)
+/datum/reagent/proc/on_mob_end_metabolize(mob/living/affected_mob, metabolization_ratio)
 	SHOULD_CALL_PARENT(TRUE)
-	REMOVE_TRAITS_IN(affected_mob, "metabolize:[type]")
+	REMOVE_TRAITS_IN(affected_mob, METABOLIZATION_TRAIT(type))
 
-/datum/reagent/proc/handle_addiction(mob/living/M, consumption_rate)
-	if(addiction_chance && count_by_type(M.reagents.addiction_list, addict_supertype) < 1)
-		var/datum/reagent/new_reagent = new addict_supertype()
-		M.reagents.addiction_threshold_accumulated[new_reagent.id] += consumption_rate
-		var/current_threshold_accumulated = M.reagents.addiction_threshold_accumulated[new_reagent.id]
+/**
+ * Called when a reagent is inside of a mob when they are dead if the reagent has the REAGENT_DEAD_PROCESS flag
+ * Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
+ */
+/datum/reagent/proc/on_mob_dead(mob/living/carbon/affected_mob, seconds_per_tick)
+	SHOULD_CALL_PARENT(TRUE)
 
-		if(addiction_threshold < current_threshold_accumulated && prob(addiction_chance) && prob(addiction_chance_additional))
-			to_chat(M, span_danger("Вы чувствуете сильную эйфорию с лёгким оттенком вины..."))
-			new_reagent.last_addiction_dose = world.timeofday
-			M.reagents.addiction_list.Add(new_reagent)
+/*
+ * Called when a reagent is exposed to electric current, rapidly heated or smashed, something that would cause explosives to get easily set off
+ * Returning a SPARK_ACT_ flag will signal that an action has occurred as a result, for parent behavior and logging purposes
+ * Probably shouldn't be called from within a mob's bloodstream, unless you're ready for some very explosive results
+ * Arguments:
+ * * power_charge - If we were triggered from electric current, how much power was dumped into us?
+ * * spark_flags - Flags specific to the interaction, is it in an enclosed space, should we nerf common reagents, etc.
+ */
+/datum/reagent/proc/on_spark_act(power_charge = 0, spark_flags = NONE)
+	return NONE
 
-/datum/reagent/proc/sate_addiction(mob/living/M) //reagents sate their own withdrawals
-	for(var/datum/reagent/AD in M.reagents.addiction_list)
-		if(AD && istype(AD, addict_supertype))
-			AD.last_addiction_dose = world.timeofday
-			AD.addiction_stage = 1
+/**
+ * Called after add_reagents creates a new reagent.
+ *
+ * Arguments
+ * * data - if not null, contains reagent data which will be applied to the newly created reagent (this will override any pre-set data).
+ */
 
-/datum/reagent/proc/on_mob_death(mob/living/M)	//use this to have chems have a "death-triggered" effect
+/datum/reagent/proc/on_new(data)
+	if(data)
+		src.data = data
+
+/// Called when two reagents of the same are mixing.
+/datum/reagent/proc/on_merge(list/mix_data, amount)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_REAGENT_ON_MERGE, mix_data, amount)
+
+/// Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects. Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
+/datum/reagent/proc/overdose_process(mob/living/affected_mob, seconds_per_tick, metabolization_ratio)
+	return
+
+/// Called when an overdose starts. Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
+/datum/reagent/proc/overdose_start(mob/living/affected_mob, metabolization_ratio)
+	to_chat(affected_mob, span_userdanger("You feel like you took too much of [name]!"))
+	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 	return
 
 /**
- * Flashfire is a proc used to log fire causing chemical reactions.
+ * Called when this chemical is processed in a hydroponics tray.
  *
- * Call this whenever you have a chemical reaction that makes fire flashes.
- * Arguments:
- * * holder: the beaker that the reagent is in
- * * name: name of the reagent / reaction
+ * Can affect plant's health, stats, or cause the plant to react in certain ways.
  */
-/proc/fire_flash_log(datum/reagents/holder, name)
-	if(!holder.my_atom)
-		return
-	if(holder.my_atom.fingerprintslast)
-		var/mob/M = get_mob_by_key(holder.my_atom.fingerprintslast)
-		add_attack_logs(M, COORD(holder.my_atom.loc), "Caused a flashfire reaction of [name]. Last associated key is [holder.my_atom.fingerprintslast]", ATKLOG_FEW)
-	holder.my_atom.investigate_log("A Flashfire reaction, (reagent type [name]) last touched by [holder.my_atom.fingerprintslast ? "[holder.my_atom.fingerprintslast]" : "*null*"], triggered at [COORD(holder.my_atom.loc)].", INVESTIGATE_BOMB)
-
-/// Called when this reagent is first added to a mob
-/datum/reagent/proc/on_mob_add(mob/living/carbon/human/user)
-	SHOULD_CALL_PARENT(TRUE)
-
-	if(shock_reduction && ishuman(user))
-		user.update_movespeed_damage_modifiers()
-
-	if(tags & REAGENT_TAG_ANTI_STUN)
-		ADD_TRAIT(user, TRAIT_ANTI_STUN_REAGENT, id)
-
-/// Called when this reagent is removed while inside a mob
-/datum/reagent/proc/on_mob_delete(mob/living/carbon/human/user)
-	SHOULD_CALL_PARENT(TRUE)
-
-	if(shock_reduction)
-		user.update_movespeed_damage_modifiers()
-
-	if(tags & REAGENT_TAG_ANTI_STUN)
-		REMOVE_TRAIT(user, TRAIT_ANTI_STUN_REAGENT, id)
-
-/datum/reagent/proc/on_move(mob/M)
+/datum/reagent/proc/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
 	return
 
-// Called after add_reagents creates a new reagent.
-/datum/reagent/proc/on_new(data)
-	return
+/// Should return a associative list where keys are taste descriptions and values are strength ratios
+/datum/reagent/proc/get_taste_description(mob/living/taster)
+	if(isnull(taster) || !HAS_TRAIT(taster, TRAIT_DETECTIVES_TASTE))
+		return list("[taste_description]" = 1)
+	return list("[LOWER_TEXT(name)]" = 1)
 
-// Called when two reagents of the same are mixing.
-/datum/reagent/proc/on_merge(data)
-	return
+/**
+ * Used when you want the default reagents purity to be equal to the normal effects
+ * (i.e. if default purity is 0.75, and your reacted purity is 1, then it will return 1.33)
+ *
+ * Arguments
+ * * normalise_num_to - what number/purity value you're normalising to. If blank it will default to the compile value of purity for this chem
+ * * creation_purity - creation_purity override, if desired. This is the purity of the reagent that you're normalising from.
+ */
+/datum/reagent/proc/normalise_creation_purity(normalise_num_to, creation_purity)
+	if(!normalise_num_to)
+		normalise_num_to = initial(purity)
+	if(!creation_purity)
+		creation_purity = src.creation_purity
+	return creation_purity / normalise_num_to
 
-// Called in on_merge() proc if reagent can carry diseases
-/datum/reagent/proc/merge_diseases_data(list/mix_data)
-	if(!(id in GLOB.diseases_carrier_reagents))
-		return
+/**
+ * Gets the inverse purity of this reagent. Mostly used when converting from a normal reagent to its inverse one.
+ *
+ * Arguments
+ * * purity - Overrides the purity used for determining the inverse purity.
+ */
+/datum/reagent/proc/get_inverse_purity(purity)
+	if(!inverse_chem || !inverse_chem_val)
+		return 0
+	if(!purity)
+		purity = src.purity
+	return min(1-inverse_chem_val + purity + 0.01, 1) //Gives inverse reactions a 1% purity threshold for being 100% pure to appease players with OCD.
 
-	if(data && mix_data)
-		if(data["diseases"] || mix_data["diseases"])
-			var/list/preserve = list()
-			var/list/all_diseases = data["diseases"] + mix_data["diseases"]
-
-			var/list/advances_to_mix = list()
-			for(var/datum/disease/virus/advance/A in all_diseases)
-				advances_to_mix += A
-				all_diseases -= A
-
-			var/datum/disease/virus/advance/A = Advance_Mix(advances_to_mix)
-			if(istype(A))
-				preserve += A
-
-			// It's almost always 1-3 items in this list, so there shouldn't be any problems with nested loops.
-			for(var/datum/disease/D1 in all_diseases)
-				var/unique = TRUE
-				for(var/datum/disease/D2 in preserve)
-					if(D1.GetDiseaseID() == D2.GetDiseaseID())
-						unique = FALSE
-						break
-				if(unique)
-					preserve += D1.Copy()
-
-			data["diseases"] = preserve
-
-	return
-
-/datum/reagent/proc/on_update(atom/A)
-	return
-
-// Called every time reagent containers process.
-/datum/reagent/process()
-	if(!holder || holder.flags & REAGENT_NOREACT)
-		return FALSE
-	return TRUE
-
-// Called when the reagent container is hit by an explosion
-/datum/reagent/proc/on_ex_act(severity)
-	return
-
-// Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects
-/datum/reagent/proc/overdose_process(mob/living/M, severity)
-	var/effect = rand(1, 100) - severity
-	var/update_flags = STATUS_UPDATE_NONE
-	if(effect <= 8)
-		update_flags |= (M.adjustToxLoss(severity, FALSE) ? STATUS_UPDATE_HEALTH : STATUS_UPDATE_NONE)
-	return list(effect, update_flags)
-
-/datum/reagent/proc/overdose_start(mob/living/M)
-	return
-
-/datum/reagent/proc/overdose_end(mob/living/M)
-	return
-
-/datum/reagent/proc/addiction_act_stage1(mob/living/M)
-	return STATUS_UPDATE_NONE
-
-/datum/reagent/proc/addiction_act_stage2(mob/living/M)
-	if(minor_addiction)
-		if(prob(4))
-			to_chat(M, span_notice("Вам ненадолго приходит мысль о том, чтобы принять ещё немного [name]."))
-	else
-		if(prob(8))
-			M.emote("shiver")
-			M.Jitter(120 SECONDS)
-		if(prob(8))
-			M.emote("sneeze")
-		if(prob(4))
-			to_chat(M, span_notice("Вы чувствуете тупую головную боль."))
-	return STATUS_UPDATE_NONE
-
-/datum/reagent/proc/addiction_act_stage3(mob/living/M)
-	if(minor_addiction)
-		if(prob(4))
-			to_chat(M, span_notice("Вам бы сейчас не помешало немного [name]."))
-	else
-		if(prob(8))
-			M.emote("twitch_s")
-			M.Jitter(160 SECONDS)
-		if(prob(8))
-			M.emote("shiver")
-			M.Jitter(120 SECONDS)
-		if(prob(4))
-			to_chat(M, span_warning("У вас болит голова."))
-		if(prob(4))
-			to_chat(M, span_warning("Вам хочется [name]!"))
-	return STATUS_UPDATE_NONE
-
-/datum/reagent/proc/addiction_act_stage4(mob/living/M)
-	if(minor_addiction)
-		if(prob(8))
-			to_chat(M, span_notice("Вам ОЧЕНЬ хочется [name]. <b>Прямо сейчас!</b>"))
-		if(prob(4))
-			M.emote("twitch")
-			M.Jitter(160 SECONDS)
-	else
-		if(prob(8))
-			M.emote("twitch")
-			M.Jitter(160 SECONDS)
-		if(prob(4))
-			to_chat(M, span_warning("У вас пульсирующая головная боль!"))
-		if(prob(4))
-			to_chat(M, span_warning("Вы чувствуете сильное желание принять [name]!"))
-		else if(prob(4))
-			to_chat(M, span_warning("Вам РЕАЛЬНО НУЖЕН [name]!"))
-	return STATUS_UPDATE_NONE
-
-/datum/reagent/proc/addiction_act_stage5(mob/living/M)
-	var/update_flags = STATUS_UPDATE_NONE
-	if(minor_addiction)
-		if(prob(8))
-			to_chat(M, span_notice("Вы не можете перестать думать о [name]..."))
-		if(prob(4))
-			M.emote(pick("twitch", "twitch_s", "shiver"))
-			M.Jitter(160 SECONDS)
-	else
-		if(prob(6))
-			to_chat(M, span_warning("У вас болезненно сводит желудок!"))
-			M.visible_message(span_warning("[M] давится и блюёт!"))
-			M.Weaken(rand(4 SECONDS, 8 SECONDS))
-		if(prob(8))
-			M.emote(pick("twitch", "twitch_s", "shiver"))
-			M.Jitter(160 SECONDS)
-		if(prob(4))
-			to_chat(M, span_warning("Голова раскалывается от боли..."))
-		if(prob(5))
-			to_chat(M, span_warning("Вы чувствуете, что не можете жить без [name]!"))
-		else if(prob(5))
-			to_chat(M, span_warning("Вы готовы СДОХНУТЬ ради одной дозы [name]!"))
-	return update_flags
-
-/datum/reagent/proc/fakedeath(mob/living/M)
-	if(HAS_TRAIT_FROM(M, TRAIT_FAKEDEATH, id))
-		return
-
-	if(!(M.status_flags & CANPARALYSE))
-		return
-
-	M.emote("deathgasp")
-	ADD_TRAIT(M, TRAIT_FAKEDEATH, id)
-	M.updatehealth("fakedeath reagent")
-
-/datum/reagent/proc/fakerevive(mob/living/M)
-	if(!HAS_TRAIT_FROM(M, TRAIT_FAKEDEATH, id))
-		return
-
-	REMOVE_TRAIT(M, TRAIT_FAKEDEATH, id)
-	if(M.healthdoll)
-		M.healthdoll.cached_healthdoll_overlays.Cut()
-	M.updatehealth("fakedeath reagent end")
-
-/datum/reagent/proc/taste_amplification(mob/living/user)
-	. = list()
-	var/taste_desc = taste_description
-	var/taste_amount = volume * taste_mult
-	.[taste_desc] = taste_amount
+///Called when feeding a fish. If TRUE is returned, a portion of reagent will be consumed.
+/datum/reagent/proc/used_on_fish(obj/item/fish/fish)
+	return FALSE
 
 /**
  * Input a reagent_list, outputs pretty readable text!
