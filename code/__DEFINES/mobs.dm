@@ -609,3 +609,79 @@ GLOBAL_LIST_INIT(ru_species, list(
 #define PIXEL_X_OFFSET "x"
 #define PIXEL_Y_OFFSET "y"
 #define PIXEL_Z_OFFSET "z"
+
+//Bodytype defines for surgery, and other misc things.
+///The limb is organic.
+#define BODYTYPE_ORGANIC (1<<0)
+///The limb is robotic.
+#define BODYTYPE_ROBOTIC (1<<1)
+///A placeholder bodytype for xeno larva, so their limbs cannot be attached to anything.
+#define BODYTYPE_LARVA_PLACEHOLDER (1<<2)
+///The limb is from a xenomorph.
+#define BODYTYPE_ALIEN (1<<3)
+///The limb is from a golem
+#define BODYTYPE_GOLEM (1<<4)
+//The limb is a peg limb
+#define BODYTYPE_PEG (1<<5)
+//The limb is plantly (and will regen if photosynthesis is active)
+#define BODYTYPE_PLANT (1<<6)
+//This limb is shadowy and will regen if shadowheal is active
+#define BODYTYPE_SHADOW (1<<7)
+//This limb is a ghost limb and can phase through walls.
+#define BODYTYPE_GHOST (1<<8)
+/// Analagous to BODYSHAPE_DIGITIGRADE, though this one is not removed if the mob's shape changed
+#define BODYTYPE_DIGITIGRADE (1<<9)
+
+//Mob bio-types flags
+///The mob is organic, can heal from medical sutures.
+#define MOB_ORGANIC (1 << 0)
+///The mob is of a rocky make, most likely a golem. Iron within, iron without!
+#define MOB_MINERAL (1 << 1)
+///The mob is a synthetic lifeform, like station borgs.
+#define MOB_ROBOTIC (1 << 2)
+///The mob is an shambling undead corpse. Or a halloween species. Pick your poison.
+#define MOB_UNDEAD (1 << 3)
+///The mob is a human-sized human-like human-creature.
+#define MOB_HUMANOID (1 << 4)
+///The mob is a bug/insect/arachnid/some other kind of scuttly thing.
+#define MOB_BUG (1 << 5)
+///The mob is a wild animal. Domestication may apply.
+#define MOB_BEAST (1 << 6)
+///The mob is some kind of a creature that should be exempt from certain **fun** interactions for balance reasons, i.e. megafauna or a headslug.
+#define MOB_SPECIAL (1 << 7)
+///The mob is some kind of a scaly reptile creature
+#define MOB_REPTILE (1 << 8)
+///The mob is a spooky phantasm or an evil ghast of such nature.
+#define MOB_SPIRIT (1 << 9)
+///The mob is a plant-based species, benefitting from light but suffering from darkness and plantkillers.
+#define MOB_PLANT (1 << 10)
+///The mob is a goopy creature, probably coming from xenobiology.
+#define MOB_SLIME (1 << 11)
+///The mob is fish or water-related.
+#define MOB_AQUATIC (1 << 12)
+///The mob is a mining-related mob. It's the plasma, you see. Gets in ya bones.
+#define MOB_MINING (1 << 13)
+///The mob is a crustacean. Like crabs. Or lobsters.
+#define MOB_CRUSTACEAN (1 << 14)
+///The mob is all boney
+#define MOB_SKELETAL (1 << 15)
+
+/// Readable biotypes, keep this in the same order as the flags are
+#define MOB_BIOTYPES_READABLE list(\
+	"organic", \
+	"mineral", \
+	"robotic", \
+	"undead", \
+	"humanoid", \
+	"insectoid", \
+	"beast", \
+	"monstrous", \
+	"reptile", \
+	"spirit", \
+	"plant", \
+	"slime", \
+	"aquatic", \
+	"mining", \
+	"crustacean", \
+	"skeletal", \
+)

@@ -90,12 +90,6 @@
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 
-/**
-	if(material)
-		material = SSmaterials.get_material(material)
-	if(glass_price)
-		AddElement(/datum/element/venue_price, glass_price)
-*/
 	if(!mass)
 		mass = rand(10, 800)
 
@@ -187,10 +181,6 @@
 	volume -= metabolized_volume
 	holder.update_total()
 
-/// Called in burns.dm *if* the reagent has the REAGENT_AFFECTS_WOUNDS process flag
-/datum/reagent/proc/on_burn_wound_processing(datum/wound/burn/flesh/burn_wound)
-	return
-
 /**
  * Intercepts the reagent transfer/copy operation to do some work before it takes place.
  * Used to perform some reaction work. Return TRUE To cancel the operation
@@ -213,7 +203,6 @@
 
 /// Called when this reagent is removed while inside a mob
 /datum/reagent/proc/on_mob_delete(mob/living/affected_mob)
-	affected_mob.clear_mood_event("[type]_overdose")
 	REMOVE_TRAITS_IN(affected_mob, "base:[type]")
 
 /// Called when this reagent first starts being metabolized by a liver
@@ -268,7 +257,6 @@
 /// Called when an overdose starts. Returning UPDATE_MOB_HEALTH will cause updatehealth() to be called on the holder mob by /datum/reagents/proc/metabolize.
 /datum/reagent/proc/overdose_start(mob/living/affected_mob, metabolization_ratio)
 	to_chat(affected_mob, span_userdanger("You feel like you took too much of [name]!"))
-	affected_mob.add_mood_event("[type]_overdose", /datum/mood_event/overdose, name)
 	return
 
 /**
@@ -281,8 +269,6 @@
 
 /// Should return a associative list where keys are taste descriptions and values are strength ratios
 /datum/reagent/proc/get_taste_description(mob/living/taster)
-	if(isnull(taster) || !HAS_TRAIT(taster, TRAIT_DETECTIVES_TASTE))
-		return list("[taste_description]" = 1)
 	return list("[LOWER_TEXT(name)]" = 1)
 
 /**

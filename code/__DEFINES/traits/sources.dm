@@ -216,3 +216,6 @@
 
 /// Trait granted by lipstick
 #define LIPSTICK_TRAIT "lipstick_trait"
+
+/// Trait granted from the metabolization of a reagent
+#define METABOLIZATION_TRAIT(type) "metabolize:[type]"

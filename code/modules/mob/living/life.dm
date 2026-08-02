@@ -299,3 +299,11 @@
 	player_logged += seconds_per_tick SECONDS	// called every 2s. on life
 	return TRUE
 
+/// Proc used for custom metabolization of reagents, if any
+/mob/living/proc/reagent_tick(datum/reagent/chem, seconds_per_tick, metabolization_ratio)
+	SHOULD_CALL_PARENT(TRUE)
+	return SEND_SIGNAL(src, COMSIG_MOB_REAGENT_TICK, chem, seconds_per_tick, metabolization_ratio)
+
+/// Proc used for custom reagent exposure effects, if any
+/mob/living/proc/reagent_expose(datum/reagent/chem, methods = TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+	return
