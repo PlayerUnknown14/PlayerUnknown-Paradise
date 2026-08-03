@@ -2,8 +2,14 @@
 // Mostly used as emergency chemicals OR to convert damage (and heal a bit in the process).
 // The type is used to prompt borgs that the medicine is harmful.
 /datum/reagent/medicine/c2
-	harmless = FALSE
-	metabolization_rate = 0.2
+	abstract_type = /datum/reagent/medicine/c2
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+	inverse_chem = null //Some of these use inverse chems - we're just defining them all to null here to avoid repetition, eventually this will be moved up to parent
+	creation_purity = REAGENT_STANDARD_PURITY//All sources by default are 0.75 - reactions are primed to resolve to roughly the same with no intervention for these.
+	purity = REAGENT_STANDARD_PURITY
+	inverse_chem_val = 0
+	inverse_chem = null
+	chemical_flags = REAGENT_SPLITRETAINVOL
 
 #define ROCK "камень"
 #define PAPER "бумага"

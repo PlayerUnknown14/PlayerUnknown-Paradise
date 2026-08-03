@@ -187,7 +187,7 @@
 		var/atom/A = holder.my_atom
 		var/turf/T = get_turf(A)
 		var/message = "Mobs have been spawned in [ADMIN_VERBOSEJMP(T)] by a [reaction_name] reaction."
-		message += " (<A href='byond://?_src_=vars;Vars=[REF(A)]'>VV</A>)"
+		message += " (<A href='byond://?_src_=vars;Vars=[A.UID()]'>VV</A>)"
 
 		var/mob/M = get(A, /mob)
 		if(M)

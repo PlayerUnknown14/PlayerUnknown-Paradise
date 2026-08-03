@@ -639,3 +639,6 @@
 #define TRAIT_ITEM_ACTIVE "item_active"
 
 #define TRAIT_HAS_ANTAG_SKILLS "has_antag_skills"
+
+///Trait which silences all chemical reactions in its container
+#define TRAIT_SILENT_REACTIONS "silent_reactions"
