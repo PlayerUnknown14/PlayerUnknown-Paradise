@@ -826,24 +826,6 @@
 	if(HAS_TRAIT(src, TRAIT_FAKEDEATH))
 		temp = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
-	if(reagents)
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.heart_rate_decrease)
-				if(temp <= PULSE_THREADY && temp >= PULSE_NORM)
-					temp--
-					break
-
-		for(var/datum/reagent/R in reagents.reagent_list)//handles different chems' influence on pulse
-			if(R.heart_rate_increase)
-				if(temp <= PULSE_FAST && temp >= PULSE_NONE)
-					temp++
-					break
-
-		for(var/datum/reagent/R in reagents.reagent_list) //To avoid using fakedeath
-			if(R.heart_rate_stop)
-				temp = PULSE_NONE
-				break
-
 	return temp
 
 /mob/living/carbon/human/proc/handle_decay()
