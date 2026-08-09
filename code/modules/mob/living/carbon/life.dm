@@ -107,6 +107,11 @@
 		if(ishuman(src) && !internal && environment.temperature() < 273 && environment.return_pressure() > 20) //foggy breath :^)
 			new /obj/effect/frosty_breath(loc, src)
 
+/mob/living/carbon/proc/has_smoke_protection()
+	if(HAS_TRAIT(src, TRAIT_NO_BREATH))
+		return TRUE
+	return FALSE
+
 //Third link in a breath chain, calls handle_breath_temperature()
 /mob/living/carbon/proc/check_breath(datum/gas_mixture/breath)
 	if(HAS_TRAIT(src, TRAIT_GODMODE))

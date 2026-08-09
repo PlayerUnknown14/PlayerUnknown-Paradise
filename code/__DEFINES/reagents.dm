@@ -324,3 +324,6 @@
 // Reagents specific heat
 #define SPECIFIC_HEAT_DEFAULT 200
 #define SPECIFIC_HEAT_PLASMA 500
+
+/// The rate at which reagent evaporates
+#define REAGENT_EVAPARATION_RATIO 0.3

@@ -84,7 +84,7 @@
 			smoke_mob(smoker, seconds_per_tick)
 
 		var/obj/effect/particle_effect/fluid/smoke/spread_smoke = new type(spread_turf, group, src)
-		reagents.copy_to(spread_smoke, reagents.total_volume)
+		reagents.trans_to(spread_smoke, reagents.total_volume)
 		spread_smoke.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		spread_smoke.lifetime = lifetime
 
@@ -424,7 +424,7 @@
  * Smoke which contains reagents which it applies to everything it comes into contact with.
  */
 /obj/effect/particle_effect/fluid/smoke/chem
-	lifetime = 12 SECONDS
+	lifetime = 20 SECONDS
 
 /obj/effect/particle_effect/fluid/smoke/chem/process(seconds_per_tick)
 	. = ..()
@@ -436,38 +436,57 @@
 	for(var/atom/movable/thing as anything in location)
 		if(thing == src)
 			continue
-		reagents.reaction(thing, REAGENT_TOUCH, fraction)
-		SEND_SIGNAL(thing, COMSIG_ATOM_EXPOSE_REAGENTS, reagents, reagents.total_volume)
+		if(thing.invisibility >= INVISIBILITY_ABSTRACT) // Don't smoke landmarks please
+			continue
+		if(HAS_TRAIT(thing, TRAIT_UNDERFLOOR))
+			continue
+		if(isliving(thing))
+			continue
+		reagents.expose(thing, SMOKE_MACHINE, fraction)
 
-	reagents.reaction(location, REAGENT_TOUCH, fraction)
+	reagents.expose(location, SMOKE_MACHINE, fraction)
 	return TRUE
 
 /obj/effect/particle_effect/fluid/smoke/chem/smoke_mob(mob/living/carbon/smoker, seconds_per_tick)
 	if(lifetime < 1)
 		return FALSE
-
 	if(!istype(smoker))
 		return FALSE
-
-	if(smoker.stat == DEAD)
-		return FALSE
-
-	if(!smoker.can_breathe_gas())
+	if(smoker.internal != null || smoker.has_smoke_protection())
 		return FALSE
 
 	var/fraction = (seconds_per_tick SECONDS) / initial(lifetime)
-	reagents.copy_to(smoker, reagents.total_volume, fraction)
-	reagents.reaction(smoker, REAGENT_INGEST, fraction)
+	reagents.trans_to(smoker, reagents.total_volume, fraction, methods = SMOKE_MACHINE, copy_only = TRUE)
 	return TRUE
 
 /// Helper to quickly create a cloud of reagent smoke
-/proc/do_chem_smoke(range = 0, amount = DIAMOND_AREA(range), atom/holder = null, location = null, reagent_type = /datum/reagent/water, smoke_type = /datum/effect_system/fluid_spread/smoke/chem, reagent_volume = 10, log = FALSE, color = null)
-	var/datum/reagents/smoke_reagents = new/datum/reagents(reagent_volume)
-	smoke_reagents.add_reagent(reagent_type, reagent_volume)
+/// reagent_type can accept a list of reagents, optionally as a key-value pair with values overriding reagent_volume if not null
+/proc/do_chem_smoke(range = 0, atom/holder = null, location = null, reagent_type = /datum/reagent/water, reagent_volume = 10, datum/reagents/carry = null, carry_limit = null, log = FALSE, amount = null, datum/effect_system/fluid_spread/smoke/chem/smoke_type = /datum/effect_system/fluid_spread/smoke/chem, silent = TRUE)
+	if(carry)
+		var/datum/effect_system/fluid_spread/smoke/chem/smoke = new smoke_type(location, range, amount, holder || location, carry, carry_limit, silent)
+		smoke.start(log = log)
+		return
 
-	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new smoke_type
-	smoke.attach(location)
-	smoke.set_up(amount = amount, holder = holder, location = location, carry = smoke_reagents, silent = TRUE)
+	if(ispath(reagent_type, /datum/reagent))
+		var/datum/reagents/smoke_reagents = new /datum/reagents(reagent_volume)
+		smoke_reagents.add_reagent(reagent_type, reagent_volume)
+		var/datum/effect_system/fluid_spread/smoke/chem/smoke = new smoke_type(location, range, amount, holder || location, smoke_reagents, carry_limit, silent)
+		smoke.start(log = log)
+		return
+
+	if(!islist(reagent_type))
+		CRASH("do_chem_smoke passed a non-reagent path, non-list reagent_type [reagent_type]!")
+
+	var/list/reagent_list = reagent_type
+	var/chem_volume = 0
+	for (var/chem_type in reagent_list)
+		chem_volume += reagent_list[chem_type] || reagent_volume
+
+	var/datum/reagents/smoke_reagents = new /datum/reagents(chem_volume)
+	for (var/chem_type in reagent_list)
+		smoke_reagents.add_reagent(chem_type, reagent_list[chem_type] || reagent_volume)
+
+	var/datum/effect_system/fluid_spread/smoke/chem/smoke = new smoke_type(location, range, amount, holder || location, smoke_reagents, carry_limit, silent)
 	smoke.start(log = log)
 
 /// A factory which produces clouds of chemical bearing smoke.
@@ -476,18 +495,10 @@
 	var/datum/reagents/chemholder
 	effect_type = /obj/effect/particle_effect/fluid/smoke/chem
 
-/datum/effect_system/fluid_spread/smoke/chem/New()
-	..()
-	chemholder = new(1000)
-
-/datum/effect_system/fluid_spread/smoke/chem/Destroy()
-	QDEL_NULL(chemholder)
-	return ..()
-
-/datum/effect_system/fluid_spread/smoke/chem/set_up(range = 1, amount = DIAMOND_AREA(range), atom/holder, atom/location = null, datum/reagents/carry = null, silent = FALSE)
+/datum/effect_system/fluid_spread/smoke/chem/New(turf/location, range = 1, amount = null, atom/holder = null, datum/reagents/carry = null, carry_limit = null, silent = FALSE)
 	. = ..()
-	carry?.copy_to(chemholder, carry.total_volume)
-	carry?.clear_reagents()
+	chemholder = new(1000, NO_REACT)
+	carry?.trans_to(chemholder, isnull(carry_limit) ? carry.total_volume : carry_limit, copy_only = TRUE)
 
 	if(silent)
 		return
@@ -498,22 +509,25 @@
 
 	var/where = "[AREACOORD(location)]"
 	var/contained = length(contained_reagents) ? "\[[contained_reagents.Join(", ")]\] @ [chemholder.chem_temp]K" : null
-	if(carry?.my_atom?.fingerprintslast) //Some reagents don't have a my_atom in some cases
-		var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
-		var/more = ""
-		if(M)
-			more = "[ADMIN_LOOKUPFLW(M)] "
-		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Key: [more ? more : carry.my_atom.fingerprintslast].")
-		log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
-	else
+	// Some reagents don't have a my_atom in some cases
+	if(!carry.my_atom?.fingerprintslast)
 		message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. No associated key.")
 		log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
+		return
+
+	var/mob/bomber = get_mob_by_key(carry.my_atom.fingerprintslast)
+	message_admins("Smoke: ([ADMIN_VERBOSEJMP(location)])[contained]. Key: [bomber ? "[ADMIN_LOOKUPFLW(bomber)] " : carry.my_atom.fingerprintslast].")
+	log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
+
+/datum/effect_system/fluid_spread/smoke/chem/Destroy()
+	QDEL_NULL(chemholder)
+	return ..()
 
 /datum/effect_system/fluid_spread/smoke/chem/start(log = FALSE)
 	var/start_loc = holder ? get_turf(holder) : src.location
 	var/mixcolor = mix_color_from_reagents(chemholder.reagent_list)
 	var/obj/effect/particle_effect/fluid/smoke/chem/smoke = new effect_type(start_loc, new /datum/fluid_group(amount))
-	chemholder.copy_to(smoke, chemholder.total_volume)
+	chemholder.trans_to(smoke, chemholder.total_volume, copy_only = TRUE)
 
 	if(mixcolor)
 		smoke.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY) // give the smoke color, if it has any to begin with
@@ -525,9 +539,9 @@
  * A version of chemical smoke with a very short lifespan.
  */
 /obj/effect/particle_effect/fluid/smoke/chem/quick
-	lifetime = 6 SECONDS
+	lifetime = 4 SECONDS
 	opacity = FALSE
-	alpha = 150
+	alpha = 100
 
 /datum/effect_system/fluid_spread/smoke/chem/quick
 	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/quick
@@ -546,7 +560,7 @@
 	smoker.emote("gasp")
 	if(reagents.total_volume >= 60)
 		smoker.AdjustLoseBreath(2 SECONDS)
-	reagents.copy_to(smoker, REAGENT_EVAPORATION(reagents.total_volume))
+	reagents.trans_to(smoker, REAGENT_EVAPORATION(reagents.total_volume))
 	return TRUE
 
 #undef REAGENT_EVAPORATION

@@ -352,6 +352,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define ispathanimal(A) (ispath(A, /mob/living/simple_animal))
 #define is_circuit_drone(A) (istype(A, /mob/living/simple_animal/circuit_drone))
 
+//Eye mobs
+#define iseyemob(A) (istype(A, /mob/camera))
 #define isAIEye(A) (istype(A, /mob/camera/aiEye))
 #define isovermind(A) (istype(A, /mob/camera/blob))
 

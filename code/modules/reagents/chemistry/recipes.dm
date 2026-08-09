@@ -182,12 +182,12 @@
  * * mob_faction - used in determining targets, mobs from the same faction won't harm eachother.
  * * random - creates random mobs. self explanatory.
  */
-/datum/chemical_reaction/proc/chemical_mob_spawn(datum/reagents/holder, amount_to_spawn, reaction_name, mob_class = HOSTILE_SPAWN, mob_faction = FACTION_CHEMICAL_SUMMON, random = TRUE)
+/datum/chemical_reaction/proc/chemical_mob_spawn(datum/reagents/holder, amount_to_spawn, reaction_name, mob_class = HOSTILE_SPAWN, mob_faction = "chemicalsummon", random = TRUE)
 	if(holder?.my_atom)
 		var/atom/A = holder.my_atom
 		var/turf/T = get_turf(A)
-		var/message = "Mobs have been spawned in [ADMIN_VERBOSEJMP(T)] by a [reaction_name] reaction."
-		message += " (<A href='byond://?_src_=vars;Vars=[A.UID()]'>VV</A>)"
+		var/message = "A [reaction_name] reaction has occurred in [ADMIN_VERBOSEJMP(T)]"
+		message += " ([ADMIN_VV(A,"VV")])"
 
 		var/mob/M = get(A, /mob)
 		if(M)
@@ -195,13 +195,13 @@
 		else
 			message += " - Last Fingerprint: [(A.fingerprintslast ? A.fingerprintslast : "N/A")]"
 
-		message_admins(message, 0, 1)
-		log_game("[reaction_name] chemical mob spawn reaction occuring at [AREACOORD(T)] carried by [key_name(M)] with last fingerprint [A.fingerprintslast? A.fingerprintslast : "N/A"]")
+		message_admins(message)
+		add_game_logs("[reaction_name] chemical mob spawn reaction occuring at [AREACOORD(T)] carried by [key_name_log(M)] with last fingerprint [A.fingerprintslast? A.fingerprintslast : "N/A"]", M)
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, TRUE)
 
 		for(var/mob/living/carbon/C in viewers(get_turf(holder.my_atom), null))
-			C.flash_act()
+			C.flash_eyes()
 
 		for(var/i in 1 to amount_to_spawn)
 			var/mob/living/spawned_mob
@@ -209,11 +209,10 @@
 				spawned_mob = create_random_mob(get_turf(holder.my_atom), mob_class)
 			else
 				spawned_mob = new mob_class(get_turf(holder.my_atom))//Spawn our specific mob_class
-			spawned_mob.add_faction(mob_faction)
-			ADD_TRAIT(spawned_mob, TRAIT_SPAWNED_MOB, INNATE_TRAIT)
+			spawned_mob.faction |= mob_faction
 			if(prob(50))
-				for(var/j in 1 to rand(1, 3))
-					step(spawned_mob, pick(NORTH,SOUTH,EAST,WEST))
+				for(var/j = 1, j <= rand(1, 3), j++)
+					step(spawned_mob, pick(NORTH, SOUTH, EAST, WEST))
 
 /**
  * Magical move-wooney that happens sometimes.
@@ -251,7 +250,7 @@
 // It is HIGHLY, HIGHLY recomended that you consume all/a good volume of the reagents/products in an explosion - because it will just keep going forever until the reaction stops
 //If you have competitive reactions - it's a good idea to consume ALL reagents in a beaker (or product+reactant), otherwise it'll swing back with the deficit and blow up again
 
-/*
+/**
  * The same method that pyrotechnic reagents used before
  * Now instead of defining the var as part of the reaction - any recipe can call it and define their own method
  * WILL REMOVE ALL REAGENTS
@@ -267,59 +266,46 @@
  * * flash_factor - multiplier to flash range of the explosion
  */
 /proc/reagent_explode(datum/reagents/holder, volume, modifier = 0, strengthdiv = 10, clear_mob_reagents = FALSE, clear_holder_reagents = TRUE, flash_factor = null, flame_factor = null)
-	if (QDELETED(holder))
+	if(QDELETED(holder))
 		return
 
 	var/power = modifier + round(volume / strengthdiv, 1)
-	if (power > 0)
+	if(power > 0)
 		var/turf/our_turf = get_turf(holder.my_atom)
 		var/inside_msg
-		if (ismob(holder.my_atom))
+		if(ismob(holder.my_atom))
 			var/mob/owner = holder.my_atom
 			inside_msg = " inside [ADMIN_LOOKUPFLW(owner)]"
 		var/lastkey = holder.my_atom.fingerprintslast //This can runtime (null.fingerprintslast) - due to plumbing?
 		var/touch_msg = "N/A"
-		if (lastkey)
+		if(lastkey)
 			var/mob/toucher = get_mob_by_key(lastkey)
 			touch_msg = "[ADMIN_LOOKUPFLW(toucher)]"
-		if (!istype(holder.my_atom, /obj/machinery/plumbing)) //excludes standard plumbing equipment from spamming admins with this shit
-			message_admins("Reagent explosion reaction occurred at [ADMIN_VERBOSEJMP(our_turf)][inside_msg]. Last Fingerprint: [touch_msg].")
 		log_game("Reagent explosion reaction occurred at [AREACOORD(our_turf)]. Last Fingerprint: [lastkey ? lastkey : "N/A"]." )
 		var/datum/effect_system/reagents_explosion/explosion_system = new(our_turf, power, flash_fact = flash_factor, flame_fact = flame_factor)
 		explosion_system.start(holder.my_atom)
 
-	if (istype(holder.my_atom, /obj/item/organ/stomach))
-		var/obj/item/organ/stomach/indigestion = holder.my_atom
-		if(power < 1)
-			return
-		if (clear_mob_reagents)
-			indigestion.owner?.vomit(MOB_VOMIT_MESSAGE | MOB_VOMIT_FORCE, lost_nutrition = 150, distance = 5, purge_ratio = 1)
-		if (clear_holder_reagents)
-			holder.clear_reagents()
-		return
-
-	if (!ismob(holder.my_atom))
+	if(!ismob(holder.my_atom))
 		holder.clear_reagents()
 		return
 
 	// Not quite the same if the reaction is in their stomach; they'll throw up
 	// from any explosion, but it'll only make them puke up everything in their
 	// stomach
-	if (!clear_mob_reagents)
+	if(!clear_mob_reagents)
 		return
 
 	// Only clear reagents if they use a special explosive reaction to do it; it shouldn't apply
 	// to any explosion inside a person
-	if (clear_holder_reagents)
+	if(clear_holder_reagents)
 		holder.clear_reagents()
 
-	if (iscarbon(holder.my_atom))
+	if(iscarbon(holder.my_atom))
 		var/mob/living/carbon/victim = holder.my_atom
-		var/vomit_flags = MOB_VOMIT_MESSAGE | MOB_VOMIT_FORCE
 		// The vomiting here is for effect, not meant to help with purging
-		victim.vomit(vomit_flags, distance = 5)
+		victim.vomit()
 
-/*
+/**
  *Creates a flash effect only - less expensive than explode()
  *
  * *Arguments
@@ -329,10 +315,10 @@
 /datum/chemical_reaction/proc/explode_flash(datum/reagents/holder, datum/equilibrium/equilibrium, range = 2, length = 25)
 	var/turf/location = get_turf(holder.my_atom)
 	for(var/mob/living/living_mob in viewers(range, location))
-		living_mob.flash_act(length = length)
+		living_mob.flash_eyes()
 	holder.my_atom.visible_message("The [holder.my_atom] suddenly lets out a bright flash!")
 
-/*
+/**
  *Deafens those in range causing ear damage and muting sound
  *
  * Arguments
@@ -343,8 +329,7 @@
 /datum/chemical_reaction/proc/explode_deafen(datum/reagents/holder, datum/equilibrium/equilibrium, power = 3, stun = 20, range = 2)
 	var/location = get_turf(holder.my_atom)
 	playsound(location, 'sound/effects/bang.ogg', 25, TRUE)
-	for(var/mob/living/living in get_hearers_in_view(range, location))
-		living.soundbang_act(SOUNDBANG_NORMAL, stun, power)
+	bang(location, range)
 
 //Spews out the inverse of the chems in the beaker of the products/reactants only
 /datum/chemical_reaction/proc/explode_invert_smoke(datum/reagents/holder, datum/equilibrium/equilibrium, force_range = 0, clear_products = TRUE, clear_reactants = TRUE, accept_impure = TRUE)
@@ -420,7 +405,7 @@
 
 //Calls the default explosion subsystem handiler to explode with fire (random firespots and noise)
 /datum/chemical_reaction/proc/explode_fire(datum/reagents/holder, datum/equilibrium/equilibrium, range = 3)
-	explosion(holder.my_atom, flame_range = range, explosion_cause = src)
+	explosion(holder.my_atom, flame_range = range, cause = src)
 	holder.my_atom.audible_message("The [holder.my_atom] suddenly errupts in flames!")
 
 //Creates a ring of fire in a set range around the beaker location
@@ -441,7 +426,7 @@
 			else if(equilibrium.data["[id]_y"] > 0)
 				equilibrium.data["[id]_x"] -= increment
 
-	else if (equilibrium.data["[id]_tar"] == "[id]_y")
+	else if(equilibrium.data["[id]_tar"] == "[id]_y")
 		if(equilibrium.data["[id]_y"] >= y_offset)
 			equilibrium.data["[id]_tar"] = "[id]_x"
 			equilibrium.data["[id]_x"] -= increment
@@ -458,7 +443,7 @@
 	new /obj/effect/hotspot(target)
 	debug_world("X: [equilibrium.data["[id]_x"]], Y: [equilibrium.data["[id]_x"]]")
 
-/*
+/**
  * Creates a square of fire in a fire_range radius,
  * fire_range = 0 will be on the exact spot of the holder,
  * fire_range = 1 or more will be additional tiles around the holder. Every tile will be heated this way.
@@ -474,7 +459,7 @@
 
 ///////////END FIRE BASED EXPLOSIONS
 
-/*
+/**
 * Freezes in a circle around the holder location
 * Arguments:
 * * temp - the temperature to set the air to
@@ -483,14 +468,11 @@
 * * snowball_chance - the chance to spawn a snowball on a turf
 */
 /datum/chemical_reaction/proc/freeze_radius(datum/reagents/holder, datum/equilibrium/equilibrium, temp, radius = 2, freeze_duration = 50 SECONDS, snowball_chance = 0)
-	for(var/any_turf in circle_range_turfs(center = get_turf(holder.my_atom), radius = radius))
-		if(!isopenturf(any_turf))
-			continue
-		var/turf/open/open_turf = any_turf
-		open_turf.MakeSlippery(TURF_WET_PERMAFROST, freeze_duration, freeze_duration, freeze_duration)
-		open_turf.temperature = temp
+	for(var/turf/simulated/floor/floor_turf in circle_range_turfs(center = get_turf(holder.my_atom), radius = radius))
+		floor_turf.MakeSlippery(TURF_WET_PERMAFROST, freeze_duration, freeze_duration, freeze_duration)
+		floor_turf.temperature = temp
 		if(prob(snowball_chance))
-			new /obj/item/toy/snowball(open_turf)
+			new /obj/item/snowball(floor_turf)
 
 ///Clears the beaker of the reagents only
 ///if volume is not set, it will remove all of the reactant
@@ -516,7 +498,7 @@
 		volume = holder.total_volume
 	holder.remove_all(volume)
 
-/*
+/**
 * "Attacks" all mobs within range with a specified reagent
 * Will be blocked if they're wearing proper protective equipment unless disabled
 * Arguments
@@ -539,7 +521,7 @@
 		target.reagents.add_reagent(reagent, vol)
 
 
-/*
+/**
 * Applys a cooldown to the reaction
 * Returns false if time is below required, true if it's above required
 * Time is kept in eqilibrium data

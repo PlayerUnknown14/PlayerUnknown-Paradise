@@ -37,6 +37,32 @@
 /mob/living/proc/getarmor(def_zone, attack_flag)
 	return 0
 
+/// This returns the mob's protection against eye damage (number between -1 and 2) from bright lights
+/mob/living/proc/get_eye_protection()
+	return 0
+
+/// This returns a number is subtracted from the severity of incoming emps against this mob.
+/mob/living/proc/get_emp_protection()
+	return emp_protection
+
+/// An easy to use proc to apply both organ damage and temporary deafness at once, so you don't have to get the ears everytime.
+/mob/living/proc/sound_damage(damage, deafen)
+	return
+
+/// This returns the mob's protection against ear damage (0:no protection; 1: some ear protection; 2: has no ears)
+/mob/living/proc/get_ear_protection(ignore_deafness = FALSE)
+	if(!ignore_deafness && HAS_TRAIT(src, TRAIT_DEAF))
+		return INFINITY //For all my homies that can not hear in the world
+	var/list/sig_protection = list(0)
+	SEND_SIGNAL(src, COMSIG_LIVING_GET_EAR_PROTECTION, sig_protection)
+	var/protection = sig_protection[EAR_PROTECTION_ARG]
+	var/turf/current_turf = get_turf(src)
+	var/datum/gas_mixture/environment = current_turf.return_air()
+	var/pressure = environment?.return_pressure()
+	if(pressure < SOUND_MINIMUM_PRESSURE) //space is empty
+		protection += EAR_PROTECTION_VACUUM
+	return protection
+
 /mob/living/proc/is_mouth_covered(head_only = FALSE, mask_only = FALSE)
 	return FALSE
 

@@ -148,6 +148,37 @@ SUBSYSTEM_DEF(explosions)
 	return TRUE
 
 /**
+ * Using default dyn_ex scale:
+ *
+ * 100 explosion power is a (5, 10, 20) explosion.
+ * 75 explosion power is a (4, 8, 17) explosion.
+ * 50 explosion power is a (3, 7, 14) explosion.
+ * 25 explosion power is a (2, 5, 10) explosion.
+ * 10 explosion power is a (1, 3, 6) explosion.
+ * 5 explosion power is a (0, 1, 3) explosion.
+ * 1 explosion power is a (0, 0, 1) explosion.
+ *
+ * The easy formula for defaults is sqrt(power * 2) * (0.25 | 0.5 | 1)
+ *
+ * Arguments:
+ * * epicenter: Turf the explosion is centered at.
+ * * power - Dyn explosion power. See reference above.
+ * * flame_range: Flame range. Equal to the equivalent of the light impact range multiplied by this value.
+ * * flash_range: The range at which the explosion flashes people. Equal to the equivalent of the light impact range multiplied by this value.
+ * * adminlog: Whether to log the explosion/report it to the administration.
+ * * ignorecap: Whether to ignore the relevant bombcap. Defaults to FALSE.
+ * * silent: Whether to generate/execute sound effects.
+ * * smoke: Whether to generate a smoke cloud provided the explosion is powerful enough to warrant it.
+ * * explosion_cause: [Optional] The atom that caused the explosion, when different to the origin. Used for logging.
+ */
+/proc/dyn_explosion(turf/epicenter, power, flame_range = 0, flash_range = null, adminlog = TRUE, ignorecap = TRUE, silent = FALSE, smoke = TRUE, atom/explosion_cause = null)
+	if(!power)
+		return
+	var/range = 0
+	range = round((2 * power)**GLOB.DYN_EX_SCALE)
+	explosion(epicenter, devastation_range = round(range * 0.25), heavy_impact_range = round(range * 0.5), light_impact_range = round(range), flame_range = isnull(flame_range) ? null : flame_range * range, flash_range = isnull(flash_range) ? null : flash_range * range, adminlog = adminlog, ignorecap = ignorecap, silent = silent, smoke = smoke, cause = explosion_cause)
+
+/**
  * Makes a given turf explode.
  *
  * Arguments:

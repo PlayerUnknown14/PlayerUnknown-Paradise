@@ -1,3 +1,12 @@
+/mob/living/carbon/get_eye_protection()
+	. = ..()
+	if(is_blind() && !is_blind_from(list(TRAIT_STATUS_EFFECT(/datum/status_effect/knocked_out::id), HYPNOCHAIR_TRAIT)))
+		return INFINITY //For all my homies that can not see in the world
+	var/obj/item/organ/eyes/eyes = get_organ_slot(ORGAN_SLOT_EYES)
+	if(!eyes)
+		return INFINITY //Can't get flashed without eyes
+	. += eyes.flash_protect
+
 /mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(skipcatch || !isitem(AM))
 		return ..()

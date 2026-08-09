@@ -30,6 +30,7 @@ GLOBAL_VAR_INIT(max_ex_heavy_range, 7)
 GLOBAL_VAR_INIT(max_ex_light_range, 14)
 GLOBAL_VAR_INIT(max_ex_flash_range, 14)
 GLOBAL_VAR_INIT(max_ex_flame_range, 14)
+GLOBAL_VAR_INIT(DYN_EX_SCALE, 0.5)
 
 //Random event stuff, apparently used
 GLOBAL_VAR_INIT(eventchance, 10) //% per 5 mins

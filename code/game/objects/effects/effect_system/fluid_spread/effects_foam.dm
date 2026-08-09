@@ -163,7 +163,7 @@
 			foam_mob(foaming, seconds_per_tick)
 
 		var/obj/effect/particle_effect/fluid/foam/spread_foam = new type(spread_turf, group, src, src.original_lifetime, src.slippery_foam)
-		reagents.copy_to(spread_foam, (reagents.total_volume))
+		reagents.trans_to(spread_foam, (reagents.total_volume))
 		spread_foam.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		spread_foam.result_type = result_type
 		SSfoam.queue_spread(spread_foam)
