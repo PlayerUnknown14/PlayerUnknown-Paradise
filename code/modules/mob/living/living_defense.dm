@@ -620,3 +620,22 @@
 /mob/living/handle_flamer_fire_crossed(obj/flamer_fire/fire)
 	. = ..()
 	fire.set_on_fire(src)
+
+/** Handles exposing a mob to reagents.
+ *
+ * If the methods include INGEST or INHALE, the mob tastes the reagents.
+ * If the methods include VAPOR or TOUCH it incorporates permiability protection.
+ */
+/mob/living/expose_reagents(list/reagents, datum/reagents/source, methods=TOUCH, volume_modifier=1, show_message=TRUE)
+	. = ..()
+	if(. & COMPONENT_NO_EXPOSE_REAGENTS)
+		return
+
+	if(show_message && (methods & (INGEST | INHALE)))
+		taste_list(reagents)
+
+	var/touch_protection = (methods & (VAPOR | TOUCH)) ? getarmor(null, BIO) * 0.01 : 0
+	SEND_SIGNAL(source, COMSIG_REAGENTS_EXPOSE_MOB, src, reagents, methods, volume_modifier, show_message, touch_protection)
+	for(var/datum/reagent/reagent as anything in reagents)
+		var/reac_volume = reagents[reagent]
+		. |= reagent.expose_mob(src, methods, reac_volume, show_message, touch_protection)

@@ -884,3 +884,10 @@ emp_act
 		if(FIRE_VARIANT_TYPE_B) //Armor Shredding Greenfire
 			SetSlowed(1 SECONDS, (SLOWDOWN_AMT_GREENFIRE))
 			to_chat(src, span_danger("Вязкий напалм обволакивает ваши конечности, и вы с трудом двигаетесь сквозь пламя!"))
+
+/mob/living/carbon/human/expose_reagents(list/reagents, datum/reagents/source, methods, volume_modifier, show_message)
+	if(internal)
+		methods &= ~INHALE
+		if(methods == NONE)
+			return
+	return ..()
