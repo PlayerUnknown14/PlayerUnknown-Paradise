@@ -1,6 +1,6 @@
 ///These alter reaction conditions while they're in the beaker
 /datum/reagent/catalyst_agent
-	name ="Catalyst agent"
+	name = "Catalyst agent"
 	///The typepath of the reagent they that they affect
 	var/target_reagent_type
 	///The minimumvolume required in the beaker for them to have an effect
@@ -15,7 +15,7 @@
 	return FALSE
 
 /datum/reagent/catalyst_agent/speed
-	name ="Speed Catalyst Agent"
+	name = "Speed Catalyst Agent"
 
 /datum/reagent/catalyst_agent/speed/consider_catalyst(datum/equilibrium/equilibrium)
 	. = ..()
@@ -24,7 +24,7 @@
 		equilibrium.time_deficit += (creation_purity)*(0.05 * modifier) //give the reaction a little boost too (40% faster)
 
 /datum/reagent/catalyst_agent/ph
-	name ="pH Catalyst Agent"
+	name = "pH Catalyst Agent"
 
 /datum/reagent/catalyst_agent/ph/consider_catalyst(datum/equilibrium/equilibrium)
 	. = ..()
@@ -37,7 +37,7 @@
 /datum/reagent/catalyst_agent/temperature/consider_catalyst(datum/equilibrium/equilibrium)
 	. = ..()
 	if(.)
-		equilibrium.thermic_mod = ((creation_purity-0.5)*2)*modifier //So a purity 1 = the modifier, and a purity 0 = the inverse modifier 
+		equilibrium.thermic_mod = ((creation_purity-0.5)*2)*modifier //So a purity 1 = the modifier, and a purity 0 = the inverse modifier
 ///Note from confused guy: It looks like this makes endothermic reactions suddenly become violently exothermic and visa versa at low purities. Wacky.
 
 ///Catalyst precursors (oh boy here i go competing again). P is the harder one to make, (ie. requires a good heater or some extra materials), because it is probably more useful

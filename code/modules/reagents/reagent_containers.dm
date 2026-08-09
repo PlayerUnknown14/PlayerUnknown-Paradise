@@ -174,7 +174,7 @@
 	target.flick_overlay_view(splash_animation, 1 SECONDS)
 
 	reagents.expose(target, TOUCH)
-	log_combat(user, target, "splashed", reagents.get_reagent_log_string())
+	add_attack_logs(user, target, "splashed", reagents.get_reagent_log_string())
 	reagents.clear_reagents()
 
 	return TRUE
@@ -250,7 +250,7 @@
 		target.visible_message(span_danger("[M] is splashed with something!"), \
 						span_userdanger("[M] is splashed with something!"))
 		if(splasher)
-			log_combat(splasher, M, "splashed", src, "containing [reagents.get_reagent_log_string()] [was_thrown ? "(thrown)" : ""]")
+			add_attack_logs(splasher, M, "splashed", src, "containing [reagents.get_reagent_log_string()] [was_thrown ? "(thrown)" : ""]")
 		reagents.expose(target, TOUCH, splash_multiplier)
 		if(turf_splash_multiplier > 0)
 			reagents.expose(target_turf, TOUCH, turf_splash_multiplier) // 1 - splash_multiplier because it's what didn't hit the target
@@ -261,7 +261,7 @@
 
 	else
 		if(isturf(target) && length(reagents.reagent_list) && splasher)
-			log_combat(splasher, target, "splashed [english_list(reagents.reagent_list)]", src, "in [AREACOORD(target)] [was_thrown ? "(thrown)" : ""]")
+			add_attack_logs(splasher, target, "splashed [english_list(reagents.reagent_list)]", src, "in [AREACOORD(target)] [was_thrown ? "(thrown)" : ""]")
 			message_admins("[ADMIN_LOOKUPFLW(splasher)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
 		visible_message(span_notice("[src] spills its contents all over [target]."))
 		reagents.expose(target, TOUCH)

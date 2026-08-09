@@ -422,6 +422,29 @@
 /atom/proc/is_drainable()
 	return reagents && (container_type & DRAINABLE)
 
+/// Can we dunk stuff into this container?
+/atom/proc/is_dunkable()
+	return reagents && (reagents.flags & DUNKABLE)
+
+/** Handles exposing this atom to a list of reagents.
+ *
+ * Sends COMSIG_ATOM_EXPOSE_REAGENTS
+ * Calls expose_atom() for every reagent in the reagent list.
+ *
+ * Arguments:
+ * - [reagents][/list]: The list of reagents the atom is being exposed to.
+ * - [source][/datum/reagents]: The reagent holder the reagents are being sourced from.
+ * - methods: How the atom is being exposed to the reagents. Bitflags.
+ * - show_message: Whether to display anything to mobs when they are exposed.
+ */
+/atom/proc/expose_reagents(list/reagents, datum/reagents/source, methods=TOUCH, show_message=TRUE)
+	. = SEND_SIGNAL(src, COMSIG_ATOM_EXPOSE_REAGENTS, reagents, source, methods, show_message)
+	if(. & COMPONENT_NO_EXPOSE_REAGENTS)
+		return
+
+	for(var/datum/reagent/current_reagent as anything in reagents)
+		. |= current_reagent.expose_atom(src, reagents[current_reagent], methods)
+
 ///Is this atom within 1 tile of another atom
 /atom/proc/HasProximity(atom/movable/proximity_check_mob as mob|obj)
 	return

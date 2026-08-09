@@ -452,17 +452,7 @@
 		target_holder = target
 		target_atom = target_holder.my_atom
 	else
-		if(!ignore_stomach && (methods & INGEST) && iscarbon(target))
-			var/mob/living/carbon/eater = target
-			var/obj/item/organ/stomach/belly = eater.get_organ_slot(ORGAN_SLOT_STOMACH)
-			if(!belly)
-				var/expel_amount = round(amount, CHEMICAL_QUANTISATION_LEVEL)
-				if(expel_amount > 0 )
-					eater.expel_ingested(my_atom, expel_amount)
-				return
-			target_holder = belly.reagents
-			target_atom = belly
-		else if(!target.reagents)
+		if(!target.reagents)
 			return
 		else
 			target_holder = target.reagents
@@ -527,7 +517,7 @@
 		log_target.add_hiddenprint(transferred_by) //log prints so admins can figure out who touched it last.
 
 		//logging reagents
-		log_combat(transferred_by, log_target, "transferred reagents to", my_atom, "which had [english_list(transfer_log)]")
+		add_attack_logs(transferred_by, log_target, "transferred reagents to", my_atom, "which had [english_list(transfer_log)]")
 
 	if(!no_react)
 		target_holder.handle_reactions()
