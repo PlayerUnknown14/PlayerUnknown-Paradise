@@ -64,22 +64,6 @@
 /proc/station_time_timestamp(format = "hh:mm:ss", time = world.time)
 	return time2text(station_time(time, TRUE), format)
 
-/**
- * Converts a time expressed in deciseconds (like world.time) to the 12-hour time format.
- * the format arg is the format passed down to time2text() (e.g. "hh:mm" is hours and minutes but not seconds).
- * the timezone is the time value offset from the local time. It's to be applied outside time2text() to get the AM/PM right.
- */
-/proc/time_to_twelve_hour(format = "hh:mm:ss", time = world.time)
-	time = station_time(time, TRUE)
-	var/am_pm = "AM"
-	if(time > 12 HOURS)
-		am_pm = "PM"
-		if(time > 13 HOURS)
-			time -= 12 HOURS // e.g. 4:16 PM but not 00:42 PM
-	else if(time < 1 HOURS)
-		time += 12 HOURS // e.g. 12.23 AM
-	return "[time2text(time, format)] [am_pm]"
-
 /// Returns timestamp in a sql and ISO 8601 friendly format
 /proc/SQLtime()
 	return time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
@@ -143,3 +127,23 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 		GLOB.midnight_rollovers++
 	GLOB.rollovercheck_last_timeofday = world.timeofday
 	return GLOB.midnight_rollovers
+
+/proc/daysSince(realtimev)
+	return round((world.realtime - realtimev) / (24 HOURS))
+
+/**
+ * Converts a time expressed in deciseconds (like world.time) to the 12-hour time format.
+ * the format arg is the format passed down to time2text() (e.g. "hh:mm" is hours and minutes but not seconds).
+ * the timezone is the time value offset from the local time. It's to be applied outside time2text() to get the AM/PM right.
+ */
+/proc/time_to_twelve_hour(format = "hh:mm:ss", time = STATION_TIME_PASSED(), timezone = NO_TIMEZONE)
+	time = MODULUS(time + (timezone * (1 HOURS)), 24 HOURS)
+	var/am_pm = "AM"
+	if(time > 12 HOURS)
+		am_pm = "PM"
+		if(time > 13 HOURS)
+			time -= 12 HOURS // e.g. 4:16 PM but not 00:42 PM
+	else if (time < 1 HOURS)
+		time += 12 HOURS // e.g. 12.23 AM
+	//set NO_TIMEZONE because we've already applied the timezone above.
+	return "[time2text(time, format, NO_TIMEZONE)] [am_pm]"

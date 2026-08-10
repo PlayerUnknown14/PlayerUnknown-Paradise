@@ -823,3 +823,16 @@
 	catch
 		return null
 
+//Checks if any of a given list of needles is in the haystack
+/proc/text_in_list(haystack, list/needle_list, start=1, end=0)
+	for(var/needle in needle_list)
+		if(findtext(haystack, needle, start, end))
+			return TRUE
+	return FALSE
+
+//Like above, but case sensitive
+/proc/text_in_list_case(haystack, list/needle_list, start=1, end=0)
+	for(var/needle in needle_list)
+		if(findtextEx(haystack, needle, start, end))
+			return TRUE
+	return FALSE

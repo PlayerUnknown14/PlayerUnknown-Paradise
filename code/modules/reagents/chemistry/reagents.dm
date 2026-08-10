@@ -86,6 +86,9 @@
 	/// The default reagent container for the reagent, used for icon generation.
 	var/obj/default_container = /obj/item/reagent_containers/cup/bottle
 
+	/// How we interact with random generators
+	var/randomized_spawns = REAGENT_SPAWN_NO_RANDOM
+
 /datum/reagent/New()
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()

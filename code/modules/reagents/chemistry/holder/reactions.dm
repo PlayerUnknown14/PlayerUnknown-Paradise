@@ -104,8 +104,6 @@
 	else
 		is_reacting = FALSE
 
-	TEST_ONLY_ASSERT(!. || MC_RUNNING(), "We reacted during subsystem init, that shouldn't be happening!")
-
 /*
 * Main Reaction loop handler, Do not call this directly
 *
@@ -246,16 +244,6 @@
 			if(selected_reaction.mix_sound)
 				playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 80, TRUE)
 			my_atom.audible_message(span_notice("[iconhtml] [selected_reaction.mix_message]"))
-
-		//use slime extract
-		if(istype(cached_my_atom, /obj/item/slime_extract))
-			var/obj/item/slime_extract/extract = my_atom
-			extract.extract_uses--
-			if(extract.extract_uses <= 0) // give the notification that the slime core is dead
-				my_atom.visible_message(span_notice("[iconhtml] \The [my_atom]'s power is consumed in the reaction."))
-				extract.name = "used slime extract"
-				extract.desc = "This extract has been used up."
-				extract.can_grind = FALSE
 
 	//finish the reaction
 	selected_reaction.on_reaction(src, null, multiplier)
