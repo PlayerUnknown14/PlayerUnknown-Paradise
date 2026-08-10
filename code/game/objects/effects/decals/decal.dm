@@ -86,7 +86,7 @@
 
 /obj/effect/decal/fire_act(exposed_temperature, exposed_volume)
 	if(reagents)
-		reagents.temperature_reagents(exposed_temperature)
+		reagents.expose_temperature(exposed_temperature)
 	if(!(resistance_flags & FIRE_PROOF)) // Non fire proof decal or being burned by lava.
 		qdel(src)
 

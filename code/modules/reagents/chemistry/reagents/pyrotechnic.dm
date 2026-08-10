@@ -232,7 +232,7 @@
 		S.melting_olay = mutable_appearance('icons/effects/effects.dmi', icon_state = "thermite")
 		S.add_overlay(S.melting_olay)
 		if(S.active_hotspot)
-			S.reagents.temperature_reagents(S.active_hotspot.temperature, 10, 300)
+			S.reagents.expose_temperature(S.active_hotspot.temperature, 10, 300)
 
 /datum/reagent/glycerol
 	name = "Глицерин"
@@ -407,7 +407,7 @@
 		if(holder.has_reagent("oxygen"))
 			holder.remove_reagent("oxygen", 2)
 			holder.remove_reagent("cryostylane", 2)
-			holder.temperature_reagents(holder.chem_temp - 200)
+			holder.expose_temperature(holder.chem_temp - 200)
 
 /datum/reagent/cryostylane/reaction_mob(mob/living/M, method = REAGENT_TOUCH, volume)
 	if(method == REAGENT_TOUCH)
@@ -449,7 +449,7 @@
 		if(holder.has_reagent("oxygen"))
 			holder.remove_reagent("oxygen", 2)
 			holder.remove_reagent("pyrosium", 2)
-			holder.temperature_reagents(holder.chem_temp + 200)
+			holder.expose_temperature(holder.chem_temp + 200)
 
 /datum/reagent/firefighting_foam
 	name = "Противопожарная пена"

@@ -16,7 +16,7 @@
 /datum/element/reagents_exposed_on_fire/proc/on_fire(atom/source, exposed_temp, exposed_vol)
 	SIGNAL_HANDLER
 
-	source.reagents?.temperature_reagents(exposed_temp)
+	source.reagents?.expose_temperature(exposed_temp)
 
 /*
 /datum/element/reagents_exposed_on_fire/proc/on_microwave(atom/source, obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)

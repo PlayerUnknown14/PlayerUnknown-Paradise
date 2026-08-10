@@ -217,7 +217,7 @@
 
 /obj/item/reagent_containers/glass/beaker/proc/heat_beaker()
 	if(reagents)
-		reagents.temperature_reagents(4000)
+		reagents.expose_temperature(4000)
 
 /obj/item/reagent_containers/glass/beaker/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/assembly_holder))

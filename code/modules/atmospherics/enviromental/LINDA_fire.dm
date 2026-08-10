@@ -1,11 +1,11 @@
 
 /atom/proc/temperature_expose(exposed_temperature, exposed_volume)
 	if(!isnull(reagents))
-		reagents.temperature_reagents(exposed_temperature)
+		reagents.expose_temperature(exposed_temperature)
 
 /turf/simulated/temperature_expose(exposed_temperature, exposed_volume)
 	if(reagents)
-		reagents.temperature_reagents(exposed_temperature, 10, 300)
+		reagents.expose_temperature(exposed_temperature, 10, 300)
 
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume)
 	return
