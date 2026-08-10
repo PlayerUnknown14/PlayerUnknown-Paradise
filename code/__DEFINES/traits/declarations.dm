@@ -75,6 +75,8 @@
 #define TRAIT_WET_IMMUNITY "wet_immunity"
 /// This just means that the carbon will always have functional liverless metabolism
 #define TRAIT_LIVERLESS_METABOLISM "liverless_metabolism"
+/// This carbon can't be overdosed by chems
+#define TRAIT_OVERDOSEIMMUNE "overdose_immune"
 
 /// Makes the user handcuff others faster
 #define TRAIT_FAST_CUFFING "fast_cuffing"

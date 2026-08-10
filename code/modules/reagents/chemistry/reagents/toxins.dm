@@ -6,7 +6,14 @@
 	color = "#CF3600" // rgb: 207, 54, 0
 	taste_mult = 1.2
 	taste_description = "горечи"
-	var/toxpwr = 2
+	///The amount of toxin damage this will cause when metabolized (also used to calculate liver damage)
+	var/toxpwr = 1.5
+	///The amount to multiply the liver damage this toxin does by (Handled solely in liver code)
+	var/liver_damage_multiplier = 1
+	///The multiplier of the liver toxin tolerance, below which any amount toxin will be simply metabolized out with no effect.
+	var/liver_tolerance_multiplier = 1
+	///won't produce a pain message when processed by liver/life() if there isn't another non-silent toxin present if true
+	var/silent_toxin = FALSE
 
 /datum/reagent/toxin/on_mob_life(mob/living/M)
 	var/update_flags = STATUS_UPDATE_NONE

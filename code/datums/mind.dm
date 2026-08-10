@@ -147,6 +147,11 @@
 	///Owned cyborg skin permissions
 	var/list/cyborg_skin_permissions = list()
 
+	///Assoc list of addiction values, key is the type of withdrawal (as singleton type), and the value is the amount of addiction points (as number)
+	var/list/addiction_points
+	///Assoc list of key active addictions and value amount of cycles that it has been active.
+	var/list/active_addictions
+	
 /datum/mind/New(new_key)
 	key = new_key
 	soulOwner = src
@@ -3133,6 +3138,22 @@
 /mob/proc/ghost_before_admin_delete(datum/source)
 	SIGNAL_HANDLER
 	ghostize()
+
+///Adds addiction points to the specified addiction
+/datum/mind/proc/add_addiction_points(type, amount)
+	var/last_amount = LAZYACCESS(addiction_points, type) || 0
+	LAZYSET(addiction_points, type, min(LAZYACCESS(addiction_points, type) + amount, MAX_ADDICTION_POINTS))
+	var/new_amount = LAZYACCESS(addiction_points, type)
+	return GLOB.addictions[type].on_gain_addiction_points(src, new_amount, last_amount)
+
+///Adds addiction points to the specified addiction
+/datum/mind/proc/remove_addiction_points(type, amount)
+	var/last_amount = LAZYACCESS(addiction_points, type) || 0
+	LAZYSET(addiction_points, type, max(LAZYACCESS(addiction_points, type) - amount, 0))
+	var/new_amount = LAZYACCESS(addiction_points, type)
+	if(new_amount <= 0)
+		LAZYREMOVE(addiction_points, type)
+	return GLOB.addictions[type].on_lose_addiction_points(src, new_amount, last_amount)
 
 //Initialisation procs
 /mob/proc/mind_initialize()
