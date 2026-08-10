@@ -1629,3 +1629,30 @@
 /datum/status_effect/gene_instability/major/critical/proc/on_time_end()
 	if(owner.gene_stability < GENETIC_DAMAGE_STAGE_3)
 		owner.gib()
+
+// MARK: High blood pressure
+/datum/status_effect/high_blood_pressure
+	id = "high_blood_pressure"
+	tick_interval = STATUS_EFFECT_NO_TICK
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/high_blood_pressure
+
+/datum/status_effect/high_blood_pressure/on_apply()
+	if(!ishuman(owner))
+		return FALSE
+
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.physiology.bleed_mod *= 1.25
+	return TRUE
+
+/datum/status_effect/high_blood_pressure/on_remove()
+	if(!ishuman(owner))
+		return
+
+	var/mob/living/carbon/human/human_owner = owner
+	human_owner.physiology.bleed_mod /= 1.25
+
+/atom/movable/screen/alert/status_effect/high_blood_pressure
+	name = "Высокое кровяное давление"
+	desc = "Ваше кровяное давление сильно повышено. Ваши раны будут кровоточить сильнее."
+	icon_state = "highbloodpressure"

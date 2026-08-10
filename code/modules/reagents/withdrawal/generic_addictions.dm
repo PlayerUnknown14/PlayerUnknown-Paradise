@@ -1,9 +1,14 @@
+/**
 ///Opioids
 /datum/addiction/opioids
-	name = "opioid"
-	description = "Patient has developed a dependence on opioid substances."
-	symptoms = "Expresses a desire for painkillers, and when in withdrawl, experiences drowsiness, high blood pressure, and nausea."
-	withdrawal_stage_messages = list("I feel aches in my bodies..", "I need some pain relief...", "It aches all over...I need some opioids!")
+	name = "опиоид"
+	description = "У пациента развилась зависимость от опиоидных веществ."
+	symptoms = "Испытывает тягу к обезболивающим. При отказе испытывает сонливость, высокое кровяное давление и тошноту."
+	withdrawal_stage_messages = list(
+		"Всё тело болит...",
+		"Нужно срочно облегчить эту боль...",
+		"Всё болит... Срочно нужны опиоиды!"
+	)
 
 /datum/addiction/opioids/withdrawal_stage_1_process(mob/living/carbon/affected_carbon, seconds_per_tick)
 	. = ..()
@@ -16,19 +21,19 @@
 
 /datum/addiction/opioids/withdrawal_stage_3_process(mob/living/carbon/affected_carbon, seconds_per_tick)
 	. = ..()
-	if(affected_carbon.disgust < DISGUST_LEVEL_DISGUSTED && SPT_PROB(7.5, seconds_per_tick))
-		affected_carbon.adjust_disgust(12.5 * seconds_per_tick)
+	if(affected_carbon.AmountDisgust() < DISGUST_LEVEL_DISGUSTED && SPT_PROB(7.5, seconds_per_tick))
+		affected_carbon.AdjustDisgust(12.5 * seconds_per_tick)
 
 /datum/addiction/opioids/end_withdrawal(mob/living/carbon/affected_carbon)
 	. = ..()
 	affected_carbon.remove_status_effect(/datum/status_effect/high_blood_pressure)
-	affected_carbon.set_disgust(affected_carbon.disgust * 0.5) //half their disgust to help
+	affected_carbon.SetDisgust(affected_carbon.AmountDisgust() * 0.5) //half their disgust to help
 
 ///Stimulants
 
 /datum/addiction/stimulants
 	name = "stimulant"
-	description = "Patient has developed a dependence on stimulant substances."
+	description = "У пациента развилась зависимость от  on stimulant substances."
 	symptoms = "Expresses a desire for stimulants, and when in withdrawal, experiences fatigue, slowness, and difficulty concentrating."
 	withdrawal_stage_messages = list("You feel a bit tired...You could really use a pick me up.", "You are getting a bit woozy...", "So...Tired...")
 
@@ -53,7 +58,7 @@
 ///Alcohol
 /datum/addiction/alcohol
 	name = "alcohol"
-	description = "Patient has developed a dependence on alcohol."
+	description = "У пациента развилась зависимость от  on alcohol."
 	symptoms = "Expresses a desire for alcoholic beverages, and when in withdrawal, experiences jitteriness, hallucinations, and potentially seizures."
 	withdrawal_stage_messages = list("I could use a drink...", "Maybe the bar is still open?..", "God I need a drink!")
 
@@ -75,7 +80,7 @@
 
 /datum/addiction/hallucinogens
 	name = "hallucinogen"
-	description = "Patient has developed a dependence on hallucinogenic substances."
+	description = "У пациента развилась зависимость от  on hallucinogenic substances."
 	symptoms = "Expresses a desire for hallucinogens, and when in withdrawal, experiences feelings of emptiness, difficulty seeing, and disconnection from reality."
 	withdrawal_stage_messages = list("I feel so empty...", "I wonder what the machine elves are up to?..", "I need to see the beautiful colors again!!")
 
@@ -99,7 +104,7 @@
 
 /datum/addiction/maintenance_drugs
 	name = "maintenance drug"
-	description = "Patient has developed a dependence on maintenance drugs."
+	description = "У пациента развилась зависимость от  on maintenance drugs."
 	symptoms = "Expresses a desire for maintenance drugs, and when in withdrawal, experiences various adaptions \
 		such as light sensitivity, numbness, changes to taste, enhanced hair growth, and greater low light vision."
 	withdrawal_stage_messages = list("", "", "")
@@ -163,7 +168,7 @@
 ///Makes you a hypochondriac - I'd like to call it hypochondria, but "I could use some hypochondria" doesn't work
 /datum/addiction/medicine
 	name = "medicine"
-	description = "Patient has developed a dependence on medicine, similar to that of Hypochondria."
+	description = "У пациента развилась зависимость от  on medicine, similar to that of Hypochondria."
 	symptoms = "Expresses a need for medication despite being otherwise healthy, and when in withdrawal, \
 		experiences coughing fits, hallucinations, and distorted health perceptions."
 	withdrawal_stage_messages = list("", "", "")
@@ -277,7 +282,7 @@
 ///Nicotine
 /datum/addiction/nicotine
 	name = "nicotine"
-	description = "Patient has developed a dependence on nicotine."
+	description = "У пациента развилась зависимость от  on nicotine."
 	symptoms = "Expresses a desire for nicotine products, and when in withdrawal, experiences jitteriness, coughing, and difficulty concentrating."
 	addiction_relief_treshold = MIN_NICOTINE_ADDICTION_REAGENT_AMOUNT //much less because your intake is probably from ciggies
 	withdrawal_stage_messages = list("Feel like having a smoke...", "Getting antsy. Really need a smoke now.", "I can't take it! Need a smoke NOW!")
@@ -300,3 +305,5 @@
 	affected_carbon.set_jitter_if_lower(30 SECONDS * seconds_per_tick)
 	if(SPT_PROB(5, seconds_per_tick))
 		affected_carbon.emote("cough")
+
+*/
