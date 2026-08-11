@@ -681,8 +681,6 @@
 	component_parts += new cell_type(null)
 	RefreshParts()
 
-	AddElement(/datum/element/simple_rotation)
-
 /obj/machinery/chem_dispenser/drinks/setDir()
 	var/old = dir
 	. = ..()
