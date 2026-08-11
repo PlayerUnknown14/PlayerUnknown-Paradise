@@ -134,8 +134,8 @@
 		. += span_notice("Панель техобслуживания открыта.")
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("Монитор состояния сообщает:\n\
-		Скорость зарядки: <b>[display_power(recharge_amount, convert = FALSE)]</b>.\n\
-		Энергозатраты: <b>[siunit(power_cost, "Дж/ед", 3)]</b>.")
+			Скорость зарядки: <b>[display_power(recharge_amount, convert = FALSE)]</b>.\n\
+			Энергозатраты: <b>[siunit(power_cost, "Дж/ед", 3)]</b>.")
 	. += span_notice("Используйте <b>ПКМ</b>, чтобы извлечь ёмкость.")
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)

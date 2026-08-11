@@ -39,7 +39,7 @@
 		if(!number_of_pages)
 			icon_state = "pHbooklet_empty"
 		return
-	var/I = user.get_active_held_item()
+	var/I = user.get_active_hand()
 	if(!I)
 		user.put_in_active_hand(src)
 	return ..()
