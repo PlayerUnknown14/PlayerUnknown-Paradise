@@ -1571,3 +1571,11 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/g
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.update_clothing(slot_flags)
+
+/// Checks if user can insert a valid container into the chemistry machine.
+/obj/item/proc/can_insert_container(mob/living/user, obj/machinery/chem_machine)
+	return is_chem_container() && chem_machine.can_interact(user) && user.can_perform_action(chem_machine, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH)
+
+/// Checks if this container is valid for use with chemistry machinery.
+/obj/item/proc/is_chem_container()
+	return FALSE

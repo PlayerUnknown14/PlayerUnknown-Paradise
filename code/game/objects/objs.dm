@@ -52,7 +52,10 @@
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
 	var/icon_state_preview
-
+	/// The vertical pixel_z offset applied when the object is anchored on a tile with table
+	/// Ignored when set to 0 - to avoid shifting directional wall-mounted objects above tables
+	var/anchored_tabletop_offset = 0
+	
 	/// Is this object emagged?
 	var/emagged = FALSE
 
@@ -64,6 +67,9 @@
 
 /obj/Initialize(mapload)
 	. = ..()
+
+	check_on_table()
+
 	if(obj_integrity == null)
 		update_integrity(max_integrity)
 	if(islist(armor))
@@ -256,8 +262,21 @@
 		if(I.use_tool(src, user, time * construction_mod, volume = I.tool_volume))
 			to_chat(user, span_notice("You've [anchored ? "un" : ""]secured [name]."))
 			set_anchored(!anchored)
+			check_on_table()
 		return TRUE
 	return FALSE
+
+/// Adjusts the vertical pixel_z offset when the object is anchored on a tile with table
+/obj/proc/check_on_table()
+	if(anchored_tabletop_offset == 0)
+		return
+	if(istype(src, /obj/structure/table))
+		return
+
+	if(anchored && locate(/obj/structure/table) in loc)
+		pixel_z = anchored_tabletop_offset
+	else
+		pixel_z = initial(pixel_z)
 
 /obj/water_act(volume, temperature, source, method = REAGENT_TOUCH)
 	. = ..()

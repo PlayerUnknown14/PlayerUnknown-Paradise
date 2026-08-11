@@ -96,7 +96,7 @@
 
 		user.balloon_alert_to_viewers("attaching rig...")
 		add_fingerprint(user)
-		if(!do_after(user, 2 SECONDS, target = src) || !user.transferItemToLoc(holder, src))
+		if(!do_after(user, 2 SECONDS, target = src) || !user.transfer_item_to_loc(holder, src))
 			return ITEM_INTERACT_BLOCKING
 		rig = holder
 		holder.master = src
@@ -508,7 +508,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/reagent_dispensers/wall/peppertank, 3
 	if(!do_after(user, COOLER_JUG_EJECT_TIME, src))
 		return
 
-	if(!user.transferItemToLoc(new_jug, src))
+	if(!user.transfer_item_to_loc(new_jug, src))
 		return ITEM_INTERACT_BLOCKING
 
 	eject_jug(user, our_jug)

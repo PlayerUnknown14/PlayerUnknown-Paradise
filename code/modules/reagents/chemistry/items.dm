@@ -322,7 +322,7 @@
 /obj/item/thermometer/interact_with_atom(atom/interacting_with, mob/living/user, list/modifiers)
 	if(isnull(interacting_with.reagents))
 		return NONE
-	if(!user.transferItemToLoc(src, interacting_with))
+	if(!user.transfer_item_to_loc(src, interacting_with))
 		return ITEM_INTERACT_BLOCKING
 	attached_to_reagents = interacting_with.reagents
 	to_chat(user, span_notice("You add the [src] to [interacting_with]."))
