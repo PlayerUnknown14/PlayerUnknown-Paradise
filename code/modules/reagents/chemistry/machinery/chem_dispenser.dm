@@ -130,13 +130,27 @@
 
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()
-	if(panel_open)
-		. += span_notice("Панель техобслуживания открыта.")
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("Монитор состояния сообщает:\n\
 			Скорость зарядки: <b>[display_power(recharge_amount, convert = FALSE)]</b>.\n\
 			Энергозатраты: <b>[siunit(power_cost, "Дж/ед", 3)]</b>.")
-	. += span_notice("Используйте <b>ПКМ</b>, чтобы извлечь ёмкость.")
+		if(!QDELETED(beaker))
+			. += span_notice("Слот для ёмкости:")
+			var/beaker_volume = beaker.reagents.total_volume
+			. += span_notice("- [beaker.get_examine_icon(user)] [DECLENT_RU_CAP(beaker, NOMINATIVE)] объёмом в [beaker_volume] единиц[declension_ru(beaker_volume, "", "ы", "у")].")
+		else
+			. += span_warning("- Пусто.")
+
+		. += span_warning("Техобслуживание:")
+		if(panel_open)
+			. += span_notice("- Техпанель открыта. Вы можете закрыть её, [EXAMINE_HINT("закрутив винты")].")
+			. += span_notice("- Вы можете разобрать оборудование, [EXAMINE_HINT("поддев")] внутренние компоненты.")
+		else
+			. += span_notice("- Техпанель закрыта. Вы можете открыть её, [EXAMINE_HINT("открутив винты")].")
+		if(anchored)
+			. += span_notice("Вы можете прикрутить оборедование к полу, [EXAMINE_HINT("затянув болты")].")
+		else
+			. += span_notice("Вы можете открутить оборедование от пола, [EXAMINE_HINT("ослабив болты")].")
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)
 	if(old_value) //Turned off

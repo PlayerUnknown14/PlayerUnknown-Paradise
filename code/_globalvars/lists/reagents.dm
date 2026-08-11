@@ -67,7 +67,33 @@ GLOBAL_LIST_INIT(borer_reagents, list( \
 	"methamphetamine", "mitocholide", "fliptonium", "insulin"
 ))
 
-
+//Pills & Patches
+/// List of containers the Chem Master machine can print
+GLOBAL_LIST_INIT(reagent_containers, list(
+	CAT_CONDIMENTS = list(
+		/obj/item/reagent_containers/food/condiment,
+		/obj/item/reagent_containers/food/condiment/flour,
+		/obj/item/reagent_containers/food/condiment/sugar,
+		/obj/item/reagent_containers/food/condiment/rice,
+		/obj/item/reagent_containers/food/condiment/milk,
+		/obj/item/reagent_containers/food/condiment/soymilk,
+		/obj/item/reagent_containers/food/condiment/saltshaker,
+		/obj/item/reagent_containers/food/condiment/peppermill,
+		/obj/item/reagent_containers/food/condiment/soysauce,
+		/obj/item/reagent_containers/food/condiment/enzyme,
+		/obj/item/reagent_containers/food/condiment/diablosauce,
+		/obj/item/reagent_containers/food/condiment/pack,
+	),
+	CAT_TUBES = list(
+		/obj/item/reagent_containers/cup/tube
+	),
+	CAT_PILLS = typecacheof(list(
+		/obj/item/reagent_containers/food/pill
+	)),
+	CAT_PATCHES = typecacheof(list(
+		/obj/item/reagent_containers/food/pill/patch
+	)),
+))
 
 /// list of all /datum/chemical_reaction datums indexed by their typepath. Use this for general lookup stuff
 GLOBAL_LIST(chemical_reactions_list)

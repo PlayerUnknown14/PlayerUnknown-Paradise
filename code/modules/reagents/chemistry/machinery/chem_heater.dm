@@ -56,8 +56,12 @@
 		update_appearance()
 
 /obj/machinery/chem_heater/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = NONE
 	if(isnull(held_item) || (held_item.item_flags & ABSTRACT))
-		return NONE
+		if(isnull(held_item))
+			context[SCREENTIP_CONTEXT_RMB] = "Извлечь ёмкость"
+			. = CONTEXTUAL_SCREENTIP_SET
+		return .
 
 	if(!QDELETED(beaker))
 		if(istype(held_item, /obj/item/reagent_containers/dropper) || istype(held_item, /obj/item/reagent_containers/syringe))
@@ -71,7 +75,7 @@
 		return CONTEXTUAL_SCREENTIP_SET
 
 	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
-		context[SCREENTIP_CONTEXT_LMB] = "Открыть техпанель"
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "За" : "От"]крыть техпанель"
 		return CONTEXTUAL_SCREENTIP_SET
 	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
 		context[SCREENTIP_CONTEXT_LMB] = "Разобрать"
@@ -85,19 +89,26 @@
 		. += span_notice("Монитор состояния сообщает:\n\
 			Скорость нагрева: <b>[heater_coefficient * 1000]%</b>.\n\
 			Нагрев: [on ? "включён" : "выключен"].")
+
 		if(!QDELETED(beaker))
 			. += span_notice("Слот для ёмкости:")
 			var/beaker_volume = beaker.reagents.total_volume
-			. += span_notice("- [beaker.get_examine_icon(user)] [DECLENT_RU_CAP(beaker, NOMINATIVE)] объёмом в [beaker_volume] единиц[declension_ru(beaker_volume, "", "ы", "у")].")
+			. += span_notice("- [beaker.get_examine_icon(user)] [DECLENT_RU_CAP(beaker, NOMINATIVE)] объёмом в [EXAMINE_HINT(beaker_volume)] единиц[declension_ru(beaker_volume, "", "ы", "у")].")
 			if(beaker.reagents.is_reacting)
-				. += span_notice("\nСодержимое вступило в реакцию.")
+				. += span_notice("- Содержимое [EXAMINE_HINT("вступило в реакцию")].")
 		else
 			. += span_warning("- Пусто.")
-		. += span_warning("Панель техобслуживания:")
+
+		. += span_warning("Техобслуживание:")
 		if(panel_open)
-			. += span_notice("- Открыта и может быть [EXAMINE_HINT("pried")].")
+			. += span_notice("- Техпанель открыта. Вы можете закрыть её, [EXAMINE_HINT("закрутив винты")].")
+			. += span_notice("- Вы можете разобрать оборудование, [EXAMINE_HINT("поддев")] внутренние компоненты.")
 		else
-			. += span_notice("Its panel can be [EXAMINE_HINT("pried")] open")
+			. += span_notice("- Техпанель закрыта. Вы можете открыть её, [EXAMINE_HINT("открутив винты")].")
+		if(anchored)
+			. += span_notice("Вы можете прикрутить оборедование к полу, [EXAMINE_HINT("затянув болты")].")
+		else
+			. += span_notice("Вы можете открутить оборедование от пола, [EXAMINE_HINT("ослабив болты")].")
 
 /obj/machinery/chem_heater/update_icon_state()
 	icon_state = "[base_icon_state][(beaker && !panel_open) ? 1 : 0]b"
@@ -123,7 +134,7 @@
 		return ITEM_INTERACT_BLOCKING
 
 	ui_interact(user)
-	balloon_alert(user, "beaker added")
+	balloon_alert(user, "ёмкость вставлена")
 
 	return ITEM_INTERACT_SUCCESS
 
@@ -159,7 +170,8 @@
 
 /**
  * Replace or eject the beaker inside this machine. Returns TRUE on success.
- * Arguments
+ *
+ * Arguments:
  * * mob/living/user - the player operating this machine
  * * obj/item/reagent_containers/new_beaker - the new beaker to replace the current one if not null else it will just eject
  */
