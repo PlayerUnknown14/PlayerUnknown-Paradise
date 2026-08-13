@@ -103,8 +103,9 @@
 		. += span_notice("Монитор состояния сообщает:\n\
 			Ёмкость буфера веществ: <b>[reagents.maximum_volume]</b> единиц[declension_ru(reagents.maximum_volume, "а", "ы", "")].\n\
 			Скорость печати: <b>[0.75 SECONDS / printing_speed * 100]%</b>.")
+
+		. += span_notice("Слот для ёмкости:")
 		if(!QDELETED(beaker))
-			. += span_notice("Слот для ёмкости:")
 			var/beaker_volume = beaker.reagents.total_volume
 			. += span_notice("- [beaker.get_examine_icon(user)] [DECLENT_RU_CAP(beaker, NOMINATIVE)] объёмом в [beaker_volume] единиц[declension_ru(beaker_volume, "", "ы", "у")].")
 		else
@@ -497,7 +498,7 @@
 		//		return TRUE
 
 		if("selectContainer")
-			var/obj/item/reagent_containers/target = locate(params["ref"])
+			var/obj/item/reagent_containers/target = locateUID(params["ref"])
 
 			//is this even a valid type path
 			if(!ispath(target))
