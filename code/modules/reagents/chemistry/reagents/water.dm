@@ -7,12 +7,6 @@
 #define BLOOD_ANTIGEN_A (1 << 0)
 #define BLOOD_ANTIGEN_B (1 << 1)
 
-GLOBAL_LIST_INIT(diseases_carrier_reagents, list(
-			"blood",
-			"slimejelly",
-			"cryoxadone",
-		))
-
 /datum/reagent/water
 	name = "Вода"
 	id = "water"

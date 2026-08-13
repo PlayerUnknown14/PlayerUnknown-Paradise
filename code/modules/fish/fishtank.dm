@@ -21,7 +21,7 @@
 	var/egg_count = 0			// How many fish eggs can be harvested from the tank (capped at the max_fish value)
 	var/list/egg_list = list()	// Tracks the current types of harvestable eggs in the tank
 
-	var/has_lid = FALSE			// 0 if the tank doesn't have a lid/light, 1 if it does
+	var/can_lid = FALSE			// 0 if the tank doesn't have a lid/light, 1 if it does
 	var/leaking = FALSE			// 0 if not leaking, 1 if minor leak, 2 if major leak (not leaking by default)
 	var/shard_count = 0			// Number of glass shards to salvage when broken (1 less than the number of sheets to build the tank)
 
@@ -48,7 +48,7 @@
 	water_capacity = 200		// Decent sized, holds almost 2 full buckets
 	max_fish = 4				// Room for a few fish
 
-	has_lid = TRUE
+	can_lid = TRUE
 	max_integrity = 50				// Average strength, will take a couple hits from a toolbox.
 	shard_count = 2
 
@@ -63,7 +63,7 @@
 	water_capacity = 500		// This thing fills an entire tile, it holds a lot.
 	max_fish = 10				// Plenty of room for a lot of fish
 
-	has_lid = TRUE
+	can_lid = TRUE
 	max_integrity = 100			// This thing is a freaking wall, it can handle abuse.
 	shard_count = 3
 
@@ -113,7 +113,7 @@
 
 /obj/machinery/fishtank/Initialize(mapload)
 	. = ..()
-	if(!has_lid)	//Tank doesn't have a lid/light, remove the verbs for then
+	if(!can_lid)	//Tank doesn't have a lid/light, remove the verbs for then
 		verbs -= /obj/machinery/fishtank/verb/toggle_lid_verb
 		verbs -= /obj/machinery/fishtank/verb/toggle_light_verb
 
@@ -129,7 +129,7 @@
 /obj/machinery/fishtank/update_overlays()
 	. = ..()
 	//Update Alert Lights
-	if(has_lid)											//Skip the alert lights for aquariums that don't have lids (fishbowls)
+	if(can_lid)											//Skip the alert lights for aquariums that don't have lids (fishbowls)
 		if(egg_count > 0)								//There is at least 1 egg to harvest
 			. += "over_egg"
 		if(lid_switch)								//Lid is closed, lid status light is red
@@ -512,7 +512,7 @@
 	examine_message += "<br>"
 
 	//Report lid state for tanks and wall-tanks
-	if(has_lid)									//Only report if the tank actually has a lid
+	if(can_lid)									//Only report if the tank actually has a lid
 		//Report lid state
 		if(lid_switch)
 			examine_message += "The lid is closed. "

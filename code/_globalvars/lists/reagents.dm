@@ -67,6 +67,12 @@ GLOBAL_LIST_INIT(borer_reagents, list( \
 	"methamphetamine", "mitocholide", "fliptonium", "insulin"
 ))
 
+GLOBAL_LIST_INIT(diseases_carrier_reagents, list(
+			/datum/reagent/blood,
+			/datum/reagent/slimejelly,
+			/datum/reagent/medicine/cryoxadone,
+))
+
 //Pills & Patches
 /// List of containers the Chem Master machine can print
 GLOBAL_LIST_INIT(reagent_containers, list(
@@ -85,7 +91,7 @@ GLOBAL_LIST_INIT(reagent_containers, list(
 		/obj/item/reagent_containers/food/condiment/pack,
 	),
 	CAT_TUBES = list(
-		/obj/item/reagent_containers/cup/tube
+		/obj/item/reagent_containers/glass/tube
 	),
 	CAT_PILLS = typecacheof(list(
 		/obj/item/reagent_containers/food/pill

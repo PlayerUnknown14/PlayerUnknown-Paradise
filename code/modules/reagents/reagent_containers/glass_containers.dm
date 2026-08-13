@@ -11,8 +11,8 @@
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50)
 	volume = 50
 	container_type = OPENCONTAINER
-	has_lid = TRUE
 	resistance_flags = ACID_PROOF
+	var/can_lid = TRUE
 	var/label_text = ""
 
 /obj/item/reagent_containers/glass/Initialize(mapload)
@@ -644,7 +644,7 @@
 	amount_per_transfer_from_this = 15
 	possible_transfer_amounts = list(10, 15, 30, 50, 100)
 	volume = 150
-	has_lid = FALSE
+	can_lid = FALSE
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "coffeepot"
 	materials = list(MAT_METAL = 1000, MAT_GLASS = 3500)
@@ -693,3 +693,28 @@
 		INSTRUMENTAL = "сральным ведром",
 		PREPOSITIONAL = "сральном ведре",
 	)
+
+/// Test tubes created by chem master and pandemic and placed in racks
+/obj/item/reagent_containers/glass/tube
+	name = "tube"
+	desc = "Небольшого объёма пробирка, используемая в лабораторных исследованиях."
+	icon_state = "test_tube"
+	fill_icon_state = "tube"
+	possible_transfer_amounts = list(5, 10, 15, 30)
+	volume = 30
+	fill_icon_thresholds = list(0, 1, 20, 40, 60, 80, 100)
+	can_lid = TRUE
+
+/obj/item/reagent_containers/cup/tube/get_ru_names()
+	return alist(
+		NOMINATIVE = "пробирка",
+		GENITIVE = "пробирки",
+		DATIVE = "пробирке",
+		ACCUSATIVE = "пробирку",
+		INSTRUMENTAL = "пробиркой",
+		PREPOSITIONAL = "пробирке",
+	)
+
+/obj/item/reagent_containers/cup/tube/attach_assembly(obj/item/assembly_holder/assembly, mob/living/user)
+	balloon_alert(user, "крышка слишком мала!")
+	return FALSE
