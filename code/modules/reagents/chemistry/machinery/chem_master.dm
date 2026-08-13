@@ -4,7 +4,7 @@
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
 	desc = "Химическое оборудование, предназначенное для преобразования реагентов в таблетки, пластыри и бутылки."
-	icon = 'icons/obj/medical/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "chemmaster"
 	base_icon_state = "chemmaster"
 	density = TRUE
@@ -46,6 +46,7 @@
 	)
 
 /obj/machinery/chem_master/Initialize(mapload)
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/chem_master(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
@@ -63,7 +64,6 @@
 
 	register_context()
 
-	. = ..()
 	var/obj/item/circuitboard/chem_master/board = locate(/obj/item/circuitboard/chem_master) in component_parts
 	board.build_path = type
 	board.name = name

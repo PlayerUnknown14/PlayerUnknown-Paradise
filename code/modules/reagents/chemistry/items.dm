@@ -10,7 +10,7 @@
 	name = "pH indicator booklet"
 	desc = "A booklet containing paper soaked in universal indicator."
 	icon_state = "pHbooklet"
-	icon = 'icons/obj/medical/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	item_flags = NOBLUDGEON
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_TINY
@@ -70,7 +70,7 @@
 	name = "pH indicator strip"
 	desc = "A piece of paper that will change colour depending on the pH of a solution."
 	icon_state = "pHpaper"
-	icon = 'icons/obj/medical/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	item_flags = NOBLUDGEON
 	color = "#f5c352"
 	resistance_flags = FLAMMABLE
@@ -100,7 +100,7 @@
 	name = "Chemical Analyzer"
 	desc = "An electrode attached to a small circuit box that will display details of a solution. Can be toggled to provide a description of each of the reagents. The screen currently displays nothing."
 	icon_state = "pHmeter"
-	icon = 'icons/obj/medical/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT * 1.25, /datum/material/gold = HALF_SHEET_MATERIAL_AMOUNT, /datum/material/titanium = HALF_SHEET_MATERIAL_AMOUNT)
 	///level of detail for output for the meter
@@ -151,7 +151,7 @@
 /obj/item/burner
 	name = "burner"
 	desc = "A small table size burner used for heating up beakers."
-	icon = 'icons/obj/medical/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	icon_state = "burner"
 	custom_materials = list(/datum/material/paper = HALF_SHEET_MATERIAL_AMOUNT / 2)
 	item_flags = NOBLUDGEON
@@ -305,7 +305,7 @@
 	name = "thermometer"
 	desc = "A thermometer for checking a something's temperature."
 	icon_state = "thermometer"
-	icon = 'icons/obj/medical/chemical.dmi'
+	icon = 'icons/obj/chemical.dmi'
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_TINY
 	custom_materials = list(/datum/material/glass = SHEET_MATERIAL_AMOUNT)

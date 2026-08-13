@@ -113,6 +113,8 @@
 		begin_processing()
 	update_appearance()
 
+	register_context()
+
 /obj/machinery/chem_dispenser/Destroy()
 	cell = null
 	QDEL_NULL(beaker)
@@ -127,6 +129,31 @@
 		INSTRUMENTAL = "химическим раздатчиком",
 		PREPOSITIONAL = "химическом раздатчике",
 	)
+
+/obj/machinery/chem_dispenser/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = NONE
+	if(isnull(held_item) || (held_item.item_flags & ABSTRACT))
+		if(isnull(held_item))
+			context[SCREENTIP_CONTEXT_RMB] = "Извлечь ёмкость"
+			. = CONTEXTUAL_SCREENTIP_SET
+		return .
+
+	if(held_item.is_chem_container())
+		if(!QDELETED(beaker))
+			context[SCREENTIP_CONTEXT_LMB] = "Заменить ёмкость"
+		else
+			context[SCREENTIP_CONTEXT_LMB] = "Вставить ёмкость"
+		return CONTEXTUAL_SCREENTIP_SET
+
+	if(held_item.tool_behaviour == TOOL_SCREWDRIVER)
+		context[SCREENTIP_CONTEXT_LMB] = "[panel_open ? "За" : "От"]крыть техпанель"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(held_item.tool_behaviour == TOOL_WRENCH)
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "От" : "При"]крутить"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(panel_open && held_item.tool_behaviour == TOOL_CROWBAR)
+		context[SCREENTIP_CONTEXT_LMB] = "Разобрать"
+		return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()

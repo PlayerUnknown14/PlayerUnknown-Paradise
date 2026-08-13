@@ -825,6 +825,17 @@ to destroy them and players will be able to make replacements.
 		/obj/item/stack/sheet/glass = 1,
 	)
 
+/obj/item/circuitboard/chem_mass_spec
+	name = "High-Performance Liquid Chromatography Machine"
+	build_path = /obj/machinery/chem_mass_spec
+	board_type = "machine"
+	greyscale_colors = CIRCUIT_COLOR_MEDICAL
+	origin_tech = "programming=2;engineering=2;biotech=2"
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stack/cable_coil = 5,
+	)
+
 /obj/item/circuitboard/reagentgrinder
 	board_name = "All-In-One Grinder"
 	build_path = /obj/machinery/reagentgrinder/empty
