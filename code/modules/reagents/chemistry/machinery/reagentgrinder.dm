@@ -199,7 +199,7 @@
 
 		// Nothing would come from grinding or juicing
 		if(!length(ingredient.grind_results()) && !ingredient.reagents.total_volume)
-			to_chat(user, span_warning("You cannot grind/juice [ingredient] into reagents!"))
+			balloon_alert(user, "не подходит для измельчения!")
 			continue
 
 		// Error messages should be in the objects' definitions
@@ -222,7 +222,7 @@
 	var/items_transfered = 0
 	for(var/obj/item/weapon as anything in filtered_list)
 		if(weapon.w_class + total_weight > maximum_weight)
-			to_chat(user, span_warning("[weapon] is too big to fit into [src]."))
+			balloon_alert(user, "не влезает!")
 			continue
 
 		//try to remove the right way
@@ -231,7 +231,7 @@
 
 		total_weight += weapon.w_class
 		items_transfered += 1
-		to_chat(user, span_notice("[weapon] was loaded into [src]."))
+		balloon_alert(user, "загружено в камеру")
 
 	return items_transfered
 
@@ -242,7 +242,7 @@
 	//add the beaker
 	if(is_reagent_container(tool) && tool.is_open_container())
 		replace_beaker(user, tool)
-		to_chat(user, span_notice("You add [tool] to [src]."))
+		balloon_alert(user, "ёмкость вставлена")
 		return ITEM_INTERACT_SUCCESS
 
 	//add items from bag
@@ -264,9 +264,9 @@
 		//add the items
 		var/items_added = load_items(user, to_add)
 		if(!items_added)
-			to_chat(user, span_warning("No items were added."))
+			balloon_alert(user, "нечего загружать!")
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("[items_added] items were added from [tool] to [src]."))
+		balloon_alert(user, "[items_added] предмет[genderize_ru(items_added, "", "а", "ов")] было загружено")
 		return ITEM_INTERACT_SUCCESS
 
 	//add item directly
@@ -278,7 +278,7 @@
 		//add the items
 		if(!load_items(user, list(tool)))
 			return ITEM_INTERACT_BLOCKING
-		to_chat(user, span_notice("[tool] was added to [src]."))
+		balloon_alert(user, "загружено в камеру")
 		return ITEM_INTERACT_SUCCESS
 
 	//ask player to drag stuff into grinder
@@ -449,13 +449,10 @@
 
 		if(juicing)
 			if(!ingredient.juice(beaker.reagents, user))
-				to_chat(user, span_danger("[src] shorts out as it tries to juice up [ingredient], and transfers it back to storage."))
+				to_chat(user, span_danger("[DECLENT_RU_CAP(src, NOMINATIVE)] безуспешно пытается выжать [ingredient.declent_ru(ACCUSATIVE)], перемещая [GEND_HIS_HER(ingredient)] обратно в камеру."))
 				continue
 		else if(!ingredient.grind(beaker.reagents, user))
-			if(isstack(ingredient))
-				to_chat(user, span_notice("[src] attempts to grind as many pieces of [ingredient] as possible."))
-			else
-				to_chat(user, span_danger("[src] shorts out as it tries to grind up [ingredient], and transfers it back to storage."))
+			to_chat(user, span_danger("[DECLENT_RU_CAP(src, NOMINATIVE)] безуспешно пытается измельчить [ingredient.declent_ru(ACCUSATIVE)], перемещая [GEND_HIS_HER(ingredient)] обратно в камеру."))
 			continue
 
 		//happens only for stacks where some of the sheets were grinded so we roughly compute the weight grinded
