@@ -19,6 +19,7 @@
 	layer = EDGED_TURF_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	animate_movement = NO_STEPS
+	cares_about_temperature = TRUE
 	/// The types of turfs that this foam cannot spread to.
 	var/static/list/blacklisted_turfs = typecacheof(list(
 		/turf/space/transit,
@@ -46,7 +47,7 @@
 	if(HAS_TRAIT(loc, TRAIT_ELEVATED_TURF))
 		layer = WATER_LEVEL_LAYER
 	create_reagents(1000, REAGENT_HOLDER_INSTANT_REACT)
-	playsound(src, 'sound/effects/bubbles/bubbles2.ogg', 80, TRUE, -3)
+	playsound(src, 'sound/effects/bubbles2.ogg', 80, TRUE, -3)
 	SSfoam.start_processing(src)
 
 /obj/effect/particle_effect/fluid/foam/Destroy()
@@ -154,7 +155,7 @@
 	info.pass_flags = PASSTABLE | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE
 	for(var/iter_dir in GLOB.cardinal)
 		var/turf/spread_turf = get_step(src, iter_dir)
-		if(spread_turf?.density || location.LinkBlockedWithAccess(spread_turf, info))
+		if(spread_turf?.density || spread_turf.LinkBlockedWithAccess(spread_turf, info))
 			continue
 
 		var/obj/effect/particle_effect/fluid/foam/foundfoam = locate() in spread_turf //Don't spread foam where there's already foam!
