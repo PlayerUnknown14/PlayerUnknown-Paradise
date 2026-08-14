@@ -196,6 +196,9 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	materials = list(MAT_DIAMOND=MINERAL_MATERIAL_AMOUNT)
 	point_value = 25
 
+/obj/item/stack/sheet/mineral/diamond/grind_results()
+	return list(/datum/reagent/carbon = 20)
+
 /obj/item/stack/sheet/mineral/diamond/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
 	recipes = GLOB.diamond_recipes
@@ -214,6 +217,10 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/uranium
 	materials = list(MAT_URANIUM=MINERAL_MATERIAL_AMOUNT)
 	point_value = 20
+
+
+/obj/item/stack/sheet/mineral/uranium/grind_results()
+	return list(/datum/reagent/uranium = 20)
 
 /obj/item/stack/sheet/mineral/uranium/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -235,6 +242,9 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	resistance_flags = FLAMMABLE
 	max_integrity = 100
 	point_value = 20
+
+/obj/item/stack/sheet/mineral/plasma/grind_results()
+	return list(/datum/reagent/toxin/plasma = 20)
 
 /obj/item/stack/sheet/mineral/plasma/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -276,6 +286,9 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	materials = list(MAT_GOLD=MINERAL_MATERIAL_AMOUNT)
 	point_value = 20
 
+/obj/item/stack/sheet/mineral/gold/grind_results()
+	return list(/datum/reagent/gold = 20)
+
 /obj/item/stack/sheet/mineral/gold/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
 	recipes = GLOB.gold_recipes
@@ -295,6 +308,9 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	materials = list(MAT_SILVER=MINERAL_MATERIAL_AMOUNT)
 	point_value = 20
 
+/obj/item/stack/sheet/mineral/silver/grind_results()
+	return list(/datum/reagent/silver = 20)
+
 /obj/item/stack/sheet/mineral/silver/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
 	recipes = GLOB.silver_recipes
@@ -312,6 +328,9 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/mineral/bananium
 	materials = list(MAT_BANANIUM=MINERAL_MATERIAL_AMOUNT)
 	point_value = 50
+
+/obj/item/stack/sheet/mineral/bananium/grind_results()
+	return list(/datum/reagent/consumable/banana = 20)
 
 /obj/item/stack/sheet/mineral/bananium/fifty
 	amount = 50
@@ -483,6 +502,9 @@ GLOBAL_LIST_INIT(plastitanium_recipes, list(
 	force = 1
 	throwforce = 2
 	merge_type = /obj/item/stack/sheet/mineral/snow
+
+/obj/item/stack/sheet/mineral/snow/grind_results()
+	return list(/datum/reagent/consumable/ice = 20)
 
 /obj/item/stack/sheet/mineral/snow/fifty
 	amount = 50

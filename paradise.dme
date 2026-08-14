@@ -299,6 +299,7 @@
 #include "code\__DEFINES\dcs\signals\signals_screentips.dm"
 #include "code\__DEFINES\dcs\signals\signals_skill.dm"
 #include "code\__DEFINES\dcs\signals\signals_spatial_grid.dm"
+#include "code\__DEFINES\dcs\signals\signals_storage.dm"
 #include "code\__DEFINES\dcs\signals\signals_strength.dm"
 #include "code\__DEFINES\dcs\signals\signals_subsystem.dm"
 #include "code\__DEFINES\dcs\signals\signals_supplypod.dm"

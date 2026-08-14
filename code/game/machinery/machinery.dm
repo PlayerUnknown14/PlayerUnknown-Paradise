@@ -278,13 +278,6 @@
 /obj/machinery/CouldNotUseTopic(mob/user)
 	usr.unset_machine()
 
-/obj/machinery/proc/dropContents()//putting for swarmers, occupent code commented out, someone can use later.
-	var/turf/T = get_turf(src)
-	for(var/atom/movable/AM in contents)
-		AM.forceMove(T)
-
-////////////////////////////////////////////////////////////////////////////////////////////
-
 /obj/machinery/attack_ai(mob/user)
 	if(iscogscarab(user))
 		return
@@ -683,3 +676,46 @@
 	SHOULD_NOT_OVERRIDE(TRUE)
 
 	set_panel_open(!panel_open)
+
+/**
+ * Drop every movable atom in the machine's contents list, including any components and circuit.
+ */
+/obj/machinery/dump_contents()
+	// Start by calling the dump_inventory_contents proc. Will allow machines with special contents
+	// to handle their dropping.
+	dump_inventory_contents()
+
+	// Then we can clean up and drop everything else.
+	var/turf/this_turf = get_turf(src)
+	for(var/atom/movable/movable_atom in contents)
+		movable_atom.forceMove(this_turf)
+
+	// We'll have dropped the occupant, circuit and component parts as part of this.
+	// set_occupant(null)
+	LAZYCLEARLIST(component_parts)
+
+/**
+ * Drop every movable atom in the machine's contents list that is not a component_part.
+ *
+ * Proc does not drop components and will skip over anything in the component_parts list.
+ * Call dump_contents() to drop all contents including components.
+ * Arguments:
+ * * subset - If this is not null, only atoms that are also contained within the subset list will be dropped.
+ */
+/obj/machinery/proc/dump_inventory_contents(list/subset = null)
+	var/turf/this_turf = get_turf(src)
+	for(var/atom/movable/movable_atom in contents)
+		//so machines like microwaves dont dump out signalers after cooking
+		// if(wires && (movable_atom in assoc_to_values(wires.assemblies)))
+		// 	continue
+
+		if(subset && !(movable_atom in subset))
+			continue
+
+		if(movable_atom in component_parts)
+			continue
+
+		movable_atom.forceMove(this_turf)
+
+		// if(occupant == movable_atom)
+		// 	set_occupant(null)

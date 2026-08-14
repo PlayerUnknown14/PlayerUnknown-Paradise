@@ -52,6 +52,9 @@
 	var/const/crayonfont = "Comic Sans MS"
 	var/time = "00:00"
 
+/obj/item/paper/grind_results()
+	return list(/datum/reagent/cellulose = 3)
+
 /obj/item/paper/get_ru_names()
 	return alist(
 		NOMINATIVE = "бумага",

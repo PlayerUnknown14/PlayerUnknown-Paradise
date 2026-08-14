@@ -110,6 +110,9 @@ GLOBAL_LIST_INIT(metal_recipes, list(
 	merge_type = /obj/item/stack/sheet/metal
 	point_value = 2
 
+/obj/item/stack/sheet/metal/grind_results()
+	return list(/datum/reagent/iron = 20)
+
 /obj/item/stack/sheet/metal/cyborg
 	materials = list()
 	cyborg_construction_stack = /obj/item/stack/sheet/metal
@@ -161,6 +164,9 @@ GLOBAL_LIST_INIT(plasteel_recipes, list(
 	origin_tech = "materials=2"
 	merge_type = /obj/item/stack/sheet/plasteel
 	point_value = 23
+
+/obj/item/stack/sheet/plasteel/grind_results()
+	return list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
 
 /obj/item/stack/sheet/plasteel/five
 	amount = 5
@@ -252,6 +258,9 @@ GLOBAL_LIST_INIT(wood_recipes, list(
 	resistance_flags = FLAMMABLE
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 50, ACID = 0)
 	merge_type = /obj/item/stack/sheet/wood
+
+/obj/item/stack/sheet/wood/grind_results()
+	return list(/datum/reagent/cellulose = 20)
 
 /obj/item/stack/sheet/wood/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -425,6 +434,9 @@ GLOBAL_LIST_INIT(cardboard_recipes, list(
 	item_state = "sheet-card"
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/cardboard
+
+/obj/item/stack/sheet/cardboard/grind_results()
+	return list(/datum/reagent/cellulose = 10)
 
 /obj/item/stack/sheet/cardboard/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
@@ -603,6 +615,9 @@ GLOBAL_LIST_INIT(fake_brass_recipes, list(
 	merge_type = /obj/item/stack/sheet/brass
 	matter_amount = 8
 
+/obj/item/stack/sheet/brass/grind_results()
+	return list(/datum/reagent/iron = 20, /datum/reagent/copper = 12)
+
 /obj/item/stack/sheet/brass/narsie_act()
 	new /obj/item/stack/sheet/runed_metal(loc, amount)
 	qdel(src)
@@ -684,6 +699,9 @@ GLOBAL_LIST_INIT(fake_brass_recipes, list(
 	desc = "Кто-то выпил их молоко."
 	force = 7
 	origin_tech = "materials=2;biotech=2"
+
+/obj/item/stack/sheet/bone/grind_results()
+	return list(/datum/reagent/carbon = 10)
 
 /obj/item/stack/sheet/bone/get_ru_names()
 	return alist(
@@ -810,6 +828,9 @@ GLOBAL_LIST_INIT(plastic_recipes, list(
 	materials = list(MAT_PLASTIC = MINERAL_MATERIAL_AMOUNT)
 	merge_type = /obj/item/stack/sheet/plastic
 
+/obj/item/stack/sheet/plastic/grind_results()
+	return list(/datum/reagent/carbon = 10)
+
 /obj/item/stack/sheet/plastic/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()
 	recipes = GLOB.plastic_recipes
@@ -843,6 +864,9 @@ GLOBAL_LIST_INIT(bamboo_recipes, list(
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 50, ACID = 0)
 	resistance_flags = FLAMMABLE
 	merge_type = /obj/item/stack/sheet/bamboo
+
+/obj/item/stack/sheet/bamboo/grind_results()
+	return list(/datum/reagent/cellulose = 10)
 
 /obj/item/stack/sheet/bamboo/Initialize(mapload, new_amount, merge = TRUE)
 	. = ..()

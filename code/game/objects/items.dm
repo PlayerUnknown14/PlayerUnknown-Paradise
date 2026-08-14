@@ -1574,8 +1574,141 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/g
 
 /// Checks if user can insert a valid container into the chemistry machine.
 /obj/item/proc/can_insert_container(mob/living/user, obj/machinery/chem_machine)
-	return is_chem_container() && chem_machine.can_interact(user) && user.can_perform_action(chem_machine, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH)
+	return is_chem_container() && user.can_perform_action(chem_machine, ALLOW_SILICON_REACH | FORBID_TELEKINESIS_REACH)
 
 /// Checks if this container is valid for use with chemistry machinery.
 /obj/item/proc/is_chem_container()
 	return FALSE
+
+///Used to check for extra requirements for blending(grinding or juicing) an object
+/obj/item/proc/blend_requirements(atom/movable/grinder, mob/living/user)
+	return TRUE
+
+/** TODO: поменять после порта custom_materials с ТГ
+
+/obj/item/proc/grind_results()
+	RETURN_TYPE(/list/datum/reagent)
+
+	if (!length(custom_materials) || (material_flags & MATERIAL_NO_REAGENTS))
+		return null
+
+	. = list()
+	for (var/mat_id, amount in custom_materials)
+		var/datum/material/material = SSmaterials.get_material(mat_id)
+		if (!material.material_reagent)
+			continue
+		if (!islist(material.material_reagent))
+			.[material.material_reagent] = .[material.material_reagent] + amount * MATERIAL_REAGENTS_PER_SHEET / SHEET_MATERIAL_AMOUNT
+			continue
+		for (var/reagent_type in material.material_reagent)
+			.[reagent_type] = .[reagent_type] + amount * material.material_reagent[reagent_type] / length(material.material_reagent) * MATERIAL_REAGENTS_PER_SHEET / SHEET_MATERIAL_AMOUNT
+	return .
+ */
+
+///Returns a reagent list containing the reagents this item produces when ground up in a grinder
+/obj/item/proc/grind_results()
+	RETURN_TYPE(/list/datum/reagent)
+
+	return null
+
+///Called BEFORE the object is ground up - use this to change grind results based on conditions. Return "-1" to prevent the grinding from occurring
+/obj/item/proc/on_grind()
+	PROTECTED_PROC(TRUE)
+
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_GRIND)
+
+///Grind item, adding grind_results to item's reagents and transfering to target_holder if specified
+/obj/item/proc/grind(datum/reagents/target_holder, mob/user, atom/movable/grinder = loc)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	. = FALSE
+	if(on_grind() == -1 || target_holder.holder_full())
+		return
+
+	. = grind_atom(target_holder, user)
+
+	//reccursive grinding to get all them juices
+	var/result
+	for(var/obj/item/ingredient as anything in get_all_contents_type(/obj/item))
+		if(ingredient == src)
+			continue
+
+		result = ingredient.grind(target_holder, user)
+		if(!.)
+			. = result
+
+	if(. && istype(grinder))
+		return grinder.blended(src, grinded = TRUE)
+
+///Subtypes override his proc for custom grinding
+/obj/item/proc/grind_atom(datum/reagents/target_holder, mob/user)
+	PROTECTED_PROC(TRUE)
+
+	var/list/datum/reagent/grind_reagents = grind_results()
+
+	. = FALSE
+	if(length(grind_reagents))
+		target_holder.add_reagent_list(grind_reagents)
+		. = TRUE
+	if(reagents?.trans_to(target_holder, reagents.total_volume, transferred_by = user))
+		. = TRUE
+
+///Returns A reagent the nutriments are converted into when the item is juiced.
+/obj/item/proc/juice_typepath()
+	RETURN_TYPE(/datum/reagent)
+
+	return null
+
+///Called BEFORE the object is ground up - use this to change grind results based on conditions. Return "-1" to prevent the grinding from occurring
+/obj/item/proc/on_juice()
+	PROTECTED_PROC(TRUE)
+
+	if(!juice_typepath())
+		return -1
+
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_JUICE)
+
+///Juice item, converting nutriments into juice_typepath and transfering to target_holder if specified
+/obj/item/proc/juice(datum/reagents/target_holder, mob/user, atom/movable/juicer = loc)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
+	. = FALSE
+	if(on_juice() == -1 || !reagents?.total_volume)
+		return
+
+	. = juice_atom(target_holder, user)
+
+	//reccursive juicing to get all them juices
+	var/result
+	for(var/obj/item/ingredient as anything in get_all_contents_type(/obj/item))
+		if(ingredient == src)
+			continue
+
+		result = ingredient.juice(target_holder, user)
+		if(!.)
+			. = result
+
+	if(. && istype(juicer))
+		return juicer.blended(src, grinded = FALSE)
+
+///Subtypes override his proc for custom juicing
+/obj/item/proc/juice_atom(datum/reagents/target_holder, mob/user)
+	PROTECTED_PROC(TRUE)
+
+	. = FALSE
+
+	var/juice_result = juice_typepath()
+
+	if(ispath(juice_result))
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment, juice_result, include_source_subtypes = FALSE)
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment/vitamin, juice_result, include_source_subtypes = FALSE)
+		. = TRUE
+
+	if(!QDELETED(target_holder))
+		reagents.trans_to(target_holder, reagents.total_volume, transferred_by = user)
+
+///What should The atom that blended an object do with it afterwards? Default behaviour is to delete it
+/atom/movable/proc/blended(obj/item/blended_item, grinded)
+	qdel(blended_item)
+
+	return TRUE

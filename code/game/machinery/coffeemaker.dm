@@ -67,11 +67,11 @@
 /obj/machinery/coffeemaker/examine(mob/user)
 	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		. += span_boldwarning("Отсюда не получается разглядеть дисплей и содержимое!")
+		. += span_warning("Отсюда не получается разглядеть дисплей и содержимое!")
 		return
 
 	if(brewing)
-		. += span_boldwarning("В процессе варки.")
+		. += span_warning("В процессе варки.")
 
 	if(panel_open)
 		. += span_boldnotice("Панель техобслуживания открыта.")

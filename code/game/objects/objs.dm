@@ -55,7 +55,7 @@
 	/// The vertical pixel_z offset applied when the object is anchored on a tile with table
 	/// Ignored when set to 0 - to avoid shifting directional wall-mounted objects above tables
 	var/anchored_tabletop_offset = 0
-	
+
 	/// Is this object emagged?
 	var/emagged = FALSE
 
@@ -423,3 +423,8 @@
 	for(var/datum/reagent/reagent as anything in reagents)
 		var/reac_volume = reagents[reagent]
 		. |= reagent.expose_obj(src, reac_volume, methods, show_message)
+
+/// Should move all contained objects to its location.
+/obj/proc/dump_contents()
+	SHOULD_CALL_PARENT(FALSE)
+	CRASH("Unimplemented.")

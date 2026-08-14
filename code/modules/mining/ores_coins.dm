@@ -568,11 +568,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	materials = list(MAT_GOLD = 400)
 	credits = 160
 
+/obj/item/coin/gold/grind_results()
+	return list(/datum/reagent/gold = 4)
+
 /obj/item/coin/silver
 	cmineral = "silver"
 	icon_state = "coin_silver_heads"
 	materials = list(MAT_SILVER = 400)
 	credits = 40
+
+/obj/item/coin/silver/grind_results()
+	return list(/datum/reagent/silver = 4)
 
 /obj/item/coin/diamond
 	cmineral = "diamond"
@@ -580,11 +586,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	materials = list(MAT_DIAMOND = 400)
 	credits = 120
 
+/obj/item/coin/diamond/grind_results()
+	return list(/datum/reagent/carbon = 4)
+
 /obj/item/coin/iron
 	cmineral = "iron"
 	icon_state = "coin_iron_heads"
 	materials = list(MAT_METAL = 400)
 	credits = 20
+
+/obj/item/coin/iron/grind_results()
+	return list(/datum/reagent/iron = 4)
 
 /obj/item/coin/plasma
 	cmineral = "plasma"
@@ -592,11 +604,17 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	materials = list(MAT_PLASMA = 400)
 	credits = 80
 
+/obj/item/coin/plasma/grind_results()
+	return list(/datum/reagent/toxin/plasma = 4)
+
 /obj/item/coin/uranium
 	cmineral = "uranium"
 	icon_state = "coin_uranium_heads"
 	materials = list(MAT_URANIUM = 400)
 	credits = 160
+
+/obj/item/coin/uranium/grind_results()
+	return list(/datum/reagent/uranium = 4)
 
 /obj/item/coin/uranium/ComponentInitialize()
 	. = ..()
@@ -607,6 +625,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	icon_state = "coin_bananium_heads"
 	materials = list(MAT_BANANIUM = 400)
 	credits = 600 //makes the clown cri
+
+/obj/item/coin/clown/grind_results()
+	return list(/datum/reagent/consumable/drink/bananahonk = 4)
 
 /obj/item/coin/mime
 	cmineral = "tranquillite"
@@ -623,6 +644,9 @@ GLOBAL_LIST_INIT(sand_recipes, list(\
 	cmineral = "mythril"
 	icon_state = "coin_mythril_heads"
 	credits = 400
+
+/obj/item/coin/mythril/grind_results()
+	return list(/datum/reagent/medicine/omnizine_diluted/godblood = 4)
 
 /obj/item/coin/twoheaded
 	cmineral = "iron"

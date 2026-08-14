@@ -411,7 +411,7 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/suit_storage_unit/proc/dump_contents()
-	dropContents()
+	dump_contents()
 	helmet = null
 	suit = null
 	mask = null
@@ -580,11 +580,11 @@
 /obj/machinery/suit_storage_unit/proc/open_machine(drop = TRUE)
 	state_open = TRUE
 	if(drop)
-		dropContents()
+		dump_contents()
 	update_icon(UPDATE_OVERLAYS)
 	SStgui.update_uis(src)
 
-/obj/machinery/suit_storage_unit/dropContents()
+/obj/machinery/suit_storage_unit/dump_contents()
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/A in contents)
 		A.forceMove(T)

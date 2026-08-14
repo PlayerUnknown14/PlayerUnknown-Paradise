@@ -99,28 +99,31 @@
 
 /obj/machinery/chem_master/examine(mob/user)
 	. = ..()
-	if(in_range(user, src) || isobserver(user))
-		. += span_notice("Монитор состояния сообщает:\n\
-			Ёмкость буфера веществ: <b>[reagents.maximum_volume]</b> единиц[declension_ru(reagents.maximum_volume, "а", "ы", "")].\n\
-			Скорость печати: <b>[0.75 SECONDS / printing_speed * 100]%</b>.")
 
-		. += span_notice("Слот для ёмкости:")
-		if(!QDELETED(beaker))
-			var/beaker_volume = beaker.reagents.total_volume
-			. += span_notice("- [beaker.get_examine_icon(user)] [DECLENT_RU_CAP(beaker, NOMINATIVE)] объёмом в [beaker_volume] единиц[declension_ru(beaker_volume, "", "ы", "у")].")
-		else
-			. += span_warning("- Пусто.")
+	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
+		. += span_warning("Отсюда не получается разглядеть дисплей и содержимое!")
+		return
 
-		. += span_warning("Техобслуживание:")
-		if(panel_open)
-			. += span_notice("- Техпанель открыта. Вы можете закрыть её, [EXAMINE_HINT("закрутив винты")].")
-			. += span_notice("- Вы можете разобрать оборудование, [EXAMINE_HINT("поддев")] внутренние компоненты.")
-		else
-			. += span_notice("- Техпанель закрыта. Вы можете открыть её, [EXAMINE_HINT("открутив винты")].")
-		if(anchored)
-			. += span_notice("Вы можете прикрутить оборедование к полу, [EXAMINE_HINT("затянув болты")].")
-		else
-			. += span_notice("Вы можете открутить оборедование от пола, [EXAMINE_HINT("ослабив болты")].")
+	. += span_notice("Монитор состояния сообщает:\n\
+		Ёмкость буфера веществ: <b>[reagents.maximum_volume]</b> единиц[declension_ru(reagents.maximum_volume, "а", "ы", "")].\n\
+		Скорость печати: <b>[0.75 SECONDS / printing_speed * 100]%</b>.")
+
+	. += span_notice("Слот для ёмкости:")
+	if(!QDELETED(beaker))
+		. += span_notice("- [beaker.get_examine_icon(user)] [DECLENT_RU_CAP(beaker, NOMINATIVE)] содержит [beaker.reagents.total_volume]/[beaker.reagents.maximum_volume] ед. вещества.")
+	else
+		. += span_warning("- Пусто.")
+
+	. += span_warning("Техобслуживание:")
+	if(panel_open)
+		. += span_notice("- Панель техобслуживания открыта. Вы можете закрыть её, [EXAMINE_HINT("закрутив винты")].")
+		. += span_notice("- Вы можете разобрать оборудование, [EXAMINE_HINT("поддев")] внутренние компоненты.")
+	else
+		. += span_notice("- Панель техобслуживания закрыта. Вы можете открыть её, [EXAMINE_HINT("открутив винты")].")
+	if(anchored)
+		. += span_notice("- Вы можете прикрутить оборудование к полу, [EXAMINE_HINT("затянув болты")].")
+	else
+		. += span_notice("- Вы можете открутить оборудование от пола, [EXAMINE_HINT("ослабив болты")].")
 
 /obj/machinery/chem_master/update_appearance(updates)
 	. = ..()

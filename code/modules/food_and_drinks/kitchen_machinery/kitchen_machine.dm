@@ -270,7 +270,7 @@
 	ui_interact(user)
 
 /obj/machinery/kitchen_machine/on_deconstruction()
-	dropContents()
+	dump_contents()
 
 /obj/machinery/kitchen_machine/wash_tg(clean_types)
 	. = ..()

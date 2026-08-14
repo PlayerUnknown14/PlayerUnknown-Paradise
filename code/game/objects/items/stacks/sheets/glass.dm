@@ -26,6 +26,9 @@ GLOBAL_LIST_INIT(glass_recipes, list(
 	merge_type = /obj/item/stack/sheet/glass
 	point_value = 1
 
+/obj/item/stack/sheet/glass/grind_results()
+	return list(/datum/reagent/silicon = 20)
+
 /obj/item/stack/sheet/glass/fifty
 	amount = 50
 
@@ -99,6 +102,9 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list (
 	merge_type = /obj/item/stack/sheet/rglass
 	point_value = 4
 
+/obj/item/stack/sheet/rglass/grind_results()
+	return list(/datum/reagent/silicon = 20, /datum/reagent/iron = 10)
+
 /obj/item/stack/sheet/rglass/fifty
 	amount = 50
 
@@ -148,6 +154,9 @@ GLOBAL_LIST_INIT(pglass_recipes, list (
 	full_window = /obj/structure/window/full/plasmabasic
 	point_value = 19
 
+/obj/item/stack/sheet/plasmaglass/grind_results()
+	return list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10)
+
 /obj/item/stack/sheet/plasmaglass/fifty
 	amount = 50
 
@@ -195,6 +204,9 @@ GLOBAL_LIST_INIT(prglass_recipes, list (
 	created_window = /obj/structure/window/plasmareinforced
 	full_window = /obj/structure/window/full/plasmareinforced
 	point_value = 23
+
+/obj/item/stack/sheet/plasmarglass/grind_results()
+	return list(/datum/reagent/silicon = 20, /datum/reagent/toxin/plasma = 10, /datum/reagent/iron = 10)
 
 /obj/item/stack/sheet/plasmarglass/fifty
 	amount = 50

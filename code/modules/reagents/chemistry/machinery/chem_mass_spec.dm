@@ -102,31 +102,33 @@
 
 /obj/machinery/chem_mass_spec/examine(mob/user)
 	. = ..()
-	if(in_range(user, src) || isobserver(user))
-		. += span_notice("Слот для ёмкости ввода:")
-		if(!QDELETED(beaker1))
-			var/beaker1_volume = beaker1.reagents.total_volume
-			. += span_notice("[beaker1.get_examine_icon(user)] [DECLENT_RU_CAP(beaker1, NOMINATIVE)] объёмом в [beaker1_volume] единиц[declension_ru(beaker1_volume, "", "ы", "у")].")
-		else
-			. += span_warning("- Пусто.")
 
-		. += span_notice("Слот для ёмкости вывода:")
-		if(!QDELETED(beaker2))
-			var/beaker2_volume = beaker2.reagents.total_volume
-			. += span_notice("[beaker2.get_examine_icon(user)] [DECLENT_RU_CAP(beaker2, NOMINATIVE)] объёмом в [beaker2_volume] единиц[declension_ru(beaker2_volume, "", "ы", "у")].")
-		else
-			. += span_warning("- Пусто.")
+	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
+		. += span_warning("Отсюда не получается разглядеть дисплей и содержимое!")
+		return
 
-		. += span_warning("Техобслуживание:")
-		if(panel_open)
-			. += span_notice("- Техпанель открыта. Вы можете закрыть её, [EXAMINE_HINT("закрутив винты")].")
-			. += span_notice("- Вы можете разобрать оборудование, [EXAMINE_HINT("поддев")] внутренние компоненты.")
-		else
-			. += span_notice("- Техпанель закрыта. Вы можете открыть её, [EXAMINE_HINT("открутив винты")].")
-		if(anchored)
-			. += span_notice("Вы можете прикрутить оборедование к полу, [EXAMINE_HINT("затянув болты")].")
-		else
-			. += span_notice("Вы можете открутить оборедование от пола, [EXAMINE_HINT("ослабив болты")].")
+	. += span_notice("Слот для ёмкости ввода:")
+	if(!QDELETED(beaker1))
+		. += span_notice("- [beaker1.get_examine_icon(user)] [DECLENT_RU_CAP(beaker1, NOMINATIVE)] содержит [beaker1.reagents.total_volume]/[beaker1.reagents.maximum_volume] ед. вещества.")
+	else
+		. += span_warning("- Пусто.")
+
+	. += span_notice("Слот для ёмкости вывода:")
+	if(!QDELETED(beaker2))
+		. += span_notice("- [beaker2.get_examine_icon(user)] [DECLENT_RU_CAP(beaker2, NOMINATIVE)] содержит [beaker2.reagents.total_volume]/[beaker2.reagents.maximum_volume] ед. вещества.")
+	else
+		. += span_warning("- Пусто.")
+
+	. += span_warning("Техобслуживание:")
+	if(panel_open)
+		. += span_notice("- Панель техобслуживания открыта. Вы можете закрыть её, [EXAMINE_HINT("закрутив винты")].")
+		. += span_notice("- Вы можете разобрать оборудование, [EXAMINE_HINT("поддев")] внутренние компоненты.")
+	else
+		. += span_notice("- Панель техобслуживания закрыта. Вы можете открыть её, [EXAMINE_HINT("открутив винты")].")
+	if(anchored)
+		. += span_notice("- Вы можете прикрутить оборудование к полу, [EXAMINE_HINT("затянув болты")].")
+	else
+		. += span_notice("- Вы можете открутить оборудование от пола, [EXAMINE_HINT("ослабив болты")].")
 
 /obj/machinery/chem_mass_spec/update_overlays()
 	. = ..()

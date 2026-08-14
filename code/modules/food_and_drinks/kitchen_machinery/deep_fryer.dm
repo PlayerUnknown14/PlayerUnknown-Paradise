@@ -93,7 +93,7 @@
 	new recipe.output(get_turf(src))
 
 /obj/machinery/cooker/deepfryer/on_deconstruction()
-	dropContents()
+	dump_contents()
 
 //////////////////////////////////
 //		Deepfryer Special		//
