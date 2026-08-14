@@ -12,6 +12,8 @@
 	opacity = TRUE
 	plane = ABOVE_GAME_PLANE
 	layer = FLY_LAYER
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	animate_movement = FALSE
 	/// How long the smoke sticks around before it dissipates.
 	var/lifetime = 5 SMOKE_TICK_TO_SECONDS
@@ -22,7 +24,7 @@
 
 /obj/effect/particle_effect/fluid/smoke/Initialize(mapload, datum/fluid_group/group, ...)
 	. = ..()
-	create_reagents(1000)
+	create_reagents(1000, REAGENT_HOLDER_INSTANT_REACT)
 	setDir(pick(GLOB.cardinal))
 	AddElement(/datum/element/connect_loc, loc_connections)
 	SSsmoke.start_processing(src)
@@ -32,6 +34,7 @@
 	if(spread_bucket)
 		SSsmoke.cancel_spread(src)
 	return ..()
+
 
 /**
  * Makes the smoke fade out and then deletes it.
@@ -69,7 +72,7 @@
 	animate(src, time = frames, alpha = 0)
 
 /obj/effect/particle_effect/fluid/smoke/spread(seconds_per_tick = 0.1 SECONDS)
-	if(!group || group.total_size > group.target_size)
+	if(group.total_size > group.target_size)
 		return
 	var/turf/t_loc = get_turf(src)
 	if(!t_loc)
@@ -80,11 +83,9 @@
 			break
 		if(locate(type) in spread_turf)
 			continue // Don't spread smoke where there's already smoke!
-		for(var/mob/living/smoker in spread_turf)
-			smoke_mob(smoker, seconds_per_tick)
 
 		var/obj/effect/particle_effect/fluid/smoke/spread_smoke = new type(spread_turf, group, src)
-		reagents.trans_to(spread_smoke, reagents.total_volume)
+		reagents.trans_to(spread_smoke, reagents.total_volume, copy_only = TRUE)
 		spread_smoke.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		spread_smoke.lifetime = lifetime
 
@@ -114,13 +115,14 @@
 		return FALSE
 	if(lifetime < 1)
 		return FALSE
-	if(!smoker.can_breathe_gas())
+	if(smoker.internal != null || smoker.has_smoke_protection())
 		return FALSE
 	if(smoker.smoke_delay)
 		return FALSE
 
 	smoker.smoke_delay = TRUE
 	addtimer(VARSET_CALLBACK(smoker, smoke_delay, FALSE), 1 SECONDS)
+	SEND_SIGNAL(smoker, COMSIG_CARBON_EXPOSED_TO_SMOKE, seconds_per_tick)
 	return TRUE
 
 /**
@@ -161,12 +163,13 @@
  * - range: The amount of smoke to produce as number of steps from origin covered.
  * - amount: The amount of smoke to produce as the total desired coverage area. Autofilled from the range arg if not set.
  * - location: Where to produce the smoke cloud.
- * - smoke_type: The smoke typepath to spawn.
+ * - smoke_type - Typepath for the effect system to use
+ * - effect_type: The smoke typepath to spawn.
+ * - log: Should the system log the smoke spawned?
  */
-/proc/do_smoke(range = 0, amount = DIAMOND_AREA(range), atom/holder = null, location = null, smoke_type = /obj/effect/particle_effect/fluid/smoke, log = FALSE)
-	var/datum/effect_system/fluid_spread/smoke/smoke = new
-	smoke.effect_type = smoke_type
-	smoke.set_up(amount = amount, holder = holder, location = location)
+/proc/do_smoke(range = 0, atom/holder = null, location = null, amount = null, smoke_type = /datum/effect_system/fluid_spread/smoke, effect_type = /obj/effect/particle_effect/fluid/smoke, log = FALSE)
+	var/datum/effect_system/fluid_spread/smoke/smoke = new smoke_type(location, range, amount, holder)
+	smoke.effect_type = effect_type
 	smoke.start(log = log)
 
 /////////////////////////////////////////////
@@ -311,6 +314,10 @@
 	/// Whether to make sure each affected turf is actually within range before cooling it.
 	var/distcheck = TRUE
 
+/datum/effect_system/fluid_spread/smoke/freezing/New(turf/location, range = 1, amount = null, atom/holder = null, blast_radius = 0)
+	. = ..()
+	blast = blast_radius
+
 /**
  * Chills an open turf.
  *
@@ -377,6 +384,7 @@
 	temperature = T20C
 	distcheck = FALSE
 	weldvents = FALSE
+
 
 /////////////////////////////////////////////
 // Sleep smoke
@@ -567,5 +575,14 @@
 
 /datum/effect_system/fluid_spread/smoke/chem/quick/vapor
 	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/quick/vapor
+
+/**
+ * A version of chemical smoke with a intermediate lifespan.
+ */
+/obj/effect/particle_effect/fluid/smoke/chem/medium
+	lifetime = 8 SECONDS
+
+/datum/effect_system/fluid_spread/smoke/chem/medium
+	effect_type = /obj/effect/particle_effect/fluid/smoke/chem/medium
 
 #undef SMOKE_TICK_TO_SECONDS

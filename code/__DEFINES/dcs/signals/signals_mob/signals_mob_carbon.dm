@@ -101,3 +101,6 @@
 
 //sent from living mobs when they parry
 #define COMSIG_CARBON_PARRY "carbon_parry"
+
+//from base of [/obj/effect/particle_effect/fluid/smoke/proc/smoke_mob]: (seconds_per_tick)
+#define COMSIG_CARBON_EXPOSED_TO_SMOKE "carbon_exposed_to_smoke"

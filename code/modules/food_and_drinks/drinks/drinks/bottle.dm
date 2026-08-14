@@ -767,7 +767,7 @@
 	..()
 	var/obj/item/reagent_containers/food/drinks/bottle/bottle = locate() in contents
 	if(bottle)
-		bottle.reagents.trans_to(src, 100)
+		bottle.reagents.trans_to(src, 100, copy_only = TRUE)
 		if(!bottle.isGlass)
 			isGlass = FALSE
 		update_appearance(UPDATE_DESC|UPDATE_ICON)

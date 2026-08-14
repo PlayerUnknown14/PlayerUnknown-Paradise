@@ -13,9 +13,12 @@
 /obj/effect/particle_effect/fluid/foam
 	name = "foam"
 	icon_state = "foam"
+	opacity = FALSE
+	anchored = TRUE
+	density = FALSE
 	layer = EDGED_TURF_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	animate_movement = NO_STEPS
-	cares_about_temperature = TRUE
 	/// The types of turfs that this foam cannot spread to.
 	var/static/list/blacklisted_turfs = typecacheof(list(
 		/turf/space/transit,
@@ -39,11 +42,11 @@
 	src.original_lifetime = src.lifetime
 	src.slippery_foam = !isnull(slippery) ? slippery : slippery_foam
 	if(slippery_foam)
-		AddComponent(/datum/component/slippery, SLIPPERY_TIME_FOAM, can_slip_callback = CALLBACK(src, PROC_REF(try_slip)))
+		AddComponent(/datum/component/slippery, 100, can_slip_callback = CALLBACK(src, PROC_REF(try_slip)))
 	if(HAS_TRAIT(loc, TRAIT_ELEVATED_TURF))
 		layer = WATER_LEVEL_LAYER
-	create_reagents(1000)
-	playsound(src, 'sound/effects/bubbles2.ogg', 80, TRUE, -3)
+	create_reagents(1000, REAGENT_HOLDER_INSTANT_REACT)
+	playsound(src, 'sound/effects/bubbles/bubbles2.ogg', 80, TRUE, -3)
 	SSfoam.start_processing(src)
 
 /obj/effect/particle_effect/fluid/foam/Destroy()
@@ -96,9 +99,13 @@
 		for(var/obj/object in turf_location)
 			if(object == src)
 				continue
+			if(object.invisibility >= INVISIBILITY_ABSTRACT) // Don't foam landmarks please
+				continue
+			if(HAS_TRAIT(object, TRAIT_UNDERFLOOR))
+				continue
 			if(HAS_TRAIT(loc, TRAIT_ELEVATED_TURF) && !HAS_TRAIT(object, TRAIT_ELEVATING_OBJECT))
 				continue // Do expose tables, don't expose items on tables
-			reagents.reaction(object, REAGENT_TOUCH, fraction)
+			reagents.expose(object, VAPOR, fraction)
 
 	var/hit = 0
 	for(var/mob/living/foamer in loc)
@@ -108,7 +115,7 @@
 	if(hit)
 		lifetime += ds_seconds_per_tick //this is so the decrease from mobs hit and the natural decrease don't cumulate.
 
-	reagents.reaction(loc, REAGENT_TOUCH, fraction)
+	reagents.expose(loc, VAPOR, fraction)
 
 /**
  * Applies the effect of this foam to a mob.
@@ -129,7 +136,7 @@
 
 	seconds_per_tick = min(seconds_per_tick SECONDS, lifetime)
 	var/fraction = (seconds_per_tick * MINIMUM_FOAM_DILUTION) / (initial(lifetime) * max(MINIMUM_FOAM_DILUTION, group.total_size))
-	reagents.reaction(foaming, REAGENT_TOUCH, fraction)
+	reagents.expose(foaming, VAPOR, fraction)
 	lifetime -= seconds_per_tick
 	return TRUE
 
@@ -144,9 +151,10 @@
 		return FALSE
 
 	var/datum/can_pass_info/info = new(no_id = TRUE)
+	info.pass_flags = PASSTABLE | PASSGRILLE | PASSMACHINE | PASSSTRUCTURE
 	for(var/iter_dir in GLOB.cardinal)
 		var/turf/spread_turf = get_step(src, iter_dir)
-		if(spread_turf?.density || spread_turf.LinkBlockedWithAccess(spread_turf, info))
+		if(spread_turf?.density || location.LinkBlockedWithAccess(spread_turf, info))
 			continue
 
 		var/obj/effect/particle_effect/fluid/foam/foundfoam = locate() in spread_turf //Don't spread foam where there's already foam!
@@ -163,7 +171,7 @@
 			foam_mob(foaming, seconds_per_tick)
 
 		var/obj/effect/particle_effect/fluid/foam/spread_foam = new type(spread_turf, group, src, src.original_lifetime, src.slippery_foam)
-		reagents.trans_to(spread_foam, (reagents.total_volume))
+		reagents.trans_to(spread_foam, reagents.total_volume, copy_only = TRUE)
 		spread_foam.add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 		spread_foam.result_type = result_type
 		SSfoam.queue_spread(spread_foam)
@@ -176,8 +184,8 @@
 /datum/effect_system/fluid_spread/foam
 	effect_type = /obj/effect/particle_effect/fluid/foam
 	/// A container for all of the chemicals we distribute through the foam.
-	var/datum/reagents/chemholder
-	/// The amount that
+	var/datum/reagents/chemholder = null
+	/// The amount that we multiply the payload by
 	var/reagent_scale = FOAM_REAGENT_SCALE
 	/// What type of thing the foam should leave behind when it dissipates.
 	var/atom/movable/result_type = null
@@ -203,15 +211,15 @@
 		return
 
 	for(var/reagent in banned_reagents)
-		carry.remove_reagent(reagent, carry.total_volume, safety = TRUE)
-	carry.copy_to(chemholder, carry.total_volume, safety = TRUE)
+		carry.remove_reagent(reagent, carry.total_volume)
+	carry.trans_to(chemholder, carry.total_volume, copy_only = TRUE)
 
 /datum/effect_system/fluid_spread/foam/start(log = FALSE, lifetime, slippery)
 	var/obj/effect/particle_effect/fluid/foam/foam = new effect_type(location, new /datum/fluid_group(amount), null, lifetime, slippery)
 	var/foamcolor = mix_color_from_reagents(chemholder.reagent_list)
 	if(reagent_scale > 1) // Make room in case we were created by a particularly stuffed payload.
 		foam.reagents.maximum_volume *= reagent_scale
-	chemholder.copy_to(foam, chemholder.total_volume, reagent_scale) // Foam has an amplifying effect on the reagents it is supplied with. This is balanced by the reagents being diluted as the area the foam covers increases.
+	chemholder.trans_to(foam, chemholder.total_volume, reagent_scale, copy_only = TRUE) // Foam has an amplifying effect on the reagents it is supplied with. This is balanced by the reagents being diluted as the area the foam covers increases.
 	foam.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
 	if(!isnull(result_type))
 		foam.result_type = result_type

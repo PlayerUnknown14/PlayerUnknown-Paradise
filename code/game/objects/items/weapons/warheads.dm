@@ -69,11 +69,11 @@
 	create_reagents(volume)
 
 	if(first_reagents)
-		first_reagents.trans_to(reagents, first_reagents.total_volume)
+		first_reagents.trans_to(reagents, first_reagents.total_volume, copy_only = TRUE)
 		QDEL_NULL(first_part)
 
 	if(second_reagents)
-		second_reagents.trans_to(reagents, second_reagents.total_volume)
+		second_reagents.trans_to(reagents, second_reagents.total_volume, copy_only = TRUE)
 		QDEL_NULL(second_part)
 
 	reagents.handle_reactions()
