@@ -26759,7 +26759,7 @@
 /obj/machinery/vending/wallmed{
 	pixel_x = 25
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "tranquillite"
 	},
@@ -28162,7 +28162,7 @@
 	},
 /area/station/security/prison/perma)
 "fOU" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/cell,
 /obj/effect/mapping_helpers/turfs/damage,
 /turf/simulated/floor/plating,
@@ -31388,7 +31388,7 @@
 	},
 /area/station/command/bridge)
 "gvU" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/fore)
 "gvX" = (
@@ -35528,7 +35528,7 @@
 /area/station/service/library)
 "hjl" = (
 /obj/item/stock_parts/capacitor,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/asmaint2)
 "hjn" = (
@@ -45466,7 +45466,7 @@
 	},
 /area/station/science/robotics)
 "iYm" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/cable,
 /turf/simulated/floor/plasteel{
 	dir = 6;
@@ -49821,7 +49821,7 @@
 	},
 /area/station/science/toxins/mixing)
 "jNj" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small,
 /turf/simulated/floor/plasteel{
 	dir = 10;
@@ -53919,7 +53919,7 @@
 	icon_state = "grass_edge_medium_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -81652,7 +81652,7 @@
 /turf/simulated/floor/carpet/arcade,
 /area/station/commons/fitness)
 "pEL" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -94224,7 +94224,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stock_parts/manipulator,
 /turf/simulated/floor/plasteel{
@@ -116543,7 +116543,7 @@
 	},
 /area/station/hallway/secondary/entry/commercial)
 "vWM" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 5
 	},
@@ -117473,7 +117473,7 @@
 "wfD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/kitchen)
 "wfF" = (

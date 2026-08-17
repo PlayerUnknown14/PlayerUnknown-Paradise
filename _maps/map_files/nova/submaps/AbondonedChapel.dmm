@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "al" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/light_construct{
 	dir = 8
@@ -128,7 +128,7 @@
 /area/station/maintenance/incinerator)
 "ep" = (
 /obj/structure/table,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	dir = 1;
 	icon_state = "darkpurple"
@@ -185,7 +185,7 @@
 	},
 /area/station/maintenance/club)
 "fP" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil,
 /turf/simulated/floor/bluegrid,
 /area/station/maintenance/server)

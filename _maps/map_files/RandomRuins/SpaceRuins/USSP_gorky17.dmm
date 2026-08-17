@@ -6900,7 +6900,7 @@
 	},
 /area/ruin/space/USSP_gorky17/medbay)
 "zK" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/circuitboard/machine/tcomms/core,
 /turf/simulated/floor/vault,
 /area/ruin/space/USSP_gorky17/vault)

@@ -933,7 +933,7 @@
 /turf/simulated/floor/plating,
 /area/ruin/space/spacehotelv1/aftportmaints)
 "hE" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/circuitboard/machine/tcomms/core,
 /turf/simulated/floor/light/airless,
 /area/ruin/space/spacehotelv1/tcomms)

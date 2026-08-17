@@ -3894,7 +3894,7 @@
 /obj/item/stack/cable_coil{
 	amount = 5
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/mapping_helpers/turfs/damage,
 /turf/simulated/floor/plasteel{
 	icon_state = "white"
@@ -15047,7 +15047,7 @@
 /area/ruin/space/pirate_base/kitchen)
 "Uq" = (
 /obj/item/stock_parts/manipulator,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 11
 	},

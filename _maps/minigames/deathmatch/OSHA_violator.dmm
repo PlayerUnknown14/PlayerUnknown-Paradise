@@ -621,7 +621,7 @@
 /turf/simulated/floor/indestructible/gray_floor,
 /area/deathmatch)
 "LU" = (
-/obj/machinery/constructable_frame,
+/obj/structure/frame,
 /turf/simulated/floor/indestructible/gray_floor,
 /area/deathmatch)
 "Mj" = (

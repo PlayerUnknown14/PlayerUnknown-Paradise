@@ -124,6 +124,8 @@
 	var/processing_flags = START_PROCESSING_ON_INIT
 	/// What subsystem this machine will use, which is generally SSmachines or SSfastprocess. By default all machinery use SSmachines. This fires a machine's process() roughly every 2 seconds.
 	var/subsystem_type = /datum/controller/subsystem/machines
+	///Circuit to be created and inserted when the machinery is created
+	var/obj/item/circuitboard/circuit
 
 /obj/machinery/Initialize(mapload)
 	if(!armor)
@@ -347,7 +349,7 @@
 	qdel(src)
 
 /obj/machinery/proc/spawn_frame(disassembled)
-	var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
+	var/obj/structure/frame/machine/M = new /obj/structure/frame/machine(loc)
 	. = M
 	M.set_anchored(anchored)
 	if(!disassembled)

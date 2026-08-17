@@ -297,7 +297,7 @@
 /turf/simulated/floor/plating,
 /area/station/hallway/primary/central/ne)
 "adw" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/cable,
 /turf/simulated/floor/plasteel{
 	dir = 6;
@@ -14663,7 +14663,7 @@
 	icon_state = "grass_edge_medium_corner"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -17897,7 +17897,7 @@
 /area/station/security/evidence)
 "dOt" = (
 /obj/item/stock_parts/capacitor,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/asmaint2)
 "dOv" = (
@@ -21315,7 +21315,7 @@
 	},
 /area/station/commons/fitness)
 "eAs" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/fore)
 "eAK" = (
@@ -50129,7 +50129,7 @@
 	},
 /area/space)
 "jPE" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/cell,
 /obj/effect/mapping_helpers/turfs/damage,
 /turf/simulated/floor/plating,
@@ -52770,7 +52770,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stock_parts/manipulator,
 /turf/simulated/floor/plasteel{
@@ -64958,7 +64958,7 @@
 	},
 /area/station/service/chapel/office)
 "mwW" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 5
 	},
@@ -72588,7 +72588,7 @@
 "nTQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/kitchen)
 "nTS" = (
@@ -87889,7 +87889,7 @@
 /obj/machinery/vending/wallmed{
 	pixel_x = 25
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "tranquillite"
 	},
@@ -96192,7 +96192,7 @@
 	},
 /area/station/security/main)
 "sct" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -105495,7 +105495,7 @@
 	},
 /area/station/command/bridge)
 "tJy" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small,
 /turf/simulated/floor/plasteel{
 	dir = 10;

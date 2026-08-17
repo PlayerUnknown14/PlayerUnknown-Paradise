@@ -12052,7 +12052,7 @@
 /area/station/maintenance/fsmaint2)
 "bap" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel,
 /area/station/maintenance/xenozoo)
 "bau" = (
@@ -29530,7 +29530,7 @@
 	},
 /area/station/engineering/break_room)
 "cyy" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
 "cyA" = (
@@ -46650,7 +46650,7 @@
 /turf/space,
 /area/station/ai/satellite/hallway)
 "fWQ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/fpmaint)
 "fWR" = (
@@ -47020,7 +47020,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating/airless,
 /area/station/maintenance/fpmaint)
 "gfk" = (
@@ -49194,7 +49194,7 @@
 	},
 /area/station/hallway/primary/central/sw)
 "gWQ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/station/maintenance/engineering)
@@ -49520,7 +49520,7 @@
 /area/station/science/toxins/mixing)
 "heJ" = (
 /obj/effect/decal/cleanable/dust,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/sign/poster/random{
 	pixel_y = 32
 	},
@@ -50299,7 +50299,7 @@
 /turf/simulated/floor/glass/reinforced,
 /area/station/maintenance/livingcomplex)
 "htI" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
@@ -52063,7 +52063,7 @@
 /area/station/medical/sleeper)
 "igI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/fpmaint)
 "igV" = (
@@ -54829,7 +54829,7 @@
 /area/station/commons/vacant_office)
 "jmk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -57294,7 +57294,7 @@
 /area/station/maintenance/turbine)
 "knu" = (
 /obj/effect/decal/cleanable/dust,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/engine,
 /area/station/maintenance/server)
 "kny" = (
@@ -59548,7 +59548,7 @@
 /area/station/hallway/secondary/entry/south)
 "ldW" = (
 /obj/effect/decal/cleanable/dust,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel,
 /area/station/maintenance/electrical)
 "lef" = (
@@ -68322,7 +68322,7 @@
 /area/station/engineering/gravity_generator)
 "oSs" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plasteel{
 	dir = 4;
@@ -70210,7 +70210,7 @@
 	},
 /area/station/maintenance/engineering)
 "pEW" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/genetics)
 "pFb" = (
@@ -79778,7 +79778,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
 "tzu" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/capacitor,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/simulated/floor/plating,
@@ -80038,7 +80038,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/station/maintenance/disposal)
@@ -84726,7 +84726,7 @@
 /area/station/ai/satellite/hallway)
 "vzN" = (
 /obj/effect/decal/cleanable/dust,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/engineering)
 "vAg" = (
@@ -88451,7 +88451,7 @@
 /turf/simulated/floor/plasteel,
 /area/station/maintenance/fpmaint)
 "wWJ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "caution"
 	},

@@ -104,7 +104,7 @@
 /area/template_noop)
 "gd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "barber"
 	},
@@ -791,7 +791,7 @@
 /area/template_noop)
 "FR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/template_noop)
 "FT" = (
@@ -933,7 +933,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/matter_bin/adv,
 /turf/simulated/floor/wood{
 	icon_state = "fancy-wood-oak"

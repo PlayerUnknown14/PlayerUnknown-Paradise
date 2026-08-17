@@ -682,7 +682,7 @@
 /area/awaymission/BMPship/Containment)
 "ci" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/circuitboard/machine/smes,
 /obj/item/stack/cable_coil/green,
 /turf/simulated/floor/greengrid,
@@ -4054,7 +4054,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship/Engines)
 "qb" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/circuitboard/machine/smes,
 /obj/item/stack/cable_coil/blue,
 /turf/simulated/floor/greengrid,
@@ -5316,7 +5316,7 @@
 /obj/structure/window/reinforced{
 	color = "green"
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil/yellow,
 /turf/simulated/floor/plasteel{
 	dir = 6;

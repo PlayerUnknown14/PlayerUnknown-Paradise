@@ -368,7 +368,7 @@
 /turf/simulated/floor/pod/dark,
 /area/shuttle/freegolem)
 "sa" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/pod,
 /area/shuttle/freegolem)
 "ta" = (

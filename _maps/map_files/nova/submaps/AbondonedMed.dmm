@@ -2196,7 +2196,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/medroom)
 "vE" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil/random{
 	amount = 4
 	},
@@ -3927,7 +3927,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
 "MR" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
 "MT" = (
@@ -4043,7 +4043,7 @@
 /turf/simulated/wall,
 /area/station/maintenance/medroom)
 "NQ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plasteel{
 	icon_state = "barber"

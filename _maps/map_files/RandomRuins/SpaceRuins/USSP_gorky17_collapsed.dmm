@@ -7486,7 +7486,7 @@
 /area/ruin/space/USSP_gorky17/collapsed/engineering)
 "xh" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame{
+/obj/structure/frame{
 	icon = 'icons/obj/machines/gateway.dmi';
 	icon_state = "offcenter"
 	},
@@ -8316,7 +8316,7 @@
 /turf/simulated/floor/plating,
 /area/ruin/space/USSP_gorky17/collapsed/medbay)
 "zK" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/circuitboard/machine/tcomms/core,
 /turf/simulated/floor/vault,
 /area/ruin/space/USSP_gorky17/collapsed/vault)

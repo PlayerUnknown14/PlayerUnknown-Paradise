@@ -196,7 +196,7 @@
 /turf/simulated/floor/plasteel/lavaland_air,
 /area/ruin/unpowered)
 "ip" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/lavaland_air,

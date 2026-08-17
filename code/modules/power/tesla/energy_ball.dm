@@ -259,7 +259,7 @@
 		/mob/living/simple_animal/slime = FALSE,
 		/obj/machinery/atmospherics = FALSE,
 		/obj/machinery/camera = FALSE,
-		/obj/machinery/constructable_frame/machine_frame = FALSE,
+		/obj/structure/frame/machine = FALSE,
 		/obj/machinery/field/containment = FALSE,
 		/obj/machinery/field/generator = FALSE,
 		/obj/machinery/gateway = FALSE,

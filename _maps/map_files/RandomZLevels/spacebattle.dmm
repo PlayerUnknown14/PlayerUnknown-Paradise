@@ -4390,7 +4390,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
-/obj/machinery/constructable_frame,
+/obj/structure/frame,
 /turf/simulated/floor/plasteel{
 	icon_state = "darkredalt"
 	},
@@ -5906,7 +5906,7 @@
 /area/awaymission/spacebattle/bridge)
 "sd" = (
 /obj/machinery/light_construct,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/blood/gibs{
 	layer = 3.5
 	},
@@ -7302,7 +7302,7 @@
 "wn" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/transit_tube,
-/obj/machinery/constructable_frame{
+/obj/structure/frame{
 	icon = 'icons/obj/engines_and_power/singularity.dmi';
 	icon_state = "TheSingGen";
 	layer = 4
@@ -7529,7 +7529,7 @@
 /turf/simulated/floor/engine/plasma,
 /area/awaymission/spacebattle/syndicate4)
 "wR" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/grille/broken,
 /obj/machinery/door/poddoor/preopen{
 	id_tag = "RightTurret"
@@ -8742,7 +8742,7 @@
 /area/awaymission/spacebattle/engine)
 "Aw" = (
 /obj/machinery/firealarm/directional/north,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/blood/gibs{
 	layer = 3.5
 	},
@@ -10329,7 +10329,7 @@
 "Ff" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/transit_tube,
-/obj/machinery/constructable_frame{
+/obj/structure/frame{
 	icon = 'icons/obj/engines_and_power/singularity.dmi';
 	icon_state = "TheSingGen";
 	layer = 4
@@ -16002,7 +16002,7 @@
 /turf/simulated/floor/plating/airless,
 /area/awaymission/spacebattle/syndicate3)
 "VQ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/blood/gibs{
 	layer = 3.5
 	},
@@ -16820,7 +16820,7 @@
 	},
 /area/awaymission/spacebattle/prhallway4)
 "Yx" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/blood/gibs{
 	layer = 3.5
 	},

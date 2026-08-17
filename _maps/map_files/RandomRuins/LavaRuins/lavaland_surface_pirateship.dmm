@@ -525,7 +525,7 @@
 /turf/simulated/floor/engine/lavaland_air,
 /area/ruin/powered/pirateship)
 "lB" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel/dark/lavaland_air,
 /area/ruin/powered/pirateship)
 "lU" = (
@@ -551,11 +551,11 @@
 /area/ruin/unpowered/safe_cave)
 "mm" = (
 /obj/structure/railing,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/mineral/plastitanium/lavaland_air,
 /area/ruin/powered/pirateship)
 "mA" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small,
 /turf/simulated/floor/pod/dark/lavaland_air,
 /area/ruin/powered/pirateship)
@@ -1425,7 +1425,7 @@
 /area/ruin/unpowered/safe_cave)
 "Fc" = (
 /obj/structure/railing,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dust,
 /turf/simulated/floor/pod/dark/lavaland_air,
 /area/ruin/powered/pirateship)
@@ -2535,7 +2535,7 @@
 /turf/simulated/floor/plating/asteroid/basalt/lava_land_surface,
 /area/ruin/unpowered/safe_cave)
 "Zw" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/mounted/frame/firealarm{
 	pixel_y = -8
 	},

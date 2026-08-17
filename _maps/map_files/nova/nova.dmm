@@ -6171,7 +6171,7 @@
 /area/station/maintenance/fsmaint2)
 "aXm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/station/maintenance/starboard)
@@ -22878,7 +22878,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/trading)
 "dJd" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 5
 	},
@@ -66738,7 +66738,7 @@
 /turf/simulated/floor/redgrid,
 /area/station/engineering/engine)
 "ktY" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dust,
 /obj/item/stock_parts/matter_bin/adv,
 /turf/simulated/floor/plasteel{
@@ -67644,7 +67644,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/casino)
 "kCd" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
@@ -105280,7 +105280,7 @@
 /area/station/maintenance/asmaint6)
 "qnv" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/maintenance/secpost)
 "qnx" = (
@@ -108104,7 +108104,7 @@
 	},
 /area/station/hallway/primary/fore)
 "qHA" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil/random{
 	amount = 4
 	},
@@ -120713,7 +120713,7 @@
 /turf/simulated/wall,
 /area/station/cargo/delivery)
 "sBn" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/station/command/teleporter/abandoned)
 "sBp" = (
@@ -135950,7 +135950,7 @@
 /turf/simulated/floor/wood/dark,
 /area/station/service/bar/atrium)
 "uRa" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/cell/high,
 /turf/simulated/floor/plasteel{
 	dir = 10;
@@ -141306,7 +141306,7 @@
 	},
 /area/station/ai/satellite/chamber)
 "vFG" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/manipulator/nano,
 /obj/effect/decal/cleanable/dust,
 /obj/machinery/light{

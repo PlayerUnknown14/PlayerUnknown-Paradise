@@ -1092,7 +1092,7 @@
 	},
 /area/ae13/medbay)
 "yH" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil,
 /obj/item/stack/sheet/metal{
 	amount = 2

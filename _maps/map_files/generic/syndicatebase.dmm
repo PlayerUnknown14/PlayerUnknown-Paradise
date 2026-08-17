@@ -20640,7 +20640,7 @@
 /area/syndicate/unpowered/syndicate_space_base/maintenance/east)
 "tii" = (
 /obj/effect/decal/remains/human,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/retractor,
 /turf/simulated/floor/plating,
 /area/syndicate/unpowered/syndicate_space_base/maintenance/east)
@@ -20774,7 +20774,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/syndicate/unpowered/syndicate_space_base/maintenance/east)
 "toA" = (

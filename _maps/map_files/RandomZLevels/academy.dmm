@@ -1767,7 +1767,7 @@
 /turf/simulated/wall/indestructible/reinforced,
 /area/awaymission/academy/academyaft)
 "hK" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/awaymission/academy/academyaft)
 "hN" = (
@@ -4192,7 +4192,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/delivery/hollow,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	dir = 4;
 	icon_state = "green"
@@ -4502,7 +4502,7 @@
 /turf/simulated/floor/plasteel/stairs/old,
 /area/awaymission/academy/academyaft)
 "Ep" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel,
 /area/awaymission/academy/classrooms)
 "Ey" = (
@@ -6280,7 +6280,7 @@
 /turf/simulated/floor/wood/fancy/oak,
 /area/awaymission/academy/headmaster)
 "Wy" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "hydrofloor"
 	},

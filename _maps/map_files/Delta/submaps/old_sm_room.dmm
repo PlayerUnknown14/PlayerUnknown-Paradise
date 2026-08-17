@@ -184,7 +184,7 @@
 /area/template_noop)
 "ea" = (
 /obj/effect/mapping_helpers/turfs/burn,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -1460,7 +1460,7 @@
 /turf/simulated/floor/plating,
 /area/template_noop)
 "KK" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},

@@ -1877,7 +1877,7 @@
 	},
 /area/coldcolony/ruin/sm_chamber)
 "aGO" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/explab)
 "aGX" = (
@@ -5043,7 +5043,7 @@
 	},
 /area/coldcolony/malta/engineering/atmos)
 "bOf" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plasteel{
 	dir = 6;
 	icon_state = "purple"
@@ -7136,7 +7136,7 @@
 /turf/simulated/floor/plasteel,
 /area/coldcolony/malta/quartermaster/miningeva)
 "cBv" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/mapping_helpers/turfs/damage,
 /turf/simulated/floor/engine,
 /area/coldcolony/ruin/sm_chamber)
@@ -9052,7 +9052,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/glass/beaker,
 /obj/structure/disposalpipe/segment,
@@ -15018,7 +15018,7 @@
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/civilian/trading)
 "fDQ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/coldcolony/ruin/sm_chamber)
 "fDU" = (
@@ -17233,7 +17233,7 @@
 /area/coldcolony/malta/resid_serv/library)
 "gvM" = (
 /obj/structure/cable,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/capacitor,
 /obj/item/stock_parts/cell,
 /obj/item/stock_parts/cell,
@@ -18007,7 +18007,7 @@
 /turf/simulated/floor/plating/asteroid,
 /area/coldcolony/ruin/sm_chamber)
 "gKH" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/test_chamber)
 "gKN" = (
@@ -18580,7 +18580,7 @@
 /turf/simulated/floor/plating,
 /area/coldcolony/ruin/sm_division)
 "gVi" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/machinery/light_switch/directional/west,
 /turf/simulated/floor/plasteel{
 	dir = 10;
@@ -25209,7 +25209,7 @@
 /obj/effect/turf_decal/delivery/partial{
 	dir = 8
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/reagent_containers/food/snacks/sosjerky,
 /turf/simulated/floor/plasteel{
 	dir = 9;
@@ -25291,7 +25291,7 @@
 /turf/simulated/wall,
 /area/coldcolony/malta/resid_serv/crew_quarters/fitness)
 "jvi" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/matter_bin{
 	pixel_x = 3;
 	pixel_y = 3
@@ -35884,7 +35884,7 @@
 "nxi" = (
 /obj/item/circuitboard/machine/pacman,
 /obj/structure/cable,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/coldcolony/ruin/sm_maintenance)
 "nxo" = (
@@ -36151,7 +36151,7 @@
 /turf/simulated/floor/plating/asteroid/cold,
 /area/ruin/unpowered/coldcolony_outside)
 "nBD" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/xenobiology)
 "nBH" = (
@@ -44398,7 +44398,7 @@
 	},
 /area/coldcolony/malta/research/chargebay)
 "qCb" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 3
 	},
@@ -45147,7 +45147,7 @@
 /turf/simulated/floor/wood/fancy/light,
 /area/coldcolony/malta/maintenance/dormitory)
 "qPJ" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/circuitboard/machine/biogenerator,
 /obj/effect/mapping_helpers/turfs/damage,
 /obj/item/stock_parts/manipulator,
@@ -45325,7 +45325,7 @@
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/test_chamber)
 "qUF" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stock_parts/micro_laser,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plasteel{
@@ -53238,7 +53238,7 @@
 	},
 /area/coldcolony/malta/bridge)
 "tUs" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 5
 	},
@@ -54082,7 +54082,7 @@
 	},
 /area/coldcolony/malta/bridge/tcomm)
 "ult" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -56076,7 +56076,7 @@
 /area/coldcolony/malta/medical/genetics)
 "vdA" = (
 /obj/effect/turf_decal/stripes/line,
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/effect/decal/cleanable/blood/old,
 /turf/simulated/floor/plasteel{
 	icon_state = "showroomfloor"
@@ -63869,7 +63869,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/frame/machine,
 /obj/item/stack/cable_coil{
 	amount = 2
 	},
