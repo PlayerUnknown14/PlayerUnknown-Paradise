@@ -4,7 +4,7 @@
 	icon_screen = "mecha"
 	light_color = LIGHT_COLOR_LAVENDER
 	req_access = list(ACCESS_ROBOTICS)
-	circuit = /obj/item/circuitboard/mecha_control
+	circuit = /obj/item/circuitboard/computer/mecha_control
 	var/list/located = list()
 	var/screen = 0
 

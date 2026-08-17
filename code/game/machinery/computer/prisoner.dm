@@ -5,7 +5,7 @@
 	icon_keyboard = "security_key"
 	icon_screen = "explosive"
 	req_access = list(ACCESS_ARMORY)
-	circuit = /obj/item/circuitboard/prisoner
+	circuit = /obj/item/circuitboard/computer/prisoner
 	light_color = COLOR_SOFT_RED
 	/// FALSE - No Access Denied, TRUE - Access allowed
 	var/authenticated = FALSE

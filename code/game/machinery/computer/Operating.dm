@@ -5,7 +5,7 @@
 	desc = "Высокотехнологичный медицинский компьютер, используемый для контролирования процесса хиругических операций."
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
-	circuit = /obj/item/circuitboard/operating
+	circuit = /obj/item/circuitboard/computer/operating
 	light_color = LIGHT_COLOR_BLUE
 	var/obj/machinery/optable/table
 	var/verbose = TRUE //general speaker toggle

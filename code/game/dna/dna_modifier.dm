@@ -313,7 +313,7 @@
 	desc = "Консоль для работы с ДНК-модификатором."
 	icon_screen = "dna"
 	icon_keyboard = "med_key"
-	circuit = /obj/item/circuitboard/scan_consolenew
+	circuit = /obj/item/circuitboard/computer/scan_consolenew
 	interaction_flags_click = ALLOW_SILICON_REACH
 	idle_power_usage = 10
 	active_power_usage = 400

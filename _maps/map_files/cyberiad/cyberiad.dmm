@@ -14214,11 +14214,11 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/borgupload{
+/obj/item/circuitboard/computer/borgupload{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/aiupload{
+/obj/item/circuitboard/computer/aiupload{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -21001,12 +21001,12 @@
 /area/station/science/research/lobby)
 "bPc" = (
 /obj/structure/rack,
-/obj/item/circuitboard/scan_consolenew{
+/obj/item/circuitboard/computer/scan_consolenew{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/med_data,
-/obj/item/circuitboard/pandemic{
+/obj/item/circuitboard/computer/med_data,
+/obj/item/circuitboard/computer/pandemic{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -28965,7 +28965,7 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/rdconsole,
+/obj/item/circuitboard/computer/rdconsole,
 /obj/item/circuitboard/rdserver{
 	pixel_x = 3;
 	pixel_y = -3
@@ -29464,12 +29464,12 @@
 /area/station/hallway/primary/central/nw)
 "cyr" = (
 /obj/structure/rack,
-/obj/item/circuitboard/camera{
+/obj/item/circuitboard/computer/camera{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/prisoner,
-/obj/item/circuitboard/secure_data{
+/obj/item/circuitboard/computer/prisoner,
+/obj/item/circuitboard/computer/secure_data{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -29487,12 +29487,12 @@
 /area/station/maintenance/apmaint)
 "cyv" = (
 /obj/structure/rack,
-/obj/item/circuitboard/teleporter_hub{
+/obj/item/circuitboard/computer/teleporter_hub{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/teleporter_station,
-/obj/item/circuitboard/teleporter{
+/obj/item/circuitboard/computer/teleporter_station,
+/obj/item/circuitboard/computer/teleporter{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -30863,15 +30863,15 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/crew{
+/obj/item/circuitboard/computer/crew{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/card{
+/obj/item/circuitboard/computer/card{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/communications{
+/obj/item/circuitboard/computer/communications{
 	pixel_x = 5;
 	pixel_y = -5
 	},
@@ -37780,11 +37780,11 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/robotics{
+/obj/item/circuitboard/computer/robotics{
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/circuitboard/mecha_control{
+/obj/item/circuitboard/computer/mecha_control{
 	pixel_x = 1;
 	pixel_y = -1
 	},
@@ -81656,11 +81656,11 @@
 /area/station/medical/ward)
 "ulv" = (
 /obj/structure/rack,
-/obj/item/circuitboard/atmos_alert{
+/obj/item/circuitboard/computer/atmos_alert{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/powermonitor,
+/obj/item/circuitboard/computer/powermonitor,
 /obj/effect/turf_decal/delivery/hollow,
 /turf/simulated/floor/plasteel{
 	dir = 9;
@@ -91599,7 +91599,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dust,
-/obj/item/circuitboard/mech_bay_power_console,
+/obj/item/circuitboard/computer/mech_bay_power_console,
 /turf/simulated/floor/plasteel,
 /area/station/maintenance/electrical)
 

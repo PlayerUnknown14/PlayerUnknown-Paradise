@@ -1023,7 +1023,7 @@
 	new /obj/item/circuitboard/protolathe(src)
 	new /obj/item/circuitboard/destructive_analyzer(src)
 	new /obj/item/circuitboard/circuit_imprinter(src)
-	new /obj/item/circuitboard/rdconsole/public(src)
+	new /obj/item/circuitboard/computer/rdconsole/public(src)
 
 /obj/item/storage/box/stockparts/basic //for ruins where it's a bad idea to give access to an autolathe/protolathe, but still want to make stock parts accessible
 	name = "box of stock parts"

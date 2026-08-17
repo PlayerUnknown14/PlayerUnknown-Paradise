@@ -119,7 +119,7 @@
 	name = "Computer"
 	icon_screen = "tank"
 	icon_keyboard = "atmos_key"
-	circuit = /obj/item/circuitboard/air_management
+	circuit = /obj/item/circuitboard/computer/air_management
 	req_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 
 	//multitool_menu_type = /datum/multitool_menu/idtag/freq/general_air_control
@@ -212,7 +212,7 @@
 */
 
 /obj/machinery/computer/general_air_control/large_tank_control
-	circuit = /obj/item/circuitboard/large_tank_control
+	circuit = /obj/item/circuitboard/computer/large_tank_control
 	req_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 	//multitool_menu_type = /datum/multitool_menu/idtag/freq/general_air_control/large_tank_control
 
@@ -309,7 +309,7 @@
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon_screen = "atmos"
-	circuit = /obj/item/circuitboard/injector_control
+	circuit = /obj/item/circuitboard/computer/injector_control
 
 	var/device_tag
 	var/datum/weakref/device_ref

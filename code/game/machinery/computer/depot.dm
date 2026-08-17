@@ -393,7 +393,7 @@
 
 /obj/machinery/computer/syndicate_depot/teleporter/taipan
 	req_access = list(154)
-	circuit = /obj/item/circuitboard/syndicate_teleporter
+	circuit = /obj/item/circuitboard/computer/syndicate_teleporter
 	armor = list(MELEE = 0, BULLET = 100, LASER = 40, ENERGY = 0, BOMB = 20, BIO = 0, FIRE = 40, ACID = 20)
 
 /obj/machinery/computer/syndicate_depot/teleporter/Initialize(mapload)

@@ -6,7 +6,7 @@
 	light_color = LIGHT_COLOR_GREEN
 	var/hack_icon = "tcboss"
 	var/normal_icon = "comm_logs"
-	circuit = /obj/item/circuitboard/message_monitor
+	circuit = /obj/item/circuitboard/computer/message_monitor
 	//Server linked to.
 	var/obj/machinery/message_server/linkedServer = null
 	//Messages - Saves me time if I want to change something.

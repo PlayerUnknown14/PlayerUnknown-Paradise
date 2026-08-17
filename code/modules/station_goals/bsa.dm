@@ -457,11 +457,7 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 		/obj/item/stack/cable_coil = 2,
 	)
 
-/obj/item/circuitboard/computer/bsa_control
-	board_name = "Bluespace Artillery Controls"
-	greyscale_colors = CIRCUIT_COLOR_SECURITY
-	build_path = /obj/machinery/computer/bsa_control
-	origin_tech = "engineering=2;combat=2;bluespace=2"
+
 
 /obj/machinery/computer/bsa_control
 	name = "Bluespace Artillery Control"

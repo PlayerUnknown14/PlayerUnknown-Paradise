@@ -524,7 +524,7 @@
 /obj/machinery/mecha_part_fabricator/spacepod/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/podfab(null)
+	component_parts += new /obj/item/circuitboard/computer/podfab(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)

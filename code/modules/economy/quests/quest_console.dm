@@ -10,7 +10,7 @@
 	icon_keyboard = "cargo_quest_key"
 	icon_screen = "cargo_quest"
 	req_access = list(ACCESS_CARGO)
-	circuit = /obj/item/circuitboard/supplyquest
+	circuit = /obj/item/circuitboard/computer/supplyquest
 	/// If TRUE you can accept orders
 	var/accept_orders = TRUE
 	/// Parent object this console is assigned to. Used for QM tablet
@@ -244,7 +244,7 @@
 	icon_state = "quest_console"
 	icon_screen = "quest"
 	icon_keyboard = null
-	circuit = /obj/item/circuitboard/questcons
+	circuit = /obj/item/circuitboard/computer/questcons
 	density = FALSE
 
 /obj/machinery/computer/supplyquest/workers/get_ru_names()

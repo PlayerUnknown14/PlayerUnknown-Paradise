@@ -29,7 +29,7 @@
 	desc = "Used to monitor the Nanotrasen Gas Cooled Fission Reactor."
 	icon_keyboard = "power_key"
 	icon_screen = "smmon_0"
-	circuit = /obj/item/circuitboard/fission_monitor
+	circuit = /obj/item/circuitboard/computer/fission_monitor
 	light_color = LIGHT_COLOR_YELLOW
 	/// Last status of the active reactor for caching purposes
 	var/last_status

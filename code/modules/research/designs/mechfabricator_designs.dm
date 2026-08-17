@@ -1604,7 +1604,7 @@
 	build_type = MECHFAB
 	materials = list(MAT_GLASS = 1000)
 	construction_time = 5 SECONDS
-	build_path = /obj/item/circuitboard/syndicatesupplycomp
+	build_path = /obj/item/circuitboard/computer/syndicatesupplycomp
 	category = list(MECH_FAB_CATEGORY_SYNDICATE)
 
 /datum/design/syndicate_public_cargo_console
@@ -1613,7 +1613,7 @@
 	build_type = MECHFAB
 	materials = list(MAT_GLASS = 1000)
 	construction_time = 5 SECONDS
-	build_path = /obj/item/circuitboard/syndicatesupplycomp/public
+	build_path = /obj/item/circuitboard/computer/syndicatesupplycomp/public
 	category = list(MECH_FAB_CATEGORY_SYNDICATE)
 
 /datum/design/syndicate_borg_RCD_upgrade

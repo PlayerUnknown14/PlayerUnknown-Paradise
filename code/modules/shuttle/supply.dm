@@ -434,7 +434,7 @@
 	desc = "Компьютер, используемый для оформления заказов на поставку. Предназначен для пользования персоналом Отдела снабжения."
 	icon_screen = "supply"
 	req_access = list(ACCESS_CARGO)
-	circuit = /obj/item/circuitboard/supplycomp
+	circuit = /obj/item/circuitboard/computer/supplycomp
 	/// Is this a public console (Confirm + Shuttle controls are not visible)
 	var/is_public = FALSE
 	/// Can we order special supplies
@@ -456,7 +456,7 @@
 	name = "Supply Ordering Console"
 	desc = "Используется для оформления заказов. Предназначено для общего пользования."
 	icon_screen = "request"
-	circuit = /obj/item/circuitboard/ordercomp
+	circuit = /obj/item/circuitboard/computer/ordercomp
 	req_access = list()
 	is_public = TRUE
 
@@ -473,7 +473,7 @@
 /obj/machinery/computer/supplycomp/Initialize(mapload, obj/structure/computerframe/frame)
 	. = ..()
 
-	var/obj/item/circuitboard/supplycomp/my_circuit = src.frame.circuit
+	var/obj/item/circuitboard/computer/supplycomp/my_circuit = src.frame.circuit
 	if(!istype(my_circuit))
 		return
 

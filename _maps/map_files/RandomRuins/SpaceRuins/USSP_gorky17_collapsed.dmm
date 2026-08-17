@@ -9708,7 +9708,7 @@
 	},
 /obj/item/melee/cultblade,
 /obj/item/paper/poisonedtalisman,
-/obj/item/circuitboard/HONKputer,
+/obj/item/circuitboard/computer/HONKputer,
 /obj/item/soulstone,
 /obj/effect/turf_decal/delivery/red/partial,
 /obj/item/whetstone/cult,

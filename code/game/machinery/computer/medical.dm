@@ -13,7 +13,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "medcomp"
 	req_access = list(ACCESS_MEDICAL, ACCESS_FORENSICS_LOCKERS)
-	circuit = /obj/item/circuitboard/med_data
+	circuit = /obj/item/circuitboard/computer/med_data
 	var/screen = null
 	var/datum/data/record/active1 = null
 	var/datum/data/record/active2 = null

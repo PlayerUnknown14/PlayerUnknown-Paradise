@@ -245,7 +245,7 @@ GLOBAL_LIST_EMPTY(data_storages) //list of all cargo console data storage datums
 	icon_screen = "syndinavigation"
 	icon_keyboard = "syndie_key"
 	req_access = list(ACCESS_SYNDICATE_CARGO)
-	circuit = /obj/item/circuitboard/syndicatesupplycomp
+	circuit = /obj/item/circuitboard/computer/syndicatesupplycomp
 	/// Is this a public console
 	var/is_public = FALSE
 	var/datum/syndie_data_storage/data_storage = null
@@ -422,7 +422,7 @@ GLOBAL_LIST_EMPTY(data_storages) //list of all cargo console data storage datums
 /obj/machinery/computer/syndie_supplycomp/public
 	name = "Supply Ordering Console"
 	desc = "Используется для оформления заказов у отдела снабжения"
-	circuit = /obj/item/circuitboard/syndicatesupplycomp/public
+	circuit = /obj/item/circuitboard/computer/syndicatesupplycomp/public
 	req_access = list()
 	is_public = TRUE
 

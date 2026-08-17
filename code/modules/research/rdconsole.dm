@@ -61,7 +61,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
 	light_color = LIGHT_COLOR_LAVENDER
-	circuit = /obj/item/circuitboard/rdconsole
+	circuit = /obj/item/circuitboard/computer/rdconsole
 	/// Stores all the collected research data.
 	var/datum/research/files
 	/// Stores the technology disk.
@@ -1090,7 +1090,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			Специализированная версия, используемая в отделах робототехники."
 	id = 2
 	req_access = list(ACCESS_ROBOTICS)
-	circuit = /obj/item/circuitboard/rdconsole/robotics
+	circuit = /obj/item/circuitboard/computer/rdconsole/robotics
 
 /obj/machinery/computer/rdconsole/robotics/get_ru_names()
 	return alist(
@@ -1109,7 +1109,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			Специализированная версия, используемая для работы с \"Э.К.С.П.Е.Р.И-МЕНТОР\"."
 	id = 3
 	range = 5
-	circuit = /obj/item/circuitboard/rdconsole/experiment
+	circuit = /obj/item/circuitboard/computer/rdconsole/experiment
 
 /obj/machinery/computer/rdconsole/experiment/get_ru_names()
 	return alist(
@@ -1128,7 +1128,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			Специализированная версия, используемая в мастерской для челноков."
 	id = 4
 	req_access = list(ACCESS_MECHANIC)
-	circuit = /obj/item/circuitboard/rdconsole/mechanics
+	circuit = /obj/item/circuitboard/computer/rdconsole/mechanics
 
 /obj/machinery/computer/rdconsole/mechanics/get_ru_names()
 	return alist(
@@ -1152,7 +1152,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			Специализированная версия без ограничений по уровню доступа пользователя."
 	id = 5
 	req_access = list()
-	circuit = /obj/item/circuitboard/rdconsole/public
+	circuit = /obj/item/circuitboard/computer/rdconsole/public
 
 /obj/machinery/computer/rdconsole/public/get_ru_names()
 	return alist(
@@ -1169,7 +1169,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	desc = "Компьютер, обеспечивающий доступ к базе данных технологий. Специализированная версия, используемая в отделе Снабжения."
 	id = 6
 	req_access = list(ACCESS_CARGO)
-	circuit = /obj/item/circuitboard/rdconsole/cargo
+	circuit = /obj/item/circuitboard/computer/rdconsole/cargo
 	frame = /obj/structure/computerframe/cargo
 	disk_only = TRUE
 	ui_theme = "cargo"

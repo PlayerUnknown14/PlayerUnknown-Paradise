@@ -16,7 +16,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	icon_keyboard = "id_key"
 	icon_screen = "id"
 	req_access = list(ACCESS_CHANGE_IDS)
-	circuit = /obj/item/circuitboard/card
+	circuit = /obj/item/circuitboard/computer/card
 	light_color = LIGHT_COLOR_BLUE
 	/// Card to give us access for modification
 	var/obj/item/card/id/scan = null
@@ -803,7 +803,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 
 /obj/machinery/computer/card/centcom
 	name = "CentComm identification computer"
-	circuit = /obj/item/circuitboard/card/centcom
+	circuit = /obj/item/circuitboard/computer/card/centcom
 	req_access = list(ACCESS_CENT_COMMANDER)
 	change_position_cooldown = -1
 	blacklisted_full = list()
@@ -829,7 +829,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 			Функционал существенно ограничен по сравнению с полноценной консолью."
 	target_dept = TARGET_DEPT_GENERIC
 	icon_screen = "idminor"
-	circuit = /obj/item/circuitboard/card/minor
+	circuit = /obj/item/circuitboard/computer/card/minor
 
 /obj/machinery/computer/card/minor/get_ru_names()
 	return alist(
@@ -847,7 +847,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	icon_screen = "idhos"
 	light_color = COLOR_SOFT_RED
 	req_access = list(ACCESS_HOS)
-	circuit = /obj/item/circuitboard/card/minor/hos
+	circuit = /obj/item/circuitboard/computer/card/minor/hos
 
 /obj/machinery/computer/card/minor/hos/get_ru_names()
 	return alist(
@@ -865,7 +865,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	icon_screen = "idqm"
 	light_color = COLOR_DARK_MODERATE_ORANGE
 	req_access = list(ACCESS_QM)
-	circuit = /obj/item/circuitboard/card/minor/qm
+	circuit = /obj/item/circuitboard/computer/card/minor/qm
 
 /obj/machinery/computer/card/minor/qm/get_ru_names()
 	return alist(
@@ -882,7 +882,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	target_dept = TARGET_DEPT_MED
 	icon_screen = "idcmo"
 	req_access = list(ACCESS_CMO)
-	circuit = /obj/item/circuitboard/card/minor/cmo
+	circuit = /obj/item/circuitboard/computer/card/minor/cmo
 
 /obj/machinery/computer/card/minor/cmo/get_ru_names()
 	return alist(
@@ -900,7 +900,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	icon_screen = "idrd"
 	light_color = LIGHT_COLOR_PINK
 	req_access = list(ACCESS_RD)
-	circuit = /obj/item/circuitboard/card/minor/rd
+	circuit = /obj/item/circuitboard/computer/card/minor/rd
 
 /obj/machinery/computer/card/minor/rd/get_ru_names()
 	return alist(
@@ -918,7 +918,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	icon_screen = "idce"
 	light_color = COLOR_YELLOW
 	req_access = list(ACCESS_CE)
-	circuit = /obj/item/circuitboard/card/minor/ce
+	circuit = /obj/item/circuitboard/computer/card/minor/ce
 
 /obj/machinery/computer/card/minor/ce/get_ru_names()
 	return alist(

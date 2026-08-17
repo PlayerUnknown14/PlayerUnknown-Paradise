@@ -347,7 +347,7 @@
 /area/ruin/space_prison)
 "ba" = (
 /obj/structure/rack,
-/obj/item/circuitboard/teleporter{
+/obj/item/circuitboard/computer/teleporter{
 	pixel_x = 4;
 	pixel_y = -4
 	},

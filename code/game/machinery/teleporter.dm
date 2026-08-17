@@ -7,7 +7,7 @@
 	desc = "Используется для управления привязанными телепортационными узлами и станциями."
 	icon_screen = "teleport"
 	icon_keyboard = "teleport_key"
-	circuit = /obj/item/circuitboard/teleporter
+	circuit = /obj/item/circuitboard/computer/teleporter
 	/// A GPS with a locked destination
 	var/obj/item/gps/locked = null
 	/// Switches mode between teleporter, gate and gps
@@ -340,7 +340,7 @@
 /obj/machinery/teleport/hub/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/teleporter_hub(null)
+	component_parts += new /obj/item/circuitboard/computer/teleporter_hub(null)
 	component_parts += new /obj/item/stack/ore/bluespace_crystal/artificial(null, 3)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	RefreshParts()
@@ -350,7 +350,7 @@
 /obj/machinery/teleport/hub/upgraded/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/teleporter_hub(null)
+	component_parts += new /obj/item/circuitboard/computer/teleporter_hub(null)
 	component_parts += new /obj/item/stack/ore/bluespace_crystal/artificial(null, 3)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	RefreshParts()
@@ -465,7 +465,7 @@
 	update_lighting()
 
 /obj/machinery/teleport/perma/RefreshParts()
-	for(var/obj/item/circuitboard/teleporter_perma/C in component_parts)
+	for(var/obj/item/circuitboard/computer/teleporter_perma/C in component_parts)
 		target = C.target
 	var/A = 40
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
@@ -566,7 +566,7 @@
 /obj/machinery/teleport/station/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/teleporter_station(null)
+	component_parts += new /obj/item/circuitboard/computer/teleporter_station(null)
 	component_parts += new /obj/item/stack/ore/bluespace_crystal/artificial(null, 2)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
@@ -611,12 +611,12 @@
 	if(exchange_parts(user, I))
 		return ATTACK_CHAIN_PROCEED_SUCCESS
 
-	if(istype(I, /obj/item/circuitboard/teleporter_perma))
+	if(istype(I, /obj/item/circuitboard/computer/teleporter_perma))
 		add_fingerprint(user)
 		if(!panel_open)
 			to_chat(user, span_warning("Open th panel first!"))
 			return ATTACK_CHAIN_PROCEED
-		var/obj/item/circuitboard/teleporter_perma/circuit = I
+		var/obj/item/circuitboard/computer/teleporter_perma/circuit = I
 		circuit.target = teleporter_console.target
 		to_chat(user, span_caution("You copy the targeting information from [src] to [circuit]"))
 		return ATTACK_CHAIN_PROCEED_SUCCESS

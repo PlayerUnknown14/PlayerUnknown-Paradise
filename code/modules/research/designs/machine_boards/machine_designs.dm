@@ -47,7 +47,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 4, RESEARCH_TREE_POWERSTORAGE = 5, RESEARCH_TREE_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/turbine_computer
+	build_path = /obj/item/circuitboard/computer/turbine_computer
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/power_compressor
@@ -79,7 +79,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5, RESEARCH_TREE_BLUESPACE = 5, RESEARCH_TREE_PLASMA = 4, RESEARCH_TREE_ENGINEERING = 5)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/roboquest_pad
+	build_path = /obj/item/circuitboard/computer/roboquest_pad
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_TELEPORTATION)
 
 /datum/design/teleport_hub
@@ -87,7 +87,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_BLUESPACE = 5, RESEARCH_TREE_MATERIALS = 4, RESEARCH_TREE_ENGINEERING = 5)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/teleporter_hub
+	build_path = /obj/item/circuitboard/computer/teleporter_hub
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_TELEPORTATION)
 
 /datum/design/teleport_station
@@ -95,7 +95,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5, RESEARCH_TREE_BLUESPACE = 4, RESEARCH_TREE_ENGINEERING = 4, RESEARCH_TREE_PLASMA = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/teleporter_station
+	build_path = /obj/item/circuitboard/computer/teleporter_station
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_TELEPORTATION)
 
 /datum/design/teleport_perma
@@ -103,7 +103,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_BLUESPACE = 5, RESEARCH_TREE_MATERIALS = 4, RESEARCH_TREE_ENGINEERING = 5)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/teleporter_perma
+	build_path = /obj/item/circuitboard/computer/teleporter_perma
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_TELEPORTATION)
 
 /datum/design/bodyscanner
@@ -247,7 +247,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_ENGINEERING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/podfab
+	build_path = /obj/item/circuitboard/computer/podfab
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_RESEARCH)
 
 /datum/design/mech_recharger
@@ -343,7 +343,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 1)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/arcade/battle
+	build_path = /obj/item/circuitboard/computer/arcade/battle
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_MISC)
 
 /datum/design/microwave
@@ -391,7 +391,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/arcade/slotmachine
+	build_path = /obj/item/circuitboard/computer/arcade/slotmachine
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_MISC)
 
 /datum/design/orion_trail
@@ -399,7 +399,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 1)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/arcade/orion_trail
+	build_path = /obj/item/circuitboard/computer/arcade/orion_trail
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_MISC)
 
 /datum/design/pod
@@ -407,7 +407,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2,RESEARCH_TREE_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/pod
+	build_path = /obj/item/circuitboard/computer/pod
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_MISC)
 
 /datum/design/ore_redemption
@@ -527,7 +527,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/portrait_printer
+	build_path = /obj/item/circuitboard/computer/portrait_printer
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 //Hypertorus fusion reactor designs

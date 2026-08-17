@@ -9467,12 +9467,12 @@
 /area/station/hallway/primary/central/west)
 "cap" = (
 /obj/structure/rack,
-/obj/item/circuitboard/camera{
+/obj/item/circuitboard/computer/camera{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/prisoner,
-/obj/item/circuitboard/secure_data{
+/obj/item/circuitboard/computer/prisoner,
+/obj/item/circuitboard/computer/secure_data{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -10014,11 +10014,11 @@
 	icon_state = "4-8"
 	},
 /obj/structure/rack,
-/obj/item/circuitboard/robotics{
+/obj/item/circuitboard/computer/robotics{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/mecha_control,
+/obj/item/circuitboard/computer/mecha_control,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -12517,12 +12517,12 @@
 	icon_state = "2-4"
 	},
 /obj/structure/rack,
-/obj/item/circuitboard/communications{
+/obj/item/circuitboard/computer/communications{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/card,
-/obj/item/circuitboard/crew{
+/obj/item/circuitboard/computer/card,
+/obj/item/circuitboard/computer/crew{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -13870,12 +13870,12 @@
 /area/station/maintenance/asmaint4)
 "cXe" = (
 /obj/structure/rack,
-/obj/item/circuitboard/teleporter_hub{
+/obj/item/circuitboard/computer/teleporter_hub{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/teleporter_station,
-/obj/item/circuitboard/teleporter{
+/obj/item/circuitboard/computer/teleporter_station,
+/obj/item/circuitboard/computer/teleporter{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -22498,12 +22498,12 @@
 /area/station/service/library)
 "eLv" = (
 /obj/structure/rack,
-/obj/item/circuitboard/scan_consolenew{
+/obj/item/circuitboard/computer/scan_consolenew{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/med_data,
-/obj/item/circuitboard/pandemic{
+/obj/item/circuitboard/computer/med_data,
+/obj/item/circuitboard/computer/pandemic{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -44001,11 +44001,11 @@
 /area/station/commons/cabin/one)
 "iHY" = (
 /obj/structure/rack,
-/obj/item/circuitboard/atmos_alert{
+/obj/item/circuitboard/computer/atmos_alert{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/powermonitor,
+/obj/item/circuitboard/computer/powermonitor,
 /obj/effect/turf_decal/delivery/hollow,
 /turf/simulated/floor/plasteel{
 	icon_state = "neutralfull"
@@ -103368,7 +103368,7 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/rdconsole,
+/obj/item/circuitboard/computer/rdconsole,
 /obj/item/circuitboard/rdserver{
 	pixel_x = 3;
 	pixel_y = -3
@@ -122482,8 +122482,8 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/aiupload,
-/obj/item/circuitboard/borgupload{
+/obj/item/circuitboard/computer/aiupload,
+/obj/item/circuitboard/computer/borgupload{
 	pixel_x = 3;
 	pixel_y = -3
 	},

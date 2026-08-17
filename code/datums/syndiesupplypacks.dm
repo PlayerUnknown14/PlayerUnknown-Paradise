@@ -1279,7 +1279,7 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 	name = "Cloning Kit Crate"
 	contains = list(
 		/obj/item/circuitboard/clonepod,
-		/obj/item/circuitboard/cloning,
+		/obj/item/circuitboard/computer/cloning,
 	)
 	cost = 9000
 	containertype = /obj/structure/closet/crate/secure
@@ -1443,7 +1443,7 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 /datum/syndie_supply_packs/science/syndicate_teleporter
 	name = "Syndicate Redspace Teleporter Circuit Crate"
 	contains = list(
-		/obj/item/circuitboard/syndicate_teleporter,
+		/obj/item/circuitboard/computer/syndicate_teleporter,
 	)
 	cost = 100000
 	containertype = /obj/structure/closet/crate/secure/syndicate
@@ -1499,8 +1499,8 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 /datum/syndie_supply_packs/science/syndiecargo
 	name = "Syndicate Supply Console Circuit Crate"
 	contains = list(
-		/obj/item/circuitboard/syndicatesupplycomp,
-		/obj/item/circuitboard/syndicatesupplycomp/public,
+		/obj/item/circuitboard/computer/syndicatesupplycomp,
+		/obj/item/circuitboard/computer/syndicatesupplycomp/public,
 	)
 	cost = 2000
 	containertype = /obj/structure/closet/crate/secure/syndicate

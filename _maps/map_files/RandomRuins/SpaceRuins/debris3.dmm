@@ -140,7 +140,7 @@
 /turf/space,
 /area/space)
 "V" = (
-/obj/item/circuitboard/arcade,
+/obj/item/circuitboard/computer/arcade,
 /turf/space,
 /area/space)
 "W" = (

@@ -7,7 +7,7 @@
 	idle_power_usage = 20
 	active_power_usage = 80
 	light_color = LIGHT_COLOR_DIM_YELLOW
-	circuit = /obj/item/circuitboard/powermonitor
+	circuit = /obj/item/circuitboard/computer/powermonitor
 	var/datum/powernet/powernet = null
 	var/datum/ui_module/power_monitor/power_monitor
 	/// Will this monitor be hidden from viewers?
@@ -24,7 +24,7 @@
 /obj/machinery/computer/monitor/secret //Hides the power monitor (such as ones on ruins & CentCom) from PDA's to prevent metagaming.
 	name = "outdated power monitoring console"
 	desc = "Используется для отслеживания уровня энергопотребления в локальной сети."
-	circuit = /obj/item/circuitboard/powermonitor/secret
+	circuit = /obj/item/circuitboard/computer/powermonitor/secret
 	is_secret_monitor = TRUE
 
 /obj/machinery/computer/monitor/secret/old_frame

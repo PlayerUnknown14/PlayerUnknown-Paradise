@@ -9,7 +9,7 @@
 	desc = "Используется для просмотра и редактирования записей службы безопасности о персонале."
 	icon_keyboard = "security_key"
 	icon_screen = "security"
-	circuit = /obj/item/circuitboard/secure_data
+	circuit = /obj/item/circuitboard/computer/secure_data
 	req_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
 	/// The current page being viewed.
 	var/current_page = SEC_DATA_R_LIST

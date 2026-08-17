@@ -88,7 +88,7 @@
 /area/station/maintenance/trading)
 "gc" = (
 /obj/structure/computerframe,
-/obj/item/circuitboard/secure_data,
+/obj/item/circuitboard/computer/secure_data,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
@@ -129,7 +129,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/table/wood,
-/obj/item/circuitboard/atmos_alert{
+/obj/item/circuitboard/computer/atmos_alert{
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -205,7 +205,7 @@
 "lH" = (
 /obj/structure/table/wood,
 /obj/item/clipboard,
-/obj/item/circuitboard/powermonitor,
+/obj/item/circuitboard/computer/powermonitor,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
@@ -243,7 +243,7 @@
 /area/station/maintenance/electrical_shop)
 "ps" = (
 /obj/structure/table/wood,
-/obj/item/circuitboard/med_data,
+/obj/item/circuitboard/computer/med_data,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/random{
 	pixel_x = -32
@@ -442,7 +442,7 @@
 /area/station/maintenance/trading)
 "xa" = (
 /obj/structure/table/wood,
-/obj/item/circuitboard/air_management,
+/obj/item/circuitboard/computer/air_management,
 /obj/item/stock_parts/matter_bin/super{
 	pixel_y = -14
 	},

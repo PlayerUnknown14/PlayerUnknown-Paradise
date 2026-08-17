@@ -68,7 +68,7 @@
 /obj/machinery/computer/arcade/battle
 	name = "arcade machine"
 	desc = "Не поддерживает пинбол."
-	circuit = /obj/item/circuitboard/arcade/battle
+	circuit = /obj/item/circuitboard/computer/arcade/battle
 	var/enemy_name = "Space Villian"
 	var/temp = "Победители не употребляют Космодурь" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
@@ -297,7 +297,7 @@
 /obj/machinery/computer/arcade/orion_trail
 	name = "The Orion Trail"
 	desc = "Узнайте, как наши предки добрались до Ориона, и повеселитесь в процессе!"
-	circuit = /obj/item/circuitboard/arcade/orion_trail
+	circuit = /obj/item/circuitboard/computer/arcade/orion_trail
 	var/busy = 0 //prevent clickspam that allowed people to ~speedrun~ the game.
 	var/engine = 0
 	var/hull = 0

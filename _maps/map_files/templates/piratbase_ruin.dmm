@@ -11412,13 +11412,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/item/circuitboard/teleporter,
+/obj/item/circuitboard/computer/teleporter,
 /obj/structure/rack,
-/obj/item/circuitboard/teleporter_hub{
+/obj/item/circuitboard/computer/teleporter_hub{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/teleporter_station{
+/obj/item/circuitboard/computer/teleporter_station{
 	pixel_x = 6;
 	pixel_y = -6
 	},

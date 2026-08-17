@@ -23093,7 +23093,7 @@
 	dir = 8
 	},
 /obj/structure/computerframe,
-/obj/item/circuitboard/operating,
+/obj/item/circuitboard/computer/operating,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -32621,12 +32621,12 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/med_data{
+/obj/item/circuitboard/computer/med_data{
 	pixel_x = 3;
 	pixel_y = -3
 	},
 /obj/item/circuitboard/clonescanner,
-/obj/item/circuitboard/scan_consolenew,
+/obj/item/circuitboard/computer/scan_consolenew,
 /obj/item/circuitboard/cryo_tube{
 	pixel_x = 3
 	},
@@ -32864,7 +32864,7 @@
 	pixel_x = -4;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/mech_bay_power_console{
+/obj/item/circuitboard/computer/mech_bay_power_console{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -41989,12 +41989,12 @@
 	pixel_x = -4;
 	pixel_y = -4
 	},
-/obj/item/circuitboard/powermonitor{
+/obj/item/circuitboard/computer/powermonitor{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/stationalert,
-/obj/item/circuitboard/atmos_alert{
+/obj/item/circuitboard/computer/stationalert,
+/obj/item/circuitboard/computer/atmos_alert{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -52992,11 +52992,11 @@
 /area/station/maintenance/trading)
 "imL" = (
 /obj/structure/rack,
-/obj/item/circuitboard/robotics{
+/obj/item/circuitboard/computer/robotics{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/mecha_control,
+/obj/item/circuitboard/computer/mecha_control,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -88829,12 +88829,12 @@
 	icon_state = "1-2"
 	},
 /obj/structure/rack,
-/obj/item/circuitboard/communications{
+/obj/item/circuitboard/computer/communications{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/card,
-/obj/item/circuitboard/crew{
+/obj/item/circuitboard/computer/card,
+/obj/item/circuitboard/computer/crew{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -98346,8 +98346,8 @@
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/aiupload,
-/obj/item/circuitboard/borgupload{
+/obj/item/circuitboard/computer/aiupload,
+/obj/item/circuitboard/computer/borgupload{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -110716,11 +110716,11 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/camera{
+/obj/item/circuitboard/computer/camera{
 	pixel_x = 1;
 	pixel_y = -1
 	},
-/obj/item/circuitboard/secure_data{
+/obj/item/circuitboard/computer/secure_data{
 	pixel_x = -2;
 	pixel_y = 2
 	},
@@ -116382,7 +116382,7 @@
 	},
 /area/station/ai/satellite/exterior)
 "rTf" = (
-/obj/item/circuitboard/operating,
+/obj/item/circuitboard/computer/operating,
 /obj/item/shard{
 	icon_state = "medium"
 	},
@@ -151695,7 +151695,7 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/rdconsole{
+/obj/item/circuitboard/computer/rdconsole{
 	pixel_x = -4
 	},
 /obj/item/circuitboard/rdserver{

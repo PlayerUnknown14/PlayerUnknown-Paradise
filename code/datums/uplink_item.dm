@@ -2073,7 +2073,7 @@
 	name = "Плата консоли телепорта"
 	desc = "Плата, необходимая для завершения сборки телепорта на корабле. \
 			Если возникли проблемы с его работой, рекомендуется полностью разобрать и заново собрать все компоненты."
-	item = /obj/item/circuitboard/teleporter
+	item = /obj/item/circuitboard/computer/teleporter
 	cost = 100
 	uplinktypes = list(UPLINK_TYPE_NUCLEAR, UPLINK_TYPE_SST)
 	surplus = 0

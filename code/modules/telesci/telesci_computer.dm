@@ -3,7 +3,7 @@
 	desc = "Используется для телепортации объектов на телепад и обратно."
 	icon_keyboard = "telesci_key"
 	icon_screen = "telesci"
-	circuit = /obj/item/circuitboard/telesci_console
+	circuit = /obj/item/circuitboard/computer/telesci_console
 	req_access = list(ACCESS_RESEARCH)
 	var/sending = 1
 	var/obj/machinery/telepad/telepad = null

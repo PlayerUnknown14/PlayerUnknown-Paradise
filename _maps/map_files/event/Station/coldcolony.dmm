@@ -12845,7 +12845,7 @@
 /turf/simulated/floor/wood,
 /area/coldcolony/malta/maintenance/kitchen)
 "eLz" = (
-/obj/item/circuitboard/rdconsole/experiment,
+/obj/item/circuitboard/computer/rdconsole/experiment,
 /obj/structure/closet/crate/engineering/electrical,
 /obj/item/stack/cable_coil,
 /obj/item/firelock_electronics,
@@ -13154,7 +13154,7 @@
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/rdconsole{
+/obj/item/circuitboard/computer/rdconsole{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -27966,15 +27966,15 @@
 "ksQ" = (
 /obj/effect/turf_decal/delivery/hollow,
 /obj/structure/rack,
-/obj/item/circuitboard/communications{
+/obj/item/circuitboard/computer/communications{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/circuitboard/card{
+/obj/item/circuitboard/computer/card{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/borgupload{
+/obj/item/circuitboard/computer/borgupload{
 	pixel_x = 2;
 	pixel_y = -2
 	},
@@ -30543,7 +30543,7 @@
 "lqW" = (
 /obj/structure/closet/crate/trashcart,
 /obj/effect/spawner/lootdrop/maintenance/double,
-/obj/item/circuitboard/operating,
+/obj/item/circuitboard/computer/operating,
 /obj/item/hand_labeler,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/maintenance/medbay)
@@ -30781,7 +30781,7 @@
 	},
 /obj/structure/closet/crate/engineering,
 /obj/item/circuitboard/chem_master,
-/obj/item/circuitboard/pandemic,
+/obj/item/circuitboard/computer/pandemic,
 /obj/item/stack/sheet/metal{
 	amount = 14
 	},
@@ -52010,7 +52010,7 @@
 /turf/simulated/wall,
 /area/coldcolony/malta/hallway/service/south)
 "twE" = (
-/obj/item/circuitboard/pandemic,
+/obj/item/circuitboard/computer/pandemic,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},

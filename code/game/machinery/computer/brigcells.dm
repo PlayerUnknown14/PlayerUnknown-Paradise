@@ -5,7 +5,7 @@
 	icon_screen = "cell_monitor"
 	idle_power_usage = 250
 	active_power_usage = 500
-	circuit = /obj/item/circuitboard/brigcells
+	circuit = /obj/item/circuitboard/computer/brigcells
 	light_color = COLOR_SOFT_RED
 	req_access = list(ACCESS_BRIG)
 

@@ -1,7 +1,7 @@
 /obj/machinery/computer/shuttle/labor
 	name = "labor shuttle console"
 	desc = "Используется для вызова и отправки шаттла каторги."
-	circuit = /obj/item/circuitboard/labor_shuttle
+	circuit = /obj/item/circuitboard/computer/labor_shuttle
 	shuttleId = "laborcamp"
 	possible_destinations = "laborcamp_home;laborcamp_away"
 	lockdown_affected = TRUE
@@ -21,7 +21,7 @@
 	name = "prisoner shuttle console"
 	desc = "Консоль управления шаттлом в одну сторону, используемый для вызова шаттла на каторгу."
 	possible_destinations = "laborcamp_away"
-	circuit = /obj/item/circuitboard/labor_shuttle/one_way
+	circuit = /obj/item/circuitboard/computer/labor_shuttle/one_way
 	req_access = list()
 
 /obj/machinery/computer/shuttle/labor/one_way/get_ru_names()

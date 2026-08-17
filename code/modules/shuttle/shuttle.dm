@@ -820,7 +820,7 @@
 	icon_screen = "shuttle"
 	icon_keyboard = "tech_key"
 	req_access = list()
-	circuit = /obj/item/circuitboard/shuttle
+	circuit = /obj/item/circuitboard/computer/shuttle
 	var/destination
 	var/shuttleId
 	var/possible_destinations = ""
@@ -976,13 +976,13 @@
 
 /obj/machinery/computer/shuttle/ferry
 	name = "transport ferry console"
-	circuit = /obj/item/circuitboard/ferry
+	circuit = /obj/item/circuitboard/computer/ferry
 	shuttleId = "ferry"
 	possible_destinations = "ferry_home;ferry_away"
 
 /obj/machinery/computer/shuttle/ferry/request
 	name = "ferry console"
-	circuit = /obj/item/circuitboard/ferry/request
+	circuit = /obj/item/circuitboard/computer/ferry/request
 	var/next_request	//to prevent spamming admins
 	possible_destinations = "ferry_home"
 	admin_controlled = TRUE
@@ -1003,7 +1003,7 @@
 /obj/machinery/computer/shuttle/ruins_transport_shuttle // this shuttle made for station and listening post of ussp since they have lore connection between eachother, btw the shuttle existed before the change but was deleted for some reason.
 	name = "Transport Shuttle Console"
 	desc = "Используется для управления Транспортным шаттлом."
-	circuit = /obj/item/circuitboard/ruins_transport_shuttle
+	circuit = /obj/item/circuitboard/computer/ruins_transport_shuttle
 	shuttleId = "ruins_transport_shuttle"
 	possible_destinations = "ussp_dock;dj_post;sindiecake_dock;ussp_gorky17"
 
@@ -1015,14 +1015,14 @@
 /obj/machinery/computer/shuttle/ruins_civil_shuttle // made another shuttle, this one will fly between spacebar and twin nexus hotel. just another way to get to it.
 	name = "Regular Civilian Shuttle Console"
 	desc = "Используется для управления обычным гражданским шаттлом."
-	circuit = /obj/item/circuitboard/ruins_civil_shuttle
+	circuit = /obj/item/circuitboard/computer/ruins_civil_shuttle
 	shuttleId = "ruins_civil_shuttle"
 	possible_destinations = "spacebar;spacehotelv1;ntstation"
 
 /obj/machinery/computer/shuttle/white_ship
 	name = "White Ship Console"
 	desc = "Используется для управления Белым кораблём."
-	circuit = /obj/item/circuitboard/white_ship
+	circuit = /obj/item/circuitboard/computer/white_ship
 	shuttleId = "whiteship"
 	possible_destinations = null // Set at runtime
 
@@ -1071,7 +1071,7 @@
 /obj/machinery/computer/shuttle/golem_ship
 	name = "Golem Ship Console"
 	desc = "Используется для управления шаттлом големов."
-	circuit = /obj/item/circuitboard/shuttle/golem_ship
+	circuit = /obj/item/circuitboard/computer/shuttle/golem_ship
 	shuttleId = "freegolem"
 	possible_destinations = "freegolem_lavaland;freegolem_space;freegolem_ussp"
 

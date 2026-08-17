@@ -439,7 +439,7 @@
 		EQUIPMENT("Royal Cape of the Liberator", /obj/item/bedsheet/rd/royal_cape, 500),
 		EQUIPMENT("Grey Slime Extract", /obj/item/slime_extract/grey, 1000),
 		EQUIPMENT("KA Trigger Modification Kit", /obj/item/borg/upgrade/modkit/trigger_guard, 1000),
-		EQUIPMENT("Shuttle Console Board", /obj/item/circuitboard/shuttle/golem_ship, 2000),
+		EQUIPMENT("Shuttle Console Board", /obj/item/circuitboard/computer/shuttle/golem_ship, 2000),
 		EQUIPMENT("The Liberator's Legacy", /obj/item/storage/box/rndboards, 2000),
 	)
 	prize_list["Scum"] = list(

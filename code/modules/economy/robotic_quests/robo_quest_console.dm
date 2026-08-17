@@ -39,7 +39,7 @@
 	/// Point balance
 	var/points = list("working" = 0, "medical" = 0, "security" = 0, "robo" = 0)
 	req_access = list(ACCESS_ROBOTICS)
-	circuit = /obj/item/circuitboard/roboquest
+	circuit = /obj/item/circuitboard/computer/roboquest
 	var/obj/item/card/id/currentID
 	/// This console pad
 	var/obj/machinery/roboquest_pad/pad
@@ -377,7 +377,7 @@
 	component_parts = list()
 	component_parts += new /obj/item/stack/ore/bluespace_crystal/artificial(null)
 	component_parts += new /obj/item/stack/cable_coil(null, 1)
-	component_parts += new /obj/item/circuitboard/roboquest_pad(null)
+	component_parts += new /obj/item/circuitboard/computer/roboquest_pad(null)
 	RefreshParts()
 
 /obj/machinery/roboquest_pad/ComponentInitialize()

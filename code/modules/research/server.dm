@@ -328,7 +328,7 @@
 	icon_screen = "rdcomp"
 	icon_keyboard = "rd_key"
 	light_color = LIGHT_COLOR_LAVENDER
-	circuit = /obj/item/circuitboard/rdservercontrol
+	circuit = /obj/item/circuitboard/computer/rdservercontrol
 	req_access = list(ACCESS_RD)
 	var/screen = 0
 	var/obj/machinery/r_n_d/server/temp_server

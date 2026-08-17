@@ -3,7 +3,7 @@
 	desc = "Crystal Integrity Monitoring System, connects to specially calibrated supermatter sensors to provide information on the status of supermatter-based engines."
 	icon_keyboard = "power_key"
 	icon_screen = "smmon_0"
-	circuit = /obj/item/circuitboard/sm_monitor
+	circuit = /obj/item/circuitboard/computer/sm_monitor
 	light_color = LIGHT_COLOR_DIM_YELLOW
 	/// List of supermatters that we are going to send the data of.
 	var/list/obj/machinery/power/supermatter_crystal/supermatters = list()

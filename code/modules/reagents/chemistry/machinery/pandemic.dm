@@ -3,7 +3,7 @@
 	desc = "Высокотехнологичная машина, предназначенная для исследования и работы с вирусными культурами. Лучший друг вирусолога!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	circuit = /obj/item/circuitboard/pandemic
+	circuit = /obj/item/circuitboard/computer/pandemic
 	idle_power_usage = 20
 	resistance_flags = ACID_PROOF
 	var/obj/item/reagent_containers/beaker = null

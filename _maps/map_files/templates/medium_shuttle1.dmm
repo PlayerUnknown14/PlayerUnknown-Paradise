@@ -43,7 +43,7 @@
 /area/ruin/powered/shuttle_ruin)
 "l" = (
 /obj/structure/computerframe,
-/obj/item/circuitboard/teleporter,
+/obj/item/circuitboard/computer/teleporter,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},

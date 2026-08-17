@@ -4564,7 +4564,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/BMPship/Armory)
 "uR" = (
-/obj/item/circuitboard/operating,
+/obj/item/circuitboard/computer/operating,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship/MedBay)
 "uS" = (

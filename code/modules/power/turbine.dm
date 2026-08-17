@@ -143,7 +143,7 @@
 	desc = "Компьютер для дистанционного управления газовой турбиной."
 	icon_screen = "turbinecomp"
 	icon_keyboard = "tech_key"
-	circuit = /obj/item/circuitboard/turbine_computer
+	circuit = /obj/item/circuitboard/computer/turbine_computer
 	var/obj/machinery/power/compressor/compressor
 	var/id = 0
 

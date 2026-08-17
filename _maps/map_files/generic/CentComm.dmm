@@ -30731,16 +30731,16 @@
 /area/shuttle/siberia)
 "oix" = (
 /obj/structure/rack/holorack,
-/obj/item/circuitboard/syndicatesupplycomp/public{
+/obj/item/circuitboard/computer/syndicatesupplycomp/public{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/circuitboard/syndicatesupplycomp{
+/obj/item/circuitboard/computer/syndicatesupplycomp{
 	pixel_x = -2;
 	pixel_y = 4
 	},
 /obj/item/circuitboard/quantumpad/syndiepad,
-/obj/item/circuitboard/syndicate_teleporter,
+/obj/item/circuitboard/computer/syndicate_teleporter,
 /obj/item/circuitboard/mechfab/syndicate{
 	pixel_x = 3;
 	pixel_y = -3
@@ -45051,14 +45051,14 @@
 /area/centcom/syndicate_base)
 "uym" = (
 /obj/structure/rack/holorack,
-/obj/item/circuitboard/aiupload,
+/obj/item/circuitboard/computer/aiupload,
 /obj/item/circuitboard/circuit_imprinter,
-/obj/item/circuitboard/communications,
+/obj/item/circuitboard/computer/communications,
 /obj/item/circuitboard/destructive_analyzer,
 /obj/item/circuitboard/ore_redemption,
-/obj/item/circuitboard/mining_shuttle,
-/obj/item/circuitboard/mining_shuttle,
-/obj/item/circuitboard/mining_shuttle,
+/obj/item/circuitboard/computer/mining_shuttle,
+/obj/item/circuitboard/computer/mining_shuttle,
+/obj/item/circuitboard/computer/mining_shuttle,
 /obj/item/circuitboard/protolathe,
 /obj/structure/window/reinforced{
 	dir = 8

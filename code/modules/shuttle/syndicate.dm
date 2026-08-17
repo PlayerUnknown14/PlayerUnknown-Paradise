@@ -6,7 +6,7 @@
 	icon_keyboard = "syndie_key"
 	req_access = list(ACCESS_SYNDICATE)
 	bubble_icon = "syndibot"
-	circuit = /obj/item/circuitboard/shuttle/syndicate
+	circuit = /obj/item/circuitboard/computer/shuttle/syndicate
 	shuttleId = "syndicate"
 	possible_destinations = "syndicate_away;syndicate_z5;syndicate_z3;syndicate_ne;syndicate_nw;syndicate_n;syndicate_se;syndicate_sw;syndicate_s;syndicate_custom"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -16,7 +16,7 @@
 
 /obj/machinery/computer/shuttle/syndicate/recall
 	name = "syndicate shuttle recall terminal"
-	circuit = /obj/item/circuitboard/shuttle/syndicate/recall
+	circuit = /obj/item/circuitboard/computer/shuttle/syndicate/recall
 	possible_destinations = "syndicate_away"
 
 /obj/machinery/computer/shuttle/syndicate/can_call_shuttle(user, action)
@@ -31,7 +31,7 @@
 	icon = 'icons/obj/machines/terminals.dmi'
 	icon_state = "dorm_available"
 	req_access = list(ACCESS_SYNDICATE)
-	circuit = /obj/item/circuitboard/shuttle/syndicate/drop_pod
+	circuit = /obj/item/circuitboard/computer/shuttle/syndicate/drop_pod
 	shuttleId = "steel_rain"
 	possible_destinations = null
 
@@ -47,7 +47,7 @@
 	icon = 'icons/obj/machines/terminals.dmi'
 	icon_state = "dorm_available"
 	req_access = list(109)
-	circuit = /obj/item/circuitboard/shuttle/nt/drop_pod
+	circuit = /obj/item/circuitboard/computer/shuttle/nt/drop_pod
 	shuttleId = "shit_rain"
 	possible_destinations = null
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF

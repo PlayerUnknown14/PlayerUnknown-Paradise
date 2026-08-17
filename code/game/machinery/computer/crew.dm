@@ -17,7 +17,7 @@
 	idle_power_usage = 250
 	active_power_usage = 500
 	light_color = LIGHT_COLOR_DARK_BLUE
-	circuit = /obj/item/circuitboard/crew
+	circuit = /obj/item/circuitboard/computer/crew
 	var/datum/ui_module/crew_monitor/crew_monitor
 
 /obj/machinery/computer/crew/get_ru_names()

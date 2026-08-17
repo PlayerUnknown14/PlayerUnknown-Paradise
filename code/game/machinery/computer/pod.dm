@@ -3,7 +3,7 @@
 	desc = "Элемент управления для запуска капсул. Некоторые предпочитают запускать из них мехов."
 	icon_screen = "mass_driver"
 	light_color = "#555555"
-	circuit = /obj/item/circuitboard/pod
+	circuit = /obj/item/circuitboard/computer/pod
 	var/initial_set = FALSE
 	var/list/id_tags
 	var/list/door_only_tags
@@ -265,13 +265,13 @@
 	icon_screen = "library"
 	icon_keyboard = null
 	name = "DoorMex Control Computer"
-	circuit = /obj/item/circuitboard/olddoor
+	circuit = /obj/item/circuitboard/computer/olddoor
 
 /obj/machinery/computer/pod/old/syndicate
 	name = "external airlock controls"
 	desc = "Синдикат работает в условиях ограниченного бюджета. Управляет внешними шлюзами."
 	req_access = list(ACCESS_SYNDICATE)
-	circuit = /obj/item/circuitboard/syndicatedoor
+	circuit = /obj/item/circuitboard/computer/syndicatedoor
 	light_color = "#00FFFF"
 
 /obj/machinery/computer/pod/old/syndicate/attack_hand(mob/user as mob)
@@ -285,12 +285,12 @@
 /obj/machinery/computer/pod/old/swf
 	name = "Magix System IV"
 	desc = "Таинственный артефакт, в котором сконцентрировано огромное количество магической энергии."
-	circuit = /obj/item/circuitboard/swfdoor
+	circuit = /obj/item/circuitboard/computer/swfdoor
 
 /obj/machinery/computer/pod/deathsquad
 	id_tags = list("ASSAULT0","ASSAULT1","ASSAULT2","ASSAULT3")
 	var/teleporter_dest = 0
-	circuit = /obj/item/circuitboard/pod/deathsquad
+	circuit = /obj/item/circuitboard/computer/pod/deathsquad
 
 /obj/machinery/computer/pod/deathsquad/launch_sequence(ident_tag)
 	if(stat & (NOPOWER|BROKEN))

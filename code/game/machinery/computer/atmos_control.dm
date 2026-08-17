@@ -3,7 +3,7 @@
 	icon_keyboard = "atmos_key"
 	icon_screen = "tank"
 	light_color = LIGHT_COLOR_CYAN
-	circuit = /obj/item/circuitboard/atmoscontrol
+	circuit = /obj/item/circuitboard/computer/atmoscontrol
 	req_access = list(ACCESS_ATMOSPHERICS)
 	var/datum/ui_module/atmos_control/atmos_control
 

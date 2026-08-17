@@ -7,7 +7,7 @@
 	icon_keyboard = "security_key"
 	icon_screen = "cameras"
 	light_color = COLOR_SOFT_RED
-	circuit = /obj/item/circuitboard/camera
+	circuit = /obj/item/circuitboard/computer/camera
 
 	var/mapping = 0 // For the overview file (overview.dm), not used on this page
 
@@ -243,7 +243,7 @@
 	icon_screen = "telescreen"
 	icon_keyboard = null
 	density = FALSE
-	circuit = /obj/item/circuitboard/camera/telescreen
+	circuit = /obj/item/circuitboard/computer/camera/telescreen
 
 /obj/machinery/computer/security/telescreen/multitool_act(mob/user, obj/item/I)
 	. = TRUE
@@ -273,7 +273,7 @@
 	light_power_on = LIGHTING_MINIMUM_POWER
 	network = list("news")
 	layer = 4 //becouse of plasma glass with layer = 3
-	circuit = /obj/item/circuitboard/camera/telescreen/entertainment
+	circuit = /obj/item/circuitboard/computer/camera/telescreen/entertainment
 	interaction_flags_atom = INTERACT_ATOM_UI_INTERACT | INTERACT_ATOM_NO_FINGERPRINT_INTERACT | INTERACT_ATOM_NO_FINGERPRINT_ATTACK_HAND | INTERACT_MACHINE_REQUIRES_SIGHT
 	/// Icon utilised when `GLOB.active_entertainment_cameras` list have anything inside.
 	var/icon_screen_on = "entertainment"
@@ -357,13 +357,13 @@
 	name = "Singularity Engine Telescreen"
 	desc = "Используется для наблюдения за зоной содержания сингулярности."
 	network = list("Singularity")
-	circuit = /obj/item/circuitboard/camera/telescreen/singularity
+	circuit = /obj/item/circuitboard/computer/camera/telescreen/singularity
 
 /obj/machinery/computer/security/telescreen/nfr
 	name = "NFR Engine Telescreen"
 	desc = "Используется для наблюдения за активной зоной ядерного реактора."
 	network = list("NFR")
-	circuit = /obj/item/circuitboard/camera/telescreen/nfr
+	circuit = /obj/item/circuitboard/computer/camera/telescreen/nfr
 
 /obj/machinery/computer/security/telescreen/toxin_chamber
 	name = "Toxins Telescreen"
@@ -394,7 +394,7 @@
 	light_color = "#3848B3"
 	light_power_on = 0.5
 	network = list("SS13")
-	circuit = /obj/item/circuitboard/camera/wooden_tv
+	circuit = /obj/item/circuitboard/computer/camera/wooden_tv
 
 /obj/machinery/computer/security/mining
 	name = "outpost camera monitor"
@@ -403,7 +403,7 @@
 	icon_screen = "mining"
 	light_color = "#F9BBFC"
 	network = list("Mining Outpost")
-	circuit = /obj/item/circuitboard/camera/mining
+	circuit = /obj/item/circuitboard/computer/camera/mining
 
 /obj/machinery/computer/security/engineering
 	name = "engineering camera monitor"
@@ -412,7 +412,7 @@
 	icon_screen = "engie_cams"
 	light_color = "#FAC54B"
 	network = list("Power Alarms","Atmosphere Alarms","Fire Alarms")
-	circuit = /obj/item/circuitboard/camera/engineering
+	circuit = /obj/item/circuitboard/computer/camera/engineering
 
 /obj/machinery/computer/security/old_frame
 	icon = 'icons/obj/machines/computer3.dmi'

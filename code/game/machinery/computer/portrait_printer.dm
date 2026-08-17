@@ -13,7 +13,7 @@
 	idle_power_usage = 20
 	active_power_usage = 80
 	light_color = LIGHT_COLOR_DIM_YELLOW
-	circuit = /obj/item/circuitboard/portrait_printer
+	circuit = /obj/item/circuitboard/computer/portrait_printer
 	/**
 	* The last input in the search tab, stored here and reused in the UI to show successive users if
 	* the current list of paintings is limited to the results of a search or not.

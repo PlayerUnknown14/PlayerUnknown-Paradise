@@ -2836,7 +2836,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 	name = "Платы клонировальной машины"
 	contains = list(
 		/obj/item/circuitboard/clonepod,
-		/obj/item/circuitboard/cloning,
+		/obj/item/circuitboard/computer/cloning,
 	)
 	cost = 350
 	containertype = /obj/structure/closet/crate/secure

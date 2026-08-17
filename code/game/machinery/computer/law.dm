@@ -6,7 +6,7 @@
 	desc = "Используется для манипуляций с законами ИИ."
 	icon_screen = "command"
 	icon_keyboard = "med_key"
-	circuit = /obj/item/circuitboard/aiupload
+	circuit = /obj/item/circuitboard/computer/aiupload
 	req_access = list(ACCESS_AI_UPLOAD)
 	var/mob/living/silicon/current = null
 	var/obj/item/ai_module/installed_module = null
@@ -206,7 +206,7 @@
 	name = "cyborg upload console"
 	desc = "Используется для манипуляций с законами киборгов."
 	req_access = list(ACCESS_ROBOTICS)
-	circuit = /obj/item/circuitboard/borgupload
+	circuit = /obj/item/circuitboard/computer/borgupload
 
 /obj/machinery/computer/aiupload/cyborg/choose_silicon(mob/user)
 	current = freeborg()

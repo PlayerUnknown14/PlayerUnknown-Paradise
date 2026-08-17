@@ -4,7 +4,7 @@
 	icon_screen = "rdcomp"
 	light_color = LIGHT_COLOR_PURPLE
 	req_access = list(ACCESS_ROBOTICS)
-	circuit = /obj/item/circuitboard/pod_locater
+	circuit = /obj/item/circuitboard/computer/pod_locater
 
 /obj/machinery/computer/podtracker/attack_ai(mob/user)
 	return attack_hand(user)

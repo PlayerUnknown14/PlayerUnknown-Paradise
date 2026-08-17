@@ -6,7 +6,7 @@
 	desc = "Консоль для управления капсулой клонирования."
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-	circuit = /obj/item/circuitboard/cloning
+	circuit = /obj/item/circuitboard/computer/cloning
 	req_access = list(ACCESS_HEADS) //Only used for record deletion right now.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/list/pods = null //Linked cloning pods.

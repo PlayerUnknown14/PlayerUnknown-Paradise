@@ -3852,7 +3852,7 @@
 /area/station/maintenance/kitchen)
 "LS" = (
 /obj/machinery/computer/old_frame/medical,
-/obj/item/circuitboard/operating,
+/obj/item/circuitboard/computer/operating,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plasteel{
 	icon_state = "barber"

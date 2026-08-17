@@ -8,12 +8,6 @@
 GLOBAL_VAR_INIT(skill_manual_computer_refresh_time, world.time)
 GLOBAL_LIST_EMPTY(skill_manual_orders)
 
-/obj/item/circuitboard/computer/skill_manuals
-	board_name = "skill manuals console"
-	greyscale_colors = CIRCUIT_COLOR_COMMAND
-	build_path = /obj/machinery/computer/skill_manuals
-	origin_tech = "engineering=2;bluespace=3;programming=2"
-
 /datum/skill_manual_order
 	/// Manual path
 	var/manual_type

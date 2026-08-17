@@ -23,7 +23,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5, RESEARCH_TREE_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/aiupload
+	build_path = /obj/item/circuitboard/computer/aiupload
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/atmosalerts
@@ -31,7 +31,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/atmos_alert
+	build_path = /obj/item/circuitboard/computer/atmos_alert
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/air_management
@@ -39,7 +39,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/air_management
+	build_path = /obj/item/circuitboard/computer/air_management
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/seccamera
@@ -47,7 +47,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_COMBAT = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/camera
+	build_path = /obj/item/circuitboard/computer/camera
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /*	/datum/design/clonecontrol
@@ -55,7 +55,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 4, RESEARCH_TREE_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/cloning
+	build_path = /obj/item/circuitboard/computer/cloning
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 */
 /datum/design/comconsole
@@ -63,7 +63,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_MAGNETS = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/communications
+	build_path = /obj/item/circuitboard/computer/communications
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/crewconsole
@@ -71,7 +71,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_MAGNETS = 2, RESEARCH_TREE_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/crew
+	build_path = /obj/item/circuitboard/computer/crew
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/borgupload
@@ -79,7 +79,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5, RESEARCH_TREE_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/borgupload
+	build_path = /obj/item/circuitboard/computer/borgupload
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/scan_console
@@ -87,7 +87,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/scan_consolenew
+	build_path = /obj/item/circuitboard/computer/scan_consolenew
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/dronecontrol
@@ -95,7 +95,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/drone_control
+	build_path = /obj/item/circuitboard/computer/drone_control
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/mechacontrol
@@ -103,7 +103,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/mecha_control
+	build_path = /obj/item/circuitboard/computer/mecha_control
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/idcardconsole
@@ -111,7 +111,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/card
+	build_path = /obj/item/circuitboard/computer/card
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/mechapower
@@ -119,7 +119,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_POWERSTORAGE = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/mech_bay_power_console
+	build_path = /obj/item/circuitboard/computer/mech_bay_power_console
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/med_data
@@ -127,7 +127,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/med_data
+	build_path = /obj/item/circuitboard/computer/med_data
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/message_monitor
@@ -135,7 +135,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/message_monitor
+	build_path = /obj/item/circuitboard/computer/message_monitor
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/operating
@@ -143,7 +143,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/operating
+	build_path = /obj/item/circuitboard/computer/operating
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/pandemic
@@ -151,7 +151,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/pandemic
+	build_path = /obj/item/circuitboard/computer/pandemic
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/powermonitor
@@ -159,7 +159,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_POWERSTORAGE = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/powermonitor
+	build_path = /obj/item/circuitboard/computer/powermonitor
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/prisonmanage
@@ -167,7 +167,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/prisoner
+	build_path = /obj/item/circuitboard/computer/prisoner
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/brigcells
@@ -175,7 +175,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/brigcells
+	build_path = /obj/item/circuitboard/computer/brigcells
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/rdconsole
@@ -183,7 +183,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/rdconsole
+	build_path = /obj/item/circuitboard/computer/rdconsole
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/rdservercontrol
@@ -191,7 +191,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/rdservercontrol
+	build_path = /obj/item/circuitboard/computer/rdservercontrol
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/robocontrol
@@ -199,7 +199,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/robotics
+	build_path = /obj/item/circuitboard/computer/robotics
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/roboquest
@@ -207,7 +207,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/roboquest
+	build_path = /obj/item/circuitboard/computer/roboquest
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/secdata
@@ -215,7 +215,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_COMBAT = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/secure_data
+	build_path = /obj/item/circuitboard/computer/secure_data
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/solarcontrol
@@ -231,7 +231,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_POWERSTORAGE = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/sm_monitor
+	build_path = /obj/item/circuitboard/computer/sm_monitor
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/spacepodlocator
@@ -239,7 +239,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/pod_locater
+	build_path = /obj/item/circuitboard/computer/pod_locater
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/nuclear_monitor
@@ -247,7 +247,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_POWERSTORAGE = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/fission_monitor
+	build_path = /obj/item/circuitboard/computer/fission_monitor
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/ordercomp
@@ -255,7 +255,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/ordercomp
+	build_path = /obj/item/circuitboard/computer/ordercomp
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/supplycomp
@@ -263,7 +263,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/supplycomp
+	build_path = /obj/item/circuitboard/computer/supplycomp
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/supplyquest
@@ -271,7 +271,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/supplyquest
+	build_path = /obj/item/circuitboard/computer/supplyquest
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/questcons
@@ -279,7 +279,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/questcons
+	build_path = /obj/item/circuitboard/computer/questcons
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/teleconsole
@@ -287,7 +287,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_BLUESPACE = 3, RESEARCH_TREE_PLASMA = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/teleporter
+	build_path = /obj/item/circuitboard/computer/teleporter
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/GAC
@@ -295,7 +295,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_MAGNETS = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/air_management
+	build_path = /obj/item/circuitboard/computer/air_management
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/tank_control
@@ -303,7 +303,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_MAGNETS = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/large_tank_control
+	build_path = /obj/item/circuitboard/computer/large_tank_control
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)
 
 /datum/design/xenobiocamera
@@ -319,5 +319,5 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5, RESEARCH_TREE_BLUESPACE = 6)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 2000)
-	build_path = /obj/item/circuitboard/HONKputer
+	build_path = /obj/item/circuitboard/computer/HONKputer
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_COMPUTER)

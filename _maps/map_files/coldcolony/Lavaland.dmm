@@ -2066,11 +2066,11 @@
 "qy" = (
 /obj/structure/closet/crate/engineering/electrical,
 /obj/item/stack/cable_coil,
-/obj/item/circuitboard/crew{
+/obj/item/circuitboard/computer/crew{
 	pixel_x = 1;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/med_data{
+/obj/item/circuitboard/computer/med_data{
 	pixel_x = -1;
 	pixel_y = -1
 	},
@@ -4654,7 +4654,7 @@
 /obj/structure/closet/crate/engineering,
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/mech_bay_power_console,
+/obj/item/circuitboard/computer/mech_bay_power_console,
 /obj/item/stock_parts/capacitor,
 /obj/item/stock_parts/capacitor,
 /obj/item/stock_parts/capacitor,
@@ -5229,7 +5229,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/item/circuitboard/operating,
+/obj/item/circuitboard/computer/operating,
 /turf/simulated/floor/plating,
 /area/mine/production)
 "Xu" = (

@@ -4,7 +4,7 @@
 	icon_screen = "power"
 	icon_keyboard = "power_key"
 	req_access = list(ACCESS_ENGINE_EQUIP)
-	circuit = /obj/item/circuitboard/drone_control
+	circuit = /obj/item/circuitboard/computer/drone_control
 
 	/// The linked fabricator
 	var/obj/machinery/drone_fabricator/dronefab

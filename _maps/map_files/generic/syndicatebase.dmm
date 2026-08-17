@@ -8831,11 +8831,11 @@
 	pixel_x = 15;
 	pixel_y = 7
 	},
-/obj/item/circuitboard/syndicatesupplycomp/public{
+/obj/item/circuitboard/computer/syndicatesupplycomp/public{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/circuitboard/syndicatesupplycomp{
+/obj/item/circuitboard/computer/syndicatesupplycomp{
 	pixel_x = -2;
 	pixel_y = 4
 	},

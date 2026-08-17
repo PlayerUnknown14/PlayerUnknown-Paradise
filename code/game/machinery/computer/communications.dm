@@ -24,7 +24,7 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 	icon_keyboard = "tech_key"
 	icon_screen = "comm"
 	req_access = list(ACCESS_HEADS)
-	circuit = /obj/item/circuitboard/communications
+	circuit = /obj/item/circuitboard/computer/communications
 	var/list/messagetitle = list()
 	var/list/messagetext = list()
 	var/currmsg
@@ -664,11 +664,11 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 
 		display.update()
 
-/obj/item/circuitboard/communications/Initialize(mapload)
+/obj/item/circuitboard/computer/communications/Initialize(mapload)
 	. = ..()
 	GLOB.shuttle_caller_list += src
 
-/obj/item/circuitboard/communications/Destroy()
+/obj/item/circuitboard/computer/communications/Destroy()
 	GLOB.shuttle_caller_list -= src
 	if(SSticker?.current_state >= GAME_STATE_PLAYING)
 		SSshuttle.autoEvac()
