@@ -131,7 +131,7 @@
 		/obj/item/stock_parts/cell  = 2,
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/pipe = 1,
-		/obj/item/circuitboard/emitter = 1,
+		/obj/item/circuitboard/machine/emitter = 1,
 		/obj/item/stack/sheet/plasteel = 10,
 	)
 	time = 120

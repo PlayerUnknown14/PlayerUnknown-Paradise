@@ -102,6 +102,8 @@
 	var/vend_delay = 0.2 SECONDS
 	/// Item currently being bought
 	var/datum/data/vending_product/currently_vending = null
+	///Whether this vendor can be selected when building a custom vending machine
+	var/allow_custom = TRUE
 
 	/**
 	 * List of products this machine sells
@@ -286,7 +288,7 @@
 		build_products_from_categories()
 	else
 		component_parts = list()
-		var/obj/item/circuitboard/vendor/V = new
+		var/obj/item/circuitboard/machine/vendor/V = new
 		V.set_type(initial(name))
 		component_parts += V
 		component_parts += new refill_canister
@@ -313,7 +315,7 @@
 				onstation = FALSE
 				if(isnull(all_products_free)) // Only auto-set the free products var if we haven't explicitly assigned a value to it yet.
 					all_products_free = TRUE
-			var/obj/item/circuitboard/vendor/circuit = locate(/obj/item/circuitboard/vendor) in component_parts
+			var/obj/item/circuitboard/machine/vendor/circuit = locate(/obj/item/circuitboard/machine/vendor) in component_parts
 			if(circuit)
 				circuit.all_products_free = all_products_free //sync up the circuit so the pricing schema is carried over if it's reconstructed.
 

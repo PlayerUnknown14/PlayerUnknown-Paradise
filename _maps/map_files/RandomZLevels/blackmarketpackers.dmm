@@ -683,7 +683,7 @@
 "ci" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/constructable_frame/machine_frame,
-/obj/item/circuitboard/smes,
+/obj/item/circuitboard/machine/smes,
 /obj/item/stack/cable_coil/green,
 /turf/simulated/floor/greengrid,
 /area/awaymission/BMPship/Buffer)
@@ -3610,7 +3610,7 @@
 /area/awaymission/BMPship/Fore)
 "mL" = (
 /obj/structure/alien/weeds,
-/obj/item/circuitboard/hydroponics,
+/obj/item/circuitboard/machine/hydroponics,
 /obj/item/stack/cable_coil/green,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship/Fore)
@@ -4055,7 +4055,7 @@
 /area/awaymission/BMPship/Engines)
 "qb" = (
 /obj/machinery/constructable_frame/machine_frame,
-/obj/item/circuitboard/smes,
+/obj/item/circuitboard/machine/smes,
 /obj/item/stack/cable_coil/blue,
 /turf/simulated/floor/greengrid,
 /area/awaymission/BMPship/Buffer)

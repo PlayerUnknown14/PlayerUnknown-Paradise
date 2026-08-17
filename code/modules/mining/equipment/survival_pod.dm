@@ -266,7 +266,7 @@
 /obj/machinery/sleeper/survival_pod/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/sleeper/survival(null)
+	component_parts += new /obj/item/circuitboard/machine/sleeper/survival(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)

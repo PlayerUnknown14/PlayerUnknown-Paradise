@@ -1595,7 +1595,7 @@
 	build_type = MECHFAB
 	materials = list(MAT_GLASS = 1000, MAT_BLUESPACE = 2000)
 	construction_time = 5 SECONDS
-	build_path = /obj/item/circuitboard/quantumpad/syndiepad
+	build_path = /obj/item/circuitboard/machine/quantumpad/syndiepad
 	category = list(MECH_FAB_CATEGORY_SYNDICATE)
 
 /datum/design/syndicate_cargo_console

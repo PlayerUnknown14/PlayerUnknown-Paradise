@@ -49,7 +49,7 @@
 	dir = 8
 	},
 /obj/structure/computerframe,
-/obj/item/circuitboard/bodyscanner,
+/obj/item/circuitboard/machine/bodyscanner,
 /turf/simulated/floor/plasteel{
 	dir = 1;
 	icon_state = "whiteblue"

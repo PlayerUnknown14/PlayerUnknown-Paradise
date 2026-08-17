@@ -30,7 +30,7 @@
 
 /obj/machinery/atmospherics/unary/thermomachine/proc/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/thermomachine(null)
+	component_parts += new /obj/item/circuitboard/machine/thermomachine(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/micro_laser(src)
@@ -284,7 +284,7 @@
 
 /obj/machinery/atmospherics/unary/thermomachine/freezer/upgraded/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/thermomachine(null)
+	component_parts += new /obj/item/circuitboard/machine/thermomachine(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/micro_laser/ultra(null)
@@ -333,7 +333,7 @@
 
 /obj/machinery/atmospherics/unary/thermomachine/heater/upgraded/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/thermomachine(null)
+	component_parts += new /obj/item/circuitboard/machine/thermomachine(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/micro_laser/ultra(null)

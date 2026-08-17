@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	. = ..()
 	GLOB.holopads += src
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/holopad(null)
+	component_parts += new /obj/item/circuitboard/machine/holopad(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	RefreshParts()
 	become_hearing_sensitive()

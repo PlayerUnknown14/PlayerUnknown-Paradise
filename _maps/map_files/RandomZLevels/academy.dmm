@@ -652,7 +652,7 @@
 /obj/item/clothing/glasses/hud/hydroponic,
 /obj/effect/turf_decal/delivery/hollow,
 /obj/item/clothing/under/rank/hydroponics,
-/obj/item/circuitboard/hydroponics,
+/obj/item/circuitboard/machine/hydroponics,
 /obj/item/hatchet/wooden,
 /obj/item/plant_analyzer,
 /turf/simulated/floor/plasteel{
@@ -1876,7 +1876,7 @@
 /obj/item/clothing/glasses/hud/hydroponic,
 /obj/effect/turf_decal/delivery/hollow,
 /obj/item/clothing/under/rank/hydroponics,
-/obj/item/circuitboard/hydroponics,
+/obj/item/circuitboard/machine/hydroponics,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/hatchet/wooden,
 /obj/item/plant_analyzer,
@@ -2117,7 +2117,7 @@
 /area/awaymission/academy/headmaster)
 "iS" = (
 /obj/structure/table/reinforced,
-/obj/item/circuitboard/vendor,
+/obj/item/circuitboard/machine/vendor,
 /obj/machinery/door_control,
 /turf/simulated/floor/carpet,
 /area/awaymission/academy/headmaster)
@@ -2505,7 +2505,7 @@
 /obj/item/clothing/glasses/hud/hydroponic,
 /obj/effect/turf_decal/delivery/hollow,
 /obj/item/clothing/under/rank/hydroponics,
-/obj/item/circuitboard/hydroponics,
+/obj/item/circuitboard/machine/hydroponics,
 /obj/item/hatchet/wooden,
 /obj/item/plant_analyzer,
 /turf/simulated/floor/plasteel{

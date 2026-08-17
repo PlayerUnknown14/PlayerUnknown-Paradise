@@ -1753,7 +1753,7 @@
 	name = "solar pack crate"
 	},
 /obj/item/paper/solar,
-/obj/item/circuitboard/solar_control,
+/obj/item/circuitboard/computer/solar_control,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
@@ -6901,7 +6901,7 @@
 /area/ruin/space/USSP_gorky17/medbay)
 "zK" = (
 /obj/machinery/constructable_frame/machine_frame,
-/obj/item/circuitboard/tcomms/core,
+/obj/item/circuitboard/machine/tcomms/core,
 /turf/simulated/floor/vault,
 /area/ruin/space/USSP_gorky17/vault)
 "zM" = (
@@ -8712,8 +8712,8 @@
 "FT" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/delivery/hollow,
-/obj/item/circuitboard/smes/vintage,
-/obj/item/circuitboard/smes/vintage,
+/obj/item/circuitboard/machine/smes/vintage,
+/obj/item/circuitboard/machine/smes/vintage,
 /turf/simulated/floor/plating,
 /area/ruin/space/USSP_gorky17/engineering)
 "FU" = (
@@ -13002,7 +13002,7 @@
 	name = "solar pack crate"
 	},
 /obj/item/paper/solar,
-/obj/item/circuitboard/solar_control,
+/obj/item/circuitboard/computer/solar_control,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,

@@ -6668,7 +6668,7 @@
 /area/ruin/space/pirate_base/prison_maint)
 "uf" = (
 /obj/structure/closet/crate,
-/obj/item/circuitboard/grill,
+/obj/item/circuitboard/machine/grill,
 /turf/simulated/floor/plating,
 /area/ruin/space/pirate_base/kitchen)
 "ug" = (
@@ -8980,9 +8980,9 @@
 /area/ruin/space/pirate_base/atrium)
 "Bb" = (
 /obj/structure/closet/crate/trashcart,
-/obj/item/circuitboard/deepfryer,
+/obj/item/circuitboard/machine/deepfryer,
 /obj/item/access_control,
-/obj/item/circuitboard/seed_extractor,
+/obj/item/circuitboard/machine/seed_extractor,
 /obj/item/circuitboard/broken,
 /obj/item/circuitboard/broken,
 /obj/item/circuitboard/broken,
@@ -11401,7 +11401,7 @@
 /area/ruin/space/pirate_base/xeno_lab)
 "IM" = (
 /obj/structure/table,
-/obj/item/circuitboard/deepfryer,
+/obj/item/circuitboard/machine/deepfryer,
 /turf/simulated/floor/plating,
 /area/ruin/space/pirate_base/prison_maint)
 "IN" = (
@@ -11414,11 +11414,11 @@
 	},
 /obj/item/circuitboard/computer/teleporter,
 /obj/structure/rack,
-/obj/item/circuitboard/computer/teleporter_hub{
+/obj/item/circuitboard/machine/teleporter_hub{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/computer/teleporter_station{
+/obj/item/circuitboard/machine/teleporter_station{
 	pixel_x = 6;
 	pixel_y = -6
 	},
@@ -11704,7 +11704,7 @@
 /area/ruin/space/pirate_base/security_maint)
 "JE" = (
 /obj/structure/closet/crate,
-/obj/item/circuitboard/solar_control,
+/obj/item/circuitboard/computer/solar_control,
 /obj/item/tracker_electronics,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
@@ -11746,7 +11746,7 @@
 /area/ruin/space/pirate_base/atrium)
 "JJ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/plantgenes,
+/obj/item/circuitboard/machine/plantgenes,
 /obj/structure/closet/crate/hydroponics,
 /obj/item/disk/plantgene,
 /obj/item/disk/plantgene,
@@ -14392,7 +14392,7 @@
 /area/space)
 "RR" = (
 /obj/structure/closet/crate/trashcart,
-/obj/item/circuitboard/autolathe,
+/obj/item/circuitboard/machine/autolathe,
 /obj/item/stock_parts/micro_laser/high,
 /turf/simulated/floor/plating,
 /area/ruin/space/pirate_base/lab_maint)

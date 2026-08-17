@@ -303,7 +303,7 @@
 		cartridge = new /obj/item/coffee_cartridge(src)
 
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/coffeemaker/standard(null)
+	component_parts += new /obj/item/circuitboard/machine/coffeemaker/standard(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
@@ -380,7 +380,7 @@
 		cartridge = null
 
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/coffeemaker/impressa(null)
+	component_parts += new /obj/item/circuitboard/machine/coffeemaker/impressa(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/capacitor/adv(null)

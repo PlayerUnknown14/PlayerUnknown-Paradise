@@ -7,7 +7,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_ENGINEERING = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/tcomms/core
+	build_path = /obj/item/circuitboard/machine/tcomms/core
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_TELECOMS)
 
 /datum/design/telecomms_relay
@@ -15,5 +15,5 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_ENGINEERING = 2, RESEARCH_TREE_BLUESPACE = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/tcomms/relay
+	build_path = /obj/item/circuitboard/machine/tcomms/relay
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_TELECOMS)

@@ -58,7 +58,7 @@
 /obj/machinery/power/emitter/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/emitter(null)
+	component_parts += new /obj/item/circuitboard/machine/emitter(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	RefreshParts()

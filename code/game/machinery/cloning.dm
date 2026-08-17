@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 	countdown = new(src)
 
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/clonepod(null)
+	component_parts += new /obj/item/circuitboard/machine/clonepod(null)
 	component_parts += new /obj/item/stock_parts/scanning_module(null)
 	component_parts += new /obj/item/stock_parts/scanning_module(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 /obj/machinery/clonepod/upgraded/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/clonepod(null)
+	component_parts += new /obj/item/circuitboard/machine/clonepod(null)
 	component_parts += new /obj/item/stock_parts/scanning_module/phasic(null)
 	component_parts += new /obj/item/stock_parts/scanning_module/phasic(null)
 	component_parts += new /obj/item/stock_parts/manipulator/pico(null)

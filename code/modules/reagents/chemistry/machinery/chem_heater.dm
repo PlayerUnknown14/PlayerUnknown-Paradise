@@ -28,7 +28,7 @@
 /obj/machinery/chem_heater/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/chem_heater(null)
+	component_parts += new /obj/item/circuitboard/machine/chem_heater(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	RefreshParts()

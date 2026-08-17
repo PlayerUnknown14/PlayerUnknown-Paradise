@@ -1,30 +1,7 @@
 
-
-
-
-
-
-
-
-
-
-
-
-/obj/item/circuitboard/solar_control
-	board_name = "Solar Control"
-	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
-	build_path = /obj/machinery/power/solar_control
-	origin_tech = "programming=2;powerstorage=2"
-
-
-
 /obj/item/circuitboard/broken
 	board_name = "Broken curcuit"
 	build_path = null
-
-
-
-
 
 // Construction | Deconstruction
 #define STATE_EMPTY 1 // Add a circuitboard | Weld to destroy
@@ -269,18 +246,12 @@
 /obj/structure/computerframe/proc/on_construction(obj/machinery/computer/computer)
 	forceMove(computer)
 
-/obj/structure/computerframe/proc/circuit_compatibility_check(obj/item/circuitboard/circuit)
-	return circuit.board_type == "computer"
-
 /obj/structure/computerframe/HONKputer
 	name = "Bananium Computer-frame"
 	icon = 'icons/obj/machines/HONKputer.dmi'
 
 /obj/structure/computerframe/HONKputer/drop_computer_materials(location)
 	new /obj/item/stack/sheet/mineral/bananium(location, 20)
-
-/obj/structure/computerframe/HONKputer/circuit_compatibility_check(obj/item/circuitboard/circuit)
-	return circuit.board_type == "HONKputer"
 
 /obj/structure/computerframe/abductor
 	icon_state = "comp_frame_alien1"

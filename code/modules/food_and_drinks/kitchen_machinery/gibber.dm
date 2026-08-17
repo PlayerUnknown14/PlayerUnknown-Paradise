@@ -333,7 +333,7 @@
 		lturf = turf
 
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/gibber(null)
+	component_parts += new /obj/item/circuitboard/machine/gibber(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	RefreshParts()

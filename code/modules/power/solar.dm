@@ -509,7 +509,7 @@
 		return
 	var/obj/structure/computerframe/A = new (loc)
 	A.add_fingerprint(user)
-	var/obj/item/circuitboard/solar_control/M = new(A)
+	var/obj/item/circuitboard/computer/solar_control/M = new(A)
 	M.add_fingerprint(user)
 	for(var/obj/C in src)
 		C.forceMove(loc)

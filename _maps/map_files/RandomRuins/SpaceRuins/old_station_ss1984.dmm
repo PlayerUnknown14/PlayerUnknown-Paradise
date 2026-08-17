@@ -937,7 +937,7 @@
 /turf/template_noop,
 /area/template_noop)
 "do" = (
-/obj/item/circuitboard/sleeper,
+/obj/item/circuitboard/machine/sleeper,
 /turf/simulated/floor/plasteel/airless{
 	dir = 1;
 	icon_state = "whiteblue"
@@ -5939,7 +5939,7 @@
 /area/template_noop)
 "vn" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/smes/vintage,
+/obj/item/circuitboard/machine/smes/vintage,
 /obj/machinery/constructable_frame/machine_frame,
 /obj/item/stock_parts/cell/upgraded,
 /obj/item/stock_parts/cell/upgraded,
@@ -6648,7 +6648,7 @@
 /obj/item/ammo_box/magazine/enforcer/lethal,
 /obj/item/ammo_box/magazine/enforcer,
 /obj/item/ammo_box/magazine/enforcer,
-/obj/item/circuitboard/holopad,
+/obj/item/circuitboard/machine/holopad,
 /obj/item/gun/projectile/automatic/pistol/enforcer{
 	desc = "Rare weapon, engraving reads: Command with style! To the best captain of NRS ABOTC.";
 	name = "Glock 25"
@@ -12414,7 +12414,7 @@
 "Sq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/constructable_frame/machine_frame,
-/obj/item/circuitboard/pacman/super,
+/obj/item/circuitboard/machine/pacman/super,
 /obj/item/broken_device,
 /obj/structure/cable/orange{
 	icon_state = "0-4"
@@ -12577,7 +12577,7 @@
 /area/ruin/space/ancientstation/charlie_comm)
 "Te" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/smes/vintage,
+/obj/item/circuitboard/machine/smes/vintage,
 /obj/machinery/constructable_frame/machine_frame,
 /obj/item/stock_parts/cell/upgraded,
 /obj/item/stock_parts/cell/upgraded,
@@ -12885,7 +12885,7 @@
 /area/ruin/space/ancientstation/theta_docks)
 "UE" = (
 /obj/machinery/power/solar,
-/obj/item/circuitboard/solar_control,
+/obj/item/circuitboard/computer/solar_control,
 /turf/simulated/floor/plasteel/airless{
 	icon_state = "solarpanel"
 	},

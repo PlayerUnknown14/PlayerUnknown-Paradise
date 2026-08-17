@@ -52,7 +52,7 @@
 /obj/machinery/seed_extractor/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/seed_extractor(null)
+	component_parts += new /obj/item/circuitboard/machine/seed_extractor(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	RefreshParts()

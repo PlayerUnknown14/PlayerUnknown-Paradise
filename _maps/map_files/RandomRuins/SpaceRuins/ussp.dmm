@@ -2694,7 +2694,7 @@
 /obj/item/clothing/under/retro/engineering,
 /obj/item/clothing/under/retro/engineering,
 /obj/structure/closet,
-/obj/item/circuitboard/smes/vintage,
+/obj/item/circuitboard/machine/smes/vintage,
 /obj/item/multitool,
 /turf/simulated/floor/plasteel{
 	dir = 5;
@@ -9463,7 +9463,7 @@
 	},
 /area/derelict/bridge)
 "Ur" = (
-/obj/item/circuitboard/pacman/super,
+/obj/item/circuitboard/machine/pacman/super,
 /turf/space,
 /area/space)
 "Uw" = (

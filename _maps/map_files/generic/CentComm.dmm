@@ -30739,9 +30739,9 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/circuitboard/quantumpad/syndiepad,
+/obj/item/circuitboard/machine/quantumpad/syndiepad,
 /obj/item/circuitboard/computer/syndicate_teleporter,
-/obj/item/circuitboard/mechfab/syndicate{
+/obj/item/circuitboard/machine/mechfab/syndicate{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -45052,14 +45052,14 @@
 "uym" = (
 /obj/structure/rack/holorack,
 /obj/item/circuitboard/computer/aiupload,
-/obj/item/circuitboard/circuit_imprinter,
+/obj/item/circuitboard/machine/circuit_imprinter,
 /obj/item/circuitboard/computer/communications,
-/obj/item/circuitboard/destructive_analyzer,
-/obj/item/circuitboard/ore_redemption,
+/obj/item/circuitboard/machine/destructive_analyzer,
+/obj/item/circuitboard/machine/ore_redemption,
 /obj/item/circuitboard/computer/mining_shuttle,
 /obj/item/circuitboard/computer/mining_shuttle,
 /obj/item/circuitboard/computer/mining_shuttle,
-/obj/item/circuitboard/protolathe,
+/obj/item/circuitboard/machine/protolathe,
 /obj/structure/window/reinforced{
 	dir = 8
 	},

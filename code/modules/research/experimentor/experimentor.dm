@@ -41,7 +41,7 @@
 	load_handlers()
 
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/experimentor(src)
+	component_parts += new /obj/item/circuitboard/machine/experimentor(src)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 	component_parts += new /obj/item/stock_parts/manipulator(src)

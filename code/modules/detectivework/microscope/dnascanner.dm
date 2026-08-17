@@ -14,7 +14,7 @@
 /obj/machinery/dnaforensics/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/dnaforensics(null)
+	component_parts += new /obj/item/circuitboard/machine/dnaforensics(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)

@@ -165,7 +165,7 @@
 
 /obj/machinery/customat/proc/set_up_components()
 	component_parts = list()
-	var/obj/item/circuitboard/vendor/V = new
+	var/obj/item/circuitboard/machine/vendor/V = new
 	V.set_type(replacetext(initial(name), "\improper", ""))
 	component_parts += V
 	canister = new /obj/item/vending_refill/custom

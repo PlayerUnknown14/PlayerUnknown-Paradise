@@ -7,7 +7,7 @@
 	idle_power_usage = 5
 	active_power_usage = 1000
 	var/mob/occupant = null
-	var/circuitboard = /obj/item/circuitboard/cyborgrecharger
+	var/circuitboard = /obj/item/circuitboard/machine/cyborgrecharger
 	var/recharge_speed
 	var/recharge_speed_nutrition
 	var/repairs
@@ -19,7 +19,7 @@
 /obj/machinery/recharge_station/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/cyborgrecharger(null)
+	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
@@ -30,7 +30,7 @@
 /obj/machinery/recharge_station/ert/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/cyborgrecharger(null)
+	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/capacitor/adv(null)
 	component_parts += new /obj/item/stock_parts/manipulator/femto(null)
@@ -40,7 +40,7 @@
 /obj/machinery/recharge_station/upgraded/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/cyborgrecharger(null)
+	component_parts += new /obj/item/circuitboard/machine/cyborgrecharger(null)
 	component_parts += new /obj/item/stock_parts/capacitor/super(null)
 	component_parts += new /obj/item/stock_parts/capacitor/super(null)
 	component_parts += new /obj/item/stock_parts/manipulator/pico(null)

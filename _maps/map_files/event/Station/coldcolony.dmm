@@ -5265,7 +5265,7 @@
 "bSi" = (
 /obj/item/vending_refill/clothing/science,
 /obj/structure/closet/crate/sci,
-/obj/item/circuitboard/vendor,
+/obj/item/circuitboard/machine/vendor,
 /turf/simulated/floor/plating/asteroid/snow,
 /area/ruin/unpowered/coldcolony_outside)
 "bSq" = (
@@ -13146,11 +13146,11 @@
 /obj/effect/turf_decal/delivery/hollow,
 /obj/machinery/light_switch/directional/north,
 /obj/structure/rack,
-/obj/item/circuitboard/protolathe{
+/obj/item/circuitboard/machine/protolathe{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/circuitboard/autolathe{
+/obj/item/circuitboard/machine/autolathe{
 	pixel_x = -1;
 	pixel_y = 1
 	},
@@ -13158,7 +13158,7 @@
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/circuit_imprinter{
+/obj/item/circuitboard/machine/circuit_imprinter{
 	pixel_x = 5;
 	pixel_y = -5
 	},
@@ -27978,7 +27978,7 @@
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/chem_dispenser{
+/obj/item/circuitboard/machine/chem_dispenser{
 	pixel_x = 5;
 	pixel_y = -5
 	},
@@ -30205,7 +30205,7 @@
 /obj/structure/flora/grass/brown,
 /obj/item/vending_refill/pai,
 /obj/structure/closet/crate/sci,
-/obj/item/circuitboard/vendor,
+/obj/item/circuitboard/machine/vendor,
 /turf/simulated/floor/plating/asteroid/snow,
 /area/ruin/unpowered/coldcolony_outside)
 "ljE" = (
@@ -30780,7 +30780,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/engineering,
-/obj/item/circuitboard/chem_master,
+/obj/item/circuitboard/machine/chem_master,
 /obj/item/circuitboard/computer/pandemic,
 /obj/item/stack/sheet/metal{
 	amount = 14
@@ -35882,7 +35882,7 @@
 	},
 /area/coldcolony/malta/medical/medbay)
 "nxi" = (
-/obj/item/circuitboard/pacman,
+/obj/item/circuitboard/machine/pacman,
 /obj/structure/cable,
 /obj/machinery/constructable_frame/machine_frame,
 /turf/simulated/floor/plating,
@@ -38213,7 +38213,7 @@
 /area/coldcolony/malta/maintenance/medbay)
 "onl" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/bodyscanner,
+/obj/item/circuitboard/machine/bodyscanner,
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/item/tank/internals/generic,
@@ -39531,9 +39531,9 @@
 /obj/item/stock_parts/matter_bin,
 /obj/item/stock_parts/matter_bin,
 /obj/item/stock_parts/matter_bin,
-/obj/item/circuitboard/monkey_recycler,
-/obj/item/circuitboard/reagentgrinder,
-/obj/item/circuitboard/processor,
+/obj/item/circuitboard/machine/monkey_recycler,
+/obj/item/circuitboard/machine/reagentgrinder,
+/obj/item/circuitboard/machine/processor,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/xenobiology)
 "oLa" = (
@@ -42229,7 +42229,7 @@
 "pKr" = (
 /obj/structure/closet/crate,
 /obj/item/storage/fancy/donut_box,
-/obj/item/circuitboard/microwave,
+/obj/item/circuitboard/machine/microwave,
 /obj/item/stock_parts/micro_laser,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/hallway)
@@ -45148,7 +45148,7 @@
 /area/coldcolony/malta/maintenance/dormitory)
 "qPJ" = (
 /obj/machinery/constructable_frame/machine_frame,
-/obj/item/circuitboard/biogenerator,
+/obj/item/circuitboard/machine/biogenerator,
 /obj/effect/mapping_helpers/turfs/damage,
 /obj/item/stock_parts/manipulator,
 /obj/effect/decal/cleanable/generic,
@@ -47457,7 +47457,7 @@
 /obj/item/stock_parts/manipulator,
 /obj/item/stock_parts/cell/high,
 /obj/item/stack/sheet/glass,
-/obj/item/circuitboard/chem_dispenser,
+/obj/item/circuitboard/machine/chem_dispenser,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/test_chamber)
 "rIV" = (
@@ -49123,10 +49123,10 @@
 /obj/item/vending_refill/snack,
 /obj/item/vending_refill/coffee,
 /obj/item/vending_refill/cola,
-/obj/item/circuitboard/vendor,
-/obj/item/circuitboard/vendor,
-/obj/item/circuitboard/vendor,
-/obj/item/circuitboard/vendor,
+/obj/item/circuitboard/machine/vendor,
+/obj/item/circuitboard/machine/vendor,
+/obj/item/circuitboard/machine/vendor,
+/obj/item/circuitboard/machine/vendor,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/hallway)
 "ssa" = (

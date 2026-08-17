@@ -929,7 +929,7 @@
 	id = "vendor"
 	build_type = AUTOLATHE
 	materials = list(MAT_GLASS = 750, MAT_METAL = 250)
-	build_path = /obj/item/circuitboard/vendor
+	build_path = /obj/item/circuitboard/machine/vendor
 	category = list(PRINTER_CATEGORY_INITIAL, AUTOLATHE_CATEGORY_ELECTRONICS)
 
 /datum/design/mirror

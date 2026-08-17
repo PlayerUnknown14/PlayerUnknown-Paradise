@@ -62,7 +62,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/circuit_imprinter(null)
+	component_parts += new /obj/item/circuitboard/machine/circuit_imprinter(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/reagent_containers/glass/beaker(null)
@@ -70,7 +70,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 /obj/machinery/r_n_d/circuit_imprinter/upgraded/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/circuit_imprinter(null)
+	component_parts += new /obj/item/circuitboard/machine/circuit_imprinter(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/manipulator/pico(null)
 	component_parts += new /obj/item/reagent_containers/glass/beaker/large(null)

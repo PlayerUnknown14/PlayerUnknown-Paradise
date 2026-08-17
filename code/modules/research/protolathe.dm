@@ -53,7 +53,7 @@ Note: Must be placed west/left of and R&D console to function.
 
 /obj/machinery/r_n_d/protolathe/proc/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/protolathe(null)
+	component_parts += new /obj/item/circuitboard/machine/protolathe(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
@@ -63,7 +63,7 @@ Note: Must be placed west/left of and R&D console to function.
 
 /obj/machinery/r_n_d/protolathe/upgraded/init_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/protolathe(null)
+	component_parts += new /obj/item/circuitboard/machine/protolathe(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stock_parts/manipulator/pico(null)

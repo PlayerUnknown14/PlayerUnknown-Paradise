@@ -32625,9 +32625,9 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/clonescanner,
+/obj/item/circuitboard/machine/clonescanner,
 /obj/item/circuitboard/computer/scan_consolenew,
-/obj/item/circuitboard/cryo_tube{
+/obj/item/circuitboard/machine/cryo_tube{
 	pixel_x = 3
 	},
 /obj/machinery/alarm/directional/west,
@@ -32860,7 +32860,7 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/cyborgrecharger{
+/obj/item/circuitboard/machine/cyborgrecharger{
 	pixel_x = -4;
 	pixel_y = -2
 	},
@@ -32868,8 +32868,8 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/circuitboard/mech_recharger,
-/obj/item/circuitboard/mechfab{
+/obj/item/circuitboard/machine/mech_recharger,
+/obj/item/circuitboard/machine/mechfab{
 	pixel_y = 3
 	},
 /turf/simulated/floor/plasteel{
@@ -41985,7 +41985,7 @@
 	name = "Tech Storage Requests Console";
 	pixel_y = -32
 	},
-/obj/item/circuitboard/smes{
+/obj/item/circuitboard/machine/smes{
 	pixel_x = -4;
 	pixel_y = -4
 	},
@@ -41998,7 +41998,7 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/circuitboard/thermomachine{
+/obj/item/circuitboard/machine/thermomachine{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -83320,12 +83320,12 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/circuitboard/autolathe{
+/obj/item/circuitboard/machine/autolathe{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/bodyscanner,
-/obj/item/circuitboard/sleeper{
+/obj/item/circuitboard/machine/bodyscanner,
+/obj/item/circuitboard/machine/sleeper{
 	pixel_x = 3
 	},
 /obj/machinery/status_display{
@@ -88040,15 +88040,15 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/obj/item/circuitboard/chem_dispenser{
+/obj/item/circuitboard/machine/chem_dispenser{
 	pixel_x = 4;
 	pixel_y = 8
 	},
-/obj/item/circuitboard/chem_master{
+/obj/item/circuitboard/machine/chem_master{
 	pixel_x = -4;
 	pixel_y = 10
 	},
-/obj/item/circuitboard/chem_heater{
+/obj/item/circuitboard/machine/chem_heater{
 	pixel_y = 6
 	},
 /obj/item/flash,
@@ -90825,7 +90825,7 @@
 	},
 /area/station/engineering/mechanic_workshop)
 "nWq" = (
-/obj/item/circuitboard/sleeper{
+/obj/item/circuitboard/machine/sleeper{
 	pixel_y = -7
 	},
 /obj/structure/table{
@@ -151698,16 +151698,16 @@
 /obj/item/circuitboard/computer/rdconsole{
 	pixel_x = -4
 	},
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = 4;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/destructive_analyzer,
-/obj/item/circuitboard/protolathe{
+/obj/item/circuitboard/machine/destructive_analyzer,
+/obj/item/circuitboard/machine/protolathe{
 	pixel_x = -2;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/circuit_imprinter{
+/obj/item/circuitboard/machine/circuit_imprinter{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -154707,7 +154707,7 @@
 /area/station/science/break_room)
 "xCJ" = (
 /obj/structure/computerframe,
-/obj/item/circuitboard/bodyscanner,
+/obj/item/circuitboard/machine/bodyscanner,
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
 	},

@@ -36,7 +36,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 /obj/machinery/monkey_recycler/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/monkey_recycler(null)
+	component_parts += new /obj/item/circuitboard/machine/monkey_recycler(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	GLOB.monkey_recyclers += src

@@ -377,7 +377,7 @@
 	component_parts = list()
 	component_parts += new /obj/item/stack/ore/bluespace_crystal/artificial(null)
 	component_parts += new /obj/item/stack/cable_coil(null, 1)
-	component_parts += new /obj/item/circuitboard/computer/roboquest_pad(null)
+	component_parts += new /obj/item/circuitboard/machine/roboquest_pad(null)
 	RefreshParts()
 
 /obj/machinery/roboquest_pad/ComponentInitialize()
@@ -401,7 +401,7 @@
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stack/cable_coil(null, 1)
-	component_parts += new /obj/item/circuitboard/advanced_roboquest_pad(null)
+	component_parts += new /obj/item/circuitboard/machine/advanced_roboquest_pad(null)
 	RefreshParts()
 
 /obj/machinery/roboquest_pad/Destroy()

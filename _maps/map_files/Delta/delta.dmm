@@ -13870,11 +13870,11 @@
 /area/station/maintenance/asmaint4)
 "cXe" = (
 /obj/structure/rack,
-/obj/item/circuitboard/computer/teleporter_hub{
+/obj/item/circuitboard/machine/teleporter_hub{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/computer/teleporter_station,
+/obj/item/circuitboard/machine/teleporter_station,
 /obj/item/circuitboard/computer/teleporter{
 	pixel_x = 3;
 	pixel_y = -3
@@ -32077,11 +32077,11 @@
 "gzh" = (
 /obj/effect/turf_decal/delivery/hollow,
 /obj/structure/rack,
-/obj/item/circuitboard/autolathe{
+/obj/item/circuitboard/machine/autolathe{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/mechfab,
+/obj/item/circuitboard/machine/mechfab,
 /turf/simulated/floor/plasteel{
 	icon_state = "neutralfull"
 	},
@@ -43561,7 +43561,7 @@
 /obj/item/firelock_electronics,
 /obj/item/firealarm_electronics,
 /obj/item/firealarm_electronics,
-/obj/item/circuitboard/sleeper,
+/obj/item/circuitboard/machine/sleeper,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},
@@ -64962,7 +64962,7 @@
 /obj/item/stack/cable_coil{
 	amount = 5
 	},
-/obj/item/circuitboard/pacman,
+/obj/item/circuitboard/machine/pacman,
 /obj/structure/cable,
 /turf/simulated/floor/plating,
 /area/station/maintenance/starboard)
@@ -77507,7 +77507,7 @@
 	},
 /obj/effect/turf_decal/delivery/hollow,
 /obj/item/paper/solar,
-/obj/item/circuitboard/solar_control,
+/obj/item/circuitboard/computer/solar_control,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
@@ -85678,12 +85678,12 @@
 /area/station/hallway/primary/central/north)
 "qmL" = (
 /obj/structure/rack,
-/obj/item/circuitboard/destructive_analyzer{
+/obj/item/circuitboard/machine/destructive_analyzer{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/protolathe,
-/obj/item/circuitboard/circuit_imprinter{
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -103369,7 +103369,7 @@
 	pixel_y = 3
 	},
 /obj/item/circuitboard/computer/rdconsole,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -125198,20 +125198,20 @@
 /area/station/maintenance/electrical)
 "xol" = (
 /obj/structure/rack,
-/obj/item/circuitboard/clonescanner{
+/obj/item/circuitboard/machine/clonescanner{
 	pixel_x = -4;
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/delivery/hollow,
-/obj/item/circuitboard/chem_dispenser{
+/obj/item/circuitboard/machine/chem_dispenser{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/chem_heater{
+/obj/item/circuitboard/machine/chem_heater{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/chem_master{
+/obj/item/circuitboard/machine/chem_master{
 	pixel_x = 5;
 	pixel_y = -5
 	},

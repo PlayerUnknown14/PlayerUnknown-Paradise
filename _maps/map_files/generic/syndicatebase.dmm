@@ -8839,7 +8839,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/circuitboard/quantumpad/syndiepad,
+/obj/item/circuitboard/machine/quantumpad/syndiepad,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"
 	},

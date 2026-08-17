@@ -27,7 +27,7 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/electrolyzer(null)
+	component_parts += new /obj/item/circuitboard/machine/electrolyzer(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)

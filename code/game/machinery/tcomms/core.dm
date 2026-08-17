@@ -62,7 +62,7 @@
 	while(below)
 		reachable_zlevels |= below.z
 		below = GET_TURF_BELOW(below)
-	component_parts += new /obj/item/circuitboard/tcomms/core(null)
+	component_parts += new /obj/item/circuitboard/machine/tcomms/core(null)
 	if(check_power_on())
 		active = TRUE
 	else

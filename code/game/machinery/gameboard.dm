@@ -11,7 +11,7 @@
 /obj/machinery/gameboard/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/gameboard(null)
+	component_parts += new /obj/item/circuitboard/machine/gameboard(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stack/cable_coil(null, 3)
 	component_parts += new /obj/item/stack/sheet/glass(null, 1)

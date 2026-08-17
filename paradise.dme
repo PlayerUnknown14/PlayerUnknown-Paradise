@@ -4123,6 +4123,8 @@
 #include "code\modules\research\experimentor\experiments.dm"
 #include "code\modules\research\experimentor\relics.dm"
 #include "code\modules\research\experimentor\wires.dm"
+#include "code\modules\research\stock_parts\stock_part_datum.dm"
+#include "code\modules\research\stock_parts\stock_parts.dm"
 #include "code\modules\research\xenobiology\xenobio_camera.dm"
 #include "code\modules\research\xenobiology\xenobiology.dm"
 #include "code\modules\response_team\_ert.dm"

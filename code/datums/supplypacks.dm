@@ -1781,7 +1781,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller
-		/obj/item/circuitboard/solar_control,
+		/obj/item/circuitboard/computer/solar_control,
 		/obj/item/tracker_electronics,
 		/obj/item/paper/solar,
 	)
@@ -2835,7 +2835,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 /datum/supply_packs/medical/cloning
 	name = "Платы клонировальной машины"
 	contains = list(
-		/obj/item/circuitboard/clonepod,
+		/obj/item/circuitboard/machine/clonepod,
 		/obj/item/circuitboard/computer/cloning,
 	)
 	cost = 350
@@ -3900,8 +3900,8 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 	name = "Набор для создания бара"
 	contains = list(
 		/obj/item/storage/box/drinkingglasses,
-		/obj/item/circuitboard/chem_dispenser/soda,
-		/obj/item/circuitboard/chem_dispenser/beer,
+		/obj/item/circuitboard/machine/chem_dispenser/soda,
+		/obj/item/circuitboard/machine/chem_dispenser/beer,
 	)
 	cost = 25
 	containername = "ящик с набором для создания бара"
@@ -3936,7 +3936,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 
 /datum/supply_packs/organic/standard_coffeemachine
 	name = "Плата кофемашины \"Моделло 3\""
-	contains = list(/obj/item/circuitboard/coffeemaker/standard)
+	contains = list(/obj/item/circuitboard/machine/coffeemaker/standard)
 	cost = 35
 	containername = "ящик с кофемашиной \"Моделло 3\""
 	container_ru_names = alist(
@@ -3950,7 +3950,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 
 /datum/supply_packs/organic/impressa_coffeemachine
 	name = "Плата кофемашины \"Импресса Моделло 5\""
-	contains = list(/obj/item/circuitboard/coffeemaker/impressa)
+	contains = list(/obj/item/circuitboard/machine/coffeemaker/impressa)
 	cost = 60
 	containername = "ящик с кофемашиной \"Импресса Моделло 5\""
 	container_ru_names = alist(
@@ -5042,7 +5042,7 @@ GLOBAL_LIST_INIT(all_supply_groups, list(SUPPLY_EMERGENCY,SUPPLY_SECURITY,SUPPLY
 	name = "Набор PlasmaMate"
 	contains = list(
 		/obj/item/vending_refill/plasma,
-		/obj/item/circuitboard/vendor/plasmamate,
+		/obj/item/circuitboard/machine/vendor/plasmamate,
 	)
 	cost = 100
 	containername = "ящик с набором PlasmaMate"

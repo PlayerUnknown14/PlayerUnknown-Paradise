@@ -42,7 +42,7 @@
 	. = ..()
 	GLOB.syndiepads += src
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/quantumpad/syndiepad(null)
+	component_parts += new /obj/item/circuitboard/machine/quantumpad/syndiepad(null)
 	component_parts += new /obj/item/stack/telecrystal(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)

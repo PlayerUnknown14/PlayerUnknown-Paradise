@@ -2074,11 +2074,11 @@
 	pixel_x = -1;
 	pixel_y = -1
 	},
-/obj/item/circuitboard/bodyscanner{
+/obj/item/circuitboard/machine/bodyscanner{
 	pixel_x = -3;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/sleeper{
+/obj/item/circuitboard/machine/sleeper{
 	pixel_x = -5;
 	pixel_y = 3
 	},
@@ -2374,7 +2374,7 @@
 /area/mine/production)
 "tb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/circuitboard/mech_recharger,
+/obj/item/circuitboard/machine/mech_recharger,
 /obj/item/stock_parts/capacitor,
 /obj/item/stock_parts/capacitor,
 /turf/simulated/floor/mech_bay_recharge_floor,

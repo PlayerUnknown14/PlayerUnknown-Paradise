@@ -105,7 +105,7 @@
 
 	var/sheet_name = "Plasma Sheets"
 	var/sheet_path = /obj/item/stack/sheet/mineral/plasma
-	var/board_path = /obj/item/circuitboard/pacman
+	var/board_path = /obj/item/circuitboard/machine/pacman
 
 	/*
 		These values were chosen so that the generator can run safely up to 80 kW
@@ -418,7 +418,7 @@
 	sheet_path = /obj/item/stack/sheet/mineral/uranium
 	sheet_name = "Uranium Sheets"
 	time_per_sheet = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
-	board_path = /obj/item/circuitboard/pacman/super
+	board_path = /obj/item/circuitboard/machine/pacman/super
 
 /obj/machinery/power/port_gen/pacman/super/upgraded/Initialize(mapload)
 	. = ..()
@@ -457,7 +457,7 @@
 	time_per_sheet = 576
 	max_temperature = 800
 	temperature_gain = 90
-	board_path = /obj/item/circuitboard/pacman/mrs
+	board_path = /obj/item/circuitboard/machine/pacman/mrs
 
 /obj/machinery/power/port_gen/pacman/mrs/upgraded/Initialize(mapload)
 	. = ..()

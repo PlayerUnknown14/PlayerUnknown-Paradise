@@ -54,7 +54,7 @@
 	. = ..()
 	update_icon(UPDATE_ICON_STATE)
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/minesweeper(null)
+	component_parts += new /obj/item/circuitboard/machine/minesweeper(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stack/cable_coil(null, 5)
@@ -130,7 +130,7 @@
 	mode = MINESWEEPER_16X16
 	switch_mode(mode)
 	emagged = TRUE
-	var/obj/circuit = locate(/obj/item/circuitboard/minesweeper) in component_parts
+	var/obj/circuit = locate(/obj/item/circuitboard/machine/minesweeper) in component_parts
 	component_parts -= circuit
 
 /obj/machinery/arcade/minesweeper/power_change(forced = FALSE)

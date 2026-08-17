@@ -1020,9 +1020,9 @@
 	desc = "A box containing a gift for worthy golems."
 
 /obj/item/storage/box/rndboards/populate_contents()
-	new /obj/item/circuitboard/protolathe(src)
-	new /obj/item/circuitboard/destructive_analyzer(src)
-	new /obj/item/circuitboard/circuit_imprinter(src)
+	new /obj/item/circuitboard/machine/protolathe(src)
+	new /obj/item/circuitboard/machine/destructive_analyzer(src)
+	new /obj/item/circuitboard/machine/circuit_imprinter(src)
 	new /obj/item/circuitboard/computer/rdconsole/public(src)
 
 /obj/item/storage/box/stockparts/basic //for ruins where it's a bad idea to give access to an autolathe/protolathe, but still want to make stock parts accessible

@@ -63,7 +63,7 @@
 	. = ..()
 	initialize_directions = dir
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/cryo_tube(null)
+	component_parts += new /obj/item/circuitboard/machine/cryo_tube(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
@@ -75,7 +75,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/upgraded/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/cryo_tube(null)
+	component_parts += new /obj/item/circuitboard/machine/cryo_tube(null)
 	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)

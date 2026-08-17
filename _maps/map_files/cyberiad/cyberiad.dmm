@@ -28966,7 +28966,7 @@
 	pixel_y = 3
 	},
 /obj/item/circuitboard/computer/rdconsole,
-/obj/item/circuitboard/rdserver{
+/obj/item/circuitboard/machine/rdserver{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -29487,11 +29487,11 @@
 /area/station/maintenance/apmaint)
 "cyv" = (
 /obj/structure/rack,
-/obj/item/circuitboard/computer/teleporter_hub{
+/obj/item/circuitboard/machine/teleporter_hub{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/computer/teleporter_station,
+/obj/item/circuitboard/machine/teleporter_station,
 /obj/item/circuitboard/computer/teleporter{
 	pixel_x = 3;
 	pixel_y = -3
@@ -30135,7 +30135,7 @@
 	},
 /area/station/maintenance/engineering)
 "cBt" = (
-/obj/item/circuitboard/vendor{
+/obj/item/circuitboard/machine/vendor{
 	pixel_x = 11;
 	pixel_y = -9
 	},
@@ -41807,20 +41807,20 @@
 /area/station/maintenance/apmaint)
 "dVk" = (
 /obj/structure/rack,
-/obj/item/circuitboard/clonescanner{
+/obj/item/circuitboard/machine/clonescanner{
 	pixel_x = -4;
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/delivery/hollow,
-/obj/item/circuitboard/chem_dispenser{
+/obj/item/circuitboard/machine/chem_dispenser{
 	pixel_x = -1;
 	pixel_y = 1
 	},
-/obj/item/circuitboard/chem_heater{
+/obj/item/circuitboard/machine/chem_heater{
 	pixel_x = 2;
 	pixel_y = -2
 	},
-/obj/item/circuitboard/chem_master{
+/obj/item/circuitboard/machine/chem_master{
 	pixel_x = 5;
 	pixel_y = -5
 	},
@@ -46577,12 +46577,12 @@
 /area/station/science/toxins/mixing)
 "fUK" = (
 /obj/structure/rack,
-/obj/item/circuitboard/destructive_analyzer{
+/obj/item/circuitboard/machine/destructive_analyzer{
 	pixel_x = -3;
 	pixel_y = 3
 	},
-/obj/item/circuitboard/protolathe,
-/obj/item/circuitboard/circuit_imprinter{
+/obj/item/circuitboard/machine/protolathe,
+/obj/item/circuitboard/machine/circuit_imprinter{
 	pixel_x = 3;
 	pixel_y = -3
 	},
@@ -61857,11 +61857,11 @@
 "lYU" = (
 /obj/effect/turf_decal/delivery/hollow,
 /obj/structure/rack,
-/obj/item/circuitboard/autolathe{
+/obj/item/circuitboard/machine/autolathe{
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/circuitboard/mechfab,
+/obj/item/circuitboard/machine/mechfab,
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plasteel{
 	dir = 9;
@@ -76688,10 +76688,10 @@
 	pixel_y = 32
 	},
 /obj/structure/rack,
-/obj/item/circuitboard/vendor{
+/obj/item/circuitboard/machine/vendor{
 	pixel_y = 6
 	},
-/obj/item/circuitboard/vendor,
+/obj/item/circuitboard/machine/vendor,
 /obj/machinery/door/window/westright{
 	dir = 2
 	},
@@ -78261,7 +78261,7 @@
 	},
 /obj/effect/turf_decal/delivery/hollow,
 /obj/item/paper/solar,
-/obj/item/circuitboard/solar_control,
+/obj/item/circuitboard/computer/solar_control,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
@@ -79466,7 +79466,7 @@
 /obj/structure/cable,
 /obj/structure/safe/floor,
 /obj/item/vending_refill/robotics,
-/obj/item/circuitboard/vendor,
+/obj/item/circuitboard/machine/vendor,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1

@@ -140,7 +140,7 @@
 /obj/machinery/reagentgrinder/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/reagentgrinder(null)
+	component_parts += new /obj/item/circuitboard/machine/reagentgrinder(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
 	component_parts += new /obj/item/stock_parts/matter_bin(null)

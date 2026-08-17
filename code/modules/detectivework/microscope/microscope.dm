@@ -17,7 +17,7 @@
 /obj/machinery/microscope/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/microscope(null)
+	component_parts += new /obj/item/circuitboard/machine/microscope(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stack/sheet/glass(null)
 

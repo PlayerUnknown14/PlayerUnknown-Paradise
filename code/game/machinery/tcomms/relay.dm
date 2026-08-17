@@ -40,7 +40,7 @@
  */
 /obj/machinery/tcomms/relay/Initialize(mapload)
 	. = ..()
-	component_parts += new /obj/item/circuitboard/tcomms/relay(null)
+	component_parts += new /obj/item/circuitboard/machine/tcomms/relay(null)
 	if(check_power_on())
 		active = TRUE
 	else

@@ -902,7 +902,7 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller
-		/obj/item/circuitboard/solar_control,
+		/obj/item/circuitboard/computer/solar_control,
 		/obj/item/tracker_electronics,
 		/obj/item/paper/solar,
 	)
@@ -1278,7 +1278,7 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 /datum/syndie_supply_packs/medical/cloning
 	name = "Cloning Kit Crate"
 	contains = list(
-		/obj/item/circuitboard/clonepod,
+		/obj/item/circuitboard/machine/clonepod,
 		/obj/item/circuitboard/computer/cloning,
 	)
 	cost = 9000
@@ -1433,7 +1433,7 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 /datum/syndie_supply_packs/science/syndie_exosuit_fabricator_circuit
 	name = "Syndicate Exosuit Fabricator Crate"
 	contains = list(
-		/obj/item/circuitboard/mechfab/syndicate,
+		/obj/item/circuitboard/machine/mechfab/syndicate,
 	)
 	cost = 250000
 	containertype = /obj/structure/closet/crate/secure/syndicate
@@ -1487,9 +1487,9 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 /datum/syndie_supply_packs/science/syndiepad
 	name = "Syndicate Quantumpad's Circuit Crate"
 	contains = list(
-		/obj/item/circuitboard/quantumpad/syndiepad,
-		/obj/item/circuitboard/quantumpad/syndiepad,
-		/obj/item/circuitboard/quantumpad/syndiepad,
+		/obj/item/circuitboard/machine/quantumpad/syndiepad,
+		/obj/item/circuitboard/machine/quantumpad/syndiepad,
+		/obj/item/circuitboard/machine/quantumpad/syndiepad,
 	)
 	cost = 4500
 	containertype = /obj/structure/closet/crate/secure/syndicate
@@ -1645,8 +1645,8 @@ GLOBAL_LIST_INIT(all_syndie_supply_groups, list(SYNDIE_SUPPLY_EMERGENCY,SYNDIE_S
 	name = "Bar Starter Kit"
 	contains = list(
 		/obj/item/storage/box/drinkingglasses,
-		/obj/item/circuitboard/chem_dispenser/soda,
-		/obj/item/circuitboard/chem_dispenser/beer,
+		/obj/item/circuitboard/machine/chem_dispenser/soda,
+		/obj/item/circuitboard/machine/chem_dispenser/beer,
 	)
 	cost = 200
 	containername = "beer starter kit"

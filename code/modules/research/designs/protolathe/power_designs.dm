@@ -52,7 +52,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 2, RESEARCH_TREE_PLASMA = 3, RESEARCH_TREE_POWERSTORAGE = 3, RESEARCH_TREE_ENGINEERING = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/pacman
+	build_path = /obj/item/circuitboard/machine/pacman
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/mrspacman
@@ -60,7 +60,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_POWERSTORAGE = 5, RESEARCH_TREE_ENGINEERING = 5, RESEARCH_TREE_PLASMA = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/pacman/mrs
+	build_path = /obj/item/circuitboard/machine/pacman/mrs
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/superpacman
@@ -68,7 +68,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_POWERSTORAGE = 4, RESEARCH_TREE_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/pacman/super
+	build_path = /obj/item/circuitboard/machine/pacman/super
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/tesla_coil
@@ -76,7 +76,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_POWERSTORAGE = 3, RESEARCH_TREE_MAGNETS = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/tesla_coil
+	build_path = /obj/item/circuitboard/machine/tesla_coil
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/grounding_rod
@@ -84,7 +84,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_POWERSTORAGE = 3, RESEARCH_TREE_MAGNETS = 3, RESEARCH_TREE_PLASMA = 2)
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/grounding_rod
+	build_path = /obj/item/circuitboard/machine/grounding_rod
 	category = list(
 		CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING,
 	)
@@ -96,7 +96,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 3, RESEARCH_TREE_MATERIALS = 5, RESEARCH_TREE_MAGNETS = 5, RESEARCH_TREE_PLASMA = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GOLD = 1000, MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/nuclear_centrifuge
+	build_path = /obj/item/circuitboard/machine/nuclear_centrifuge
 	category = list("Power", CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/rod_fabricator
@@ -104,7 +104,7 @@
 	req_tech = list(RESEARCH_TREE_PROGRAMMING = 5, RESEARCH_TREE_MATERIALS = 5, RESEARCH_TREE_MAGNETS = 4, RESEARCH_TREE_PLASMA = 3)
 	build_type = IMPRINTER
 	materials = list(MAT_GOLD = 1000, MAT_GLASS = 1000)
-	build_path = /obj/item/circuitboard/nuclear_rod_fabricator
+	build_path = /obj/item/circuitboard/machine/nuclear_rod_fabricator
 	category = list(PROTOLATHE_CATEGORY_POWER, CIRCUIT_IMPRINTER_CATEGORY_ENGINEERING)
 
 /datum/design/nuclear_gas_node

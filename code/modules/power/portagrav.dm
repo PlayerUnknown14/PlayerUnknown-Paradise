@@ -38,7 +38,7 @@
 	if(mapload)
 		cell = new /obj/item/stock_parts/cell/high(src)
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/portagrav(null)
+	component_parts += new /obj/item/circuitboard/machine/portagrav(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/capacitor(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
