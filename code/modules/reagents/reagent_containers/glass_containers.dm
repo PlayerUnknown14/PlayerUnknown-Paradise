@@ -159,6 +159,9 @@
 	)
 	AddElement(/datum/element/connect_loc, loc_connections)
 
+/obj/item/reagent_containers/glass/beaker/get_part_rating()
+	return reagents.maximum_volume
+
 /obj/item/reagent_containers/glass/beaker/examine(mob/user)
 	. = ..()
 	if(assembly)

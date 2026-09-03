@@ -1571,3 +1571,7 @@ GLOBAL_DATUM_INIT(fire_overlay, /mutable_appearance, mutable_appearance('icons/g
 	if(ismob(loc))
 		var/mob/mob_loc = loc
 		mob_loc.update_clothing(slot_flags)
+
+/// Returns a numeric value for sorting items used as parts in machines, so they can be replaced by the rped
+/obj/item/proc/get_part_rating()
+	return 0

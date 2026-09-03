@@ -20,6 +20,9 @@
 	pixel_x = base_pixel_x + rand(-5, 5)
 	pixel_y = base_pixel_y + rand(-5, 5)
 
+/obj/item/stack/ore/bluespace_crystal/get_part_rating()
+	return 1
+
 /obj/item/stack/ore/bluespace_crystal/attack_self(mob/user)
 	if(do_after(user, 1 SECONDS, user))
 		var/mob/living/carbon/human/bs_user = user
