@@ -1720,7 +1720,6 @@
 #include "code\game\objects\items\circuitboard\computers.dm"
 #include "code\game\objects\items\circuitboard\drones.dm"
 #include "code\game\objects\items\circuitboard\machines.dm"
-#include "code\game\objects\items\circuitboard\computer_boards\camera.dm"
 #include "code\game\objects\items\devices\aicard.dm"
 #include "code\game\objects\items\devices\airlock_painter.dm"
 #include "code\game\objects\items\devices\autopsy.dm"
