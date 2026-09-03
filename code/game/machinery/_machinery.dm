@@ -400,23 +400,26 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/proc/default_change_direction_wrench(mob/user, obj/item/I)
-	add_fingerprint(user)
-	if(I.tool_behaviour != TOOL_WRENCH)
-		return FALSE
-	if(!I.use_tool(src, user, 0, volume = 0))
-		return FALSE
-	if(panel_open)
-		setDir(turn(dir,-90))
-		to_chat(user, span_notice("You rotate [src]."))
-		I.play_tool_sound(user, I.tool_volume)
-		return TRUE
-	return FALSE
+/**
+ * Default method of rotating a machine with a wrench
+ * Requires panel to be opened to work.
+ *
+ * * user - The mob using the wrench
+ * * wrench - The wrench being used to rotate the machine
+ * You do not have to assert the wrench is a wrench, it is checked for you.
+ *
+ * Returns NONE on failure
+ * Returns ITEM_INTERACT_SUCCESS on success
+ */
+/obj/machinery/proc/default_change_direction_wrench(mob/user, obj/item/wrench)
+	if(!panel_open || wrench.tool_behaviour != TOOL_WRENCH)
+		return NONE
 
-/obj/machinery/default_unfasten_wrench(mob/user, obj/item/I, time)
-	. = ..()
-	if(.)
-		power_change()
+	wrench.play_tool_sound(src, 50)
+	setDir(turn(dir,-90))
+	to_chat(user, span_notice("You rotate [src]."))
+	SEND_SIGNAL(src, COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH, user, wrench)
+	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/attackby(obj/item/item, mob/living/user, list/modifiers)
 	if(has_prints() && !(istype(item, /obj/item/detective_scanner)))

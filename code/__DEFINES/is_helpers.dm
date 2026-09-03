@@ -232,6 +232,11 @@ GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 #define iscyborgmobilitymodule(O) (istype(O, /obj/item/borg/destroyer/mobility))
 
 //Turfs
+#define isindestructiblefloor(A) (istype(A, /turf/simulated/floor/indestructible))
+
+/// Can this turf have machines anchored to it
+#define is_anchorable_floor(A) (isfloorturf(A) || isindestructiblefloor(A))
+
 #define issimulatedturf(A) (istype(A, /turf/simulated))
 
 #define isspaceturf(A) (istype(A, /turf/space))

@@ -6,6 +6,8 @@
 #define COMSIG_MACHINERY_POWER_LOST "machinery_power_lost"
 ///from base power_change() when power is restored
 #define COMSIG_MACHINERY_POWER_RESTORED "machinery_power_restored"
+///from /obj/machinery/default_change_direction_wrench: (mob/user, obj/item/wrench)
+#define COMSIG_MACHINERY_DEFAULT_ROTATE_WRENCH "machinery_default_rotate_wrench"
 
 // obj/machinery/door_timer signals
 ///from obj/machinery/door_timer/timer_start(): (/mob/living/target, crimes, duration_min)

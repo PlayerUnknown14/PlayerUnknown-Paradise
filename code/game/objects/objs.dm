@@ -52,6 +52,9 @@
 	/// Icon to use as a 32x32 preview in crafting menus and such
 	var/icon_preview
 	var/icon_state_preview
+	/// The vertical pixel_z offset applied when the object is anchored on a tile with table
+	/// Ignored when set to 0 - to avoid shifting directional wall-mounted objects above tables
+	var/anchored_tabletop_offset = 0
 
 	/// Is this object emagged?
 	var/emagged = FALSE
@@ -241,23 +244,62 @@
 		update_icon()
 	return TRUE
 
-/obj/proc/default_unfasten_wrench(mob/user, obj/item/I, time = 20)
-	add_fingerprint(user)
-	if(!anchored && !isfloorturf(loc))
-		user.visible_message(span_warning("A floor must be present to secure [src]!"))
+/// If we can unwrench this object; returns SUCCESSFUL_UNFASTEN and FAILED_UNFASTEN, which are both TRUE, or CANT_UNFASTEN, which isn't.
+/obj/proc/can_be_unfasten_wrench(mob/user, silent)
+	if(!is_anchorable_floor(loc) && !anchored)
+		if(!silent)
+			to_chat(user, span_warning("[src] needs to be on the floor to be secured!"))
+		return FAILED_UNFASTEN
+	return SUCCESSFUL_UNFASTEN
+
+/// Try to unwrench an object in a WONDERFUL DYNAMIC WAY
+/obj/proc/default_unfasten_wrench(mob/user, obj/item/wrench, time = 2 SECONDS)
+	if(wrench.tool_behaviour != TOOL_WRENCH)
+		return CANT_UNFASTEN
+
+	var/turf/ground = get_turf(src)
+	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
+		to_chat(user, span_notice("You fail to secure [src]."))
+		return CANT_UNFASTEN
+	var/can_be_unfasten = can_be_unfasten_wrench(user)
+	if(!can_be_unfasten || can_be_unfasten == FAILED_UNFASTEN)
+		return can_be_unfasten
+	if(time)
+		to_chat(user, span_notice("You begin [anchored ? "un" : ""]securing [src]..."))
+	wrench.play_tool_sound(src, 50)
+	var/prev_anchored = anchored
+	CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
+	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
+	if(!wrench.use_tool(src, user, time * construction_mod, extra_checks = CALLBACK(src, PROC_REF(unfasten_wrench_check), prev_anchored, user)))
+		return FAILED_UNFASTEN
+	if(!anchored && ground.is_blocked_turf(exclude_mobs = TRUE, source_atom = src))
+		to_chat(user, span_notice("You fail to secure [src]."))
+		return CANT_UNFASTEN
+	to_chat(user, span_notice("You [anchored ? "un" : ""]secure [src]."))
+	set_anchored(!anchored)
+	check_on_table()
+	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
+	return SUCCESSFUL_UNFASTEN
+
+/// For the do_after, this checks if unfastening conditions are still valid
+/obj/proc/unfasten_wrench_check(prev_anchored, mob/user)
+	if(anchored != prev_anchored)
 		return FALSE
-	if(I.tool_behaviour != TOOL_WRENCH)
+	if(can_be_unfasten_wrench(user, TRUE) != SUCCESSFUL_UNFASTEN) //if we aren't explicitly successful, cancel the fuck out
 		return FALSE
-	if(!I.tool_use_check(user, 0))
-		return FALSE
-	if(!(obj_flags & NODECONSTRUCT))
-		CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-		to_chat(user, span_notice("Now [anchored ? "un" : ""]securing [name]."))
-		if(I.use_tool(src, user, time * construction_mod, volume = I.tool_volume))
-			to_chat(user, span_notice("You've [anchored ? "un" : ""]secured [name]."))
-			set_anchored(!anchored)
-		return TRUE
-	return FALSE
+	return TRUE
+
+/// Adjusts the vertical pixel_z offset when the object is anchored on a tile with table
+/obj/proc/check_on_table()
+	if(anchored_tabletop_offset == 0)
+		return
+	if(istype(src, /obj/structure/table))
+		return
+
+	if(anchored && locate(/obj/structure/table) in loc)
+		pixel_z = anchored_tabletop_offset
+	else
+		pixel_z = initial(pixel_z)
 
 /obj/water_act(volume, temperature, source, method = REAGENT_TOUCH)
 	. = ..()
