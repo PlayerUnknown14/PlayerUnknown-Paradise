@@ -1517,6 +1517,7 @@
 #include "code\game\machinery\computer\cloning.dm"
 #include "code\game\machinery\computer\communications.dm"
 #include "code\game\machinery\computer\crew.dm"
+#include "code\game\machinery\computer\decorative_frames.dm"
 #include "code\game\machinery\computer\depot.dm"
 #include "code\game\machinery\computer\HolodeckControl.dm"
 #include "code\game\machinery\computer\honkputer.dm"

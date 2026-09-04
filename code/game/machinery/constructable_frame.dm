@@ -1,323 +1,216 @@
 /obj/structure/frame
-	name = "machine frame"
+	name = "frame"
+	desc = "A generic looking construction frame. One day this will be something greater."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
+	base_icon_state = "box_"
 	density = TRUE
-	anchored = TRUE
-	use_power = NO_POWER_USE
 	max_integrity = 250
-	board_type = /obj/item/circuitboard/machine
-	/// List of all compnents inside the frame contributing to its construction
-	var/list/components
-	/// List of all components required to construct the frame
-	var/list/req_components
-	/// User-friendly list of names of required components
-	var/list/req_component_names
+	/// What board do we accept.
+	var/board_type = /obj/item/circuitboard
+	/// Reference to the circuit inside the frame.
+	VAR_FINAL/obj/item/circuitboard/machine/circuit
+	/// The current (de/con)struction state of the frame.
+	var/state = FRAME_STATE_EMPTY
 
-/obj/structure/frame/deconstruct(disassembled = TRUE)
-	if(!(obj_flags & NODECONSTRUCT))
-		new /obj/item/stack/sheet/metal(loc, 5)
-		if(state >= 2)
-			new /obj/item/stack/cable_coil(loc, 5)
-		if(circuit)
-			circuit.forceMove(loc)
-			circuit = null
+/obj/structure/frame/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_ICON_STATE)
+
+/obj/structure/frame/examine(user)
+	. = ..()
+	. += span_notice("Слот для печатной платы:")
+	if(circuit)
+		. += span_notice("- [circuit.get_examine_icon()]")
+
+/obj/structure/frame/CanAllowThrough(atom/movable/mover, border_dir)
+	if(isprojectile(mover))
+		return TRUE
 	return ..()
 
-/obj/structure/frame/obj_break(damage_flag)
-	deconstruct()
+/obj/structure/frame/atom_deconstruct(disassembled = TRUE)
+	var/atom/movable/drop_loc = drop_location()
+	new /obj/item/stack/sheet/metal(drop_loc, 5)
+	circuit?.forceMove(drop_loc)
 
-/obj/structure/frame/proc/update_lists(list/circuit_components)
-	req_components = circuit_components.Copy()
-	components = list()
-	req_component_names = list()
-	for(var/atom/path as anything in req_components)
-		req_component_names[path] = initial(path.name)
+/// Called when circuit has been set to a new board
+/obj/structure/frame/proc/circuit_added(obj/item/circuitboard/added)
+	return
 
-/obj/structure/frame/proc/get_req_components_amt()
-	var/amt = 0
-	for(var/path in req_components)
-		amt += req_components[path]
-	return amt
+/// Called when circuit has been removed from the frame
+/obj/structure/frame/proc/circuit_removed(obj/item/circuitboard/removed)
+	return
 
-/obj/structure/frame/proc/get_req_desc()
-	. = ""
-
-	if(!req_components || !req_component_names)
-		return
-
-	var/hasContent = FALSE
-	var/components_len = length(req_components)
-	. = "<span class='notice'>Required components:"
-	for(var/i = 1 to components_len)
-		var/tname = req_components[i]
-		var/amt = req_components[tname]
-		if(!amt)
-			continue
-		var/use_and = (i == components_len)
-		. += "[(hasContent ? (use_and ? ", and" : ",") : "")] <b>[amt]</b> [amt == 1 ? req_component_names[tname] : "[req_component_names[tname]]\s"]"
-		hasContent = TRUE
-
-	if(hasContent)
-		. += ".</span>"
-	else
-		. = span_notice("Does not require any more components.")
-
-/obj/structure/frame/machine/examine(mob/user)
+/obj/structure/frame/Exited(atom/movable/gone, direction)
 	. = ..()
-	. += span_notice("It is [anchored ? "<b>bolted</b> to the floor" : "<b>unbolted</b>"].")
-	switch(state)
-		if(STATE_EMPTY)
-			. += span_notice("The frame is constructed, but it is missing a <i>wiring</i>.")
-		if(STATE_WIRED)
-			. += span_notice("The frame is <b>wired</b>, but it is missing a <i>circuit board</i>")
-		if(STATE_COMPONENTS)
-			var/required = get_req_desc()
-			if(required)
-				. += required
-
-/obj/structure/frame/machine/update_icon_state()
-	switch(state)
-		if(STATE_EMPTY)
-			icon_state = "box_0"
-		if(STATE_WIRED)
-			icon_state = "box_1"
-		if(STATE_COMPONENTS)
-			icon_state = "box_2"
-
-/obj/structure/frame/machine/wrench_act(mob/living/user, obj/item/I)
-	. = TRUE
-	add_fingerprint(user)
-	CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-	if(!I.use_tool(src, user, 3 SECONDS * construction_mod, volume = I.tool_volume))
-		return .
-
-	if(state == STATE_EMPTY)
-		deconstruct(TRUE)
-		to_chat(user, span_notice("You dismantle the frame."))
-		return .
-
-	if(anchored)
-		set_anchored(FALSE)
-		WRENCH_UNANCHOR_MESSAGE
-		return .
-
-	if(isinspace())
-		to_chat(user, span_warning("You cannot tightens the bolts in space!"))
-		return .
-
-	set_anchored(TRUE)
-	WRENCH_ANCHOR_MESSAGE
-
-/obj/structure/frame/machine/wirecutter_act(mob/living/user, obj/item/I)
-	. = TRUE
-	add_fingerprint(user)
-	if(state != STATE_WIRED)
-		return .
-
-	CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-	if(!I.use_tool(src, user, 3 SECONDS * construction_mod, volume = I.tool_volume) || state != STATE_WIRED)
-		return .
-
-	state = STATE_EMPTY
-	WIRECUTTER_SNIP_MESSAGE
-	update_icon(UPDATE_ICON_STATE)
-	new /obj/item/stack/cable_coil(loc, 5)
-
-/obj/structure/frame/machine/crowbar_act(mob/living/user, obj/item/I)
-	. = TRUE
-	add_fingerprint(user)
-	if(state != STATE_COMPONENTS)
-		return .
-
-	CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-	if(!I.use_tool(src, user, 3 SECONDS * construction_mod, volume = I.tool_volume) || state != STATE_COMPONENTS)
-		return .
-
-	state = STATE_WIRED
-	circuit.forceMove(loc)
+	if(gone != circuit)
+		return
 	circuit = null
 
-	if(length(components))
-		to_chat(user, span_notice("You remove the circuit board and other components."))
-		for(var/obj/item/component in components)
-			component.forceMove(loc)
+	if(QDELING(src))
+		return
+
+	circuit_removed(gone)
+
+/obj/structure/frame/Destroy()
+	QDEL_NULL(circuit)
+	return ..()
+
+/obj/structure/frame/update_icon_state()
+	. = ..()
+	icon_state = "[base_icon_state][state]"
+
+/// Checks if the frame can be disassembled, and if so, begins the process
+/obj/structure/frame/proc/try_dissassemble(mob/living/user, obj/item/tool, disassemble_time = 8 SECONDS)
+	if(state != FRAME_STATE_EMPTY)
+		return NONE
+	if(anchored && state == FRAME_STATE_EMPTY) //when using a screwdriver on an incomplete frame(missing components) no point checking for this
+		balloon_alert(user, "must be unanchored first!")
+		return ITEM_INTERACT_BLOCKING
+	if(!tool.tool_start_check(user, amount = (tool.tool_behaviour == TOOL_WELDER ? 1 : 0)))
+		return ITEM_INTERACT_BLOCKING
+
+	balloon_alert(user, "disassembling...")
+	user.visible_message(
+		span_warning("[user] begins disassembling [src]."),
+		span_notice("You start to disassemble [src]..."),
+		span_hear("You hear banging and clanking."),
+	)
+	if(!tool.use_tool(src, user, disassemble_time, amount = (tool.tool_behaviour == TOOL_WELDER ? 1 : 0), volume = 50) || state != FRAME_STATE_EMPTY)
+		return ITEM_INTERACT_BLOCKING
+
+	var/turf/decon_turf = get_turf(src)
+	deconstruct(TRUE)
+	for(var/obj/item/stack/leftover in decon_turf)
+		leftover.add_fingerprint(user)
+	return ITEM_INTERACT_SUCCESS
+
+/obj/structure/frame/screwdriver_act(mob/living/user, obj/item/tool)
+	return try_dissassemble(user, tool, disassemble_time = 8 SECONDS)
+
+/obj/structure/frame/welder_act(mob/living/user, obj/item/tool)
+	return try_dissassemble(user, tool, disassemble_time = 2 SECONDS)
+
+/**
+ * Attempt to finalize the construction of the frame into a machine
+ *
+ * If successful, results in qdel'ing the frame and newing of a machine
+ *
+ * Arguments
+ * * user - the player
+ * * tool - the tool used to finalize the construction
+ */
+/obj/structure/frame/proc/finalize_construction(mob/living/user, obj/item/tool)
+	stack_trace("[type] finalize_construction unimplemented.")
+	return FALSE
+
+/obj/structure/frame/wrench_act(mob/living/user, obj/item/tool)
+	. = NONE
+	if(default_unfasten_wrench(user, tool, 4 SECONDS))
+		return ITEM_INTERACT_SUCCESS
 	else
-		to_chat(user, span_notice("You remove the circuit board."))
+		return ITEM_INTERACT_BLOCKING
+	return .
 
-	name = initial(name)
-	desc = initial(desc)
-	req_components = null
-	components = null
-	update_icon(UPDATE_ICON_STATE)
+/obj/structure/frame/item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = NONE
+	if(istype(tool, /obj/item/circuitboard)) // Install board will fail if passed an invalid circuitboard and give feedback
+		return install_board(user, tool, by_hand = TRUE) ? ITEM_INTERACT_SUCCESS : ITEM_INTERACT_BLOCKING
 
-/obj/structure/frame/machine/screwdriver_act(mob/living/user, obj/item/I)
-	. = TRUE
-	add_fingerprint(user)
-	if(state != STATE_COMPONENTS)
-		return .
+/obj/structure/frame/ranged_item_interaction(mob/living/user, obj/item/tool, list/modifiers)
+	. = NONE
 
-	var/component_check = TRUE
-	for(var/component in req_components)
-		if(req_components[component] > 0)
-			component_check = FALSE
-			break
+	if(!istype(tool, /obj/item/storage/part_replacer/bluespace))
+		return
 
-	if(!component_check)
-		to_chat(user, span_warning("Machine frame requires more components!"))
-		return .
+	. = item_interaction(user, tool, modifiers)
+	if(. & ITEM_INTERACT_ANY_BLOCKER)
+		user.Beam(src, icon_state = "rped_upgrade", time = 0.5 SECONDS)
 
-	CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-	if(!I.use_tool(src, user, 5 SECONDS * construction_mod, volume = I.tool_volume))
-		return .
+/**
+ * Installs the passed circuit board into the frame
+ *
+ * Assumes there is no circuit already installed
+ *
+ * Arguments
+ * * board - the machine circuitboard to install
+ * * user - the player
+ * * by_hand - is the player installing the board by hand or from the RPED.
+ * Used to decide how to transfer the board into the frame
+ */
+/obj/structure/frame/proc/install_board(mob/living/user, obj/item/circuitboard/board, by_hand = FALSE)
+	if(!istype(board, board_type) || !board.build_path)
+		balloon_alert(user, "invalid board!")
+		return FALSE
+	if(by_hand && !user.transfer_item_to_loc(board, src))
+		return FALSE
+	else if(!board.forceMove(src))
+		return FALSE
 
-	to_chat(user, span_notice("You finish the construction."))
-	var/obj/machinery/new_machine = new circuit.build_path(loc)
-	new_machine.on_construction()
-	for(var/obj/component in new_machine.component_parts)
-		qdel(component)
-	new_machine.component_parts = list()
-	for(var/obj/component in src)
-		component.loc = null
-		new_machine.component_parts += component
-	circuit.loc = null
-	new_machine.RefreshParts()
-	transfer_fingerprints_to(new_machine)
-	qdel(src)
-
-/obj/structure/frame/machine/attackby(obj/item/I, mob/user, params)
-	if(user.a_intent == INTENT_HARM)
-		return ..()
-
-	add_fingerprint(user)
-	. = ATTACK_CHAIN_PROCEED
-
-	switch(state)
-		if(STATE_EMPTY)
-			if(!iscoil(I))
-				return ..()
-
-			var/obj/item/stack/cable_coil/coil = I
-			if(coil.get_amount() < 5)
-				to_chat(user, span_warning("You need five lengths of cable to wire the frame."))
-				return .
-
-			playsound(loc, coil.usesound, 50, TRUE)
-			to_chat(user, span_notice("You start to add cables to the frame..."))
-			CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-			if(!do_after(user, 2 SECONDS * coil.toolspeed * construction_mod, src, category = DA_CAT_TOOL) || state != STATE_EMPTY || QDELETED(coil))
-				return .
-
-			if(!coil.use(5))
-				to_chat(user, span_warning("At some point during construction you lost some cable. Make sure you have five lengths before trying again."))
-				return .
-
-			state = STATE_WIRED
-			update_icon(UPDATE_ICON_STATE)
-			to_chat(user, span_notice("You add cables to the frame."))
-			return ATTACK_CHAIN_PROCEED_SUCCESS
-
-		if(STATE_WIRED)
-			if(!istype(I, /obj/item/circuitboard))
-				return ..()
-
-			var/obj/item/circuitboard/new_circuit = I
-			if(!istype(board, board_type) || !board.build_path)
-				to_chat(user, span_warning("This frame does not accept circuit boards of this type!"))
-				return .
-
-			if(!user.drop_transfer_item_to_loc(new_circuit, src))
-				return ..()
-
-			state = STATE_COMPONENTS
-			circuit = new_circuit
-			name += " ([new_circuit.board_name])"
-			if(length(circuit.req_components))
-				update_lists(circuit.req_components)
-			else
-				stack_trace("Circuit without req_components list, placed in [src].")
-			playsound(loc, new_circuit.usesound, 50, TRUE)
-			to_chat(user, span_notice("You add the circuit board to the frame."))
-			update_icon(UPDATE_ICON_STATE)
-			return ATTACK_CHAIN_BLOCKED_ALL
-
-		if(STATE_COMPONENTS)
-			if(istype(I, /obj/item/storage/part_replacer) && length(I.contents) && get_req_components_amt())
-				var/obj/item/storage/part_replacer/replacer = I
-				var/list/added_components = list()
-				var/list/part_list = list()
-
-				//Assemble a list of current parts, then sort them by their rating!
-				for(var/obj/item/stock_parts/co in replacer)
-					part_list += co
-
-				for(var/path in req_components)
-					while(req_components[path] > 0 && (locate(path) in part_list))
-						var/obj/item/part = (locate(path) in part_list)
-						added_components[part] = path
-						replacer.remove_from_storage(part, src)
-						req_components[path]--
-						part_list -= part
-
-				for(var/obj/item/stock_parts/part in added_components)
-					components += part
-					to_chat(user, span_notice("[part.name] applied."))
-				replacer.play_rped_sound()
-				return ATTACK_CHAIN_PROCEED_SUCCESS
-
-			if(istype(I, /obj/item/storage/bag/construction) && length(I.contents) && get_req_components_amt())
-				var/obj/item/storage/bag/construction/bag = I
-				INVOKE_ASYNC(src, PROC_REF(apply_parts_from_construction_bag), bag, user)
-				return ATTACK_CHAIN_PROCEED_SUCCESS
-
-			if(isitem(I))
-				var/success = FALSE
-				for(var/path in req_components)
-					var/is_stack = isstack(I)
-					if(istype(I, path) && (req_components[path] > 0) && (!HAS_TRAIT(I, TRAIT_NODROP) || is_stack))
-						success = TRUE
-						playsound(loc, I.usesound, 50, TRUE)
-						if(is_stack)
-							var/obj/item/stack/stack = I
-							var/camt = min(stack.get_amount(), req_components[path])
-							var/obj/item/stack/new_stack
-							if(stack.is_cyborg && stack.cyborg_construction_stack)
-								new_stack = new stack.cyborg_construction_stack(src, camt)
-							else
-								new_stack = new stack.type(src, camt)
-							new_stack.update_icon()
-							stack.use(camt)
-							components += new_stack
-							req_components[path] -= camt
-							break
-						user.drop_transfer_item_to_loc(I, src)
-						components += I
-						req_components[path]--
-						break
-
-				if(!success)
-					to_chat(user, span_warning("You cannot add that to the machine!"))
-
-				return ATTACK_CHAIN_BLOCKED_ALL
-
-/obj/structure/frame/machine/proc/apply_parts_from_construction_bag(obj/item/storage/bag/construction/bag, mob/user, count = 0)
-	for(var/path in req_components)
-		if(req_components[path] <= 0 || !(locate(path) in bag))
-			continue
-		if(!do_after(user, 0.7 SECONDS, src, interaction_key = bag, max_interact_count = 1))
-			return FALSE
-		var/obj/item/part = (locate(path) in bag)
-		bag.remove_from_storage(part, src)
-		req_components[path]--
-		components += part
-		to_chat(user, span_notice("[part.declent_ru(NOMINATIVE)] вставлен[GEND_A_O_Y(part)]."))
-		GET_SKILL_LEVEL(user, /datum/skill/engineering/construction, construction_level)
-		// automatic next part only if skill great than basic (professional, expert, legend)
-		if(construction_level > SKILL_LEVEL_BASIC)
-			return apply_parts_from_construction_bag(bag, user, count + 1)
-		break
-	balloon_alert(user, "вставлен[declension_ru(count, "а", "о", "о")] [count] детал[declension_ru(count, "ь", "и", "ей")]")
+	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
+	balloon_alert(user, "circuit installed")
+	circuit = board
+	if(by_hand)
+		circuit.add_fingerprint(user)
+	circuit_added(board)
 	return TRUE
+
+/**
+ * Attempt to install a circuit from the contents of an RPED
+ *
+ * Arguments
+ * * user - the player
+ * * replacer - the RPED being used
+ * * no_sound - if true, no sound will be played
+ */
+/obj/structure/frame/proc/install_circuit_from_part_replacer(mob/living/user, obj/item/storage/part_replacer/replacer, no_sound = FALSE)
+	if(!length(replacer.contents))
+		return FALSE
+
+	var/list/circuit_boards = list()
+	for(var/obj/item/circuitboard/board as anything in replacer)
+		if(istype(board, board_type))
+			circuit_boards[board.name] = board
+
+	if(!length(circuit_boards))
+		return FALSE
+
+	//if there is only one board directly install it else pick from list
+	var/obj/item/circuitboard/target_board
+	if(length(circuit_boards) == 1)
+		for(var/board_name in circuit_boards)
+			target_board = circuit_boards[board_name]
+
+	else
+		var/option = tgui_input_list(user, "Select Circuitboard To Install"," Available Boards", circuit_boards)
+		target_board = circuit_boards[option]
+		// Everything still where it should be after the UI closed?
+		if(QDELETED(target_board) || QDELETED(src) || QDELETED(user) || !(target_board in replacer) || !user.is_in_hands(replacer))
+			return FALSE
+		// User still within range?
+		var/close_enough = istype(replacer, /obj/item/storage/part_replacer/bluespace) || user.Adjacent(src)
+		if(!close_enough)
+			return FALSE
+
+	if(install_board(user, target_board, by_hand = FALSE))
+		// After installing, attempts to follow up by inserting parts
+		install_parts_from_part_replacer(user, replacer, no_sound = TRUE)
+		if(!no_sound)
+			replacer.play_rped_effect()
+		return TRUE
+
+	return FALSE
+
+/**
+ * Attempt to install necessary parts from the contents of an RPED
+ *
+ * Arguments
+ * * user - the player
+ * * replacer - the RPED being used
+ * * no_sound - if true, no sound will be played
+ */
+/obj/structure/frame/proc/install_parts_from_part_replacer(mob/living/user, obj/item/storage/part_replacer/replacer, no_sound = FALSE)
+	return FALSE
 
 //Machine Frame Circuit Boards
 /*Common Parts: Parts List: Ignitor, Timer, Infra-red laser, Infra-red sensor, t_scanner, Capacitor, Valve, sensor unit,

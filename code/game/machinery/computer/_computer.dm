@@ -1,138 +1,104 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'icons/obj/machines/computer.dmi'
+	icon = MAP_SWITCH('icons/obj/machines/computer.dmi', 'icons/obj/fluff/map_previews.dmi')
 	icon_state = "computer"
 	density = TRUE
-	anchored = TRUE
-	idle_power_usage = 300
-	active_power_usage = 300
-	integrity_failure = 100
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = 20)
-	interaction_flags_mouse_drop = NEED_HANDS | ALLOW_RESTING
-	var/obj/item/circuitboard/circuit = null //if circuit==null, computer can't disassembly
-	var/obj/structure/computerframe/frame = /obj/structure/computerframe
+	max_integrity = 200
+	integrity_failure = 0.5
+	armor_type = /datum/armor/machinery_computer
+	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_REQUIRES_LITERACY
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
+	/// How bright we are when turned on.
+	var/brightness_on = 1
+	/// Icon_state of the keyboard overlay.
 	var/icon_keyboard = "generic_key"
+	/// Should we render an unique icon for the keyboard when off?
+	var/keyboard_change_icon = TRUE
+	/// Icon_state of the emissive screen overlay.
 	var/icon_screen = "generic"
-	var/light_range_on = 2
-	var/light_power_on = 0.9
-	var/abductor = FALSE
-	/// Are we in the middle of a flicker event?
-	var/flickering = FALSE
-	/// Are we forcing the icon to be represented in a no-power state?
-	var/force_no_power_icon_state = FALSE
+	/// Time it takes to deconstruct with a screwdriver.
+	var/time_to_unscrew = 2 SECONDS
+	/// Are we authenticated to use this? Used by things like comms console, security and medical data, and apc controller.
+	var/authenticated = FALSE
+	/// Will projectiles be able to pass over this computer?
+	var/projectiles_pass_chance = 65
+	generate_map_preview = TRUE
 
-/obj/machinery/computer/Initialize(mapload, obj/structure/computerframe/frame)
+/datum/armor/machinery_computer
+	fire = 40
+	acid = 20
+
+/obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-
-	if(frame)
-		src.frame = frame
-
-	else
-		var/frame_type = abductor ? /obj/structure/computerframe/abductor : src.frame
-		src.frame = new frame_type(src, circuit)
-
-	src.frame.on_construction(src)
 	power_change()
-	update_icon()
 
-/obj/machinery/computer/Destroy()
-	if(istype(frame))
-		qdel(frame)
+/obj/machinery/computer/post_machine_initialize()
+	. = ..()
+	if(SStts.tts_enabled)
+		voice = SStts.computer_voice
 
-	frame = null
+/obj/machinery/computer/mouse_drop_receive(mob/living/dropping, mob/user, params)
+	. = ..()
+	// We add the component only once here & not in Initialize() because there are tons of computers & we don't want to add to their init times
+	LoadComponent(/datum/component/leanable, dropping)
 
-	return ..()
+/obj/machinery/computer/CanAllowThrough(atom/movable/mover, border_dir) // allows projectiles to fly over the computer
+	. = ..()
+	if(.)
+		return
+	if(!projectiles_pass_chance)
+		return FALSE
+	if(!isprojectile(mover))
+		return FALSE
+	var/obj/projectile/proj = mover
+	if(!anchored)
+		return TRUE
+	if(proj.firer && Adjacent(proj.firer))
+		return TRUE
+	if(prob(projectiles_pass_chance))
+		return TRUE
+	return FALSE
 
 /obj/machinery/computer/process()
 	if(stat & (NOPOWER|BROKEN))
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/extinguish_light(force = FALSE)
-	if(light_on)
-		set_light_on(FALSE)
-		underlays.Cut()
-		visible_message(span_danger("Экран [declent_ru(GENITIVE)] тускнеет, изображение становится едва видимым."))
-
-/obj/machinery/computer/mouse_drop_receive(atom/dropping, mob/user, params)
-	. = ..()
-	//Adds the component only once. We do it here & not in Initialize() because there are tons of windows & we don't want to add to their init times
-	LoadComponent(/datum/component/leanable, dropping)
-
-/*
- * Reimp, flash the screen on and off repeatedly.
- */
-/obj/machinery/computer/flicker()
-	if(flickering)
-		return FALSE
-
-	if(stat & (BROKEN|NOPOWER))
-		return FALSE
-
-	flickering = TRUE
-	INVOKE_ASYNC(src, TYPE_PROC_REF(/obj/machinery/computer, flicker_event))
-
-	return TRUE
-
-/*
- * Proc to be called by invoke_async in the above flicker() proc.
- */
-/obj/machinery/computer/proc/flicker_event()
-	var/amount = rand(5, 15)
-
-	for(var/i in 1 to amount)
-		force_no_power_icon_state = TRUE
-		update_icon()
-		sleep(rand(1, 3))
-
-		force_no_power_icon_state = FALSE
-		update_icon()
-		sleep(rand(1, 10))
-	update_icon()
-	flickering = FALSE
-
-/obj/machinery/computer/update_icon_state()
-	icon_state = abductor ? "aliencomputer" : initial(icon_state)
-
 /obj/machinery/computer/update_overlays()
 	. = ..()
-	underlays.Cut()
-
-	if((stat & NOPOWER) || force_no_power_icon_state)
-		if(icon_keyboard && abductor)
-			. += "alien_key_off"
-		else if(icon_keyboard)
+	if(icon_keyboard)
+		if(keyboard_change_icon && (stat & NOPOWER))
 			. += "[icon_keyboard]_off"
-		return
+		else
+			. += icon_keyboard
 
 	if(stat & BROKEN)
-		. += "[icon_state]_broken"
-	else
-		if(icon_screen)
-			. += "[icon_screen]"
-		if(light_on)
-			underlays += emissive_appearance(icon, "[icon_state]_lightmask", src)
+		. += mutable_appearance(icon, "[icon_state]_broken")
+		return // If we don't do this broken computers glow in the dark.
 
-	if(icon_keyboard && abductor)
-		. += "alien_key"
-		underlays += emissive_appearance(icon, "alien_key_lightmask", src)
-	else if(icon_keyboard)
-		. += "[icon_keyboard]"
-		underlays += emissive_appearance(icon, "[icon_keyboard]_lightmask", src)
+	if(stat & NOPOWER) // Your screen can't be on if you've got no damn charge
+		return
 
-/obj/machinery/computer/power_change(forced = FALSE)
-	. = ..() //we don't check parent return due to this also being contigent on the BROKEN stat flag
-	if((stat & (BROKEN|NOPOWER)))
-		set_light_on(FALSE)
+	// This lets screens ignore lighting and be visible even in the darkest room
+	if(icon_screen)
+		. += mutable_appearance(icon, icon_screen)
+		. += emissive_appearance(icon, icon_screen, src)
+
+/obj/machinery/computer/power_change()
+	. = ..()
+	if(stat & NOPOWER)
+		set_light(0)
 	else
-		// Get the average color of the computer screen so it can be used as a tinted glow
-		// Shamelessly stolen from /tg/'s /datum/component/customizable_reagent_holder.
-		var/icon/emissive_avg_screen_color = new(icon, icon_screen)
-		emissive_avg_screen_color.Scale(1, 1)
-		var/screen_emissive_color = copytext(emissive_avg_screen_color.GetPixel(1, 1), 1, 8) // remove opacity
-		set_light(l_range = light_range_on, l_power = light_power_on, l_color = screen_emissive_color, l_on = TRUE)
-	if(.)
-		update_icon()
+		set_light(brightness_on)
+
+/obj/machinery/computer/screwdriver_act(mob/living/user, obj/item/I)
+	if(..())
+		return TRUE
+	if(circuit)
+		balloon_alert(user, "disconnecting monitor...")
+		if(I.use_tool(src, user, time_to_unscrew, volume=50))
+			deconstruct(TRUE)
+	return TRUE
 
 /obj/machinery/computer/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
@@ -140,82 +106,75 @@
 			if(stat & BROKEN)
 				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 			else
-				playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
+				playsound(src.loc, 'sound/effects/glass/glasshit.ogg', 75, TRUE)
 		if(BURN)
-			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
+			playsound(src.loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
-/obj/machinery/computer/obj_break(damage_flag)
-	if(circuit && !(obj_flags & NODECONSTRUCT)) //no circuit, no breaking
-		if(!(stat & BROKEN))
-			playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
-			stat |= BROKEN
-			update_icon()
-			set_light_on(FALSE)
+/obj/machinery/computer/atom_break(damage_flag)
+	if(!circuit) //no circuit, no breaking
+		return
+	. = ..()
+	if(.)
+		playsound(loc, 'sound/effects/glass/glassbr3.ogg', 100, TRUE)
+		set_light(0)
+
+/obj/machinery/computer/proc/imprint_gps(gps_tag) // Currently used by the upload computers and communications console
+	if(!length(gps_tag)) // Don't give a null GPS signal if there is none
+		CRASH("[src] called imprint_gps without setting gps_tag")
+	var/set_tracker = FALSE
+	for(var/obj/item/circuitboard/computer/board in contents)
+		if(board.GetComponent(/datum/component/gps))
+			return
+		board.AddComponent(/datum/component/gps, "[gps_tag]")
+		set_tracker = TRUE
+	if (set_tracker)
+		balloon_alert_to_viewers("board tracker enabled", vision_distance = 1)
 
 /obj/machinery/computer/emp_act(severity)
-	..()
-	switch(severity)
-		if(1)
-			if(prob(50))
-				obj_break("energy")
-		if(2)
-			if(prob(10))
-				obj_break("energy")
+	. = ..()
+	if (!(. & EMP_PROTECT_SELF))
+		switch(severity)
+			if(1)
+				if(prob(50))
+					atom_break(ENERGY)
+			if(2)
+				if(prob(10))
+					atom_break(ENERGY)
 
-/obj/machinery/computer/deconstruct(disassembled = TRUE, mob/user)
-	on_deconstruction()
-	if(!(obj_flags & NODECONSTRUCT))
-		if(circuit) //no circuit, no computer frame
-			if(stat & BROKEN)
-				if(user)
-					to_chat(user, span_notice("Из рамки дисплея выпадает разбитое стекло."))
-				else
-					playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
-				new /obj/item/shard(drop_location())
-				new /obj/item/shard(drop_location())
-				frame.state = 4
-			else
-				if(user)
-					loc.balloon_alert(user, "монитор отключён")
-			frame.update_icon()
-
-		for(var/obj/C in src)
-			C.forceMove(get_turf(src))
-
-	frame = null
-	qdel(src)
-
-/obj/machinery/computer/proc/set_broken()
-	if(!(resistance_flags & INDESTRUCTIBLE))
-		stat |= BROKEN
-		update_icon()
-
-/obj/machinery/computer/proc/decode(text)
-	// Adds line breaks
-	text = replacetext(text, "\n", "<br>")
-	return text
-
-/obj/machinery/computer/attack_ghost(mob/user)
-	return attack_hand(user)
-
-/obj/machinery/computer/attack_hand(mob/user)
-	/* Observers can view computers, but not actually use them via Topic*/
-	if(isobserver(user)) return 0
-	return ..()
-
-/obj/machinery/computer/screwdriver_act(mob/user, obj/item/I)
-	. = TRUE
-	if(!I.tool_start_check(src, user, 0))
+/obj/machinery/computer/spawn_frame(disassembled)
+	if(QDELETED(circuit)) //no circuit, no computer frame
 		return
-	if(circuit && !(obj_flags & NODECONSTRUCT))
-		CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-		if(I.use_tool(src, user, 2 SECONDS * construction_mod, volume = I.tool_volume))
-			deconstruct(TRUE, user)
 
-/obj/machinery/computer/hit_by_thrown_mob(mob/living/hit_by_thrown_mob, datum/thrownthing/throwingdatum, damage, mob_hurt, self_hurt)
-	if(!self_hurt && prob(50 * (damage / 15)))
-		obj_break(MELEE)
-		take_damage(damage, BRUTE)
-		self_hurt = TRUE
-	return ..()
+	var/obj/structure/frame/computer/new_frame = new(loc)
+	new_frame.setDir(dir)
+	new_frame.set_anchored(TRUE)
+	new_frame.circuit = circuit
+	// Circuit removal code is handled in /obj/machinery/Exited()
+	component_parts -= circuit
+	circuit.forceMove(new_frame)
 
+	if((stat & BROKEN) || !disassembled)
+		var/atom/drop_loc = drop_location()
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
+		new /obj/item/shard(drop_loc)
+		new /obj/item/shard(drop_loc)
+		new_frame.state = FRAME_COMPUTER_STATE_WIRED
+	else
+		new_frame.state = FRAME_COMPUTER_STATE_GLASSED
+	new_frame.update_appearance(UPDATE_ICON_STATE)
+
+/obj/machinery/computer/ui_interact(mob/user, datum/tgui/ui)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	update_use_power(ACTIVE_POWER_USE)
+
+/obj/machinery/computer/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	if(!issilicon(ui.user))
+		playsound(src, SFX_KEYBOARD_CLICKS, 10, TRUE, FALSE)
+
+/obj/machinery/computer/ui_close(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	update_use_power(IDLE_POWER_USE)
