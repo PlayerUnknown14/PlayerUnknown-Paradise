@@ -127,7 +127,7 @@
 	)
 
 	desired_perches = typecacheof(list( \
-		/obj/structure/computerframe, /obj/structure/displaycase, \
+		/obj/structure/frame/computer, /obj/structure/displaycase, \
 		/obj/structure/filingcabinet, /obj/machinery/teleport, \
 		/obj/machinery/suit_storage_unit, /obj/machinery/clonepod, \
 		/obj/machinery/dna_scannernew, /obj/machinery/tcomms, \

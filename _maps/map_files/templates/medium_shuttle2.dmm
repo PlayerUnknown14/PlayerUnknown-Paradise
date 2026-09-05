@@ -122,7 +122,7 @@
 	},
 /area/ruin/powered/shuttle_ruin)
 "D" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/circuitboard/computer/teleporter,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"

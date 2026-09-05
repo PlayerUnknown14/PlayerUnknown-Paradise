@@ -683,7 +683,7 @@
 	color = "#22aab7";
 	dir = 1
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/carpet/black,
 /area/station/maintenance/abandonedoffices)
 "hH" = (

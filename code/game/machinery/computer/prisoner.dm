@@ -8,7 +8,7 @@
 	circuit = /obj/item/circuitboard/computer/prisoner
 	light_color = COLOR_SOFT_RED
 	/// FALSE - No Access Denied, TRUE - Access allowed
-	var/authenticated = FALSE
+	authenticated = FALSE
 	var/inserted_id_uid
 
 /obj/machinery/computer/prisoner/Initialize(mapload)
@@ -56,6 +56,7 @@
 	return TRUE
 
 /obj/machinery/computer/prisoner/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PrisonerImplantManager", name)

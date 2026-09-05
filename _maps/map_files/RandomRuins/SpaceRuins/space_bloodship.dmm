@@ -234,7 +234,7 @@
 /turf/simulated/floor/engine/cult,
 /area/ruin/unpowered)
 "Mt" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/engine/cult,
 /area/ruin/unpowered)
 "MO" = (

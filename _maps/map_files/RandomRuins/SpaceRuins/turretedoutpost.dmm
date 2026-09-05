@@ -19,7 +19,7 @@
 /turf/simulated/floor/plasteel,
 /area/ruin/unpowered)
 "f" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel,
 /area/ruin/unpowered)
 "g" = (

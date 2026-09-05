@@ -413,6 +413,7 @@
 		ui_interact(user)
 
 /obj/machinery/computer/scan_consolenew/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	if(user == connected.occupant)
 		return
 

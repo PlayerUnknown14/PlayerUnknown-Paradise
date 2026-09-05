@@ -149,15 +149,14 @@ GLOBAL_LIST_EMPTY(slotmachine_prizes)
 	if(emagged)
 		return
 	do_sparks(3, TRUE, src)
-	to_chat(user, span_warning("Smells like something burnt"))
-	circuit = /obj/item/circuitboard/broken
-	frame.circuit = new circuit(frame)
 	emagged = TRUE
+	balloon_alert(user, "взломано")
 
 /obj/machinery/computer/slot_machine/update_icon_state()
 	icon_state = "slots-[working ? "on" : "off"]"
 
 /obj/machinery/computer/slot_machine/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SlotMachine", name)

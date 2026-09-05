@@ -63,7 +63,7 @@
 /turf/simulated/floor/mineral/bananium,
 /area/shuttle/transport)
 "z" = (
-/obj/structure/computerframe/HONKputer,
+/obj/structure/frame/computer/HONKputer,
 /turf/simulated/floor/noslip,
 /area/shuttle/transport)
 "C" = (

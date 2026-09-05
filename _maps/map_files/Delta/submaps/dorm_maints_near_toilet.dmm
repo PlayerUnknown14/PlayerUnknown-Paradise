@@ -153,7 +153,7 @@
 /turf/simulated/floor/carpet/arcade,
 /area/template_noop)
 "hL" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/shard{
 	icon_state = "small"
 	},

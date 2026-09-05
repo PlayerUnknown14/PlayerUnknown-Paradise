@@ -98,6 +98,7 @@
 		to_chat(user, span_notice("You load the buffer's linking data to [src]."))
 
 /obj/machinery/computer/fission_monitor/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ReactorMonitor", name)

@@ -82,6 +82,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/monitor/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	power_monitor.ui_interact(user, ui)
 
 /obj/machinery/computer/monitor/interact(mob/user)

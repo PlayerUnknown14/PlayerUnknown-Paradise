@@ -495,7 +495,7 @@
 	req_tech = null	// Unreachable by tech researching.
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000, MAT_BLUESPACE = 100)
-	build_path = /obj/item/circuitboard/brs_server
+	build_path = /obj/item/circuitboard/machine/brs_server
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_RESEARCH)
 
 /datum/design/brs_portable_scanner
@@ -503,7 +503,7 @@
 	req_tech = null	// Unreachable by tech researching.
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000, MAT_BLUESPACE = 200)
-	build_path = /obj/item/circuitboard/brs_portable_scanner
+	build_path = /obj/item/circuitboard/machine/brs_portable_scanner
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_RESEARCH)
 
 /datum/design/brs_stationary_scanner
@@ -511,7 +511,7 @@
 	req_tech = null	// Unreachable by tech researching.
 	build_type = IMPRINTER
 	materials = list(MAT_GLASS = 1000, MAT_BLUESPACE = 500)
-	build_path = /obj/item/circuitboard/brs_stationary_scanner
+	build_path = /obj/item/circuitboard/machine/brs_stationary_scanner
 	category = list(CIRCUIT_IMPRINTER_CATEGORY_RESEARCH)
 
 /datum/design/anomaly_generator

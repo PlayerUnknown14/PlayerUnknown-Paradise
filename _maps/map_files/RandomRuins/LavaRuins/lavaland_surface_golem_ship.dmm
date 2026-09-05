@@ -331,7 +331,7 @@
 /turf/simulated/floor/pod/dark,
 /area/shuttle/freegolem)
 "oY" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/pod/dark,
 /area/shuttle/freegolem)
 "pz" = (
@@ -810,7 +810,7 @@
 /turf/simulated/floor/pod,
 /area/shuttle/freegolem)
 "UC" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/light{
 	dir = 8;
 	pixel_y = -32

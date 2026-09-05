@@ -61,6 +61,7 @@
 	add_fingerprint(usr)
 
 /obj/machinery/computer/cryopod/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CryopodConsole", name)

@@ -1733,7 +1733,7 @@
 /turf/simulated/floor/shuttle,
 /area/awaymission/centcom_away/hangar)
 "fm" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle,
 /area/awaymission/centcom_away/hangar)
 "fp" = (
@@ -3333,7 +3333,7 @@
 	},
 /area/awaymission/centcom_away/general)
 "jM" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	icon_state = "grimy"
 	},
@@ -4876,7 +4876,7 @@
 /turf/simulated/floor/shuttle/plating,
 /area/awaymission/centcom_away/thunderdome)
 "nY" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel,
 /area/awaymission/centcom_away/general)
 "nZ" = (
@@ -5606,7 +5606,7 @@
 	},
 /area/awaymission/centcom_away/thunderdome)
 "pX" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 5;
 	icon_state = "redyellowfull"

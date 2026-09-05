@@ -914,7 +914,7 @@
 /turf/simulated/floor/plasteel,
 /area/ruin/space/spacebotany/Hydro)
 "lq" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/space,
 /area/space)
 "lv" = (

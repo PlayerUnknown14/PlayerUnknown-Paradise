@@ -22,7 +22,7 @@
 		PREPOSITIONAL = "консоли управления дополнительными целями смены",
 	)
 
-/obj/machinery/computer/addition_goals/Initialize(mapload, obj/structure/computerframe/frame)
+/obj/machinery/computer/addition_goals/Initialize(mapload, obj/structure/frame/computer/frame)
 	. = ..()
 	SSaddition_goals.console_list += src
 
@@ -33,6 +33,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/addition_goals/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AdditionGoalsConsole", "Консоль побочных целей")

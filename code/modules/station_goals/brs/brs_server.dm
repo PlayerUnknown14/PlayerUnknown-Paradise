@@ -6,13 +6,12 @@
 #define DATA_RECORD_MINED_PROBE_POINTS 6
 #define DATA_RECORD_LENGTH 6
 
-/obj/item/circuitboard/brs_server
+/obj/item/circuitboard/machine/brs_server
 	board_name = "Сервер сканирирования разлома"
 	desc = "Плата сервера сканирования и изучения блюспейс разлома."
 	build_path = /obj/machinery/brs_server
 	icon_state = "cpuboard_super"
 	greyscale_config = null
-	board_type = "machine"
 	origin_tech = "engineering=4;bluespace=3"
 	req_components = list(
 		/obj/item/stack/sheet/metal = 10,
@@ -211,7 +210,7 @@
 /obj/machinery/brs_server/proc/new_component_parts()
 	component_parts = list()
 
-	component_parts += new /obj/item/circuitboard/brs_server(null)
+	component_parts += new /obj/item/circuitboard/machine/brs_server(null)
 
 	component_parts += new /obj/item/stock_parts/scanning_module/phasic(null)
 	component_parts += new /obj/item/stock_parts/scanning_module/phasic(null)

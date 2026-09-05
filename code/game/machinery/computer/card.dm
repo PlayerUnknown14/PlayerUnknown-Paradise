@@ -326,6 +326,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	ui_interact(user)
 
 /obj/machinery/computer/card/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CardComputer", DECLENT_RU_CAP(src, NOMINATIVE))

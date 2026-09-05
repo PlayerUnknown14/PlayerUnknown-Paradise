@@ -169,7 +169,7 @@
 	},
 /area/derelict/bridge)
 "aC" = (
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	desc = "This computer is a husk of what it once was. Time and decay has worn its cheap circuitry to dust.";
 	name = "decrepit computer"
 	},
@@ -2210,7 +2210,7 @@
 /area/derelict/security)
 "fF" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	desc = "This computer is a husk of what it once was. Time and decay has worn its cheap circuitry to dust.";
 	name = "decrepit computer"
 	},
@@ -2551,7 +2551,7 @@
 	},
 /area/derelict/rnd)
 "gz" = (
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	desc = "This computer is a husk of what it once was. Time and decay has worn its cheap circuitry to dust.";
 	name = "decrepit computer"
 	},
@@ -7494,7 +7494,7 @@
 	},
 /area/derelict/bridge)
 "xT" = (
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	desc = "This computer is a husk of what it once was. Time and decay has worn its cheap circuitry to dust.";
 	name = "decrepit computer"
 	},
@@ -8723,7 +8723,7 @@
 /turf/space,
 /area/space)
 "KZ" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/airless,
 /area/ruin/unpowered/no_grav)
 "La" = (

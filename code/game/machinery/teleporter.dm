@@ -83,6 +83,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/teleporter/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	ui = SStgui.try_update_ui(user, src, ui)

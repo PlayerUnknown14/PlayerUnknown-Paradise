@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(metal_recipes, list(
 		new /datum/stack_recipe/rods("metal rod", /obj/item/stack/rods, TRUE, 2, 50, time = 0.5 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD),
 		new /datum/stack_recipe("rack parts", /obj/item/rack_parts, time = 1 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD),
 		new /datum/stack_recipe("gun rack parts", /obj/item/rack_parts/gunrack_parts, time = 1 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD),
-		new /datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 2.5 SECONDS, one_per_turf = TRUE, on_floor = TRUE, modifier_name = CONSTRUCTING_SPEED_MOD),
+		new /datum/stack_recipe("computer frame", /obj/structure/frame/computer, 5, time = 2.5 SECONDS, one_per_turf = TRUE, on_floor = TRUE, modifier_name = CONSTRUCTING_SPEED_MOD),
 		new /datum/stack_recipe("machine frame", /obj/structure/frame/machine, 5, time = 2.5 SECONDS, one_per_turf = TRUE, on_floor = TRUE, modifier_name = CONSTRUCTING_SPEED_MOD),
 		new /datum/stack_recipe("closet", /obj/structure/closet, 2, time = 1.5 SECONDS, one_per_turf = TRUE, on_floor = TRUE, modifier_name = CONSTRUCTING_SPEED_MOD),
 		new /datum/stack_recipe("floor light fixture frame", /obj/item/mounted/frame/light_fixture/floor, 3, time = 2 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD),

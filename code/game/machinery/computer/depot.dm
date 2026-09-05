@@ -54,7 +54,8 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/syndicate_depot/set_broken()
+///Called when the value of `machine_stat` changes, so we can react to it.
+/obj/machinery/computer/syndicate_depot/on_set_machine_stat(old_value)
 	. = ..()
 	if(alerts_when_broken && !has_alerted)
 		has_alerted = TRUE
@@ -65,6 +66,7 @@
 	return
 
 /obj/machinery/computer/syndicate_depot/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SyndicateComputerSimple", name)

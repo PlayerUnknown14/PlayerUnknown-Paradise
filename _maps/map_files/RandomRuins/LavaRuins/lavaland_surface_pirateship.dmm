@@ -623,7 +623,7 @@
 /turf/simulated/floor/plasteel/dark/lavaland_air,
 /area/ruin/powered/pirateship)
 "nx" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dust,
 /turf/simulated/floor/engine,
 /area/ruin/powered/pirateship)
@@ -1323,7 +1323,7 @@
 /turf/simulated/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "DG" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -2197,7 +2197,7 @@
 /turf/simulated/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "TD" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/dark/lavaland_air,
 /area/ruin/powered/pirateship)
 "TP" = (

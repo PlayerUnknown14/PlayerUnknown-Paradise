@@ -5021,7 +5021,7 @@
 	},
 /area/awaymission/spacebattle/hallway5)
 "pp" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/space,
 /area/space)
 "pq" = (

@@ -30,4 +30,5 @@
 	ui_interact(user)
 
 /obj/machinery/computer/atmoscontrol/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	atmos_control.ui_interact(user, ui)

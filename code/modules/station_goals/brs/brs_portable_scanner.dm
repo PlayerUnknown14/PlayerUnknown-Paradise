@@ -7,13 +7,12 @@
 #define SCAN_NORMAL 2 //! There are some rifts within the scanner's range
 #define SCAN_CRITICAL 3 //! The scanner is within critical range of a rift
 
-/obj/item/circuitboard/brs_portable_scanner
+/obj/item/circuitboard/machine/brs_portable_scanner
 	board_name = "Портативный сканер разлома"
 	desc = "Плата портативного сканера блюспейс разлома."
 	build_path = /obj/machinery/brs_portable_scanner
 	icon_state = "scannerplat"
 	greyscale_config = null
-	board_type = "machine"
 	origin_tech = "engineering=4;bluespace=3"
 	req_components = list(
 		/obj/item/stack/sheet/metal = 5,
@@ -280,7 +279,7 @@
 
 /obj/machinery/brs_portable_scanner/proc/new_component_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/brs_portable_scanner(null)
+	component_parts += new /obj/item/circuitboard/machine/brs_portable_scanner(null)
 
 	component_parts += new /obj/item/stack/sheet/metal(null, 5)
 	component_parts += new /obj/item/stack/ore/bluespace_crystal(null, 1)

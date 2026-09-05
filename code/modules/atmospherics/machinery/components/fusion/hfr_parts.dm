@@ -20,7 +20,6 @@
 	var/fusion_started = FALSE
 	///Check if the machine is cracked open
 	var/cracked = FALSE
-	var/obj/item/circuitboard/circuit
 
 /obj/machinery/atmospherics/unary/hypertorus/Initialize(mapload)
 	. = ..()
@@ -108,7 +107,6 @@
 	power_channel = ENVIRON
 	var/active = FALSE
 	var/fusion_started = FALSE
-	var/obj/item/circuitboard/circuit
 
 /obj/machinery/hypertorus/Initialize(mapload)
 	. = ..()

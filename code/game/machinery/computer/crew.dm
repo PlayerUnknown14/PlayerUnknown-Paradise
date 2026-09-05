@@ -56,6 +56,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/crew/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	crew_monitor.ui_interact(user, ui)
 
 /obj/machinery/computer/crew/interact(mob/user)

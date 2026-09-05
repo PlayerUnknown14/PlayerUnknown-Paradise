@@ -554,6 +554,7 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 	ui_interact(user)
 
 /obj/machinery/computer/bsa_control/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	update_active_camera_screen()
 	if(!ui)
@@ -663,6 +664,7 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 	return TRUE
 
 /obj/machinery/computer/bsa_control/ui_close(mob/user)
+	. = ..()
 	cam_screen?.hide_from(user)
 	user.client.images -= crosshair
 

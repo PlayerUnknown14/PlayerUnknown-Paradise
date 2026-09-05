@@ -152,11 +152,6 @@
 	updatemodules()
 	ui_interact(user)
 
-/obj/machinery/computer/cloning/deconstruct(disassembled = TRUE, mob/user)
-	if(emagged)
-		circuit = /obj/item/circuitboard/broken
-	..()
-
 /obj/machinery/computer/cloning/emag_act(mob/user)
 	if(!emagged)
 		emagged = TRUE
@@ -175,6 +170,7 @@
 			P.go_out()
 
 /obj/machinery/computer/cloning/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	if(stat & (NOPOWER|BROKEN))
 		return
 

@@ -10,7 +10,7 @@
 /turf/template_noop,
 /area/space/nearstation)
 "d" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating/airless,
 /area/ruin/space/abandoned_tele)
 "e" = (

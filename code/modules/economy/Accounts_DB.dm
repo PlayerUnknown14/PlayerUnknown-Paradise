@@ -61,6 +61,7 @@ GLOBAL_VAR(current_date_string)
 	ui_interact(user)
 
 /obj/machinery/computer/account_database/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AccountsUplinkTerminal", name)

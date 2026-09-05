@@ -583,7 +583,7 @@
 /turf/simulated/floor/plating/airless,
 /area/space)
 "YU" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plasteel,
 /area/ruin/unpowered)

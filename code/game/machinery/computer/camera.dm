@@ -46,6 +46,7 @@
 	return ..()
 
 /obj/machinery/computer/security/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	if(!user.client) //prevents errors by trying to pass clients that don't exist.
 		return
 	// Update UI
@@ -270,7 +271,7 @@
 	icon_state = "entertainment_console"
 	icon_screen = "entertainment_off"
 	light_color = "#FFEEDB"
-	light_power_on = LIGHTING_MINIMUM_POWER
+	brightness_on = LIGHTING_MINIMUM_POWER
 	network = list("news")
 	layer = 4 //becouse of plasma glass with layer = 3
 	circuit = /obj/item/circuitboard/computer/camera/telescreen/entertainment
@@ -392,7 +393,7 @@
 	icon_keyboard = null
 	icon_screen = "detective_tv"
 	light_color = "#3848B3"
-	light_power_on = 0.5
+	brightness_on = 0.5
 	network = list("SS13")
 	circuit = /obj/item/circuitboard/computer/camera/wooden_tv
 

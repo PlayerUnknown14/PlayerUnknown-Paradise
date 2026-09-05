@@ -3666,7 +3666,7 @@
 	},
 /area/station/security/medical)
 "aKM" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "aKP" = (
@@ -4648,7 +4648,7 @@
 /turf/simulated/wall/r_wall,
 /area/station/science/research)
 "aVb" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/random{
 	pixel_y = 32
@@ -14297,7 +14297,7 @@
 	},
 /area/station/command/bridge)
 "cXd" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/station/maintenance/detectives_office)
@@ -25552,7 +25552,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 4;
 	icon_state = "purple"
@@ -39193,7 +39193,7 @@
 	},
 /area/station/cargo/storage)
 "hRJ" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/door_control{
 	id = "SupermatterVenting";
 	name = "Supermatter Venting Control";
@@ -53790,7 +53790,7 @@
 	},
 /area/station/engineering/storage)
 "kAC" = (
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -65597,7 +65597,7 @@
 /turf/simulated/floor/plasteel,
 /area/station/hallway/secondary/entry/eastarrival)
 "mGE" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/station/maintenance/ai)
 "mGG" = (
@@ -75656,7 +75656,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -90063,7 +90063,7 @@
 	pixel_x = 26;
 	pixel_y = 6
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/door_control{
 	id = "smbolts1";
 	name = "Supermatter Bolt Control";
@@ -117359,7 +117359,7 @@
 /area/station/maintenance/tourist)
 "wdX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/station/maintenance/brig)
 "wdZ" = (

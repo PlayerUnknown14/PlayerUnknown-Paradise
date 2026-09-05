@@ -42227,7 +42227,7 @@
 /turf/simulated/floor/plasteel,
 /area/station/hallway/primary/central/ne)
 "egS" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 8;
 	icon_state = "purple"
@@ -53492,7 +53492,7 @@
 /area/station/maintenance/apmaint)
 "iJq" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 8;
 	icon_state = "purple"
@@ -60377,7 +60377,7 @@
 /area/station/engineering/engine)
 "lww" = (
 /obj/effect/decal/cleanable/dust,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/engine,
 /area/station/maintenance/server)
 "lwI" = (
@@ -64954,7 +64954,7 @@
 /area/station/engineering/atmos)
 "nuR" = (
 /obj/effect/decal/cleanable/dust,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/stack/cable_coil{
 	pixel_x = 3;
 	pixel_y = -7
@@ -79002,7 +79002,7 @@
 	},
 /area/station/security/medical)
 "tjq" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "tjI" = (
@@ -79346,7 +79346,7 @@
 /area/station/engineering/mechanic_workshop)
 "tqG" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/computerframe/HONKputer,
+/obj/structure/frame/computer/HONKputer,
 /turf/simulated/floor/plating,
 /area/station/maintenance/apmaint)
 "tqR" = (
@@ -88158,7 +88158,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/livingcomplex)
 "wPz" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/camera{
 	c_tag = "Arrivals Shuttle South"
 	},

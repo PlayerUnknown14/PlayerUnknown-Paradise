@@ -22,7 +22,7 @@
 		PREPOSITIONAL = "консоли мониторинга суперматерии"
 	)
 
-/obj/machinery/computer/sm_monitor/Initialize(mapload, obj/structure/computerframe/frame)
+/obj/machinery/computer/sm_monitor/Initialize(mapload, obj/structure/frame/computer/frame)
 	. = ..()
 	refresh()
 
@@ -45,6 +45,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/sm_monitor/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NtosSupermatter", DECLENT_RU_CAP(src, NOMINATIVE))

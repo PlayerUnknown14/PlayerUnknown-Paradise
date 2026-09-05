@@ -7,13 +7,12 @@
 #define SCAN_NORMAL 2 //! There are some rifts within the scanner's range
 #define SCAN_CRITICAL 3 //! The scanner is within critical range of a rift
 
-/obj/item/circuitboard/brs_stationary_scanner
+/obj/item/circuitboard/machine/brs_stationary_scanner
 	board_name = "Стационарный сканер разлома"
 	desc = "Плата стационарного сканера блюспейс разлома."
 	build_path = /obj/machinery/power/brs_stationary_scanner
 	icon_state = "bluespace_scannerplat"
 	greyscale_config = null
-	board_type = "machine"
 	origin_tech = "engineering=6;bluespace=5"
 	req_components = list(
 		/obj/item/stack/sheet/metal = 30,
@@ -259,7 +258,7 @@
 
 /obj/machinery/power/brs_stationary_scanner/proc/new_component_parts()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/brs_stationary_scanner(null)
+	component_parts += new /obj/item/circuitboard/machine/brs_stationary_scanner(null)
 
 	component_parts += new /obj/item/stack/sheet/metal(null, 30)
 	component_parts += new /obj/item/stack/ore/bluespace_crystal(null, 4)

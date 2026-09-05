@@ -47567,7 +47567,7 @@
 	icon = 'icons/obj/syndie_logo.dmi';
 	icon_state = "logo4"
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "plastitanium"
@@ -50354,7 +50354,7 @@
 	icon = 'icons/obj/syndie_logo.dmi';
 	icon_state = "logo1"
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle{
 	icon = 'icons/turf/floors.dmi';
 	icon_state = "plastitanium"
@@ -51812,7 +51812,7 @@
 	},
 /area/centcom/central_command_areas/evacuation)
 "xGP" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/paper/synditele,
 /turf/simulated/floor/shuttle{
 	icon = 'icons/turf/floors.dmi';

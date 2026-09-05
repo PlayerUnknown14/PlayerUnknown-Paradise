@@ -87,7 +87,7 @@
 /turf/simulated/floor/plating,
 /area/station/maintenance/trading)
 "gc" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/circuitboard/computer/secure_data,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -695,7 +695,7 @@
 	},
 /area/station/maintenance/electrical_shop)
 "IK" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/stack/cable_coil{
 	amount = 10
 	},

@@ -48,7 +48,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/circuitboard/machine/bodyscanner,
 /turf/simulated/floor/plasteel{
 	dir = 1;

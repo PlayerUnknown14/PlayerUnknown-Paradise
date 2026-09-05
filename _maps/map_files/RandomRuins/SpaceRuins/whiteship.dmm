@@ -1995,7 +1995,7 @@
 	},
 /area/shuttle/abandoned)
 "St" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/item/shard{
 	icon_state = "small"
 	},

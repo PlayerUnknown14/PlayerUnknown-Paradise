@@ -6493,7 +6493,7 @@
 /turf/simulated/floor/wood,
 /area/ruin/space/spacehotelv1/restoraunt)
 "Xc" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/light/airless,
 /area/ruin/space/spacehotelv1/tcomms)
 "Xe" = (

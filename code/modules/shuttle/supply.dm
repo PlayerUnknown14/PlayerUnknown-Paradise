@@ -470,14 +470,11 @@
 		PREPOSITIONAL = "публичной консоли оформления заказов",
 	)
 
-/obj/machinery/computer/supplycomp/Initialize(mapload, obj/structure/computerframe/frame)
+/obj/machinery/computer/supplycomp/Initialize(mapload, obj/item/circuitboard/computer/supplycomp/circuit)
 	. = ..()
 
-	var/obj/item/circuitboard/computer/supplycomp/my_circuit = src.frame.circuit
-	if(!istype(my_circuit))
-		return
-
-	can_order_contraband = my_circuit.contraband_enabled
+	if(istype(circuit))
+		can_order_contraband = circuit.contraband_enabled
 
 /obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -504,6 +501,7 @@
 		return
 
 /obj/machinery/computer/supplycomp/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "CargoConsole", DECLENT_RU_CAP(src, NOMINATIVE))

@@ -356,14 +356,14 @@
 	track = TRACKER_AUTO
 	autostart = TRUE // Automatically search for connected devices
 
-/obj/machinery/power/solar_control/Initialize(mapload, obj/structure/computerframe)
+/obj/machinery/power/solar_control/Initialize(mapload, obj/structure/frame/computer)
 	connect_to_network()
 	setup()
 
 	. = ..()
 
-	if(computerframe)
-		qdel(computerframe)
+	if(computer)
+		qdel(computer)
 
 /obj/machinery/power/solar_control/proc/setup()
 	set_panels(cdir)
@@ -507,24 +507,24 @@
 		return
 	if(!I.use_tool(src, user, 20, volume = I.tool_volume))
 		return
-	var/obj/structure/computerframe/A = new (loc)
-	A.add_fingerprint(user)
-	var/obj/item/circuitboard/computer/solar_control/M = new(A)
+	var/obj/structure/frame/computer/new_computer = new (loc)
+	new_computer.add_fingerprint(user)
+	var/obj/item/circuitboard/computer/solar_control/M = new(new_computer)
 	M.add_fingerprint(user)
 	for(var/obj/C in src)
 		C.forceMove(loc)
 	if(stat & BROKEN)
 		to_chat(user, span_notice("The broken glass falls out."))
-		A.state = 4	// STATE_WIRES
+		new_computer.state = 4	// STATE_WIRES
 		var/obj/item/shard/shard = new(drop_location())
 		shard.add_fingerprint(user)
 	else
 		to_chat(user, span_notice("You disconnect the monitor."))
-		A.state = 5	// STATE_GLASS
-	A.dir = dir
-	A.circuit = M
-	A.update_icon(UPDATE_ICON_STATE)
-	A.set_anchored(TRUE)
+		new_computer.state = 5	// STATE_GLASS
+	new_computer.dir = dir
+	new_computer.circuit = M
+	new_computer.update_icon(UPDATE_ICON_STATE)
+	new_computer.set_anchored(TRUE)
 	qdel(src)
 
 /obj/machinery/power/solar_control/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)

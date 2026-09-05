@@ -327,7 +327,7 @@
 /obj/machinery/bci_implanter/Initialize(mapload)
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/bci_implanter(null)
+	component_parts += new /obj/item/circuitboard/machine/bci_implanter(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stock_parts/micro_laser(null)
 	component_parts += new /obj/item/stock_parts/manipulator(null)
@@ -637,11 +637,10 @@
 		return
 	bci_to_implant.forceMove(drop_location())
 
-/obj/item/circuitboard/bci_implanter
+/obj/item/circuitboard/machine/bci_implanter
 	board_name = "Brain-Computer Interface Manipulation Chamber"
 	build_path = /obj/machinery/bci_implanter
 	greyscale_colors = CIRCUIT_COLOR_SCIENCE
-	board_type = "machine"
 	origin_tech = "programming=2;biotech=2"
 	req_components = list(
 		/obj/item/stock_parts/micro_laser = 2,

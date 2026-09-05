@@ -382,6 +382,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/rdservercontrol/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
 	if(!length(servers) || !length(consoles))
 		refresh_cache()
 

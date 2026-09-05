@@ -3486,7 +3486,7 @@
 /turf/simulated/floor/plasteel/reactor_pool,
 /area/station/engineering/engine/reactor)
 "aKM" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle,
 /area/shuttle/arrival/station)
 "aLg" = (
@@ -20078,7 +20078,7 @@
 	},
 /area/station/science/toxins/launch)
 "elp" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/random{
 	pixel_y = 32
@@ -39338,7 +39338,7 @@
 /turf/simulated/floor/plasteel,
 /area/station/cargo/storage)
 "hQc" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/door_control{
 	id = "SupermatterVenting";
 	name = "Supermatter Venting Control";
@@ -59863,7 +59863,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -60218,7 +60218,7 @@
 /turf/simulated/floor/glass,
 /area/station/maintenance/consarea_virology)
 "lFT" = (
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -63577,7 +63577,7 @@
 	pixel_x = 26;
 	pixel_y = 6
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/machinery/door_control{
 	id = "smbolts1";
 	name = "Supermatter Bolt Control";
@@ -69305,7 +69305,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 4;
 	icon_state = "purple"
@@ -117111,7 +117111,7 @@
 /area/station/maintenance/brig)
 "vRf" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/station/maintenance/brig)
 "vRi" = (
@@ -123760,7 +123760,7 @@
 /turf/simulated/floor/engine,
 /area/station/engineering/engine/reactor)
 "xaX" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/station/maintenance/detectives_office)

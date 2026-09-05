@@ -85,7 +85,7 @@
 /turf/simulated/floor/plasteel,
 /area/awaymission/northblock)
 "au" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel,
 /area/awaymission/northblock)
 "av" = (
@@ -1079,7 +1079,7 @@
 	},
 /area/awaymission/research)
 "dw" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/airless{
 	dir = 4;
 	icon_state = "blue"
@@ -1282,14 +1282,14 @@
 	},
 /area/awaymission/research)
 "dX" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
 /area/awaymission/research)
 "dY" = (
 /obj/machinery/light,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	icon_state = "showroomfloor"
 	},
@@ -1322,7 +1322,7 @@
 /area/awaymission/northblock)
 "ed" = (
 /obj/machinery/light/small,
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/airless{
 	dir = 1;
 	icon_state = "blue"
@@ -1343,7 +1343,7 @@
 	},
 /area/awaymission/northblock)
 "eg" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/airless{
 	dir = 1;
 	icon_state = "bluecorner"
@@ -1596,7 +1596,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	icon_state = "showroomfloor"
 	},

@@ -255,7 +255,7 @@
 	},
 /area/ruin/space_prison)
 "aK" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 1;
 	icon_state = "darkblue"
@@ -1066,7 +1066,7 @@
 /turf/simulated/floor/plating,
 /area/ruin/space_prison)
 "el" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/ruin/space_prison)
 "et" = (
@@ -1387,7 +1387,7 @@
 	},
 /area/ruin/space_prison)
 "kh" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dust,
 /turf/simulated/floor/plasteel{
 	icon_state = "dark"

@@ -29,7 +29,7 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 	var/list/messagetext = list()
 	var/currmsg
 
-	var/authenticated = COMM_AUTHENTICATION_NONE
+	authenticated = COMM_AUTHENTICATION_NONE
 	var/menu_state = COMM_SCREEN_MAIN
 	var/ai_menu_state = COMM_SCREEN_MAIN
 	var/aicurrmsg
@@ -471,9 +471,10 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 	ui_interact(user)
 
 /obj/machinery/computer/communications/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "CommunicationsComputer", name)
+		ui = new(user, src, "CommunicationsComputer", DECLENT_RU_CAP(src, NOMINATIVE))
 		ui.open()
 
 /obj/machinery/computer/communications/ui_data(mob/user)

@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(skill_manual_orders)
 	req_access = list(ACCESS_LIBRARY)
 	circuit = /obj/item/circuitboard/computer/skill_manuals
 
-/obj/machinery/computer/skill_manuals/Initialize(mapload, obj/structure/computerframe/frame)
+/obj/machinery/computer/skill_manuals/Initialize(mapload, obj/structure/frame/computer/frame)
 	. = ..()
 	if(length(GLOB.skill_manual_orders) == 0)
 		refresh_available_manuals()
@@ -49,6 +49,7 @@ GLOBAL_LIST_EMPTY(skill_manual_orders)
 	ui_interact(user)
 
 /obj/machinery/computer/skill_manuals/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SkillManualsShop", "Магазин руководств")

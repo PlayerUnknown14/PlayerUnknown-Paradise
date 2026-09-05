@@ -1881,7 +1881,7 @@
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/research/explab)
 "aGX" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/cold{
 	dir = 8;
 	icon_state = "neutralfull"
@@ -10855,7 +10855,7 @@
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/maintenance/servicegen)
 "dXu" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel/grimy,
 /area/coldcolony/malta/civilian/vacantoffice)
 "dXx" = (
@@ -47775,7 +47775,7 @@
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/maintenance/brig)
 "rOz" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/coldcolony/malta/medical/virology)
 "rOR" = (

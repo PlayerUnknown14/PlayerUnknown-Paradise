@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(bananium_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("Clown Statue", /obj/structure/statue/bananium/clown, 5, one_per_turf = 1, on_floor = 1, time = 4 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD), \
 	null, \
-	new/datum/stack_recipe("bananium computer frame", /obj/structure/computerframe/HONKputer, 20, time = 25, one_per_turf = 1, on_floor = 1, modifier_name = CONSTRUCTING_SPEED_MOD), \
+	new/datum/stack_recipe("bananium computer frame", /obj/structure/frame/computer/HONKputer, 20, time = 25, one_per_turf = 1, on_floor = 1, modifier_name = CONSTRUCTING_SPEED_MOD), \
 	new/datum/stack_recipe("bananium grenade casing", /obj/item/grenade/bananade/casing, 4, on_floor = 1, time = 1 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD), \
 	))
 
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
 	null, \
 	new/datum/stack_recipe("alien floor tile", /obj/item/stack/tile/mineral/abductor, 1, 4, 20), \
 	new/datum/stack_recipe("alien chair", /obj/structure/chair/comfy/abductor,  2, one_per_turf = 1, on_floor = 1, time = 1 SECONDS, modifier_name = CONSTRUCTING_SPEED_MOD), \
-	new/datum/stack_recipe("alien computer frame", /obj/structure/computerframe/abductor,  4, time = 25, one_per_turf = 1, on_floor = 1, modifier_name = CONSTRUCTING_SPEED_MOD)
+	new/datum/stack_recipe("alien computer frame", /obj/structure/frame/computer/abductor,  4, time = 25, one_per_turf = 1, on_floor = 1, modifier_name = CONSTRUCTING_SPEED_MOD)
 	))
 
 GLOBAL_LIST_INIT(adamantine_recipes, list(

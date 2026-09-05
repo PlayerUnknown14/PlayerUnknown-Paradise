@@ -1,13 +1,12 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = MAP_SWITCH('icons/obj/machines/computer.dmi', 'icons/obj/fluff/map_previews.dmi')
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
 	max_integrity = 200
 	integrity_failure = 0.5
-	armor_type = /datum/armor/machinery_computer
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 40, ACID = 20)
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON|INTERACT_MACHINE_REQUIRES_LITERACY
-	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	/// How bright we are when turned on.
 	var/brightness_on = 1
 	/// Icon_state of the keyboard overlay.
@@ -22,7 +21,6 @@
 	var/authenticated = FALSE
 	/// Will projectiles be able to pass over this computer?
 	var/projectiles_pass_chance = 65
-	generate_map_preview = TRUE
 
 /datum/armor/machinery_computer
 	fire = 40
@@ -31,11 +29,6 @@
 /obj/machinery/computer/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
 	power_change()
-
-/obj/machinery/computer/post_machine_initialize()
-	. = ..()
-	if(SStts.tts_enabled)
-		voice = SStts.computer_voice
 
 /obj/machinery/computer/mouse_drop_receive(mob/living/dropping, mob/user, params)
 	. = ..()
@@ -110,7 +103,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/tools/welder.ogg', 100, TRUE)
 
-/obj/machinery/computer/atom_break(damage_flag)
+/obj/machinery/computer/obj_break(damage_flag)
 	if(!circuit) //no circuit, no breaking
 		return
 	. = ..()
@@ -118,28 +111,15 @@
 		playsound(loc, 'sound/effects/glass/glassbr3.ogg', 100, TRUE)
 		set_light(0)
 
-/obj/machinery/computer/proc/imprint_gps(gps_tag) // Currently used by the upload computers and communications console
-	if(!length(gps_tag)) // Don't give a null GPS signal if there is none
-		CRASH("[src] called imprint_gps without setting gps_tag")
-	var/set_tracker = FALSE
-	for(var/obj/item/circuitboard/computer/board in contents)
-		if(board.GetComponent(/datum/component/gps))
-			return
-		board.AddComponent(/datum/component/gps, "[gps_tag]")
-		set_tracker = TRUE
-	if (set_tracker)
-		balloon_alert_to_viewers("board tracker enabled", vision_distance = 1)
-
 /obj/machinery/computer/emp_act(severity)
 	. = ..()
-	if (!(. & EMP_PROTECT_SELF))
-		switch(severity)
-			if(1)
-				if(prob(50))
-					atom_break(ENERGY)
-			if(2)
-				if(prob(10))
-					atom_break(ENERGY)
+	switch(severity)
+		if(1)
+			if(prob(50))
+				obj_break(ENERGY)
+		if(2)
+			if(prob(10))
+				obj_break(ENERGY)
 
 /obj/machinery/computer/spawn_frame(disassembled)
 	if(QDELETED(circuit)) //no circuit, no computer frame

@@ -101,6 +101,7 @@
 	attack_hand(user)
 
 /obj/machinery/computer/sat_control/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	sat_control.ui_interact(user, ui)
 
 /obj/machinery/computer/sat_control/interact(mob/user)

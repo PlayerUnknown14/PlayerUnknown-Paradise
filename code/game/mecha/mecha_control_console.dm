@@ -19,6 +19,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/mecha/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "MechaControlConsole", name)

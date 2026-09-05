@@ -829,11 +829,11 @@
 	var/max_connect_range = 7
 	var/moved = FALSE	//workaround for nukie shuttle, hope I find a better way to do this...
 
-/obj/machinery/computer/shuttle/Initialize(mapload, obj/item/circuitboard/shuttle/C)
+/obj/machinery/computer/shuttle/Initialize(mapload, obj/item/circuitboard/computer/shuttle/circuit)
 	. = ..()
-	if(istype(C))
-		possible_destinations = C.possible_destinations
-		shuttleId = C.shuttleId
+	if(istype(circuit))
+		possible_destinations = circuit.possible_destinations
+		shuttleId = circuit.shuttleId
 
 	if(mapload)
 		return INITIALIZE_HINT_LATELOAD
@@ -874,6 +874,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ShuttleConsole", name)

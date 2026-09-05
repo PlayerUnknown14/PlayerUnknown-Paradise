@@ -468,7 +468,7 @@
 		if(panel_open || W.works_from_distance)
 			if(!W.works_from_distance)
 				add_fingerprint(user)
-			var/obj/item/circuitboard/CB = locate(/obj/item/circuitboard) in component_parts
+			var/obj/item/circuitboard/machine/CB = locate(/obj/item/circuitboard/machine) in component_parts
 			var/P
 			if(W.works_from_distance)
 				to_chat(user, display_parts(user))

@@ -355,7 +355,7 @@
 	greyscale_colors = CIRCUIT_COLOR_ENGINEERING
 	build_path = /obj/machinery/power/solar_control
 	origin_tech = "programming=2;powerstorage=2"
-	
+
 // MARK: Supply
 /obj/item/circuitboard/computer/ordercomp
 	board_name = "Supply Ordering Console"
@@ -417,15 +417,11 @@
 	build_path = /obj/machinery/computer/syndicate_depot/teleporter/taipan
 	origin_tech = "programming=6;bluespace=5;syndicate=8"
 
-
-
 /obj/item/circuitboard/computer/shuttle
 	board_name = "Shuttle"
 	build_path = /obj/machinery/computer/shuttle
 	var/shuttleId
 	var/possible_destinations = ""
-
-
 
 /obj/item/circuitboard/computer/ferry
 	board_name = "Transport Ferry"

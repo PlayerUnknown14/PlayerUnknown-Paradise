@@ -10228,7 +10228,7 @@
 	density = 0;
 	icon_state = "brokengrille"
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/syndicate/unpowered/syndicate_space_base/maintenance/south)
 "kdp" = (
@@ -18789,7 +18789,7 @@
 	},
 /area/syndicate/unpowered/syndicate_space_base/armory/hall_middle)
 "rqa" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/shuttle,
 /area/space)
 "rqL" = (
@@ -18967,7 +18967,7 @@
 /turf/simulated/floor/plating,
 /area/syndicate/unpowered/syndicate_space_base/maintenance/east)
 "rAu" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plating,
 /area/syndicate/unpowered/syndicate_space_base/maintenance/east)
 "rAB" = (

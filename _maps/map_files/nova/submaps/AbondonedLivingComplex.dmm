@@ -989,7 +989,7 @@
 /turf/simulated/floor/carpet/royalblack,
 /area/station/maintenance/livingcomplex)
 "Ap" = (
-/obj/structure/computerframe{
+/obj/structure/frame/computer{
 	anchored = 0
 	},
 /obj/effect/decal/cleanable/dirt,

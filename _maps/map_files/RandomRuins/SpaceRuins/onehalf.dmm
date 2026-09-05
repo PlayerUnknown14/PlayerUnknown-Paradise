@@ -767,11 +767,11 @@
 	dir = 1;
 	on = 1
 	},
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "ch" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel,
 /area/ruin/space/has_grav/onehalf/bridge)
 "ci" = (

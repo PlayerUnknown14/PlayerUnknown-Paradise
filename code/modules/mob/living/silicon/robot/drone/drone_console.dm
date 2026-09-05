@@ -45,6 +45,7 @@
 	return GLOB.default_state
 
 /obj/machinery/computer/drone_control/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DroneConsole", DECLENT_RU_CAP(src, NOMINATIVE))

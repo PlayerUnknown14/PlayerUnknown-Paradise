@@ -822,6 +822,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	ui_interact(user)
 
 /obj/machinery/computer/rdconsole/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RndConsole", DECLENT_RU_CAP(src, NOMINATIVE))
@@ -1170,7 +1171,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	id = 6
 	req_access = list(ACCESS_CARGO)
 	circuit = /obj/item/circuitboard/computer/rdconsole/cargo
-	frame = /obj/structure/computerframe/cargo
 	disk_only = TRUE
 	ui_theme = "cargo"
 	icon_state = "cargocomp"

@@ -464,6 +464,7 @@ GLOBAL_LIST_EMPTY(data_storages) //list of all cargo console data storage datums
 	return ..()
 
 /obj/machinery/computer/syndie_supplycomp/ui_interact(mob/user, datum/tgui/ui = null)
+	. = ..()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SyndieCargoConsole", name)

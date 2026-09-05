@@ -158,7 +158,7 @@
 /turf/simulated/floor/shuttle/plating,
 /area/space/nearstation)
 "F" = (
-/obj/structure/computerframe/HONKputer,
+/obj/structure/frame/computer/HONKputer,
 /turf/simulated/floor/plasteel/airless,
 /area/space/nearstation)
 "G" = (

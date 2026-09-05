@@ -7,7 +7,7 @@
 /turf/simulated/wall/indestructible/reinforced,
 /area/awaymission/academy/academyaft)
 "ae" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/carpet,
 /area/awaymission/academy/headmaster)
 "af" = (
@@ -184,7 +184,7 @@
 /turf/simulated/wall/indestructible/fakeglass,
 /area/awaymission/academy/headmaster)
 "aZ" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 1;
 	icon_state = "green"
@@ -6183,7 +6183,7 @@
 	},
 /area/awaymission/academy/classrooms)
 "Vv" = (
-/obj/structure/computerframe,
+/obj/structure/frame/computer,
 /turf/simulated/floor/plasteel{
 	dir = 9;
 	icon_state = "green"
