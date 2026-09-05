@@ -33,7 +33,7 @@
 /obj/machinery/bodyscanner/power_change(forced = FALSE)
 	if(!..())
 		return
-	if(!(stat & (BROKEN|NOPOWER)))
+	if(!(machine_stat & (BROKEN|NOPOWER)))
 		set_light(2)
 	else
 		set_light_on(FALSE)
@@ -172,7 +172,7 @@
 	if(..())
 		return TRUE
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(occupant == user)
@@ -268,7 +268,7 @@
 	var/occupantData[0]
 	if(occupant)
 		occupantData["name"] = occupant.name
-		occupantData["stat"] = occupant.stat
+		occupantData["machine_stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.maxHealth
 
@@ -392,7 +392,7 @@
 /obj/machinery/bodyscanner/ui_act(action, params)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	. = TRUE

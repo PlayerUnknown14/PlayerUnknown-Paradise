@@ -99,7 +99,7 @@
 /obj/effect/anomaly/energetic/proc/jump_to_machinery(damage)
 	var/list/possible_targets = list()
 	for(var/obj/machinery/mach in view(5, src))
-		if(!(mach.stat & BROKEN))
+		if(!(mach.machine_stat & BROKEN))
 			possible_targets += mach
 
 	if(!length(possible_targets))

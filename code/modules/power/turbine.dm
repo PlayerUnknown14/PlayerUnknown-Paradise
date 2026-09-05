@@ -178,9 +178,9 @@
 
 /obj/machinery/power/compressor/proc/check_broken()
 	if(turbine && bearing_damage < BEARING_DAMAGE_MAX)
-		stat &= ~BROKEN
+		machine_stat &= ~BROKEN
 	else
-		stat |= BROKEN
+		machine_stat |= BROKEN
 
 /obj/machinery/power/compressor/locate_machinery()
 	if(turbine)
@@ -346,7 +346,7 @@
 
 	compressor.check_broken()
 	// If the compressor cannot function only lose kinetic energy to friction and damage the bearings if over temp
-	if(compressor.stat & BROKEN || compressor.panel_open || !compressor.starter)
+	if(compressor.machine_stat & BROKEN || compressor.panel_open || !compressor.starter)
 		// Update values that show up on the UI
 		compressor.compression_ratio = 0
 		compressor.pre_burn_temp = 0
@@ -514,9 +514,9 @@
 
 	if(compressor)
 		compressor.locate_machinery()
-		stat &= ~BROKEN
+		machine_stat &= ~BROKEN
 	else
-		stat |= BROKEN
+		machine_stat |= BROKEN
 
 /obj/machinery/power/turbine/process()
 	var/datum/milla_safe/turbine_process/milla = new()
@@ -527,9 +527,9 @@
 /datum/milla_safe/turbine_process/on_run(obj/machinery/power/turbine/turbine)
 	var/obj/machinery/power/compressor/compressor = turbine.compressor
 	if(!turbine.compressor)
-		turbine.stat = BROKEN
+		turbine.machine_stat = BROKEN
 
-	if((turbine.stat & BROKEN) || turbine.panel_open || !compressor.starter)
+	if((turbine.machine_stat & BROKEN) || turbine.panel_open || !compressor.starter)
 		turbine.lastgen = 0
 		return
 
@@ -587,10 +587,10 @@
 	locate_machinery()
 	if(compressor)
 		to_chat(user, span_notice("The compressor is connected."))
-		stat &= ~BROKEN
+		machine_stat &= ~BROKEN
 	else
 		to_chat(user, span_warning("The compressor is not connected."))
-		stat |= BROKEN
+		machine_stat |= BROKEN
 
 /obj/machinery/power/turbine/crowbar_act(mob/living/user, obj/item/I)
 	return default_deconstruction_crowbar(user, I)
@@ -613,9 +613,9 @@
 /obj/machinery/power/turbine/ui_data(mob/user)
 	var/list/data = list()
 	data["compressor"] = !isnull(compressor)
-	data["compressor_broken"] = (compressor?.stat & BROKEN)
+	data["compressor_broken"] = (compressor?.machine_stat & BROKEN)
 	data["turbine"] = !isnull(compressor?.turbine)
-	data["turbine_broken"] = (compressor?.turbine?.stat & BROKEN)
+	data["turbine_broken"] = (compressor?.turbine?.machine_stat & BROKEN)
 	data["throttle"] = (compressor?.throttle * 100)
 
 	if(compressor?.turbine)
@@ -686,9 +686,9 @@
 /obj/machinery/computer/turbine_computer/ui_data(mob/user)
 	var/list/data = list()
 	data["compressor"] = !isnull(compressor)
-	data["compressor_broken"] = (compressor?.stat & BROKEN)
+	data["compressor_broken"] = (compressor?.machine_stat & BROKEN)
 	data["turbine"] = !isnull(compressor?.turbine)
-	data["turbine_broken"] = (compressor?.turbine?.stat & BROKEN)
+	data["turbine_broken"] = (compressor?.turbine?.machine_stat & BROKEN)
 	data["throttle"] = (compressor?.throttle * 100)
 
 	if(compressor?.turbine)

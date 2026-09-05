@@ -86,6 +86,7 @@
  */
 
 /obj/machinery
+	abstract_type = /obj/machinery
 	name = "machinery"
 	gender = MALE
 	icon = 'icons/obj/stationobjs.dmi'
@@ -97,8 +98,9 @@
 	interaction_flags_click = NEED_HANDS | ALLOW_RESTING
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-
-	var/stat = 0
+	atom_say_verb = list("бипает", "бупает", "заявляет", "гудит")
+	anchored = TRUE
+	var/machine_stat = FALSE
 	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
@@ -112,7 +114,6 @@
 	var/area/myArea
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/list/use_log // Init this list if you wish to add logging to your machine - currently only viewable in VV
-	atom_say_verb = list("бипает", "бупает", "заявляет", "гудит")
 	var/siemens_strength = 0.7 // how badly will it shock you?
 	/// The frequency on which the machine can communicate. Used with `/datum/radio_frequency`.
 	var/frequency = NONE
@@ -231,7 +232,7 @@
 	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
-	if(use_power && !stat)
+	if(use_power && !machine_stat)
 		use_power(7500/severity)
 		. = TRUE
 	..()
@@ -239,7 +240,7 @@
 /obj/machinery/default_welder_repair(mob/user, obj/item/I)
 	. = ..()
 	if(.)
-		stat &= ~BROKEN
+		machine_stat &= ~BROKEN
 
 //sets the use_power var and then forces an area power update
 /obj/machinery/proc/update_use_power(new_use_power)
@@ -265,10 +266,10 @@
 	return !inoperable(additional_flags)
 
 /obj/machinery/proc/inoperable(additional_flags = 0)
-	return (stat & (NOPOWER|BROKEN|additional_flags))
+	return (machine_stat & (NOPOWER|BROKEN|additional_flags))
 
 /obj/machinery/ui_status(mob/user, datum/ui_state/state)
-	if(!interact_offline && (stat & (NOPOWER|BROKEN)))
+	if(!interact_offline && (machine_stat & (NOPOWER|BROKEN)))
 		return UI_CLOSE
 
 	return ..()
@@ -320,7 +321,7 @@
 			add_fingerprint(user)
 		return FALSE
 
-	if(!interact_offline && stat & (NOPOWER|BROKEN|MAINT))
+	if(!interact_offline && machine_stat & (NOPOWER|BROKEN|MAINT))
 		return TRUE
 
 	if(has_prints())
@@ -329,7 +330,7 @@
 	return ..()
 
 /obj/machinery/proc/is_operational()
-	return !(stat & (NOPOWER|BROKEN|MAINT))
+	return !(machine_stat & (NOPOWER|BROKEN|MAINT))
 
 /obj/machinery/CheckParts(list/parts_list)
 	..()
@@ -360,7 +361,7 @@
 
 /obj/machinery/obj_break(damage_flag)
 	if(!(obj_flags & NODECONSTRUCT))
-		stat |= BROKEN
+		machine_stat |= BROKEN
 
 /obj/machinery/proc/default_deconstruction_crowbar(mob/user, obj/item/I, ignore_panel = 0)
 	add_fingerprint(user)
@@ -430,7 +431,7 @@
 
 	if(istype(item, /obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/nanopaste = item
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			to_chat(user, span_notice("[src] is too damaged to be fixed with nanopaste!"))
 			return ATTACK_CHAIN_PROCEED
 		if(obj_integrity == max_integrity)
@@ -511,7 +512,7 @@
 
 /obj/machinery/examine(mob/user)
 	. = ..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		. += span_notice("It looks broken and non-functional.")
 	if(!(resistance_flags & INDESTRUCTIBLE))
 		if(resistance_flags & ON_FIRE)

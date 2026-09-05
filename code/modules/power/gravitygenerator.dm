@@ -54,10 +54,10 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	qdel(src)
 
 /obj/machinery/gravity_generator/proc/set_broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 
 /obj/machinery/gravity_generator/proc/set_fix()
-	stat &= ~BROKEN
+	machine_stat &= ~BROKEN
 
 /*
  * MARK: Part Generator
@@ -90,7 +90,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 /obj/machinery/gravity_generator/part/set_broken()
 	..()
-	if(main_part && !(main_part.stat & BROKEN))
+	if(main_part && !(main_part.machine_stat & BROKEN))
 		main_part.set_broken()
 
 /obj/machinery/gravity_generator/part/proc/on_update_icon(obj/machinery/gravity_generator/source, updates, updated)
@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/set_broken()
 	. = ..()
 	for(var/obj/machinery/gravity_generator/internal_part as anything in generator_parts)
-		if(!(internal_part.stat & BROKEN))
+		if(!(internal_part.machine_stat & BROKEN))
 			internal_part.set_broken()
 	center_part.cut_overlays()
 	charge_count = 0
@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/set_fix()
 	. = ..()
 	for(var/obj/machinery/gravity_generator/internal_part as anything in generator_parts)
-		if(internal_part.stat & BROKEN)
+		if(internal_part.machine_stat & BROKEN)
 			internal_part.set_fix()
 	broken_state = FALSE
 	update_icon(UPDATE_ICON_STATE)
@@ -192,7 +192,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 /obj/machinery/gravity_generator/main/examine(mob/user)
 	. = ..()
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		return
 	switch(broken_state)
 		if(GRAV_NEEDS_SCREWDRIVER)
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 			. += span_notice("The new plating just needs to be <b>bolted</b> into place now.")
 
 /obj/machinery/gravity_generator/main/attackby(obj/item/I, mob/user, params)
-	if(user.a_intent == INTENT_HARM || !(stat & BROKEN) || broken_state != GRAV_NEEDS_PLASTEEL || !istype(I, /obj/item/stack/sheet/plasteel))
+	if(user.a_intent == INTENT_HARM || !(machine_stat & BROKEN) || broken_state != GRAV_NEEDS_PLASTEEL || !istype(I, /obj/item/stack/sheet/plasteel))
 		return ..()
 
 	add_fingerprint(user)
@@ -275,7 +275,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	data["charge_count"] = charge_count
 	data["charging_state"] = charging_state
 	data["on"] = on
-	data["operational"] = (stat & BROKEN) ? FALSE : TRUE
+	data["operational"] = (machine_stat & BROKEN) ? FALSE : TRUE
 
 	return data
 
@@ -296,18 +296,18 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/power_change(forced = FALSE)
 	. = ..()
 	if(SSticker.current_state == GAME_STATE_PLAYING)
-		investigate_log("has [stat & NOPOWER ? "lost" : "regained"] power.", INVESTIGATE_GRAVITY)
+		investigate_log("has [machine_stat & NOPOWER ? "lost" : "regained"] power.", INVESTIGATE_GRAVITY)
 	set_power()
 
 /obj/machinery/gravity_generator/main/get_status()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return "fix[min(broken_state, 3)]"
 	return on || charging_state != GRAV_POWER_IDLE ? "on" : "off"
 
 // Set the charging state based on power/breaker.
 /obj/machinery/gravity_generator/main/proc/set_power()
 	var/new_state = FALSE
-	if(stat & (NOPOWER|BROKEN) || !breaker)
+	if(machine_stat & (NOPOWER|BROKEN) || !breaker)
 		new_state = FALSE
 	else if(breaker)
 		new_state = TRUE
@@ -355,7 +355,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 
 // Charge/Discharge and turn on/off gravity when you reach 0/100 percent.
 /obj/machinery/gravity_generator/main/process()
-	if((stat & BROKEN) || charging_state == GRAV_POWER_IDLE)
+	if((machine_stat & BROKEN) || charging_state == GRAV_POWER_IDLE)
 		return
 	if(charging_state == GRAV_POWER_UP && charge_count >= 100)
 		enable()

@@ -324,7 +324,7 @@
 			. += "[base_icon_state]_helm"
 		if(storage)
 			. += "[base_icon_state]_storage"
-	if(!(broken || stat & NOPOWER))
+	if(!(broken || machine_stat & NOPOWER))
 		if(state_open)
 			. += "[base_icon_state]_lights_open"
 		else
@@ -372,7 +372,7 @@
 	if(!I.use_tool(src, user, 0, volume = 0))
 		return
 	. = TRUE
-	if(shocked && !(stat & NOPOWER))
+	if(shocked && !(machine_stat & NOPOWER))
 		if(shock(user, 100))
 			return
 	default_deconstruction_screwdriver(user, icon_state, icon_state, I)
@@ -404,7 +404,7 @@
 			storage = I
 
 /obj/machinery/suit_storage_unit/power_change(forced = FALSE)
-	..() //we don't check parent return here because `is_operational` cares about other flags in stat
+	..() //we don't check parent return here because `is_operational` cares about other flags in machine_stat
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()
@@ -613,7 +613,7 @@
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user)
-	if(..() || (stat & NOPOWER))
+	if(..() || (machine_stat & NOPOWER))
 		return
 	if(shocked && shock(user, 100))
 		return
@@ -649,7 +649,7 @@
 	add_fingerprint(usr)
 	if(!controls_inside && usr == occupant)
 		return
-	if(shocked && !(stat & NOPOWER))
+	if(shocked && !(machine_stat & NOPOWER))
 		if(shock(usr, 100))
 			return FALSE
 

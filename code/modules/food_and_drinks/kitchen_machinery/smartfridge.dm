@@ -108,7 +108,7 @@
 	return ..()
 
 /obj/machinery/smartfridge/process()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(seconds_electrified > 0)
 		seconds_electrified--
@@ -125,7 +125,7 @@
 
 /obj/machinery/smartfridge/power_change()
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light_on(FALSE)
 	else
 		set_light(light_range_on, light_power_on, l_on = TRUE)
@@ -137,11 +137,11 @@
 	underlays.Cut()
 	if(panel_open)
 		. += "[icon_state]_panel"
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		. += "[icon_state]_off"
 		if(icon_addon)
 			. += "[icon_addon]"
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			. += "[broken_overlay]"
 		return
 	if(visible_contents)
@@ -169,7 +169,7 @@
 
 /obj/machinery/smartfridge/broken/Initialize(mapload)
 	. = ..()
-	stat = BROKEN
+	machine_stat = BROKEN
 	update_icon(UPDATE_OVERLAYS)
 
 // Interactions
@@ -212,7 +212,7 @@
 		return ATTACK_CHAIN_PROCEED_SUCCESS
 
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		balloon_alert(user, "не работает!")
 		return ATTACK_CHAIN_PROCEED
 
@@ -253,7 +253,7 @@
 	return attack_hand(user)
 
 /obj/machinery/smartfridge/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		balloon_alert(user, "не работает!")
 		return
 	wires.Interact(user)
@@ -266,7 +266,7 @@
 		return
 	if(!istype(over_object, /obj/item/storage/pill_bottle)) //Only pill bottles, please
 		return
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		balloon_alert(user, "не работает!")
 		return
 
@@ -512,12 +512,12 @@
 	if(panel_open)
 		. += "[base_icon_state]_panel"
 
-	if(stat & NOPOWER)
-		if(stat & BROKEN)
+	if(machine_stat & NOPOWER)
+		if(machine_stat & BROKEN)
 			. += "[base_icon_state]_broken"
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		. += "[base_icon_state]_broken"
 		underlays += emissive_appearance(icon, "[base_icon_state]_broken_lightmask", src)
 	else
@@ -771,8 +771,8 @@
 	underlays.Cut()
 	if(panel_open)
 		. += "[base_icon_state]_panel"
-	if(stat & (BROKEN|NOPOWER))
-		if(stat & BROKEN)
+	if(machine_stat & (BROKEN|NOPOWER))
+		if(machine_stat & BROKEN)
 			. += "[icon_state]_broken"
 		return
 	. += "[base_icon_state]"
@@ -947,9 +947,9 @@
 		return
 
 	if(powered() && anchored)
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 	else
-		stat |= NOPOWER
+		machine_stat |= NOPOWER
 		toggle_drying(forceoff =TRUE)
 	update_icon(UPDATE_OVERLAYS)
 

@@ -222,7 +222,7 @@ GLOBAL_LIST_INIT(non_simple_animals, typecacheof(list(/mob/living/carbon/human/l
 	..()
 
 /obj/machinery/dna_vault/update_icon_state()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "vaultoff"
 		return
 	icon_state = "vault"
@@ -237,7 +237,7 @@ GLOBAL_LIST_INIT(non_simple_animals, typecacheof(list(/mob/living/carbon/human/l
 	return ..()
 
 /obj/machinery/dna_vault/attack_ghost(mob/user)
-	if(stat & (BROKEN|MAINT))
+	if(machine_stat & (BROKEN|MAINT))
 		return
 	return ui_interact(user)
 

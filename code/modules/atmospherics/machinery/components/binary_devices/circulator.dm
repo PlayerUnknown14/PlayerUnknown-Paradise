@@ -118,7 +118,7 @@
 	underlays.Cut()
 	cut_overlays()
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = "circ[side]-p"
 		return
 
@@ -137,7 +137,7 @@
 
 /obj/machinery/atmospherics/binary/circulator/power_change()
 	. = ..()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		set_light(0)
 	else
 		set_light(light_range_on, light_power_on)

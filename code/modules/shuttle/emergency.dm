@@ -13,7 +13,7 @@
 	var/obj/item/card/id/id_card = I.GetID()
 	if(id_card)
 		add_fingerprint(user)
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			to_chat(user, span_warning("Консоль сломана или обесточена."))
 			return ATTACK_CHAIN_PROCEED
 		if(SSshuttle.emergency.mode != SHUTTLE_DOCKED)

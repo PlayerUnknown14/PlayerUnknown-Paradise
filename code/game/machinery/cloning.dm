@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 
 /obj/machinery/clonepod/power_change(forced = FALSE)
 	..() //we don't check return here because we also care about the BROKEN flag
-	if(!(stat & (BROKEN|NOPOWER)))
+	if(!(machine_stat & (BROKEN|NOPOWER)))
 		set_light(2)
 	else
 		set_light_on(FALSE)
@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 		. += span_warning("Она заполнена мессивом из крови и внутренностей. Вам кажется или оно сейчас сдвинулось..?")
 	if(HAS_TRAIT(src, TRAIT_CMAGGED))
 		. += span_warning("Из камеры хранения органического сырья сочится жёлтая слизь...")
-	if(!occupant || stat & (NOPOWER|BROKEN))
+	if(!occupant || machine_stat & (NOPOWER|BROKEN))
 		return
 	if(occupant && occupant.stat != DEAD)
 		. += span_notice("Процесс клонирования завершён на [round(get_completion())]%.")
@@ -247,7 +247,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 
 //Start growing a human clone in the pod!
 /obj/machinery/clonepod/proc/growclone(datum/dna2/record/R)
-	if(mess || attempting || panel_open || stat & (NOPOWER|BROKEN))
+	if(mess || attempting || panel_open || machine_stat & (NOPOWER|BROKEN))
 		return 0
 	clonemind = R.mind.resolve()
 	if(!istype(clonemind))	//not a mind
@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 	if(show_message)
 		visible_message("[DECLENT_RU_CAP(src, NOMINATIVE)] всасывает и начинает обрабатывать полученную биомассу.")
 
-	if(stat & NOPOWER) //Autoeject if power is lost
+	if(machine_stat & NOPOWER) //Autoeject if power is lost
 		if(occupant)
 			go_out()
 			connected_message("Клон извлечён: Недостаточно энергии.")
@@ -613,7 +613,7 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 	update_icon()
 
 /obj/machinery/clonepod/update_icon_state()
-	if(occupant && !(stat & NOPOWER))
+	if(occupant && !(machine_stat & NOPOWER))
 		icon_state = "pod_cloning"
 	else if(mess)
 		icon_state = "pod_mess"

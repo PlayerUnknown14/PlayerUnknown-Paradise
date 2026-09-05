@@ -27,7 +27,7 @@
 	return ..()
 
 /obj/machinery/power/port_gen/proc/IsBroken()
-	return (stat & (BROKEN|EMPED))
+	return (machine_stat & (BROKEN|EMPED))
 
 /obj/machinery/power/port_gen/proc/HasFuel() //Placeholder for fuel check.
 	return 1
@@ -76,23 +76,23 @@
 	var/duration = 6000 //ten minutes
 	switch(severity)
 		if(1)
-			stat &= BROKEN
+			machine_stat &= BROKEN
 			if(prob(75))
 				explode()
 		if(2)
 			if(prob(25))
-				stat &= BROKEN
+				machine_stat &= BROKEN
 			if(prob(10))
 				explode()
 		if(3)
 			if(prob(10))
-				stat &= BROKEN
+				machine_stat &= BROKEN
 			duration = 300
 
-	stat |= EMPED
+	machine_stat |= EMPED
 	if(duration)
 		spawn(duration)
-			stat &= ~EMPED
+			machine_stat &= ~EMPED
 
 /obj/machinery/power/port_gen/proc/explode()
 	explosion(loc, devastation_range = -1, heavy_impact_range = 3, light_impact_range = 5, flash_range = -1, cause = src)

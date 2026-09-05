@@ -231,7 +231,7 @@
 /obj/machinery/chem_dispenser/ui_act(actions, params)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	. = TRUE
@@ -366,12 +366,12 @@
 	return attack_hand(user)
 
 /obj/machinery/chem_dispenser/attack_ghost(mob/user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	ui_interact(user)
 
 /obj/machinery/chem_dispenser/attack_hand(mob/user)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(..())

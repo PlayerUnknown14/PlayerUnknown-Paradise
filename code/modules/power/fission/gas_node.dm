@@ -45,7 +45,7 @@
 	return linked_reactor.air_contents
 
 /obj/machinery/atmospherics/unary/reactor_gas_node/process_atmos()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
 	if(!linked_reactor)

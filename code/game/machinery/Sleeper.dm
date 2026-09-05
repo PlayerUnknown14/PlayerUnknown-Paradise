@@ -66,7 +66,7 @@
 
 /obj/machinery/sleeper/power_change(forced = FALSE)
 	..() //we don't check parent return here because we also care about BROKEN
-	if(!(stat & (BROKEN|NOPOWER)))
+	if(!(machine_stat & (BROKEN|NOPOWER)))
 		set_light(2, l_on = TRUE)
 	else
 		set_light_on(FALSE)
@@ -151,7 +151,7 @@
 	ui_interact(user)
 
 /obj/machinery/sleeper/attack_hand(mob/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(..())
@@ -178,7 +178,7 @@
 	var/crisis = 0
 	if(occupant)
 		occupantData["name"] = occupant.name
-		occupantData["stat"] = occupant.stat
+		occupantData["machine_stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.maxHealth
 		occupantData["minHealth"] = HEALTH_THRESHOLD_DEAD
@@ -279,7 +279,7 @@
 	if(panel_open)
 		balloon_alert(usr, "техпанель открыта!")
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	. = TRUE
@@ -409,7 +409,7 @@
 /obj/machinery/sleeper/emp_act(severity)
 	if(filtering)
 		toggle_filter()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	if(occupant)

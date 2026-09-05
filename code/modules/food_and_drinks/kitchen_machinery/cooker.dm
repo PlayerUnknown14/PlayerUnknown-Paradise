@@ -134,7 +134,7 @@
 		exchange_parts(user, I)
 		return ATTACK_CHAIN_PROCEED_SUCCESS
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return ..()
 
 	add_fingerprint(user)

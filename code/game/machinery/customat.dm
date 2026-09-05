@@ -48,7 +48,7 @@
 	// All the overlay controlling variables
 	/// Overlay of customat maintenance panel.
 	var/panel_overlay = "custommate-panel"
-	/// Overlay of a customat screen, will not apply of stat is NOPOWER.
+	/// Overlay of a customat screen, will not apply of machine_stat is NOPOWER.
 	var/screen_overlay = "custommate"
 	/// Lightmask used when customat is working properly.
 	var/lightmask_overlay = ""
@@ -236,15 +236,15 @@
 
 	underlays.Cut()
 
-	if((stat & NOPOWER) || force_no_power_icon_state || !COOLDOWN_FINISHED(src, emp_cooldown))
-		if(broken_overlay && (stat & BROKEN))
+	if((machine_stat & NOPOWER) || force_no_power_icon_state || !COOLDOWN_FINISHED(src, emp_cooldown))
+		if(broken_overlay && (machine_stat & BROKEN))
 			. += broken_overlay
 
 		if(panel_overlay && panel_open)
 			. += panel_overlay
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		if(broken_overlay)
 			. += broken_overlay
 		if(broken_lightmask_overlay)
@@ -277,7 +277,7 @@
 
 /obj/machinery/customat/power_change(forced = FALSE)
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light_on(FALSE)
 	else
 		set_light(light_range_on, light_power_on, l_on = TRUE)
@@ -312,7 +312,7 @@
 	if(flickering)
 		return FALSE
 
-	if((stat & (BROKEN|NOPOWER)) || !COOLDOWN_FINISHED(src, emp_cooldown))
+	if((machine_stat & (BROKEN|NOPOWER)) || !COOLDOWN_FINISHED(src, emp_cooldown))
 		return FALSE
 
 	flickering = TRUE
@@ -514,7 +514,7 @@
 	return attack_hand(user)
 
 /obj/machinery/customat/attack_hand(mob/user)
-	if((stat & (BROKEN|NOPOWER)) || !COOLDOWN_FINISHED(src, emp_cooldown))
+	if((machine_stat & (BROKEN|NOPOWER)) || !COOLDOWN_FINISHED(src, emp_cooldown))
 		return
 
 	if(..())
@@ -720,7 +720,7 @@
 	return TRUE
 
 /obj/machinery/customat/process()
-	if((stat & (BROKEN|NOPOWER)) || !COOLDOWN_FINISHED(src, emp_cooldown))
+	if((machine_stat & (BROKEN|NOPOWER)) || !COOLDOWN_FINISHED(src, emp_cooldown))
 		return
 
 	if(!active)
@@ -733,7 +733,7 @@
 		COOLDOWN_START(src, slogan_cooldown, slogan_delay)
 
 /obj/machinery/customat/proc/speak(message)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if(!message)
@@ -742,10 +742,10 @@
 	atom_say(message)
 
 /obj/machinery/customat/obj_break(damage_flag)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/customat/click_alt(atom/movable/A)

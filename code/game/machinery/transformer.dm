@@ -61,7 +61,7 @@
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/transformer/update_icon_state()
-	if(!COOLDOWN_FINISHED(src, cooldown_timer) || (stat & (BROKEN|NOPOWER)))
+	if(!COOLDOWN_FINISHED(src, cooldown_timer) || (machine_stat & (BROKEN|NOPOWER)))
 		icon_state = "separator-AO0"
 	else
 		icon_state = initial(icon_state)
@@ -103,7 +103,7 @@
 
 /// Transforms a human mob into a cyborg, connects them to the malf AI which placed the factory.
 /obj/machinery/transformer/proc/do_transform(mob/living/carbon/human/victim)
-	if(!COOLDOWN_FINISHED(src, cooldown_timer) || stat & (BROKEN|NOPOWER))
+	if(!COOLDOWN_FINISHED(src, cooldown_timer) || machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(!transform_dead && victim.stat == DEAD)
@@ -156,7 +156,7 @@
 		to_chat(moving_atom, span_warning("Only items can be greyscaled."))
 
 /obj/machinery/transformer/proc/do_transform_mime(obj/item/item)
-	if(!COOLDOWN_FINISHED(src, cooldown_timer) || (stat & (BROKEN|NOPOWER)))
+	if(!COOLDOWN_FINISHED(src, cooldown_timer) || (machine_stat & (BROKEN|NOPOWER)))
 		return
 
 	playsound(src, 'sound/items/welder.ogg', 50, TRUE)
@@ -219,7 +219,7 @@
 		scan(moving_atom)
 
 /obj/machinery/transformer/xray/proc/irradiate(mob/living/carbon/human/victim)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	flick("separator-AO0", src)

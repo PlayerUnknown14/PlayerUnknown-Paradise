@@ -53,23 +53,23 @@
 	return FALSE
 
 /obj/machinery/computer/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	return TRUE
 
 /obj/machinery/computer/update_overlays()
 	. = ..()
 	if(icon_keyboard)
-		if(keyboard_change_icon && (stat & NOPOWER))
+		if(keyboard_change_icon && (machine_stat & NOPOWER))
 			. += "[icon_keyboard]_off"
 		else
 			. += icon_keyboard
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		. += mutable_appearance(icon, "[icon_state]_broken")
 		return // If we don't do this broken computers glow in the dark.
 
-	if(stat & NOPOWER) // Your screen can't be on if you've got no damn charge
+	if(machine_stat & NOPOWER) // Your screen can't be on if you've got no damn charge
 		return
 
 	// This lets screens ignore lighting and be visible even in the darkest room
@@ -79,7 +79,7 @@
 
 /obj/machinery/computer/power_change()
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light(0)
 	else
 		set_light(brightness_on)
@@ -96,7 +96,7 @@
 /obj/machinery/computer/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
-			if(stat & BROKEN)
+			if(machine_stat & BROKEN)
 				playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 			else
 				playsound(src.loc, 'sound/effects/glass/glasshit.ogg', 75, TRUE)
@@ -133,7 +133,7 @@
 	component_parts -= circuit
 	circuit.forceMove(new_frame)
 
-	if((stat & BROKEN) || !disassembled)
+	if((machine_stat & BROKEN) || !disassembled)
 		var/atom/drop_loc = drop_location()
 		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, TRUE)
 		new /obj/item/shard(drop_loc)

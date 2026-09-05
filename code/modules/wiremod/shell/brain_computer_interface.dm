@@ -367,11 +367,11 @@
 /obj/machinery/bci_implanter/update_overlays()
 	. = ..()
 
-	if((stat & MAINT) || panel_open)
+	if((machine_stat & MAINT) || panel_open)
 		. += "maint"
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(busy || locked)
@@ -582,9 +582,9 @@
 	icon_state = base_icon_state
 
 /obj/machinery/bci_implanter/proc/start_process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
-	if((stat & MAINT) || panel_open)
+	if((machine_stat & MAINT) || panel_open)
 		return
 	if(!occupant || busy)
 		return

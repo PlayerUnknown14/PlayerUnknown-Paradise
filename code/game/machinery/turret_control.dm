@@ -108,7 +108,7 @@
 	return FALSE
 
 /obj/machinery/turretid/attackby(obj/item/I, mob/user, params)
-	if(user.a_intent == INTENT_HARM || (stat & BROKEN))
+	if(user.a_intent == INTENT_HARM || (machine_stat & BROKEN))
 		return ..()
 
 	if(I.GetID() || is_pda(I))
@@ -249,7 +249,7 @@
 	update_turret_light()
 
 /obj/machinery/turretid/proc/update_turret_light()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light_on(FALSE)
 		return
 
@@ -263,7 +263,7 @@
 	set_light(1.5, 1,"#003300", l_on = TRUE)
 
 /obj/machinery/turretid/update_icon_state()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "control_off"
 		return
 	if(enabled)

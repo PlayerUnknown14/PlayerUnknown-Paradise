@@ -38,11 +38,11 @@ GLOBAL_VAR(claw_game_html)
 	bonus_prize_chance = bin_upgrades * 5	//equals +5% chance per matter bin rating level (+25% with rating 5)
 
 /obj/machinery/arcade/claw/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "clawmachine[machine_image]_broken"
 	else if(panel_open)
 		icon_state = "clawmachine[machine_image]_open"
-	else if(stat & NOPOWER)
+	else if(machine_stat & NOPOWER)
 		icon_state = "clawmachine[machine_image]_off"
 	else
 		icon_state = "clawmachine[machine_image]_on"

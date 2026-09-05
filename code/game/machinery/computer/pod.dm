@@ -83,7 +83,7 @@
 				break
 
 /obj/machinery/computer/pod/proc/launch_sequence(ident_tag)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	var/anydriver = FALSE
@@ -293,7 +293,7 @@
 	circuit = /obj/item/circuitboard/computer/pod/deathsquad
 
 /obj/machinery/computer/pod/deathsquad/launch_sequence(ident_tag)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	var/anydriver = FALSE

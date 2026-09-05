@@ -94,7 +94,7 @@
 	AddComponent(/datum/component/bluespace_rift_scanner, max_range)
 
 /obj/machinery/power/brs_stationary_scanner/process(seconds_per_tick)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	process_power_consumption(seconds_per_tick)
@@ -157,7 +157,7 @@
 /obj/machinery/power/brs_stationary_scanner/update_icon_state()
 	var/prefix = initial(icon_state)
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[prefix]-broken"
 		return
 	if((scanning_status == SCAN_OFF) || (!cable_powered))
@@ -292,7 +292,7 @@
 /obj/machinery/power/brs_stationary_scanner/ui_act(action, params)
 	if(..())
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if(!cable_powered)
 		return
@@ -321,14 +321,14 @@
 	switching = FALSE
 	scanning_status = SCAN_NO_RIFTS
 	status_change()
-	if(cable_powered && (!(stat & BROKEN)))
+	if(cable_powered && (!(machine_stat & BROKEN)))
 		playsound(loc, activation_sound, 100)
 
 /obj/machinery/power/brs_stationary_scanner/proc/turn_off()
 	switching = FALSE
 	scanning_status = SCAN_OFF
 	status_change()
-	if(cable_powered && (!(stat & BROKEN)))
+	if(cable_powered && (!(machine_stat & BROKEN)))
 		playsound(loc, deactivation_sound, 100)
 
 #undef SCAN_OFF

@@ -38,7 +38,7 @@
 	qdel(src)
 
 /obj/machinery/mass_driver/proc/drive(amount)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	use_power(500*power)
 	var/O_limit = 0
@@ -58,7 +58,7 @@
 	return
 
 /obj/machinery/mass_driver/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	drive()
 	..(severity)

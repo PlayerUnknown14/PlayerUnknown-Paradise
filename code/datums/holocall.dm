@@ -32,7 +32,7 @@
 	dialed_holopads = list()
 
 	for(var/obj/machinery/hologram/holopad/connected_holopad as anything in callees)
-		if(!QDELETED(connected_holopad) && !(connected_holopad.stat & NOPOWER) && connected_holopad.anchored)
+		if(!QDELETED(connected_holopad) && !(connected_holopad.machine_stat & NOPOWER) && connected_holopad.anchored)
 			dialed_holopads += connected_holopad
 			var/area/area = get_area(connected_holopad)
 			connected_holopad.set_holocall(src)
@@ -157,13 +157,13 @@
 //Checks the validity of a holocall and qdels itself if it's not. Returns TRUE if valid, FALSE otherwise
 /datum/holocall/proc/Check()
 	for(var/obj/machinery/hologram/holopad/dialed_holopad as anything in dialed_holopads)
-		if((dialed_holopad.stat & NOPOWER) || !dialed_holopad.anchored)
+		if((dialed_holopad.machine_stat & NOPOWER) || !dialed_holopad.anchored)
 			ConnectionFailure(dialed_holopad)
 
 	if(QDELETED(src))
 		return FALSE
 
-	. = !QDELETED(user) && !user.incapacitated() && !QDELETED(calling_holopad) && !(calling_holopad.stat & NOPOWER) && user.loc == calling_holopad.loc
+	. = !QDELETED(user) && !user.incapacitated() && !QDELETED(calling_holopad) && !(calling_holopad.machine_stat & NOPOWER) && user.loc == calling_holopad.loc
 
 	if(.)
 		if(!connected_holopad)

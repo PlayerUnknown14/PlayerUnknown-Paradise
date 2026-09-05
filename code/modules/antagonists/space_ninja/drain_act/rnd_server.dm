@@ -1,10 +1,10 @@
 /obj/machinery/r_n_d/server/ninjadrain_act(obj/item/clothing/suit/space/space_ninja/ninja_suit, mob/living/carbon/human/ninja, obj/item/clothing/gloves/space_ninja/ninja_gloves)
 	if(!ninja_suit || !ninja || !ninja_gloves || drain_act_protected)
 		return INVALID_DRAIN
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(usr, "The server has no power!")
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(usr, "The server is broken!")
 		return
 	var/datum/mind/ninja_mind = ninja.mind
@@ -25,10 +25,10 @@
 	to_chat(ninja, span_notice("Данные об исследованиях обнаружены. Установка вируса..."))
 	AI_notify_hack()
 	if(do_after(ninja, 1 MINUTES, src))
-		if(stat & NOPOWER)
+		if(machine_stat & NOPOWER)
 			to_chat(usr, "The server has no power!")
 			return
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			to_chat(usr, "The server is broken!")
 			return
 

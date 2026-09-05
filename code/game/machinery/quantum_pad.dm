@@ -97,7 +97,7 @@
 		to_chat(user, span_warning("Linked pad is busy. Please wait."))
 		return
 
-	if(linked_pad.stat & NOPOWER)
+	if(linked_pad.machine_stat & NOPOWER)
 		to_chat(user, span_warning("Linked pad is not responding to ping."))
 		return
 	add_fingerprint(user)
@@ -121,11 +121,11 @@
 /obj/machinery/quantumpad/proc/teleport_contents(mob/user, obj/machinery/quantumpad/target_pad)
 	teleporting = FALSE
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_warning("[src] is unpowered!"))
 		return
 
-	if(!target_pad || QDELETED(target_pad) || target_pad.stat & NOPOWER)
+	if(!target_pad || QDELETED(target_pad) || target_pad.machine_stat & NOPOWER)
 		to_chat(user, span_warning("Linked pad is not responding to ping. Teleport aborted."))
 		return
 
@@ -205,7 +205,7 @@
 			failed.set_output(COMPONENT_SIGNAL)
 			return
 
-		if(targeted_pad.stat & NOPOWER)
+		if(targeted_pad.machine_stat & NOPOWER)
 			failed.set_output(COMPONENT_SIGNAL)
 			return
 		attached_pad.doteleport(target_pad = targeted_pad)
@@ -214,7 +214,7 @@
 			failed.set_output(COMPONENT_SIGNAL)
 			return
 
-		if(attached_pad.linked_pad.stat & NOPOWER)
+		if(attached_pad.linked_pad.machine_stat & NOPOWER)
 			failed.set_output(COMPONENT_SIGNAL)
 			return
 		attached_pad.doteleport(target_pad = attached_pad.linked_pad)

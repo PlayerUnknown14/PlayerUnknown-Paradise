@@ -59,7 +59,7 @@
 	data["drone_progress"] = null
 	if(dronefab)
 		data["drone_fab"] = TRUE
-		data["fab_power"] = dronefab.stat & NOPOWER ? FALSE : TRUE
+		data["fab_power"] = dronefab.machine_stat & NOPOWER ? FALSE : TRUE
 		data["drone_prod"] = dronefab.produce_drones
 		data["drone_progress"] = dronefab.drone_progress
 	data["selected_area"] = drone_call_area
@@ -72,7 +72,7 @@
 		var/list/drone_data = list(
 			name = drone.real_name,
 			uid = drone.UID(),
-			stat = drone.stat,
+			machine_stat = drone.stat,
 			client = drone.client ? TRUE : FALSE,
 			health = round(drone.health / drone.maxHealth, 0.1),
 			charge = round(drone.cell.charge / drone.cell.maxcharge, 0.1),
@@ -138,7 +138,7 @@
 		return
 
 	for(var/obj/machinery/drone_fabricator/fabricator in get_area(src))
-		if(fabricator.stat & NOPOWER)
+		if(fabricator.machine_stat & NOPOWER)
 			continue
 
 		dronefab = fabricator

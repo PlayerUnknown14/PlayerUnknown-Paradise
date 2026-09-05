@@ -69,10 +69,10 @@
 	if(busy)
 		balloon_alert(user, "в работе!")
 		return FALSE
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		balloon_alert(user, "сломано!")
 		return FALSE
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		balloon_alert(user, "нет энергии!")
 		return FALSE
 	if(loaded_item)

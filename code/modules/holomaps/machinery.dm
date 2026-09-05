@@ -101,7 +101,7 @@
 
 /// Tries to open the map for the given mob. Returns FALSE if it doesn't meet the criteria, TRUE if the map successfully opened with no runtimes.
 /obj/machinery/station_map/proc/open_map(mob/user)
-	if(!anchored || (stat & (NOPOWER | BROKEN)) || !user?.client || panel_open || user.hud_used.holomap.used_station_map)
+	if(!anchored || (machine_stat & (NOPOWER | BROKEN)) || !user?.client || panel_open || user.hud_used.holomap.used_station_map)
 		return FALSE
 
 	if(!holomap_datum)
@@ -161,7 +161,7 @@
 	attack_hand(user)
 
 /obj/machinery/station_map/process()
-	if((stat & (NOPOWER | BROKEN)) || !anchored)
+	if((machine_stat & (NOPOWER | BROKEN)) || !anchored)
 		close_map()
 
 /obj/machinery/station_map/proc/check_position(mob/moved_mob)
@@ -203,13 +203,13 @@
 	. = ..()
 	update_icon()
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light(HOLOMAP_LIGHT_OFF)
 	else
 		set_light(HOLOMAP_LOW_LIGHT)
 
 /obj/machinery/station_map/proc/set_broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 
 /obj/machinery/station_map/update_icon()
@@ -218,11 +218,11 @@
 		return //Not yet.
 
 	cut_overlays()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "station_map_broken"
 	else if(panel_open)
 		icon_state = "station_map_opened"
-	else if((stat & NOPOWER) || !anchored)
+	else if((machine_stat & NOPOWER) || !anchored)
 		icon_state = "station_map_off"
 	else
 		icon_state = initial(icon_state)

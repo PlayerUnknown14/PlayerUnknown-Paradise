@@ -93,7 +93,7 @@
 		var/probe_points_mined = goal_points_mined / length(GLOB.bluespace_rifts_server_list)
 
 		for(var/obj/machinery/brs_server/server as anything in GLOB.bluespace_rifts_server_list)
-			if(server.stat & (NOPOWER|BROKEN))
+			if(server.machine_stat & (NOPOWER|BROKEN))
 				continue
 			is_there_any_servers = TRUE
 			server.add_points(rift.goal_uid, goal_points_mined, probe_points_mined)

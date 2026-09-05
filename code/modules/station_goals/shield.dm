@@ -88,7 +88,7 @@
 	return ..()
 
 /obj/machinery/computer/sat_control/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(..())

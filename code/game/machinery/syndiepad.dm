@@ -195,7 +195,7 @@
 		to_chat(user, span_warning("Linked pad is busy. Please wait."))
 		return
 
-	if(linked_pad.stat & NOPOWER)
+	if(linked_pad.machine_stat & NOPOWER)
 		to_chat(user, span_warning("Linked pad is not responding to ping."))
 		return
 
@@ -216,11 +216,11 @@
 			if(!src || QDELETED(src))
 				teleporting = 0
 				return
-			if(stat & NOPOWER)
+			if(machine_stat & NOPOWER)
 				to_chat(user, span_warning("[src] is unpowered!"))
 				teleporting = 0
 				return
-			if(!linked_pad || QDELETED(linked_pad) || linked_pad.stat & NOPOWER)
+			if(!linked_pad || QDELETED(linked_pad) || linked_pad.machine_stat & NOPOWER)
 				to_chat(user, span_warning("Linked pad is not responding to ping. Teleport aborted."))
 				teleporting = 0
 				return

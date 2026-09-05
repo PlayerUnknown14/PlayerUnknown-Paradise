@@ -41,7 +41,7 @@
 		icon_state = "meter"
 		return
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		icon_state = "meter"
 		return
 
@@ -116,7 +116,7 @@
 	if(get_dist(user, src) > 3 && !(isAI(user) || isdead(user)))
 		. += span_boldnotice("You are too far away to read it.")
 
-	else if(stat & (NOPOWER|BROKEN))
+	else if(machine_stat & (NOPOWER|BROKEN))
 		. += span_danger("The display is off.")
 
 	else if(target)

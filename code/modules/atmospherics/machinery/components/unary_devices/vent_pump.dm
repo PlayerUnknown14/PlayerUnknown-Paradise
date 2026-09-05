@@ -136,7 +136,7 @@
 				add_underlay(T, direction = dir)
 
 /obj/machinery/atmospherics/unary/vent_pump/process_atmos(seconds)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
 	if(QDELETED(parent))
@@ -221,7 +221,7 @@
 	return data
 
 /obj/machinery/atmospherics/unary/vent_pump/update_params(list/params)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if("purge" in params)

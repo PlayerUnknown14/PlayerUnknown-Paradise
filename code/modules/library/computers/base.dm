@@ -29,7 +29,7 @@
 	. = ..()
 
 /obj/machinery/computer/library/proc/interact_check(mob/user)
-	if(stat & (BROKEN | NOPOWER))
+	if(machine_stat & (BROKEN | NOPOWER))
 		return 1
 
 	if(!Adjacent(user))

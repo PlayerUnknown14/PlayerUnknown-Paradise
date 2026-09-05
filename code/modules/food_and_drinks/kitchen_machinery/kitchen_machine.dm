@@ -346,7 +346,7 @@
 ************************************/
 
 /obj/machinery/kitchen_machine/proc/cook(mob/user)
-	if(use_power != NO_POWER_USE && stat & (NOPOWER|BROKEN))
+	if(use_power != NO_POWER_USE && machine_stat & (NOPOWER|BROKEN))
 		return
 	CALCULATE_SKILL_MOD(user, COOKING_SPEED_MOD, cooking_skill_mod)
 	start()
@@ -466,7 +466,7 @@
 		if(use_power == NO_POWER_USE)
 			sleep(10)
 			continue
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			return 0
 		use_power(500)
 		sleep(10)

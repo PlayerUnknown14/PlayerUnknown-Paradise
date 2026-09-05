@@ -1,10 +1,10 @@
 /obj/machinery/computer/aiupload/ninjadrain_act(obj/item/clothing/suit/space/space_ninja/ninja_suit, mob/living/carbon/human/ninja, obj/item/clothing/gloves/space_ninja/ninja_gloves)
 	if(!ninja_suit || !ninja || !ninja_gloves || drain_act_protected)
 		return INVALID_DRAIN
-	if(src.stat & NOPOWER)
+	if(src.machine_stat & NOPOWER)
 		to_chat(usr, "The upload computer has no power!")
 		return
-	if(src.stat & BROKEN)
+	if(src.machine_stat & BROKEN)
 		to_chat(usr, "The upload computer is broken!")
 		return
 
@@ -27,10 +27,10 @@
 	to_chat(ninja, span_notice("Заготовленный бэкдор обнаружен. Установка вируса..."))
 	AI_notify_hack()
 	if(do_after(ninja, 30 SECONDS, src))
-		if(src.stat & NOPOWER)
+		if(src.machine_stat & NOPOWER)
 			to_chat(usr, "The upload computer has no power!")
 			return
-		if(src.stat & BROKEN)
+		if(src.machine_stat & BROKEN)
 			to_chat(usr, "The upload computer is broken!")
 			return
 		for(var/mob/living/silicon/ai/currentAI as anything in GLOB.ai_list)

@@ -114,7 +114,7 @@
 		speed *= capacitor.rating * capacitor.rating
 
 /obj/machinery/power/anomaly_generator/update_icon(updates = ALL)
-	icon_state = "generator_[stat & NOPOWER ? "off" : "on"]"
+	icon_state = "generator_[machine_stat & NOPOWER ? "off" : "on"]"
 	return ..()
 
 /obj/machinery/power/anomaly_generator/attackby(obj/item/item, mob/user, params)
@@ -147,7 +147,7 @@
 	if(..())
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	add_fingerprint(usr)
@@ -309,7 +309,7 @@
 	START_PROCESSING(SSprocessing, src)
 
 /obj/machinery/power/anomaly_generator/process()
-	if((stat & BROKEN) || !cur_anomaly)
+	if((machine_stat & BROKEN) || !cur_anomaly)
 		STOP_PROCESSING(SSprocessing, src)
 
 	if(charge >= get_req_energy())
@@ -319,7 +319,7 @@
 		STOP_PROCESSING(SSprocessing, src)
 		return
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	var/going_to_use = min(speed, get_req_energy() - charge)

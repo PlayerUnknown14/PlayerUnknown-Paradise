@@ -65,8 +65,8 @@
 /obj/machinery/power/generator/power_change(forced = FALSE)
 	. = ..()
 	if(!anchored)
-		stat |= NOPOWER
-	if((stat & (BROKEN|NOPOWER)))
+		machine_stat |= NOPOWER
+	if((machine_stat & (BROKEN|NOPOWER)))
 		set_light(0)
 	else
 		set_light(light_range_on, light_power_on)
@@ -75,7 +75,7 @@
 /obj/machinery/power/generator/update_overlays()
 	. = ..()
 	underlays.Cut()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(lastgenlev != 0)
 		. += "teg-op[lastgenlev]"
@@ -84,7 +84,7 @@
 	underlays += emissive_appearance(icon, "teg-oc[lastcirc]", src)
 
 /obj/machinery/power/generator/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(!cold_circ || !hot_circ)
@@ -152,7 +152,7 @@
 	return attack_hand(user)
 
 /obj/machinery/power/generator/attack_ghost(mob/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	ui_interact(user)
 

@@ -77,7 +77,7 @@ GLOBAL_LIST_INIT(statdisp_picture_colors, list(
 /obj/machinery/status_display/update_overlays()
 	. = ..()
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if(picture_state)
@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(statdisp_picture_colors, list(
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/status_display/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		remove_display()
 		return
 
@@ -104,14 +104,14 @@ GLOBAL_LIST_INIT(statdisp_picture_colors, list(
 	update()
 
 /obj/machinery/status_display/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	set_picture("ai_bsod")
 	..(severity)
 
 /obj/machinery/status_display/flicker()
-	if(stat & (NOPOWER | BROKEN))
+	if(machine_stat & (NOPOWER | BROKEN))
 		return FALSE
 
 	spookymode = TRUE
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(statdisp_picture_colors, list(
 
 /obj/machinery/status_display/examine(mob/user)
 	. = ..()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
 		. += span_notice("На дисплее написано: <br>\t[sanitize(message1)]<br>\t[sanitize(message2)].")
@@ -236,7 +236,7 @@ GLOBAL_LIST_INIT(statdisp_picture_colors, list(
 		update_display_light()
 
 /obj/machinery/status_display/proc/update_display_light()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		set_light_on(FALSE)
 		return
 
@@ -277,7 +277,7 @@ GLOBAL_LIST_EMPTY(ai_displays)
 		user.ai_statuschange()
 
 /obj/machinery/ai_status_display/emp_act(severity)
-	if(!(stat & (BROKEN|NOPOWER)))
+	if(!(machine_stat & (BROKEN|NOPOWER)))
 		mode = AI_DISPLAY_MODE_BSOD
 	update_icon(UPDATE_OVERLAYS)
 	..(severity)
@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(ai_displays)
 		update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/ai_status_display/flicker()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
 	emotion = "Tribunal Malf"
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(ai_displays)
 	. = ..()
 
 	var/new_display
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	switch(mode)

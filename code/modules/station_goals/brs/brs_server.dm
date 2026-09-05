@@ -147,10 +147,10 @@
 /obj/machinery/brs_server/update_icon_state()
 	var/prefix = initial(icon_state)
 
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		icon_state = "[prefix]-broken"
 		return
-	if(stat & (NOPOWER))
+	if(machine_stat & (NOPOWER))
 		icon_state = prefix
 		return
 	if(emagged)
@@ -165,10 +165,10 @@
 		. += image(icon, "[initial(icon_state)]-panel")
 
 /obj/machinery/brs_server/proc/create_light()
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		set_light_on(FALSE)
 		return
-	if(stat & (NOPOWER))
+	if(machine_stat & (NOPOWER))
 		set_light_on(FALSE)
 		return
 	if(emagged)
@@ -237,12 +237,12 @@
 		to_chat(user, span_warning("@?%!№@Протоколы безопасности сканнера перезаписаны@?%!№@"))
 
 /obj/machinery/brs_server/emp_act(severity)
-	if(!(stat & (BROKEN|NOPOWER)))
+	if(!(machine_stat & (BROKEN|NOPOWER)))
 		flick_active()
 	return ..()
 
 /obj/machinery/brs_server/proc/flick_active()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	var/prefix = initial(icon_state)
 	if(emagged)
@@ -262,7 +262,7 @@
 
 	add_fingerprint(user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	ui_interact(user)
@@ -297,7 +297,7 @@
 
 	uidata["scanners"] = list()
 	for(var/obj/machinery/power/brs_stationary_scanner/scanner in GLOB.bluespace_rifts_scanner_list)
-		if(scanner.stat & (BROKEN|NOPOWER))
+		if(scanner.machine_stat & (BROKEN|NOPOWER))
 			continue
 		if(!scanner.cable_powered)
 			continue
@@ -309,7 +309,7 @@
 			"switching" = scanner.switching,
 		))
 	for(var/obj/machinery/brs_portable_scanner/scanner in GLOB.bluespace_rifts_scanner_list)
-		if(scanner.stat & (BROKEN|NOPOWER))
+		if(scanner.machine_stat & (BROKEN|NOPOWER))
 			continue
 		uidata["scanners"] += list(list(
 			"scannerName" = scanner.name,
@@ -320,7 +320,7 @@
 
 	uidata["servers"] = list()
 	for(var/obj/machinery/brs_server/server in GLOB.bluespace_rifts_server_list)
-		if(server.stat & (BROKEN|NOPOWER))
+		if(server.machine_stat & (BROKEN|NOPOWER))
 			continue
 
 		var/list/server_probe_points = list()
@@ -342,7 +342,7 @@
 	if(..())
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	switch(action)

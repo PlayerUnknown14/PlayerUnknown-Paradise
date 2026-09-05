@@ -53,7 +53,7 @@
 
 /obj/machinery/computer/arcade/emp_act(severity)
 	..(severity)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	var/num_of_prizes = 0
 	switch(severity)

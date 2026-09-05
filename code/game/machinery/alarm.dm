@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 /obj/machinery/alarm/proc/apply_preset(no_cycle_after=0)
 	// Propogate settings.
 	for(var/obj/machinery/alarm/AA in alarm_area.machinery_cache)
-		if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.preset != src.preset)
+		if(!(AA.machine_stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.preset != src.preset)
 			AA.preset = preset
 			apply_preset(AALARM_PRESET_HUMAN) // Only this air alarm should send a cycle.
 
@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 	GLOB.air_alarm_repository.update_cache(src)
 
 /obj/machinery/alarm/process()
-	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != AIR_ALARM_WIRED || init_tick == SSair.milla_tick)
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted || buildstage != AIR_ALARM_WIRED || init_tick == SSair.milla_tick)
 		return
 
 	var/turf/simulated/location = loc
@@ -314,7 +314,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 				icon_state = "alarmx"
 		return
 
-	if((stat & (NOPOWER|BROKEN)) || shorted)
+	if((machine_stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		return
 
@@ -333,7 +333,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 	. = ..()
 	underlays.Cut()
 
-	if(stat & NOPOWER || buildstage != AIR_ALARM_WIRED || wiresexposed || shorted)
+	if(machine_stat & NOPOWER || buildstage != AIR_ALARM_WIRED || wiresexposed || shorted)
 		return
 
 	underlays += emissive_appearance(icon, "alarm_lightmask", src)
@@ -479,7 +479,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 /obj/machinery/alarm/proc/apply_danger_level()
 	var/new_area_danger_level = ATMOS_ALARM_NONE
 	for(var/obj/machinery/alarm/AA in alarm_area.machinery_cache)
-		if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
+		if(!(AA.machine_stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			new_area_danger_level = max(new_area_danger_level, AA.danger_level)
 	if(alarm_area.atmosalert(new_area_danger_level, src)) //if area was in normal state or if area was in alert state
 		post_alert(new_area_danger_level)
@@ -762,7 +762,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 			mode = AALARM_MODE_CUSTOM
 			var/obj/machinery/atmospherics/machine = locateUID(device_uid)
 
-			if(machine && (machine.stat & (NOPOWER|BROKEN)))
+			if(machine && (machine.machine_stat & (NOPOWER|BROKEN)))
 				return
 
 			var/list/result = list()
@@ -849,7 +849,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 
 	else if(ishuman(user))
 		for(var/obj/machinery/computer/atmoscontrol/AC in range(1, user))
-			if(!AC.stat)
+			if(!AC.machine_stat)
 				return GLOB.always_state
 
 	return GLOB.default_state
@@ -994,7 +994,7 @@ GLOBAL_LIST_INIT(human_tlv, list(
 
 /obj/machinery/alarm/proc/togglelock(mob/living/user)
 	add_fingerprint(user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, span_warning("It does nothing!"))
 		return
 	if(allowed(user) && !wires.is_cut(WIRE_IDSCAN))

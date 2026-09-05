@@ -36,7 +36,7 @@
 	if(occupant)
 		data["reference"] = occupant.UID()
 		data["integrity"] = (occupant.health+100)/2
-		data["stat"] = occupant.stat
+		data["machine_stat"] = occupant.stat
 		data["active"] = active
 		data["wireless"] = occupant.control_disabled
 		data["radio"] = occupant.aiRadio.disabledAi
@@ -87,7 +87,7 @@
 
 /obj/machinery/computer/aifixer/update_overlays()
 	. = ..()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(active)
@@ -106,7 +106,7 @@
 		return
 	//Downloading AI from card to terminal.
 	if(interaction == AI_TRANS_FROM_CARD)
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			to_chat(user, "[src] is offline and cannot take an AI at this time!")
 			return
 		AI.forceMove(src)

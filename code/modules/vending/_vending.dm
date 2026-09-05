@@ -64,7 +64,7 @@
 	// All the overlay controlling variables
 	/// Overlay of vendor maintenance panel.
 	var/panel_overlay = ""
-	/// Overlay of a vendor screen, will not apply of stat is NOPOWER.
+	/// Overlay of a vendor screen, will not apply of machine_stat is NOPOWER.
 	var/screen_overlay = ""
 	/// Lightmask used when vendor is working properly.
 	var/lightmask_overlay = ""
@@ -86,7 +86,7 @@
 	var/deny_overlay_time = 1.5 SECONDS
 	/// Flags used to correctly manipulate with vend/deny sequences.
 	var/flick_sequence = FLICK_NONE
-	/// If `TRUE` machine will only react to BROKEN/NOPOWER stat, when updating overlays.
+	/// If `TRUE` machine will only react to BROKEN/NOPOWER machine_stat, when updating overlays.
 	var/skip_non_primary_icon_updates = FALSE
 
 	// Power
@@ -363,22 +363,22 @@
 		restock(installed_refill)
 
 /obj/machinery/vending/update_icon(updates = ALL)
-	if(skip_non_primary_icon_updates && !(stat & (NOPOWER|BROKEN)))
+	if(skip_non_primary_icon_updates && !(machine_stat & (NOPOWER|BROKEN)))
 		return ..(NONE)
 	return ..()
 
 /obj/machinery/vending/update_overlays()
 	. = ..()
 
-	if((stat & NOPOWER) || force_no_power_icon_state)
-		if(broken_overlay && (stat & BROKEN))
+	if((machine_stat & NOPOWER) || force_no_power_icon_state)
+		if(broken_overlay && (machine_stat & BROKEN))
 			. += broken_overlay
 
 		if(panel_overlay && panel_open)
 			. += panel_overlay
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		if(broken_overlay)
 			. += broken_overlay
 		if(broken_lightmask_overlay)
@@ -428,7 +428,7 @@
 
 /obj/machinery/vending/power_change(forced = FALSE)
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light_on(FALSE)
 	else
 		set_light(light_range_on, light_power_on, l_on = TRUE)
@@ -470,7 +470,7 @@
 	if(flickering)
 		return FALSE
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 
 	flickering = TRUE
@@ -732,7 +732,7 @@
 
 	if(istype(I, refill_canister))
 		add_fingerprint(user)
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			balloon_alert(user, "автомат не работает!")
 			return ATTACK_CHAIN_PROCEED
 		if(!panel_open)
@@ -968,7 +968,7 @@
 	return attack_hand(user)
 
 /obj/machinery/vending/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(tilted)
@@ -1311,7 +1311,7 @@
 */
 
 /obj/machinery/vending/process()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(!active)
@@ -1330,7 +1330,7 @@
 		throw_item()
 
 /obj/machinery/vending/proc/speak(message)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 	if(!message)
 		return
@@ -1338,10 +1338,10 @@
 	atom_say(message, use_tts = FALSE)
 
 /obj/machinery/vending/obj_break(damage_flag)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon(UPDATE_OVERLAYS)
 
 	if(vandal_secure)

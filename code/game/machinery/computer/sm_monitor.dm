@@ -35,7 +35,7 @@
 	attack_hand(user)
 
 /obj/machinery/computer/sm_monitor/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(..())
@@ -132,7 +132,7 @@
 		. = max(., supermatter.get_status())
 
 /obj/machinery/computer/sm_monitor/process()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
 	var/new_status = get_status()

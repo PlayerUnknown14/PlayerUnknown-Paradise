@@ -79,10 +79,10 @@ GLOBAL_LIST_EMPTY(firealarms)
 	if(wiresexposed)
 		icon_state = "firealarm_b[buildstage]"
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "firealarm_broken"
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "firealarm_off"
 		return
 
@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(firealarms)
 	. = ..()
 	underlays.Cut()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(is_station_contact(z) && show_alert_level)
@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(firealarms)
 /obj/machinery/firealarm/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
 	if(.) //damage received
-		if(obj_integrity > 0 && !(stat & BROKEN) && buildstage != 0)
+		if(obj_integrity > 0 && !(machine_stat & BROKEN) && buildstage != 0)
 			if(prob(33))
 				alarm()
 
@@ -248,15 +248,15 @@ GLOBAL_LIST_EMPTY(firealarms)
 	return ..()
 
 /obj/machinery/firealarm/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(obj_flags & NODECONSTRUCT) && buildstage != 0) //can't break the electronics if there isn't any inside.
-		stat |= BROKEN
+	if(!(machine_stat & BROKEN) && !(obj_flags & NODECONSTRUCT) && buildstage != 0) //can't break the electronics if there isn't any inside.
+		machine_stat |= BROKEN
 		LAZYREMOVE(myArea.firealarms, src)
 		update_icon()
 
 /obj/machinery/firealarm/deconstruct(disassembled = TRUE)
 	if(!(obj_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc, 1)
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			var/obj/item/I = new /obj/item/firealarm_electronics(loc)
 			if(!disassembled)
 				I.update_integrity(I.max_integrity * 0.5)
@@ -264,7 +264,7 @@ GLOBAL_LIST_EMPTY(firealarms)
 	qdel(src)
 
 /obj/machinery/firealarm/proc/update_fire_light()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light_on(FALSE)
 		return
 
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(firealarms)
 		update_icon()
 
 /obj/machinery/firealarm/attack_hand(mob/user)
-	if(stat & (NOPOWER|BROKEN) || buildstage != 2)
+	if(machine_stat & (NOPOWER|BROKEN) || buildstage != 2)
 		return TRUE
 
 	if(user.incapacitated())

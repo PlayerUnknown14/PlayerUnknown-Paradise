@@ -271,7 +271,7 @@
 	print_animation()
 
 /obj/machinery/computer/supplyquest/workers/proc/print_report(datum/cargo_quests_storage/quest, complete, list/modificators = list(), new_reward)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	var/list/phrases = list()
 	var/obj/item/paper/paper = new(get_turf(src))

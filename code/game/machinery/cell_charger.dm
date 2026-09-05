@@ -40,7 +40,7 @@
 
 /obj/machinery/cell_charger/update_overlays()
 	. = ..()
-	if(!charging || (stat & (BROKEN|NOPOWER)))
+	if(!charging || (machine_stat & (BROKEN|NOPOWER)))
 		return
 
 	var/newlevel =	round(charging.percent() * 4 / 100)
@@ -58,7 +58,7 @@
 
 	if(iscell(I))
 		add_fingerprint(user)
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			to_chat(user, span_warning("[src] is broken!"))
 			return ATTACK_CHAIN_PROCEED
 		if(panel_open)
@@ -144,7 +144,7 @@
 	return
 
 /obj/machinery/cell_charger/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(charging)
@@ -153,7 +153,7 @@
 	..(severity)
 
 /obj/machinery/cell_charger/process()
-	if(!charging || !anchored || (stat & (BROKEN|NOPOWER)))
+	if(!charging || !anchored || (machine_stat & (BROKEN|NOPOWER)))
 		return
 
 	if(charging.percent() >= 100)

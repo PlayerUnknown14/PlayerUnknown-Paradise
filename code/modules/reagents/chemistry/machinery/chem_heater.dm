@@ -45,7 +45,7 @@
 
 /obj/machinery/chem_heater/process()
 	..()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(on)
 		if(beaker)
@@ -127,7 +127,7 @@
 /obj/machinery/chem_heater/ui_act(action, params)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	. = TRUE

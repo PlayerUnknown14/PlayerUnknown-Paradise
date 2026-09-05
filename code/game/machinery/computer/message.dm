@@ -92,7 +92,7 @@
 /obj/machinery/computer/message_monitor/attack_hand(mob/user as mob)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	//If the computer is being hacked or is emagged, display the reboot message.
 	if(hacking || emag)
@@ -112,8 +112,8 @@
 
 	if(hacking || emag)
 		screen = 2
-	else if(!auth || !linkedServer || (linkedServer.stat & (NOPOWER|BROKEN)))
-		if(!linkedServer || (linkedServer.stat & (NOPOWER|BROKEN))) message = noserver
+	else if(!auth || !linkedServer || (linkedServer.machine_stat & (NOPOWER|BROKEN)))
+		if(!linkedServer || (linkedServer.machine_stat & (NOPOWER|BROKEN))) message = noserver
 		screen = 0
 
 	switch(screen)
@@ -123,7 +123,7 @@
 			var/i = 0
 			dat += "<dd><a href='byond://?src=[UID()];find=1'>[++i]. Link To A Server</a></dd>"
 			if(auth)
-				if(!linkedServer || (linkedServer.stat & (NOPOWER|BROKEN)))
+				if(!linkedServer || (linkedServer.machine_stat & (NOPOWER|BROKEN)))
 					dat += "<dd><a>ERROR: Server not found!</a><br></dd>"
 				else
 					dat += "<dd><a href='byond://?src=[UID()];view=1'>[++i]. View Message Logs </a><br></dd>"
@@ -312,7 +312,7 @@
 
 		//View the logs - KEY REQUIRED
 		if(href_list["view"])
-			if(src.linkedServer == null || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(src.linkedServer == null || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
 				if(auth)
@@ -320,7 +320,7 @@
 
 		//Clears the logs - KEY REQUIRED
 		if(href_list["clear"])
-			if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(!linkedServer || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
 				if(auth)
@@ -328,7 +328,7 @@
 					message = span_notice("NOTICE: Logs cleared.")
 		//Clears the request console logs - KEY REQUIRED
 		if(href_list["clearr"])
-			if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(!linkedServer || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
 				if(auth)
@@ -336,7 +336,7 @@
 					message = span_notice("NOTICE: Logs cleared.")
 		//Change the password - KEY REQUIRED
 		if(href_list["pass"])
-			if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(!linkedServer || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
 				if(auth)
@@ -368,7 +368,7 @@
 		if(href_list["delete"])
 			//Are they on the view logs screen?
 			if(screen == 1)
-				if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+				if(!linkedServer || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 					message = noserver
 				else //if(istype(href_list["delete"], /datum/data_pda_msg))
 					src.linkedServer.pda_msgs -= locateUID(href_list["delete"])
@@ -377,21 +377,21 @@
 		if(href_list["deleter"])
 			//Are they on the view logs screen?
 			if(screen == 4)
-				if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+				if(!linkedServer || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 					message = noserver
 				else //if(istype(href_list["delete"], /datum/data_pda_msg))
 					src.linkedServer.rc_msgs -= locateUID(href_list["deleter"])
 					message = span_notice("NOTICE: Log Deleted!")
 		//Create a custom message
 		if(href_list["msg"])
-			if(src.linkedServer == null || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(src.linkedServer == null || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
 				if(auth)
 					src.screen = 3
 		//Fake messaging selection - KEY REQUIRED
 		if(href_list["select"])
-			if(src.linkedServer == null || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(src.linkedServer == null || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 				screen = 0
 			else
@@ -487,7 +487,7 @@
 
 		//Request Console Logs - KEY REQUIRED
 		if(href_list["viewr"])
-			if(src.linkedServer == null || (src.linkedServer.stat & (NOPOWER|BROKEN)))
+			if(src.linkedServer == null || (src.linkedServer.machine_stat & (NOPOWER|BROKEN)))
 				message = noserver
 			else
 				if(auth)

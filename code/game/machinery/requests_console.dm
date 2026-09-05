@@ -76,7 +76,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 	return ..()
 
 /obj/machinery/requests_console/attack_ghost(user as mob)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	ui_interact(user)
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 
 /obj/machinery/requests_console/update_appearance(updates=ALL)
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		set_light(0)
 		return
 	set_light(1.5, 0.7, "#34D352")//green light
@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(allRequestConsoles)
 /obj/machinery/requests_console/update_overlays()
 	. = ..()
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	var/screen_state = "req_comp[newmessagepriority]"

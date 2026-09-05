@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	<em>Printed at [station_time_timestamp()].</em>"
 
 /obj/machinery/doppler_array/proc/sense_explosion(x0, y0, z0, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 	if(z != z0)
 		return
@@ -171,16 +171,16 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 		atom_say(message, use_tts = FALSE)
 
 /obj/machinery/doppler_array/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[base_icon_state]_broken"
 	else
-		icon_state = (!(stat & NOPOWER) && anchored) ? base_icon_state : "[base_icon_state]_off"
+		icon_state = (!(machine_stat & NOPOWER) && anchored) ? base_icon_state : "[base_icon_state]_off"
 
 /obj/machinery/doppler_array/power_change(forced = FALSE)	// overrides base power_change to check to make sure machine is anchored
 	if(powered(power_channel) && anchored)
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 	else
-		stat |= NOPOWER
+		machine_stat |= NOPOWER
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/doppler_array/ui_interact(mob/user, datum/tgui/ui = null)

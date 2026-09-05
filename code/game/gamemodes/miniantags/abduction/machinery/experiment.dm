@@ -22,7 +22,7 @@
 	icon_state = "experiment[occupant ? "" : "-open"]"
 
 /obj/machinery/abductor/experiment/mouse_drop_receive(mob/living/carbon/human/target, mob/user, params)
-	if(stat)
+	if(machine_stat)
 		return
 	if(user.incapacitated() || HAS_TRAIT(user, TRAIT_HANDS_BLOCKED) || !Adjacent(user) || !target.Adjacent(user) || !ishuman(target))
 		return

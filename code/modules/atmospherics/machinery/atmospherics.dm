@@ -198,7 +198,7 @@ Pipelines + Other Objects -> Pipe network
 	if(!can_unwrench)
 		to_chat(user, span_warning("This machinery cannot be unwrenched."))
 		return .
-	if(!(stat & NOPOWER) && on)
+	if(!(machine_stat & NOPOWER) && on)
 		to_chat(user, span_warning("You cannot unwrench [src], turn it off first."))
 		return .
 

@@ -103,7 +103,7 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/arcade/minesweeper/proc/speak(message)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 	if(!message)
 		return
@@ -135,14 +135,14 @@
 
 /obj/machinery/arcade/minesweeper/power_change(forced = FALSE)
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		SStgui.close_uis(src)
 	if(.)
 		update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/arcade/minesweeper/update_overlays()
 	. = ..()
-	if(!(stat & BROKEN) && !(stat & NOPOWER))
+	if(!(machine_stat & BROKEN) && !(machine_stat & NOPOWER))
 		. += "minesweeper_screen"
 
 /obj/machinery/arcade/minesweeper/ui_interact(mob/user, datum/tgui/ui = null)
@@ -159,7 +159,7 @@
 
 /obj/machinery/arcade/minesweeper/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	if(ignore_touches || !ui.user.Adjacent(src) || stat & BROKEN || stat & NOPOWER)
+	if(ignore_touches || !ui.user.Adjacent(src) || machine_stat & BROKEN || machine_stat & NOPOWER)
 		return
 	switch(action)
 		if("Square")

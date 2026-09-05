@@ -104,7 +104,7 @@
 		icon_state = "thermo-open"
 		return ..()
 
-	if(on && powered() && !(stat & BROKEN))
+	if(on && powered() && !(machine_stat & BROKEN))
 		icon_state = "thermo_1"
 		return ..()
 	icon_state = "thermo_base"

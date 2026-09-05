@@ -19,7 +19,7 @@
 	var/widenet = FALSE
 
 /obj/machinery/portable_atmospherics/scrubber/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 

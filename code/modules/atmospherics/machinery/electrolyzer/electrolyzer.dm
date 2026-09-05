@@ -144,7 +144,7 @@
 	balloon_alert(user, "turned [on ? "on" : "off"]")
 
 /obj/machinery/power/electrolyzer/process()
-	if(!on && !(stat & NOPOWER))
+	if(!on && !(machine_stat & NOPOWER))
 		return
 
 	if((!cell || cell.charge <= 0) && !anchored)

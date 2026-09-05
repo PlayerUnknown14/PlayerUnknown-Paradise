@@ -58,7 +58,7 @@
 	. = ..()
 	if(!istype(used, /obj/item/nuclear_rod/fuel))
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return ITEM_INTERACT_SUCCESS
 	if(panel_open)
 		to_chat(user, span_warning("You must close the access panel first!"))
@@ -115,7 +115,7 @@
 	return ..()
 
 /obj/machinery/nuclear_centrifuge/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		if(use_power == ACTIVE_POWER_USE)
 			abort_enrichment()
 		return
@@ -225,11 +225,11 @@
 		to_chat(user, span_warning("You can't load [src] while it's opened!"))
 		return FALSE
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("[src] is broken."))
 		return FALSE
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_warning("[src] has no power."))
 		return FALSE
 
@@ -479,7 +479,7 @@
 	playsound(src, 'sound/machines/buzz-sigh.ogg', 30, TRUE)
 
 /obj/machinery/nuclear_rod_fabricator/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		if(use_power == ACTIVE_POWER_USE)
 			abort_fabrication()
 		return

@@ -267,7 +267,7 @@
 		set_pixel_offsets_from_dir(24, -24, 24, -24)
 		opened = APC_OPENED
 		operating = FALSE
-		stat |= MAINT
+		machine_stat |= MAINT
 	else
 		electronics_state = APC_ELECTRONICS_SECURED
 		// is starting with a power cell installed, create it and set its charge level
@@ -327,7 +327,7 @@
 /obj/machinery/power/apc/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			. += span_warning("Looks broken")
 		else if(opened)
 			if(has_electronics() && terminal)
@@ -341,7 +341,7 @@
 			if(user.Adjacent(src) && cog)
 				. += span_warning("[src]'s innards have been replaced by strange brass machinery!")
 		else
-			if(stat & MAINT)
+			if(machine_stat & MAINT)
 				. += span_notice("The cover is closed. Something wrong with it: it doesn't work.")
 			else if(malfhack)
 				. += span_warning("The cover is broken. It may be hard to force it open.")
@@ -401,7 +401,7 @@
 			set_light_on(FALSE)
 		else if(update_state & UPSTATE_BLUESCREEN)
 			set_light(2, 1, LIGHT_COLOR_DARK_BLUE, l_on = TRUE)
-		else if(!(stat & (UPSTATE_MAINT|UPSTATE_BROKE)) && (update_state & UPSTATE_ALLGOOD))
+		else if(!(machine_stat & (UPSTATE_MAINT|UPSTATE_BROKE)) && (update_state & UPSTATE_ALLGOOD))
 			var/color
 			switch(charging)
 				if(APC_NOT_CHARGING)
@@ -452,7 +452,7 @@
 		underlays += emissive_appearance(icon, "emit_apcemag", src)
 		return
 
-	if((stat & (BROKEN|MAINT)) || !(update_state & UPSTATE_ALLGOOD))
+	if((machine_stat & (BROKEN|MAINT)) || !(update_state & UPSTATE_ALLGOOD))
 		return
 
 	var/image/statover_lock = status_overlays_lock[locked + 1]
@@ -484,9 +484,9 @@
 
 	if(cell)
 		update_state |= UPSTATE_CELL_IN
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		update_state |= UPSTATE_BROKE
-	if(stat & MAINT)
+	if(machine_stat & MAINT)
 		update_state |= UPSTATE_MAINT
 	if(opened)
 		if(opened == APC_OPENED)
@@ -556,7 +556,7 @@
 /obj/machinery/power/apc/flicker(second_pass = FALSE)
 	if(opened || panel_open)
 		return FALSE
-	if(stat & (NOPOWER | BROKEN))
+	if(machine_stat & (NOPOWER | BROKEN))
 		return FALSE
 	if(!second_pass) //The first time, we just cut overlays
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/machinery/power/apc, flicker), TRUE), 1)
@@ -589,7 +589,7 @@
 		if(cell)
 			to_chat(user, span_warning("There is already a power cell installed."))
 			return ATTACK_CHAIN_PROCEED
-		if(stat & MAINT)
+		if(machine_stat & MAINT)
 			to_chat(user, span_warning("There is no connector for the power cell."))
 			return ATTACK_CHAIN_PROCEED
 		if(!user.drop_transfer_item_to_loc(I, src))
@@ -669,7 +669,7 @@
 		if(has_electronics()) // there are already electronicks inside
 			to_chat(user, span_warning("The APC already has an electronics installed."))
 			return ATTACK_CHAIN_PROCEED
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			to_chat(user, span_warning("The APC cannot hold an electronics, its too damaged."))
 			return ATTACK_CHAIN_PROCEED
 		user.visible_message(
@@ -677,7 +677,7 @@
 			span_notice("You start to insert the power control board into the APC..."),
 		)
 		playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-		if(!do_after(user, 1 SECONDS * I.toolspeed, src, category = DA_CAT_TOOL) || opened == APC_CLOSED || has_electronics() || (stat & BROKEN))
+		if(!do_after(user, 1 SECONDS * I.toolspeed, src, category = DA_CAT_TOOL) || opened == APC_CLOSED || has_electronics() || (machine_stat & BROKEN))
 			return ATTACK_CHAIN_PROCEED
 		if(!user.drop_transfer_item_to_loc(I, src))
 			return ATTACK_CHAIN_PROCEED
@@ -695,17 +695,17 @@
 		if(opened == APC_CLOSED)
 			to_chat(user, span_warning("You should open the APC cover to repair it."))
 			return ATTACK_CHAIN_PROCEED
-		if(!(stat & BROKEN || opened == APC_COVER_OFF || obj_integrity < max_integrity)) // There is nothing to repair
+		if(!(machine_stat & BROKEN || opened == APC_COVER_OFF || obj_integrity < max_integrity)) // There is nothing to repair
 			to_chat(user, span_warning("The APC looks completely intact."))
 			return ATTACK_CHAIN_PROCEED
-		if(!(stat & BROKEN) && opened == APC_COVER_OFF) // Cover is the only thing broken, we do not need to remove elctronicks to replace cover
+		if(!(machine_stat & BROKEN) && opened == APC_COVER_OFF) // Cover is the only thing broken, we do not need to remove elctronicks to replace cover
 			user.visible_message(
 				span_notice("[user.name] starts to replace the missing APC's cover."),
 				span_notice("You start to to replace the missing APC's cover..."),
 			)
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 			// replacing cover is quicker than replacing whole frame
-			if(!do_after(user, 2 SECONDS * I.toolspeed, src, category = DA_CAT_TOOL) || (stat & BROKEN) || opened != APC_COVER_OFF)
+			if(!do_after(user, 2 SECONDS * I.toolspeed, src, category = DA_CAT_TOOL) || (machine_stat & BROKEN) || opened != APC_COVER_OFF)
 				return ATTACK_CHAIN_PROCEED
 			if(!user.drop_transfer_item_to_loc(I, src))
 				return ATTACK_CHAIN_PROCEED
@@ -725,7 +725,7 @@
 			span_notice("[user.name] starts to replace the damaged APC frame with a new one."),
 			span_notice("You start to to replace damaged APC frame with a new one..."),
 		)
-		if(!do_after(user, 5 SECONDS * I.toolspeed, src, category = DA_CAT_TOOL) || !(stat & BROKEN || opened == APC_COVER_OFF || obj_integrity < max_integrity) || has_electronics())
+		if(!do_after(user, 5 SECONDS * I.toolspeed, src, category = DA_CAT_TOOL) || !(machine_stat & BROKEN || opened == APC_COVER_OFF || obj_integrity < max_integrity) || has_electronics())
 			return ATTACK_CHAIN_PROCEED
 		if(!user.drop_transfer_item_to_loc(I, src))
 			return ATTACK_CHAIN_PROCEED
@@ -734,7 +734,7 @@
 			span_notice("[user.name] has replaced the damaged APC frame with a new one."),
 			span_notice("You have replaced the damaged APC frame with a new one."),
 		)
-		stat &= ~BROKEN
+		machine_stat &= ~BROKEN
 		update_integrity(max_integrity)
 		if(opened == APC_COVER_OFF)
 			opened = APC_OPENED
@@ -788,7 +788,7 @@
 
 	if(istype(I, /obj/item/storage/part_replacer))
 		add_fingerprint(user)
-		if(stat & BROKEN)
+		if(machine_stat & BROKEN)
 			to_chat(user, span_warning("Для этого ЛКП должен быть цел."))
 			return ATTACK_CHAIN_PROCEED_SUCCESS
 		if(opened == APC_CLOSED)
@@ -847,7 +847,7 @@
 			if(I.use_tool(src, user, 50, volume = I.tool_volume))
 				if(has_electronics())
 					electronics_state = APC_ELECTRONICS_NONE
-					if(stat & BROKEN)
+					if(machine_stat & BROKEN)
 						user.visible_message(\
 							"[user.name] has broken the power control board inside [name]!",
 							span_notice("You break the charred power control board and remove the remains."),
@@ -887,8 +887,8 @@
 			coverlocked = TRUE //closing cover relocks it
 			update_icon()
 			return
-	else if(!(stat & BROKEN)) // b) on closed and not broken APC
-		if(coverlocked && !(stat & MAINT)) // locked...
+	else if(!(machine_stat & BROKEN)) // b) on closed and not broken APC
+		if(coverlocked && !(machine_stat & MAINT)) // locked...
 			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
 			return
 		else if(panel_open) // wires are exposed
@@ -897,7 +897,7 @@
 		else
 			opened = APC_OPENED
 			update_icon()
-	else if(stat & BROKEN)
+	else if(machine_stat & BROKEN)
 		if(!opened)
 			if(do_after(user, 3 SECONDS * I.toolspeed, src, DEFAULT_DOAFTER_IGNORE|DA_IGNORE_HELD_ITEM, category = DA_CAT_TOOL))
 				to_chat(user, span_notice("You pry out broken frame."))
@@ -909,17 +909,17 @@
 	if(!I.use_tool(src, user, 0, volume = I.tool_volume))
 		return
 	else if(opened)
-		if(cell && !(stat & MAINT))
+		if(cell && !(machine_stat & MAINT))
 			to_chat(user, span_warning("Close the APC first!")) //Less hints more mystery!
 			return
 		else
 			if(electronics_state == APC_ELECTRONICS_INSTALLED)
 				electronics_state = APC_ELECTRONICS_SECURED
-				stat &= ~MAINT
+				machine_stat &= ~MAINT
 				to_chat(user, span_notice("You screw the circuit electronics into place."))
 			else if(electronics_state == APC_ELECTRONICS_SECURED)
 				electronics_state = APC_ELECTRONICS_INSTALLED
-				stat |= MAINT
+				machine_stat |= MAINT
 				to_chat(user, span_notice("You unfasten the electronics."))
 			else
 				to_chat(user, span_warning("There is nothing to secure!"))
@@ -958,7 +958,7 @@
 	if(panel_open)
 		to_chat(user, span_warning("You must close the panel!"))
 		return FALSE
-	if(stat & (BROKEN|MAINT))
+	if(machine_stat & (BROKEN|MAINT))
 		to_chat(user, span_warning("Nothing happens!"))
 		return FALSE
 	if(!allowed(user) || wires.is_cut(WIRE_IDSCAN) || malfhack)
@@ -970,7 +970,7 @@
 	return TRUE
 
 /obj/machinery/power/apc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return damage_amount
 	. = ..()
 
@@ -983,7 +983,7 @@
 
 /obj/machinery/power/apc/deconstruct(disassembled = TRUE)
 	if(!(obj_flags & NODECONSTRUCT))
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			set_broken()
 		if(opened != APC_COVER_OFF)
 			opened = APC_COVER_OFF
@@ -999,7 +999,7 @@
 		return
 	WELDER_ATTEMPT_SLICING_MESSAGE
 	if(I.use_tool(src, user, 50, amount = 3, volume = I.tool_volume))
-		if((stat & BROKEN) || opened == APC_COVER_OFF)
+		if((machine_stat & BROKEN) || opened == APC_COVER_OFF)
 			new /obj/item/stack/sheet/metal(loc)
 			user.visible_message(\
 				"[user.name] has cut [src] apart with [I].",\
@@ -1019,7 +1019,7 @@
 		else if(panel_open)
 			if(user)
 				to_chat(user, "You must close the panel first.")
-		else if(stat & (BROKEN|MAINT))
+		else if(machine_stat & (BROKEN|MAINT))
 			if(user)
 				to_chat(user, "Nothing happens.")
 		else
@@ -1052,7 +1052,7 @@
 			charging = APC_NOT_CHARGING
 			update_icon()
 		return
-	if(stat & (BROKEN|MAINT))
+	if(machine_stat & (BROKEN|MAINT))
 		return
 
 	if(..())
@@ -1188,7 +1188,7 @@
 		INVOKE_ASYNC(light, TYPE_PROC_REF(/obj/machinery/light, update), FALSE)
 
 /obj/machinery/power/apc/proc/can_use(mob/user) //used by attack_hand() and Topic()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return FALSE
 	if(user.can_admin_interact())
 		return TRUE
@@ -1248,7 +1248,7 @@
 	switch(action)
 		if("lock")
 			if(usr.has_unlimited_silicon_privilege)
-				if(emagged || stat & BROKEN)
+				if(emagged || machine_stat & BROKEN)
 					to_chat(usr, span_warning("The APC does not respond to the command!"))
 					return FALSE
 				else
@@ -1410,7 +1410,7 @@
 		return 0
 
 /obj/machinery/power/apc/process()
-	if(stat & (BROKEN|MAINT))
+	if(machine_stat & (BROKEN|MAINT))
 		return
 	var/area/area = src.area
 	var/obj/item/stock_parts/cell/cell = src.cell
@@ -1659,7 +1659,7 @@
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
 		malfai.malf_picker.processing_time = clamp(malfai.malf_picker.processing_time - 10,0,1000)
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	operating = FALSE
 	if(occupier)
 		malfvacate(forced = TRUE)

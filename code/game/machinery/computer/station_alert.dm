@@ -20,12 +20,12 @@
 
 /obj/machinery/computer/station_alert/attack_ai(mob/user)
 	add_fingerprint(user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	ui_interact(user)
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(..())
@@ -62,7 +62,7 @@
 		return
 	if(alarmsource.z != z)
 		return
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	update_icon()
 
@@ -71,7 +71,7 @@
 		return
 	if(origin.z != z)
 		return
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 	update_icon()
 

@@ -37,7 +37,7 @@
 	if(!anchored)
 		icon_state = "turretCover"
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[lasercolor]destroyed_target_prism"
 	else
 		if(powered())

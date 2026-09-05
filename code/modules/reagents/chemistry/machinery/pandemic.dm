@@ -30,18 +30,18 @@
 	update_icon()
 
 /obj/machinery/computer/pandemic/set_broken()
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	update_icon()
 
 /obj/machinery/computer/pandemic/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "mixer[beaker ? "1" : "0"]_b"
 		return
 	icon_state = "mixer[beaker ? "1" : "0"][(powered()) ? "" : "_nopower"]"
 
 /obj/machinery/computer/pandemic/update_overlays()
 	. = ..()
-	if(!(stat & BROKEN) && !wait)
+	if(!(machine_stat & BROKEN) && !wait)
 		. += "waitlight"
 
 /obj/machinery/computer/pandemic/attack_ai(mob/user)
@@ -52,13 +52,13 @@
 	add_fingerprint(user)
 	if(..(user))
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	SStgui.update_uis(src)
 	ui_interact(user)
 
 /obj/machinery/computer/pandemic/attackby(obj/item/item, mob/user, params)
-	if(user.a_intent == INTENT_HARM || (stat & (NOPOWER|BROKEN)))
+	if(user.a_intent == INTENT_HARM || (machine_stat & (NOPOWER|BROKEN)))
 		return ..()
 
 	if(istype(item, /obj/item/reagent_containers/dropper) && beaker)

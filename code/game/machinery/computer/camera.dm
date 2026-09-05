@@ -194,7 +194,7 @@
 		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
 
 /obj/machinery/computer/security/attack_hand(mob/user)
-	if(stat || ..())
+	if(machine_stat || ..())
 		user.unset_machine()
 		return
 
@@ -296,7 +296,7 @@
 /obj/machinery/computer/security/telescreen/entertainment/proc/on_ranged_attack(datum/source, mob/user, params)
 	SIGNAL_HANDLER
 
-	if(stat)
+	if(machine_stat)
 		user.unset_machine()
 		return
 
@@ -349,7 +349,7 @@
 		if(get_dist(src, user) > 6)
 			return GLOB.default_state
 
-		if(!stat)
+		if(!machine_stat)
 			return GLOB.range_state
 
 	return GLOB.default_state

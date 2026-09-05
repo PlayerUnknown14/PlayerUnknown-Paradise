@@ -42,10 +42,10 @@ log transactions
 	update_icon()
 
 /obj/machinery/atm/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
-	if(linked_db && ((linked_db.stat & NOPOWER) || !linked_db.activated))
+	if(linked_db && ((linked_db.machine_stat & NOPOWER) || !linked_db.activated))
 		linked_db = null
 		authenticated_account = null
 		visible_message("[get_examine_icon(viewers(src))][span_warning("[src] buzzes rudely, \"Connection to remote database lost.\"")]")
@@ -74,7 +74,7 @@ log transactions
 
 /obj/machinery/atm/proc/reconnect_database()
 	for(var/obj/machinery/computer/account_database/DB in SSmachines.get_by_type(/obj/machinery/computer/account_database))
-		if(DB.stat & NOPOWER || !DB.activated)
+		if(DB.machine_stat & NOPOWER || !DB.activated)
 			continue
 		if(is_station_level(z) && is_station_level(DB.z))
 			linked_db = DB
@@ -86,7 +86,7 @@ log transactions
 
 /obj/machinery/atm/update_icon_state()
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "atm_off"
 	else
 		icon_state = "atm"
@@ -100,7 +100,7 @@ log transactions
 	. = ..()
 	underlays.Cut()
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	underlays += emissive_appearance(icon, "atm_lightmask", src)

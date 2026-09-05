@@ -46,7 +46,7 @@
 	return ..()
 
 /obj/machinery/pdapainter/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[base_icon_state]-broken"
 		return
 
@@ -57,7 +57,7 @@
 
 /obj/machinery/pdapainter/update_overlays()
 	. = ..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	if(storedpda)
 		. += "[base_icon_state]-closed"
@@ -106,8 +106,8 @@
 
 /obj/machinery/pdapainter/deconstruct(disassembled = TRUE)
 	if(!(obj_flags & NODECONSTRUCT))
-		if(!(stat & BROKEN))
-			stat |= BROKEN
+		if(!(machine_stat & BROKEN))
+			machine_stat |= BROKEN
 			update_icon()
 
 /obj/machinery/pdapainter/attack_hand(mob/user as mob)

@@ -230,7 +230,7 @@
 		return
 
 	add_fingerprint(user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(!(device || constructed))
@@ -271,7 +271,7 @@
 	if(open)
 		icon_state = "doorctrl-panel"
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "[base_icon_state]-p"
 		return
 	icon_state = is_animating ? "[base_icon_state]-inuse" : base_icon_state
@@ -290,7 +290,7 @@
 		else if(device)
 			. += "doorctrl-overlay-device"
 
-	if(open || (stat & NOPOWER))
+	if(open || (machine_stat & NOPOWER))
 		return
 
 	underlays += emissive_appearance(icon, "[base_icon_state]_lightmask", src)
@@ -327,9 +327,9 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/door_control/secure, 24, 24)
 
 /obj/machinery/door_control/mimic/power_change(forced = FALSE)
 	if(powered(power_channel))
-		stat &= ~NOPOWER
+		machine_stat &= ~NOPOWER
 	else
-		stat |= NOPOWER
+		machine_stat |= NOPOWER
 
 /obj/machinery/door_control/mimic/screwdriver_act(mob/living/user, obj/item/I)
 	return

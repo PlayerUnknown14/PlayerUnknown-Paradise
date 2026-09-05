@@ -95,7 +95,7 @@
 		return 0
 	if(!on || welded)
 		return 0
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return 0
 
 	var/amount = idle_power_usage
@@ -167,7 +167,7 @@
 	return data
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_params(list/params)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if("power" in params)
@@ -201,7 +201,7 @@
 	if(widenet)
 		check_turfs()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(!node)

@@ -159,7 +159,7 @@
 	return TRUE
 
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
-	if(user.a_intent == INTENT_HARM || (stat & BROKEN))
+	if(user.a_intent == INTENT_HARM || (machine_stat & BROKEN))
 		return ..()
 
 	add_fingerprint(user)
@@ -367,7 +367,7 @@
 	if(..())
 		return TRUE
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(user && user.loc == src)
@@ -408,7 +408,7 @@
 		to_chat(usr, span_warning("Питание мусоропровода отключено."))
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	add_fingerprint(usr)
@@ -458,14 +458,14 @@
 
 // update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		mode = OFF
 		flush = FALSE
 
 	update_icon()
 
 /obj/machinery/disposal/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "disposal-broken"
 		return
 	icon_state = initial(icon_state)
@@ -479,7 +479,7 @@
 		. += "dispover-handle"
 
 	// only handle is shown if no power
-	if((stat & (NOPOWER|BROKEN)) || mode == UNSCREWED)
+	if((machine_stat & (NOPOWER|BROKEN)) || mode == UNSCREWED)
 		return
 
 	//	check for items in disposal - occupied light
@@ -501,7 +501,7 @@
 // charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/process()
 	use_power = NO_POWER_USE
-	if(stat & BROKEN)			// nothing can happen if broken
+	if(machine_stat & BROKEN)			// nothing can happen if broken
 		return
 
 	flush_count++
@@ -515,7 +515,7 @@
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE)	// flush can happen even without power
 		flush()
 
-	if(stat & NOPOWER)			// won't charge if no power
+	if(machine_stat & NOPOWER)			// won't charge if no power
 		return
 
 	use_power = IDLE_POWER_USE
@@ -566,7 +566,7 @@
 /obj/machinery/disposal/power_change(forced = FALSE)
 	. = ..()
 	if(.)
-		update()	// do default setting/reset of stat NOPOWER bit
+		update()	// do default setting/reset of machine_stat NOPOWER bit
 
 // called when holder is expelled from a disposal
 // should usually only occur if the pipe network is modified

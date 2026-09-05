@@ -53,7 +53,7 @@
 					break dir_loop
 
 	if(!terminal)
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		return
 	terminal.master = src
 	update_icon(UPDATE_OVERLAYS)
@@ -88,7 +88,7 @@
 
 /obj/machinery/power/smes/update_overlays()
 	. = ..()
-	if((stat & BROKEN) || panel_open)
+	if((machine_stat & BROKEN) || panel_open)
 		return
 
 	. += "smes-op[outputting]"
@@ -188,7 +188,7 @@
 	if(!terminal)
 		to_chat(user, span_warning("No power source found."))
 		return .
-	stat &= ~BROKEN
+	machine_stat &= ~BROKEN
 	update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/power/smes/wirecutter_act(mob/living/user, obj/item/tool)
@@ -260,7 +260,7 @@
 	return round(5.5*charge/(capacity ? capacity : 5e6))
 
 /obj/machinery/power/smes/process()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	//store machine state to see if we need to update the icon overlays
@@ -317,7 +317,7 @@
 // called after all power processes are finished
 // restores charge level to smes if there was excess this ptick
 /obj/machinery/power/smes/proc/restore()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(!outputting)
@@ -358,7 +358,7 @@
 	ui_interact(user)
 
 /obj/machinery/power/smes/ui_interact(mob/user, datum/tgui/ui = null)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -516,7 +516,7 @@
 
 /obj/machinery/power/smes/portable/Initialize(mapload)
 	. = ..()
-	stat = 0
+	machine_stat = 0
 
 /obj/machinery/power/smes/portable/wrench_act(mob/living/user, obj/item/tool)
 	if(!anchored)

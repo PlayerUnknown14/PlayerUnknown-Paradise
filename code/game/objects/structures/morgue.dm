@@ -523,7 +523,7 @@ GLOBAL_LIST_EMPTY(crematoriums)
 	if(user.incapacitated() || !isAI(user) && HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		return
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		balloon_alert(user, "нет энергии!")
 		return
 

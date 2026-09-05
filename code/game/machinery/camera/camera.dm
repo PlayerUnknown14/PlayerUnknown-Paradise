@@ -90,7 +90,7 @@
 		return
 	if(!isEmpProof())
 		if(prob(150/severity))
-			stat |= EMPED
+			machine_stat |= EMPED
 			set_light_on(FALSE)
 			update_icon(UPDATE_ICON_STATE)
 
@@ -101,7 +101,7 @@
 			..()
 
 /obj/machinery/camera/proc/restore_from_emp()
-	stat &= ~EMPED
+	machine_stat &= ~EMPED
 	update_icon(UPDATE_ICON_STATE)
 
 	if(can_use())
@@ -234,7 +234,7 @@
 		deconstruct(TRUE)
 
 /obj/machinery/camera/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return damage_amount
 	. = ..()
 
@@ -289,7 +289,7 @@
 	icon_state = isXRay() ? "xray[initial(icon_state)]" : initial(icon_state)
 	if(!status)
 		icon_state = "[icon_state]1"
-	else if(stat & EMPED)
+	else if(machine_stat & EMPED)
 		icon_state = "[icon_state]emp"
 
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
@@ -340,7 +340,7 @@
 /obj/machinery/camera/proc/can_use(mob/user)
 	if(!status)
 		return 0
-	if(stat & EMPED)
+	if(machine_stat & EMPED)
 		return 0
 	return 1
 

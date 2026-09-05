@@ -14,7 +14,7 @@
 /obj/machinery/computer/merch/attack_hand(mob/user as mob)
 	user.set_machine(src)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(..())

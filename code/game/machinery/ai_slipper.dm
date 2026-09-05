@@ -20,12 +20,12 @@
 
 /obj/machinery/ai_slipper/power_change()
 	..() //we don't check return here because we also care about the BROKEN flag
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		disabled = TRUE
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/ai_slipper/attackby(obj/item/I, mob/user, params)
-	if(stat & (NOPOWER|BROKEN) || user.a_intent == INTENT_HARM)
+	if(machine_stat & (NOPOWER|BROKEN) || user.a_intent == INTENT_HARM)
 		return ..()
 
 	if(issilicon(user))
@@ -49,13 +49,13 @@
 			attack_hand(user)
 
 /obj/machinery/ai_slipper/proc/ToggleOn()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	disabled = !disabled
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/ai_slipper/proc/Activate(mob/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!uses)
 		to_chat(user, span_warning("[src] is empty!"))
@@ -80,7 +80,7 @@
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/ai_slipper/update_icon_state()
-	if((stat & (NOPOWER|BROKEN)) || disabled || cooldown_on || !uses)
+	if((machine_stat & (NOPOWER|BROKEN)) || disabled || cooldown_on || !uses)
 		icon_state = "liquid_dispenser"
 	else
 		icon_state = "liquid_dispenser_on"
@@ -92,7 +92,7 @@
 	return attack_hand(user)
 
 /obj/machinery/ai_slipper/attack_hand(mob/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(get_dist(src, user) > 1 && (!issilicon(user) && !user.can_admin_interact()))

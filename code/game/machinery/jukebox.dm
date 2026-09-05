@@ -75,7 +75,7 @@
 		WRENCH_UNANCHOR_MESSAGE
 
 /obj/machinery/jukebox/update_icon_state()
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		icon_state = "[base_icon_state]_broken"
 	else
 		icon_state = "[base_icon_state][music_player.active_song_sound ? "-active" : null]"
@@ -84,7 +84,7 @@
 	. = ..()
 	underlays.Cut()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(music_player.active_song_sound)
 		underlays += emissive_appearance(icon, "[icon_state]_lightmask", src)
@@ -243,9 +243,9 @@
 	return TRUE
 
 /obj/machinery/jukebox/obj_break()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	idle_power_usage = 0
 	active_power_usage = 0
 	stop_music()

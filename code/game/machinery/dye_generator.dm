@@ -20,12 +20,12 @@
 	if(panel_open)
 		. += "[base_icon_state]_panel"
 
-	if(stat & NOPOWER)
-		if(stat & BROKEN)
+	if(machine_stat & NOPOWER)
+		if(machine_stat & BROKEN)
 			. += "[base_icon_state]_broken"
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		. += "[base_icon_state]_broken"
 		underlays += emissive_appearance(icon, "[base_icon_state]_broken_lightmask", src)
 	else
@@ -39,7 +39,7 @@
 /obj/machinery/dye_generator/power_change(forced = FALSE)
 	. = ..()
 	if(.)
-		set_light_on(!(stat & NOPOWER))
+		set_light_on(!(machine_stat & NOPOWER))
 		update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/dye_generator/extinguish_light(force = FALSE)
@@ -49,7 +49,7 @@
 
 /obj/machinery/dye_generator/attack_hand(mob/user)
 	..()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	var/temp = tgui_input_color(usr, "Choose a dye color", "Dye Color")
 	if(isnull(temp))

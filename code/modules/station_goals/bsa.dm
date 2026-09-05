@@ -537,9 +537,9 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/computer/bsa_control/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = icon_state_broken
-	else if(stat & NOPOWER)
+	else if(machine_stat & NOPOWER)
 		icon_state = icon_state_nopower
 	else if(cannon && (!is_reload_ready() || !target || !is_calibrate_ready()))
 		icon_state = icon_state_reloading
@@ -576,7 +576,7 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 	data["notice"] = notice
 	if(!cannon)
 		return data
-	data["power"] = !cannon.stat
+	data["power"] = !cannon.machine_stat
 	data["reload_ready"] = is_reload_ready()
 	data["reloadtime_text"] = get_reloading_time()
 	data["calibrate_ready"] = is_calibrate_ready()
@@ -610,7 +610,7 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 	return (cannon.last_calibrate_time + BSA_CALIBRATE_TIME) <= (world.time / 10)
 
 /obj/machinery/computer/bsa_control/proc/is_ready_to_shot()
-	return is_reload_ready() && target && is_calibrate_ready() && !cannon.stat && cannon.mode
+	return is_reload_ready() && target && is_calibrate_ready() && !cannon.machine_stat && cannon.mode
 
 /obj/machinery/computer/bsa_control/proc/get_reloading_time()
 	if(!cannon)
@@ -732,7 +732,7 @@ GLOBAL_LIST_EMPTY(BSA_modes_list)
 /obj/machinery/computer/bsa_control/proc/fire(mob/user, target)
 	if(!cannon || !target)
 		return
-	if(cannon.stat)
+	if(cannon.machine_stat)
 		return
 	notice = null
 	cannon.fire(user, get_impact_turf(), target)

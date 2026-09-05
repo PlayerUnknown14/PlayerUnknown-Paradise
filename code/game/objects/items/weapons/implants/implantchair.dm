@@ -126,7 +126,7 @@
 	return TRUE
 
 /obj/machinery/implantchair/proc/put_mob_check(mob/living/carbon/human/target, mob/living/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	if(target == user && !Adjacent(target))
 		return FALSE

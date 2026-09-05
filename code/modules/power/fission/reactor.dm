@@ -156,7 +156,7 @@
 
 /obj/machinery/atmospherics/fission_reactor/examine(mob/user)
 	. = ..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		. += "A burning hole remains where the NGCR Reactor housed its core. It's inoperable in this state. The acrid smell permeates through even the thickest of suits."
 		switch(repair_step)
 			if(REACTOR_NEEDS_DIGGING)
@@ -234,7 +234,7 @@
 
 /obj/machinery/atmospherics/fission_reactor/update_overlays()
 	. = ..()
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		var/rod_state = round((100 - operating_power + 24) / 25)
 		rod_state = clamp(rod_state, 1, 5)
 		. += "rods_[control_rods_remaining]_[rod_state]"
@@ -257,10 +257,10 @@
 		build_reactor_network()
 
 /obj/machinery/atmospherics/fission_reactor/proc/set_broken(meltdown = TRUE)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	overlays = null
 
 	if(safety_override && operating_power >= 100)
@@ -273,7 +273,7 @@
 	update_appearance(UPDATE_ICON_STATE)
 
 /obj/machinery/atmospherics/fission_reactor/proc/set_fixed()
-	stat &= ~BROKEN
+	machine_stat &= ~BROKEN
 	update_appearance(UPDATE_ICON_STATE)
 	build_reactor_network()
 
@@ -282,7 +282,7 @@
 	if(!iscarbon(user))
 		return
 	var/mob/living/carbon/creature = user
-	if(istype(used, /obj/item/shovel) && repair_step == REACTOR_NEEDS_DIGGING && (stat & BROKEN))
+	if(istype(used, /obj/item/shovel) && repair_step == REACTOR_NEEDS_DIGGING && (machine_stat & BROKEN))
 		playsound(src, used.usesound, 50, TRUE)
 		if(do_after(creature, 3 SECONDS, src, timed_action_flags = DA_IGNORE_USER_LOC_CHANGE))
 			playsound(src, used.usesound, 50, TRUE)
@@ -397,7 +397,7 @@
 			new /obj/item/stack/sheet/metal(user.loc, 2)
 		return TRUE
 
-	if(!(stat & BROKEN) && venting)
+	if(!(machine_stat & BROKEN) && venting)
 		if(I.use_tool(src, user, (8 SECONDS * I.toolspeed), volume = I.tool_volume))
 			venting = FALSE
 			return TRUE
@@ -411,7 +411,7 @@
 			new /obj/item/stack/sheet/metal(user.loc, 2)
 		return TRUE
 
-	if(!(stat & BROKEN) && control_rods_remaining < TOTAL_CONTROL_RODS)
+	if(!(machine_stat & BROKEN) && control_rods_remaining < TOTAL_CONTROL_RODS)
 		if(I.use_tool(src, user, 0, volume = I.tool_volume))
 			if(do_after(user, (8 SECONDS * I.toolspeed), target = src, show_progress = TRUE))
 				control_rods_remaining++
@@ -511,7 +511,7 @@
 		reactor.air_contents.merge(removed)
 
 /obj/machinery/atmospherics/fission_reactor/process()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		radiation_pulse(src, 6, chance = 50)
 		return
 
@@ -757,7 +757,7 @@
 		countdown()
 
 /obj/machinery/atmospherics/fission_reactor/proc/check_pressure_hazard()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	var/current_pressure = air_contents.return_pressure()
@@ -888,7 +888,7 @@
 	set_light(2, 5, REACTOR_LIGHT_COLOR)
 
 /obj/machinery/atmospherics/fission_reactor/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		if(active_meltdown)
 			icon_state = "meltdown"
 			return

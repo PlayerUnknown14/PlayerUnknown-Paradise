@@ -378,7 +378,7 @@
  * * scancopy - If TRUE, cancopy does not check for an item on/inside the copier to copy, used for copying stored files
  */
 /obj/machinery/photocopier/proc/cancopy(scancopy = FALSE) //are we able to make a copy of a doc?
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 	if(copying) //are we in the process of copying something already?
 		balloon_alert(usr, "сканер ещё работает!")
@@ -609,7 +609,7 @@
 /obj/machinery/photocopier/proc/ai_text(mob/user)
 	if(!issilicon(user))
 		return
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	var/text = tgui_input_text(user, "Напишите то, что хотите:", "Письмо")
@@ -629,7 +629,7 @@
 /obj/machinery/photocopier/proc/ai_pic()
 	if(!issilicon(usr))
 		return
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(toner_cartridge.charges < 5)
 		return

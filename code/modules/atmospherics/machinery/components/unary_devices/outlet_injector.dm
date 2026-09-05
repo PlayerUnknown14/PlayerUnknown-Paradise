@@ -46,7 +46,7 @@
 /obj/machinery/atmospherics/unary/outlet_injector/process_atmos(seconds)
 	injecting = FALSE
 
-	if(!on || stat & NOPOWER)
+	if(!on || machine_stat & NOPOWER)
 		return FALSE
 
 	var/temperature = air_contents.temperature()

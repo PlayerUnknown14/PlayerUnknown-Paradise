@@ -238,7 +238,7 @@
  * Check the power use of the machine, return TRUE if there is enough power in the powernet
  */
 /obj/machinery/atmospherics/unary/hypertorus/core/proc/check_power_use()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 	if(use_power == ACTIVE_POWER_USE)
 		active_power_usage = (power_level + 1) * MIN_POWER_USAGE //Max around 350 KW

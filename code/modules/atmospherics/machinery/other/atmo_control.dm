@@ -196,7 +196,7 @@
 		var/command = params["cmd"]
 		var/value = params["val"]
 		var/obj/machinery/atmospherics/machine = locateUID(device_id)
-		if(machine && (machine.stat & (NOPOWER|BROKEN)))
+		if(machine && (machine.machine_stat & (NOPOWER|BROKEN)))
 			return
 		var/list/result = list()
 		if(value)

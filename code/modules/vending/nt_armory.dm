@@ -90,11 +90,11 @@
 	if(panel_open)
 		. += "nta_panel"
 
-	if((stat & NOPOWER) || force_no_power_icon_state)
+	if((machine_stat & NOPOWER) || force_no_power_icon_state)
 		. += "nta_off"
 		return
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		. += "nta_broken"
 	else
 		if(flick_sequence & FLICK_VEND)

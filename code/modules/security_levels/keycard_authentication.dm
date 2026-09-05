@@ -33,7 +33,7 @@
 
 	if(I.GetID())
 		add_fingerprint(user)
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			to_chat(user, span_warning("The [name] is not powered or broken."))
 			return ATTACK_CHAIN_PROCEED
 		if(!check_access(I))
@@ -153,7 +153,7 @@
 	reset()
 
 /obj/machinery/keycard_auth/proc/receive_request(obj/machinery/keycard_auth/source)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	reset()
 

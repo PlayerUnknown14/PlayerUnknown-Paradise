@@ -3,7 +3,7 @@
 	if(!isMotion())
 		. = PROCESS_KILL
 		return
-	if(!status || (stat & (EMPED|NOPOWER)))
+	if(!status || (machine_stat & (EMPED|NOPOWER)))
 		for(var/targer in localMotionTargets)
 			lostTargetRef(targer)
 		return

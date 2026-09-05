@@ -83,7 +83,7 @@
 		if(cartridge)
 			. += span_notice("- [DECLENT_RU_CAP(cartridge, NOMINATIVE)].")
 
-	if(!(stat & (NOPOWER|BROKEN)))
+	if(!(machine_stat & (NOPOWER|BROKEN)))
 		. += "[span_boldnotice("Дисплей сообщает:")]\n" + span_notice("- Скорость варки — <b>[speed * 100]</b>%.")
 		if(coffeepot?.reagents.total_volume)
 			. += span_notice("- [coffeepot.declent_ru(NOMINATIVE)] содержит <b>[coffeepot.reagents.total_volume]</b> единиц[DECL_SEC_MIN(coffeepot.reagents.total_volume)] вещества.")
@@ -154,7 +154,7 @@
 	if(!coffeepot)
 		balloon_alert(user, "кофейник отсутствует!")
 		return FALSE
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		balloon_alert(user, "не работает!")
 		return FALSE
 	if(coffeepot.reagents.total_volume >= coffeepot.reagents.maximum_volume)

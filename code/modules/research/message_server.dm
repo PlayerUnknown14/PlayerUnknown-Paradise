@@ -73,7 +73,7 @@ GLOBAL_LIST_EMPTY(message_servers)
 /obj/machinery/message_server/process()
 	//if(decryptkey == "password")
 	//	decryptkey = generateKey()
-	if(active && (stat & (BROKEN|NOPOWER)))
+	if(active && (machine_stat & (BROKEN|NOPOWER)))
 		active = FALSE
 		update_icon(UPDATE_ICON_STATE)
 		return
@@ -124,7 +124,7 @@ GLOBAL_LIST_EMPTY(message_servers)
 	update_icon(UPDATE_ICON_STATE)
 
 /obj/machinery/message_server/update_icon_state()
-	if((stat & (BROKEN|NOPOWER)))
+	if((machine_stat & (BROKEN|NOPOWER)))
 		icon_state = "server_nopower"
 	else if(!active)
 		icon_state = "server_off"

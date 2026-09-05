@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(holopads)
 /obj/machinery/hologram/holopad/power_change(forced = FALSE)
 	if(!..())
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		if(outgoing_call)
 			outgoing_call.ConnectionFailure(src)
 		set_light_on(FALSE)
@@ -117,7 +117,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	. = ..()
 	underlays.Cut()
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
@@ -264,7 +264,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	if(..() || isAI(usr))
 		return
 	add_fingerprint(usr)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 	if(href_list["AIrequest"])
 		if(last_request + 200 < world.time)
@@ -345,7 +345,7 @@ GLOBAL_LIST_EMPTY(holopads)
 /obj/machinery/hologram/holopad/process()
 	for(var/I in masters)
 		var/mob/living/master = I
-		if((stat & NOPOWER) || !validate_user(master) || !anchored)
+		if((machine_stat & NOPOWER) || !validate_user(master) || !anchored)
 			clear_holo(master)
 
 	if(outgoing_call)
@@ -427,7 +427,7 @@ GLOBAL_LIST_EMPTY(holopads)
 		AI = null
 	if(AI && !force && AI.eyeobj.loc != loc) // allows holopads to pass off holograms to the next holopad in the chain
 		to_chat(user, "<font color='red'>ERROR:</font> Unable to project hologram.")
-	if(!(stat & NOPOWER) && (!AI || force))
+	if(!(machine_stat & NOPOWER) && (!AI || force))
 		if(AI && (istype(AI.current, /obj/machinery/hologram/holopad)))
 			to_chat(user, "[span_danger("ERROR:")] Image feed in progress.")
 			return

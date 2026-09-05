@@ -100,7 +100,7 @@ GLOBAL_LIST_EMPTY(tcomms_machines)
  */
 /obj/machinery/tcomms/update_icon_state()
 	// Show the off sprite if were inactive, ion'd or unpowered
-	if(!active || (stat & NOPOWER) || ion)
+	if(!active || (machine_stat & NOPOWER) || ion)
 		icon_state = "[initial(icon_state)]_off"
 	else
 		icon_state = initial(icon_state)

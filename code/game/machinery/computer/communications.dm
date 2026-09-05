@@ -461,7 +461,7 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 	if(..(user))
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(!is_secure_level(src.z))
@@ -677,7 +677,7 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 
 /proc/print_command_report(text = "", title = "Уведомление Центрального командования", add_to_records = TRUE, datum/station_goal/goal = null)
 	for(var/obj/machinery/computer/communications/C in GLOB.shuttle_caller_list)
-		if(!(C.stat & (BROKEN|NOPOWER)) && is_station_contact(C.z))
+		if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_station_contact(C.z))
 			var/obj/item/paper/P = new (C.loc)
 			P.name = "paper- '[title]'"
 			P.info = text
@@ -690,7 +690,7 @@ GLOBAL_VAR_INIT(captain_auth_access, ACCESS_CAPTAIN)
 
 /proc/print_centcom_report(text = "", title = "Входящее сообщение")
 	for(var/obj/machinery/computer/communications/C in GLOB.shuttle_caller_list)
-		if(!(C.stat & (BROKEN|NOPOWER)) && is_admin_level(C.z))
+		if(!(C.machine_stat & (BROKEN|NOPOWER)) && is_admin_level(C.z))
 			var/obj/item/paper/P = new /obj/item/paper(C.loc)
 			P.name = "paper- '[title]'"
 			P.info = text

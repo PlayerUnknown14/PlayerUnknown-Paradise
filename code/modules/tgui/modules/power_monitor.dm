@@ -30,7 +30,7 @@
 		data["powermonitors"] = GLOB.powermonitor_repository.get_data(user.z)
 
 	if(powermonitor)
-		if(can_select_monitor && (powermonitor.stat & (NOPOWER|BROKEN)))
+		if(can_select_monitor && (powermonitor.machine_stat & (NOPOWER|BROKEN)))
 			powermonitor = null
 			return
 		if(powermonitor.powernet)

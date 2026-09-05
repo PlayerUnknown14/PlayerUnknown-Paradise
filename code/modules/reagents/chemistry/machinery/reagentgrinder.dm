@@ -313,7 +313,7 @@
 		[processing_chamber]<br>
 		[beaker_contents]<hr>
 		"}
-				if(is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
+				if(is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
 						dat += "<a href='byond://?src=[src.UID()];action=grind'>Измельчить</a><br>"
 						dat += "<a href='byond://?src=[src.UID()];action=juice'>Выжать</a><br><br>"
 				if(holdingitems && length(holdingitems) > 0)
@@ -412,7 +412,7 @@
 
 /obj/machinery/reagentgrinder/proc/juice()
 		power_change()
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 				return
 		if(!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 				return
@@ -449,7 +449,7 @@
 /obj/machinery/reagentgrinder/proc/grind()
 
 		power_change()
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 				return
 		if(!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 				return

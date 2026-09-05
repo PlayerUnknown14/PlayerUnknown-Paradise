@@ -92,7 +92,7 @@
 	return ..()
 
 /obj/machinery/autolathe/interact(mob/user)
-	if(shocked && !(stat & NOPOWER))
+	if(shocked && !(machine_stat & NOPOWER))
 		if(shock(user, 50))
 			return
 
@@ -258,7 +258,7 @@
 		return ATTACK_CHAIN_PROCEED
 	if(exchange_parts(user, I))
 		return ATTACK_CHAIN_PROCEED_SUCCESS
-	if(stat)
+	if(machine_stat)
 		return ..()
 
 	// Disks in general
@@ -454,7 +454,7 @@
 		else
 			return
 	while(D)
-		if((stat & (NOPOWER|BROKEN)) || disabled)
+		if((machine_stat & (NOPOWER|BROKEN)) || disabled)
 			being_built = new /list()
 			return 0
 		if(!can_build(D, multiplier))

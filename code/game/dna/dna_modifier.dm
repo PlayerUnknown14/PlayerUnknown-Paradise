@@ -407,7 +407,7 @@
 		if(..(user))
 			return
 
-		if(stat & (NOPOWER|BROKEN))
+		if(machine_stat & (NOPOWER|BROKEN))
 			return
 
 		ui_interact(user)
@@ -463,7 +463,7 @@
 	var/occupantData[0]
 	if(!connected.occupant || !connected.occupant.dna)
 		occupantData["name"] = null
-		occupantData["stat"] = null
+		occupantData["machine_stat"] = null
 		occupantData["isViableSubject"] = null
 		occupantData["health"] = null
 		occupantData["maxHealth"] = null
@@ -474,7 +474,7 @@
 		occupantData["radiationLevel"] = null
 	else
 		occupantData["name"] = connected.occupant.dna.real_name
-		occupantData["stat"] = connected.occupant.stat
+		occupantData["machine_stat"] = connected.occupant.stat
 		occupantData["isViableSubject"] = 1
 		if((HAS_TRAIT(connected.occupant, TRAIT_NO_CLONE) && connected.scan_level < 3) || !connected.occupant.dna || HAS_TRAIT(connected.occupant, TRAIT_NO_DNA))
 			occupantData["isViableSubject"] = 0
@@ -512,7 +512,7 @@
 		return FALSE // don't update uis
 	if(irradiating) // Make sure that it isn't already irradiating someone...
 		return FALSE // don't update uis
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	add_fingerprint(usr)

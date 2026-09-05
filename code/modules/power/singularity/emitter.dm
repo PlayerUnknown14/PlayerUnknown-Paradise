@@ -206,7 +206,7 @@
 
 /obj/machinery/power/emitter/process(seconds_per_tick)
 	var/power_usage = active_power_usage * seconds_per_tick
-	if(stat & (BROKEN))
+	if(machine_stat & (BROKEN))
 		return
 
 	if(!welded || (!powernet && power_usage))

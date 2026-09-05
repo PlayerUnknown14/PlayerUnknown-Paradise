@@ -38,10 +38,10 @@
 	return ..()
 
 /obj/machinery/computer/aiupload/attack_hand(mob/user)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_notice("The upload computer has no power!"))
 		return ATTACK_CHAIN_PROCEED
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_notice("The upload computer is broken!"))
 		return ATTACK_CHAIN_PROCEED
 	ui_interact(user)
@@ -86,10 +86,10 @@
 
 // stop upload or start upload
 /obj/machinery/computer/aiupload/proc/upload_module(mob/user)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_warning("The upload computer has no power!"))
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("The upload computer is broken!"))
 		return
 	if(!current)
@@ -217,10 +217,10 @@
 	to_chat(user, span_notice("[current.name] selected for law changes."))
 
 /obj/machinery/computer/aiupload/cyborg/upload_module(mob/user)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_warning("The upload computer has no power!"))
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("The upload computer is broken!"))
 		return
 	if(!current)

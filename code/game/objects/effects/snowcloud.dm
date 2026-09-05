@@ -30,7 +30,7 @@
 		qdel(src)
 		return
 
-	if(!parent_machine || !parent_machine.active || parent_machine.stat & NOPOWER) //All reasons a cloud could dissipate
+	if(!parent_machine || !parent_machine.active || parent_machine.machine_stat & NOPOWER) //All reasons a cloud could dissipate
 		if(prob(10))
 			qdel(src)
 		return

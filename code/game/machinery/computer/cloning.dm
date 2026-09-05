@@ -47,7 +47,7 @@
 	return ..()
 
 /obj/machinery/computer/cloning/process()
-	if(!scanner || !length(pods) || !autoprocess || stat & NOPOWER)
+	if(!scanner || !length(pods) || !autoprocess || machine_stat & NOPOWER)
 		return
 
 	if(scanner.occupant && can_autoprocess())
@@ -146,7 +146,7 @@
 	user.set_machine(src)
 	add_fingerprint(user)
 
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	updatemodules()
@@ -171,7 +171,7 @@
 
 /obj/machinery/computer/cloning/ui_interact(mob/user, datum/tgui/ui = null)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -201,7 +201,7 @@
 			var/status = "idle"
 			if(pod.mess)
 				status = "mess"
-			else if(pod.occupant && !(pod.stat & NOPOWER))
+			else if(pod.occupant && !(pod.machine_stat & NOPOWER))
 				status = "cloning"
 			tempods.Add(list(list(
 				"pod" = pod.UID(),
@@ -251,7 +251,7 @@
 /obj/machinery/computer/cloning/ui_act(action, params)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	. = TRUE
@@ -428,9 +428,9 @@
 	src.add_fingerprint(usr)
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob, scan_brain = 0)
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
-	if(scanner.stat & (NOPOWER|BROKEN))
+	if(scanner.machine_stat & (NOPOWER|BROKEN))
 		return
 	if(scan_brain && !can_brainscan())
 		return

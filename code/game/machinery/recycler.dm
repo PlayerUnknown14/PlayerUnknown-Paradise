@@ -42,7 +42,7 @@
 
 /obj/machinery/recycler/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>The power light is [(stat & NOPOWER) ? "<b>off</b>" : "<b>on</b>"]."
+	. += "<span class='notice'>The power light is [(machine_stat & NOPOWER) ? "<b>off</b>" : "<b>on</b>"]."
 	. += "The operation light is [emergency_mode ? "<b>off</b>. [src] has detected a forbidden object with its sensors, and has shut down temporarily." : "<b>on</b>. [src] is active."]"
 	. += "The safety sensor light is [emagged ? "<b>off</b>!" : "<b>on</b>."]</span>"
 
@@ -82,14 +82,14 @@
 		add_attack_logs(user, src, "emagged")
 
 /obj/machinery/recycler/update_icon_state()
-	var/is_powered = !(stat & (BROKEN|NOPOWER))
+	var/is_powered = !(machine_stat & (BROKEN|NOPOWER))
 	if(emergency_mode)
 		is_powered = FALSE
 	icon_state = icon_name + "[is_powered]" + "[(blood ? "bld" : "")]" // add the blood tag at the end
 
 /obj/machinery/recycler/Bumped(atom/movable/moving_atom)
 	. = ..()
-	if((stat & (BROKEN|NOPOWER)) || !anchored || emergency_mode)
+	if((machine_stat & (BROKEN|NOPOWER)) || !anchored || emergency_mode)
 		return .
 	var/move_dir = get_dir(loc, moving_atom.loc)
 	if(move_dir == eat_dir)

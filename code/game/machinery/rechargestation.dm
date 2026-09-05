@@ -128,7 +128,7 @@
 		icon_state = "borgcharger0"
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		icon_state = "borgcharger2"
 		return
 

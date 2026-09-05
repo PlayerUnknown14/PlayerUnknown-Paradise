@@ -119,7 +119,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	update()
 
 /obj/machinery/conveyor/attackby(obj/item/tool, mob/user, params)
-	if(user.a_intent == INTENT_HARM || (stat & BROKEN))
+	if(user.a_intent == INTENT_HARM || (machine_stat & BROKEN))
 		return ..()
 
 	if(istype(tool, /obj/item/conveyor_switch_construct))
@@ -141,9 +141,9 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/crowbar_act(mob/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & BROKEN))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & BROKEN))
 		return .
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		var/obj/item/conveyor_construct/conveyor = new(loc, id)
 		transfer_fingerprints_to(conveyor)
 	to_chat(user, span_notice("You detach [src]."))
@@ -151,14 +151,14 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/wrench_act(mob/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & BROKEN))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & BROKEN))
 		return .
 	setDir(turn(dir, -45))
 	to_chat(user, span_notice("You rotate [src]."))
 
 /obj/machinery/conveyor/screwdriver_act(mob/living/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & BROKEN))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & BROKEN))
 		return .
 	flipped = !flipped
 	update_move_direction()
@@ -166,7 +166,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor/wirecutter_act(mob/living/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & BROKEN))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & BROKEN))
 		return .
 	inverted = !inverted
 	update_move_direction()
@@ -274,7 +274,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 			stop_conveying(movable)
 
 /obj/machinery/conveyor/proc/update()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		set_operating(FALSE)
 		return FALSE
 
@@ -414,7 +414,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/update_overlays()
 	. = ..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return .
 	if(position > CONVEYOR_OFF)
 		. += "greenlight"
@@ -454,7 +454,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	add_fingerprint(user)
 	playsound(loc, 'sound/machines/switch.ogg', 10, TRUE)
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_warning("Switch is unpowered."))
 		return
 
@@ -495,7 +495,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/crowbar_act(mob/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & NOPOWER))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & NOPOWER))
 		return .
 	var/obj/item/conveyor_switch_construct/switch_construct = new(loc, id)
 	transfer_fingerprints_to(switch_construct)
@@ -504,7 +504,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/wrench_act(mob/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & NOPOWER))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & NOPOWER))
 		return .
 	invert_icon = !invert_icon
 	update_appearance()
@@ -512,7 +512,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor_switch/multitool_act(mob/user, obj/item/tool)
 	. = TRUE
-	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (stat & NOPOWER))
+	if(!tool.use_tool(src, user, 0, volume = tool.tool_volume) || (machine_stat & NOPOWER))
 		return
 	ui_interact(user)
 
@@ -536,7 +536,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	return data
 
 /obj/machinery/conveyor_switch/ui_act(action, list/params)
-	if(..() || (stat & NOPOWER))
+	if(..() || (machine_stat & NOPOWER))
 		return
 
 	switch(action)

@@ -64,12 +64,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26, 26)
 
 /obj/machinery/light_switch/update_appearance(updates=ALL)
 	. = ..()
-	luminosity = (stat & NOPOWER) ? 0 : 1
+	luminosity = (machine_stat & NOPOWER) ? 0 : 1
 
 /obj/machinery/light_switch/update_icon_state()
 	set_light(area.lightswitch ? 0 : light_on_range)
 	icon_state = "[base_icon_state]"
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state += "-nopower"
 		return
 
@@ -78,14 +78,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26, 26)
 /obj/machinery/light_switch/update_overlays()
 	. = ..()
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	. += emissive_appearance(icon, "[base_icon_state]-emissive[area.lightswitch ? "-on" : "-off"]", src, alpha = src.alpha)
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
-	. += span_boldnotice("[(stat & NOPOWER) ? "Отключено" : (area.lightswitch ? "Включено" : "Выключено")].")
+	. += span_boldnotice("[(machine_stat & NOPOWER) ? "Отключено" : (area.lightswitch ? "Включено" : "Выключено")].")
 
 /obj/machinery/light_switch/attack_ghost(mob/user)
 	if(user.can_advanced_admin_interact())
@@ -118,7 +118,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light_switch, 26, 26)
 	update_icon()
 
 /obj/machinery/light_switch/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 

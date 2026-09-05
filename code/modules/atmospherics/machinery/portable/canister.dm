@@ -54,7 +54,7 @@
 	. = ..()
 	underlays.Cut()
 
-	var/isBroken = stat & BROKEN
+	var/isBroken = machine_stat & BROKEN
 	///Function is used to actually set the overlays
 
 	. += mutable_appearance(canister_overlay_file, "tier[valve_open? 3 : 1]")
@@ -117,7 +117,7 @@
 
 /obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
 	if(!(obj_flags & NODECONSTRUCT))
-		if(!(stat & BROKEN))
+		if(!(machine_stat & BROKEN))
 			canister_break()
 		if(disassembled)
 			new /obj/item/stack/sheet/metal (loc, 10)
@@ -126,7 +126,7 @@
 	qdel(src)
 
 /obj/machinery/portable_atmospherics/canister/obj_break(damage_flag)
-	if((stat & BROKEN) || (obj_flags & NODECONSTRUCT))
+	if((machine_stat & BROKEN) || (obj_flags & NODECONSTRUCT))
 		return
 	canister_break()
 
@@ -134,7 +134,7 @@
 	disconnect()
 	var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
 
-	stat |= BROKEN
+	machine_stat |= BROKEN
 	set_density(FALSE)
 	playsound(loc, 'sound/effects/spray.ogg', 10, TRUE, -3)
 	update_icon()
@@ -151,7 +151,7 @@
 
 /obj/machinery/portable_atmospherics/canister/process_atmos()
 	..()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 
 	if(valve_open)
@@ -216,7 +216,7 @@
 		investigate_log("[key_name_log(user)] started a transfer into [holding].", INVESTIGATE_ATMOS)
 
 /obj/machinery/portable_atmospherics/canister/welder_act(mob/user, obj/item/I)
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		return
 
 	. = TRUE

@@ -70,7 +70,7 @@
 			targets += brig_closet
 
 	if(!length(targets))
-		stat |= BROKEN
+		machine_stat |= BROKEN
 		update_icon(UPDATE_OVERLAYS)
 
 /obj/machinery/door_timer/proc/print_report()
@@ -153,7 +153,7 @@
 // if it's less than 0, open door, reset timer
 // update the door_timer window and the icon
 /obj/machinery/door_timer/process()
-	if((stat & (NOPOWER|BROKEN)))
+	if((machine_stat & (NOPOWER|BROKEN)))
 		update_display()
 		return PROCESS_KILL
 	if(timing)
@@ -175,7 +175,7 @@
 /obj/machinery/door_timer/proc/update_display()
 	update_icon(UPDATE_OVERLAYS)
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		if(maptext)
 			maptext = ""
 		return
@@ -206,7 +206,7 @@
 	timing = TRUE
 	update_display()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		timing = FALSE
 		return FALSE
 
@@ -246,7 +246,7 @@
 	timing = FALSE
 	update_display()
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return FALSE
 
 	//send signal
@@ -283,7 +283,7 @@
 		closet.update_icon()
 
 	for(var/obj/machinery/treadmill_monitor/monitor in targets)
-		if(!monitor.stat)
+		if(!monitor.machine_stat)
 			monitor.redeem()
 		monitor.on = FALSE
 
@@ -314,7 +314,7 @@
 	ui_interact(user)
 
 /obj/machinery/door_timer/emp_act(severity)
-	if((stat & (BROKEN|NOPOWER)) || emagged)
+	if((machine_stat & (BROKEN|NOPOWER)) || emagged)
 		..(severity)
 		return
 	if(timing && prob(100 / severity))
@@ -322,7 +322,7 @@
 	..(severity)
 
 /obj/machinery/door_timer/emag_act()
-	if((stat & (BROKEN|NOPOWER)) || emagged || !timing)
+	if((machine_stat & (BROKEN|NOPOWER)) || emagged || !timing)
 		return
 	emagged = TRUE
 
@@ -471,7 +471,7 @@
 
 /obj/machinery/door_timer/update_overlays()
 	. = ..()
-	if(!(stat & NOPOWER) && ((stat & BROKEN) || emagged))
+	if(!(machine_stat & NOPOWER) && ((machine_stat & BROKEN) || emagged))
 		. += "ai_bsod"
 
 /obj/machinery/door_timer/cell_1

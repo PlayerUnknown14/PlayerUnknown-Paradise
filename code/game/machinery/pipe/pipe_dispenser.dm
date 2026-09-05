@@ -101,14 +101,14 @@
 		return .
 	set_anchored(!anchored)
 	if(anchored)
-		stat &= ~MAINT
+		machine_stat &= ~MAINT
 		user.visible_message(
 			span_notice("[user] fastens [src]."),
 			span_notice("You have fastened [src]. Now it can dispense pipes."),
 			span_italics("You hear ratchet."),
 		)
 	else
-		stat |= MAINT
+		machine_stat |= MAINT
 		user.visible_message(
 			span_notice("[user] unfastens [src]."),
 			span_notice("You have unfastened [src]. Now it can be pulled somewhere else."),

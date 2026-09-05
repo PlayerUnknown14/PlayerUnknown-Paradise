@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(addition_goals)
 /// Print report paper on all Addition goal consoles
 /datum/controller/subsystem/addition_goals/proc/print_report_on_console(title, message, stamp = FALSE)
 	for(var/obj/machinery/computer/addition_goals/console as anything in console_list)
-		if(console.stat & (BROKEN|NOPOWER))
+		if(console.machine_stat & (BROKEN|NOPOWER))
 			continue
 		var/obj/item/paper/paper = new (console.loc)
 		paper.name = "[title]"

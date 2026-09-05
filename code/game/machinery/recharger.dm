@@ -133,7 +133,7 @@
 		update_icon()
 
 /obj/machinery/recharger/process()
-	if(stat & (NOPOWER|BROKEN) || !anchored || panel_open)
+	if(machine_stat & (NOPOWER|BROKEN) || !anchored || panel_open)
 		return
 	if(!charging)
 		return
@@ -143,7 +143,7 @@
 		update_icon()
 
 /obj/machinery/recharger/emp_act(severity)
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
 
@@ -168,7 +168,7 @@
 	if(panel_open)
 		icon_state = "[base_icon_state]open"
 		return
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		icon_state = "[base_icon_state]off"
 		return
 	if(charging)
@@ -183,7 +183,7 @@
 	. = ..()
 	underlays.Cut()
 
-	if((stat & NOPOWER) || panel_open)
+	if((machine_stat & NOPOWER) || panel_open)
 		return
 
 	underlays += emissive_appearance(icon, "[icon_state]_lightmask", src)
@@ -221,7 +221,7 @@
 	if(charging)
 		. += span_notice("\The [src] contains:")
 		. += span_notice("- \A [charging].")
-		if(!(stat & (NOPOWER|BROKEN)))
+		if(!(machine_stat & (NOPOWER|BROKEN)))
 			var/obj/item/stock_parts/cell/C = charging.get_cell()
 			. += span_notice("The status display reads:")
 			if(using_power)

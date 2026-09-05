@@ -44,7 +44,7 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell/power_change(forced = FALSE)
 	..()
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		set_light_on(FALSE)
 	else
 		set_light(1.5, 1, LIGHT_COLOR_CYAN)
@@ -238,7 +238,7 @@
 	var/occupantData[0]
 	if(occupant)
 		occupantData["name"] = occupant.name
-		occupantData["stat"] = occupant.stat
+		occupantData["machine_stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.maxHealth
 		occupantData["minHealth"] = HEALTH_THRESHOLD_DEAD
@@ -272,7 +272,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/ui_act(action, params)
 	if(..() || usr == occupant)
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	. = TRUE
@@ -536,7 +536,7 @@
 		to_chat(usr, span_warning("Вы не поместитесь в [declent_ru(ACCUSATIVE)], пока на вас сидит слайм."))
 		return
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(usr.incapacitated() || HAS_TRAIT(usr, TRAIT_HANDS_BLOCKED) || usr.buckled) //are you cuffed, dying, lying, stunned or other

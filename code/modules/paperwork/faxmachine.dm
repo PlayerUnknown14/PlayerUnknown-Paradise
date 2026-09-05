@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 	data["paperinserted"] = copyitem ? TRUE : FALSE
 	data["destination"] = destination ? destination : FALSE
 	data["sendError"] = FALSE
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		data["sendError"] = "Нет питания"
 	else if(!data["authenticated"])
 		data["sendError"] = "Вход не выпонен"
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 		if("send") // actually send the fax
 			if(!copyitem || !is_authenticated || !destination)
 				return
-			if(stat & (BROKEN|NOPOWER))
+			if(machine_stat & (BROKEN|NOPOWER))
 				return
 
 			var/cooldown_seconds = cooldown_seconds()
@@ -371,7 +371,7 @@ GLOBAL_LIST_EMPTY(fax_blacklist)
 		atom_say("При отправке сообщения произошла ошибка.", FALSE)
 
 /obj/machinery/photocopier/faxmachine/proc/receivefax(obj/item/incoming)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return FALSE
 
 	if(department == UNKNOWN_STATUS_RUS)

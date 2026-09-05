@@ -8,7 +8,7 @@
 	for(var/obj/machinery/computer/account_database/DB in SSmachines.get_by_type(/obj/machinery/computer/account_database))
 		if(from_z > -1 && DB.z != from_z)
 			continue
-		if((DB.stat & NOPOWER) || !DB.activated)
+		if((DB.machine_stat & NOPOWER) || !DB.activated)
 			continue
 		var/datum/money_account/acct = DB.get_account(account_number)
 		if(!acct)

@@ -171,9 +171,9 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	. += span_notice("[src]'s display states that it has stored <b>[display_energy(get_stored_joules())]</b>, and is processing <b>[display_power(calculate_sustainable_power(), convert = FALSE)]</b>.")
 
 /obj/machinery/power/energy_accumulator/rad_collector/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(obj_flags & NODECONSTRUCT))
+	if(!(machine_stat & BROKEN) && !(obj_flags & NODECONSTRUCT))
 		eject()
-		stat |= BROKEN
+		machine_stat |= BROKEN
 
 /obj/machinery/power/energy_accumulator/rad_collector/proc/receive_pulse(pulse_strength)
 	if(!loaded_tank || !active || pulse_strength <= RAD_COLLECTOR_THRESHOLD)
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	if(loaded_tank)
 		. += "ptank"
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(active)

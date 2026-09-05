@@ -55,7 +55,7 @@
 	if(dirty)
 		. +=  "grbloody"
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(!occupant)
@@ -87,7 +87,7 @@
 	go_out()
 
 /obj/machinery/gibber/attack_hand(mob/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 
 	if(operating)

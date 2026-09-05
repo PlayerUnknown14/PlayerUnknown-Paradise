@@ -112,7 +112,7 @@
 	. = ..()
 	underlays.Cut()
 
-	if(!panel_open && !(stat & (NOPOWER|BROKEN)))
+	if(!panel_open && !(machine_stat & (NOPOWER|BROKEN)))
 		if(scanning)
 			underlays += emissive_appearance(icon, "dna_lightmask_work", src)
 		else

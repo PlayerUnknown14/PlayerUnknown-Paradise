@@ -110,7 +110,7 @@
 
 /obj/machinery/newscaster/update_appearance(updates=ALL)
 	. = ..()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		set_light(0)
 		return
 	set_light(1.5, 0.7, "#34D352") // green light
@@ -120,7 +120,7 @@
 	if(inoperable())
 		return
 
-	if(!(stat & (NOPOWER|BROKEN)))
+	if(!(machine_stat & (NOPOWER|BROKEN)))
 		var/state = "[base_icon_state]_[GLOB.news_network.wanted_issue ? "wanted" : "normal"]"
 		. += mutable_appearance(icon, state)
 		. += emissive_appearance(icon, state, src, alpha = src.alpha)
@@ -161,7 +161,7 @@
 	if(!I.use_tool(src, user, 60, volume = I.tool_volume))
 		return
 	playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("Разбитые части [declent_ru(GENITIVE)] падают на пол."))
 		new /obj/item/stack/sheet/metal(loc, 5)
 		new /obj/item/shard(loc)
@@ -181,7 +181,7 @@
 /obj/machinery/newscaster/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
 	switch(damage_type)
 		if(BRUTE)
-			if(stat & BROKEN)
+			if(machine_stat & BROKEN)
 				playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 100, TRUE)
 			else
 				playsound(loc, 'sound/effects/glasshit.ogg', 90, TRUE)
@@ -196,8 +196,8 @@
 	qdel(src)
 
 /obj/machinery/newscaster/obj_break()
-	if(!(stat & BROKEN) && !(obj_flags & NODECONSTRUCT))
-		stat |= BROKEN
+	if(!(machine_stat & BROKEN) && !(obj_flags & NODECONSTRUCT))
+		machine_stat |= BROKEN
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
 		update_appearance()
 

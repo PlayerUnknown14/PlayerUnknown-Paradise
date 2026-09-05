@@ -89,7 +89,7 @@
 	return ..(moving_atom, density)
 
 /obj/machinery/door/firedoor/proc/adjust_light()
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		set_light_on(FALSE)
 		return
 	if(active_alarm)
@@ -104,7 +104,7 @@
 
 /obj/machinery/door/firedoor/power_change(forced = FALSE)
 	. = ..()
-	if(!(stat & NOPOWER))
+	if(!(machine_stat & NOPOWER))
 		latetoggle()
 	if(!.)
 		return

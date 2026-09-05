@@ -86,7 +86,7 @@
 	AddComponent(/datum/component/bluespace_rift_scanner, max_range)
 
 /obj/machinery/brs_portable_scanner/process(seconds_per_tick)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	if(!anchored)
 		return
@@ -123,13 +123,13 @@
 
 /obj/machinery/brs_portable_scanner/update_icon_state()
 	var/prefix = initial(icon_state)
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "[prefix]-broken"
 		return
 	if(!anchored)
 		icon_state = prefix
 		return
-	if((scanning_status == SCAN_OFF) || (stat & NOPOWER))
+	if((scanning_status == SCAN_OFF) || (machine_stat & NOPOWER))
 		icon_state ="[prefix]-anchored"
 		return
 	if(scanning_status == SCAN_NO_RIFTS)
@@ -157,7 +157,7 @@
 
 /obj/machinery/brs_portable_scanner/power_change(forced = FALSE)
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		SStgui.close_uis(src)
 		if(scanning_status != SCAN_OFF)
 			playsound(loc, deactivation_sound, 100)
@@ -176,11 +176,11 @@
 /obj/machinery/brs_portable_scanner/screwdriver_act(mob/living/user, obj/item/I)
 	. = TRUE
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("[src] сломан, [panel_open ? "за" : "от"]крыть панель невозможно."))
 		return
 
-	var/operating = (scanning_status != SCAN_OFF) && (!(stat & NOPOWER))
+	var/operating = (scanning_status != SCAN_OFF) && (!(machine_stat & NOPOWER))
 	if((!panel_open) && operating)
 		to_chat(user, span_warning("Панель заблокирована протоколом безопасности. Выключите сканер."))
 		return
@@ -195,7 +195,7 @@
 /obj/machinery/brs_portable_scanner/crowbar_act(mob/living/user, obj/item/I)
 	. = TRUE
 
-	if(panel_open && (stat & BROKEN))
+	if(panel_open && (machine_stat & BROKEN))
 		to_chat(user, span_warning("[src] сломан, извлечь детали невозможно."))
 		return
 
@@ -204,11 +204,11 @@
 /obj/machinery/brs_portable_scanner/wrench_act(mob/living/user, obj/item/I)
 	. = TRUE
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		to_chat(user, span_warning("[src] сломан, [anchored ? "от" : "за"]крутить болты невозможно."))
 		return
 
-	if(anchored && (scanning_status != SCAN_OFF) && !(stat & (NOPOWER|BROKEN)))
+	if(anchored && (scanning_status != SCAN_OFF) && !(machine_stat & (NOPOWER|BROKEN)))
 		to_chat(user, span_warning("Болты заблокированы протоколом безопасности. Выключите сканер."))
 		return
 
@@ -259,7 +259,7 @@
 
 /obj/machinery/brs_portable_scanner/attack_hand(mob/user)
 	if(..())
-		if(stat & NOPOWER)
+		if(machine_stat & NOPOWER)
 			// Make it clear, because there's no indications on the icon.
 			to_chat(user, span_notice("Сканер не работает. Похоже, нет энергии."))
 		return TRUE
@@ -312,7 +312,7 @@
 /obj/machinery/brs_portable_scanner/ui_act(action, params)
 	if(..())
 		return
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!anchored || panel_open)
 		return
@@ -354,14 +354,14 @@
 		return
 	scanning_status = SCAN_NO_RIFTS
 	status_change()
-	if(!(stat & (NOPOWER|BROKEN)))
+	if(!(machine_stat & (NOPOWER|BROKEN)))
 		playsound(loc, activation_sound, 100)
 
 /obj/machinery/brs_portable_scanner/proc/turn_off()
 	switching = FALSE
 	scanning_status = SCAN_OFF
 	status_change()
-	if(!(stat & (NOPOWER|BROKEN)))
+	if(!(machine_stat & (NOPOWER|BROKEN)))
 		playsound(loc, deactivation_sound, 100)
 
 #undef SCAN_OFF

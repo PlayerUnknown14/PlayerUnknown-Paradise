@@ -88,7 +88,7 @@ Thus, the two variables affect pump operation are set in New():
 	add_underlay(pump_turf, node2, dir)
 
 /obj/machinery/atmospherics/binary/pump/process_atmos(seconds)
-	if((stat & (NOPOWER|BROKEN)) || !on)
+	if((machine_stat & (NOPOWER|BROKEN)) || !on)
 		return FALSE
 
 	var/output_starting_pressure = air2.return_pressure()

@@ -91,7 +91,7 @@
 		icon_state = "[reference]p[strength]"
 		return
 
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		icon_state = "[reference]w"
 		return
 
@@ -144,14 +144,14 @@
 
 /obj/machinery/particle_accelerator/control_box/power_change(forced = FALSE)
 	..()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		active = FALSE
 		use_power = NO_POWER_USE
-	else if(!stat && construction_state <= ACCELERATOR_READY)
+	else if(!machine_stat && construction_state <= ACCELERATOR_READY)
 		use_power = IDLE_POWER_USE
 	update_icon(UPDATE_ICON_STATE)
 
-	if(!((stat & NOPOWER) || (!stat && construction_state <= ACCELERATOR_READY))) //Only update the part icons if something's changed (i.e. any of the above condition sets are met).
+	if(!((machine_stat & NOPOWER) || (!machine_stat && construction_state <= ACCELERATOR_READY))) //Only update the part icons if something's changed (i.e. any of the above condition sets are met).
 		return
 
 	for(var/obj/structure/particle_accelerator/part in connected_parts)

@@ -146,7 +146,7 @@
 	var/turf/location = get_turf(server)
 	var/datum/gas_mixture/env = get_turf_air(location)
 
-	if(server.stat & (NOPOWER|BROKEN))
+	if(server.machine_stat & (NOPOWER|BROKEN))
 		return
 	if(env.temperature() >= (heat + T0C))
 		return
@@ -369,7 +369,7 @@
 	return TRUE
 
 /obj/machinery/computer/rdservercontrol/attack_hand(mob/user as mob)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(!allowed(user) && !isobserver(user))

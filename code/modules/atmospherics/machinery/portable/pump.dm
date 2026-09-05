@@ -30,7 +30,7 @@
 		. += "siphon_connector"
 
 /obj/machinery/portable_atmospherics/pump/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 

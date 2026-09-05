@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 
 /obj/machinery/monkey_recycler/grab_attack(mob/living/grabber, atom/movable/grabbed_thing)
 	. = TRUE
-	if(grabber.grab_state < GRAB_AGGRESSIVE || (stat & (NOPOWER|BROKEN)))
+	if(grabber.grab_state < GRAB_AGGRESSIVE || (machine_stat & (NOPOWER|BROKEN)))
 		return
 	if(!ishuman(grabbed_thing))
 		balloon_alert(grabber, "только для гуманоидов!")
@@ -145,7 +145,7 @@ GLOBAL_LIST_EMPTY(monkey_recyclers)
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), grabber, span_notice("Теперь в машине накоплено материала на сумму, равную [grinded] объему обезьяны.")))
 
 /obj/machinery/monkey_recycler/attack_hand(mob/user)
-	if(stat != 0) //NOPOWER etc
+	if(machine_stat != 0) //NOPOWER etc
 		return
 	if(grinded >= required_grind)
 		add_fingerprint(user)

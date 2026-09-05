@@ -14,7 +14,7 @@
 	ui_interact(user)
 
 /obj/machinery/computer/brigcells/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(..())

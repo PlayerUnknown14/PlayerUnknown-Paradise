@@ -51,7 +51,7 @@
 
 
 /obj/machinery/atmospherics/binary/temperature_gate/process_atmos(seconds)
-	if((stat & (NOPOWER|BROKEN)) || !on)
+	if((machine_stat & (NOPOWER|BROKEN)) || !on)
 		return FALSE
 
 	var/input_temp = air1.temperature()

@@ -115,7 +115,7 @@
 [processing_chamber]<br>
 [beaker_contents]<hr>
 "}
-	if(is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
+	if(is_beaker_ready && !is_chamber_empty && !(machine_stat & (NOPOWER|BROKEN)))
 		dat += "<a href='byond://?src=[UID()];action=juice'>Включить<br>"
 	if(beaker)
 		dat += "<a href='byond://?src=[UID()];action=detach'>Вытащить ёмкость<br>"
@@ -166,7 +166,7 @@
 
 /obj/machinery/juicer/proc/juice()
 	power_change() //it is a portable machine
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(!beaker || beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 		return

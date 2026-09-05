@@ -35,7 +35,7 @@
 
 /obj/machinery/flasher/update_icon_state()
 	. = ..()
-	if((stat & NOPOWER) || !anchored)
+	if((machine_stat & NOPOWER) || !anchored)
 		icon_state = "[base_icon_state]1-p"
 	else
 		icon_state = "[base_icon_state]1"
@@ -43,7 +43,7 @@
 /obj/machinery/flasher/update_overlays()
 	. = ..()
 	underlays.Cut()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		return
 
 	if(anchored)
@@ -87,7 +87,7 @@
 				L.visible_message(span_disarm("<b>[L]</b> gasps and shields [L.p_their()] eyes!"))
 
 /obj/machinery/flasher/emp_act(severity)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
 	if(prob(75/severity))
@@ -170,7 +170,7 @@
 		return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/user)
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		return
 	if(active)
 		return

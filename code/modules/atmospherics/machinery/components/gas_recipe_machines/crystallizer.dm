@@ -74,13 +74,13 @@
 	. = ..()
 	if(panel_open)
 		icon_state = "[base_icon_state]-open"
-	else if(on && !(stat & (NOPOWER|BROKEN)))
+	else if(on && !(machine_stat & (NOPOWER|BROKEN)))
 		icon_state = "[base_icon_state]-on"
 	else
 		icon_state = "[base_icon_state]-off"
 
 /obj/machinery/atmospherics/binary/crystallizer/CtrlClick(mob/user)
-	if((stat & (NOPOWER|BROKEN)))
+	if((machine_stat & (NOPOWER|BROKEN)))
 		return CLICK_ACTION_BLOCKING
 	if(panel_open)
 		balloon_alert(user, "close panel!")
@@ -164,7 +164,7 @@
 	air2.merge(remove)
 
 /obj/machinery/atmospherics/binary/crystallizer/process_atmos()
-	if(!on || (stat & (NOPOWER|BROKEN)) || selected_recipe == null)
+	if(!on || (machine_stat & (NOPOWER|BROKEN)) || selected_recipe == null)
 		return
 
 	inject_gases()

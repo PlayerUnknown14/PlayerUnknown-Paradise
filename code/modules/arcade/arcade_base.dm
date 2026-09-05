@@ -44,7 +44,7 @@
 	interact(user)
 
 /obj/machinery/arcade/interact(mob/user)
-	if(stat & BROKEN || panel_open)
+	if(machine_stat & BROKEN || panel_open)
 		return
 	if(!tokens && !freeplay)
 		balloon_alert(user, "недостаточно кредитов!")

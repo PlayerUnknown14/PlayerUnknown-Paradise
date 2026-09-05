@@ -120,7 +120,7 @@
 					INVOKE_ASYNC(src, PROC_REF(magnetic_process))
 
 /obj/machinery/magnetic_module/process()
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		on = FALSE
 
 	// Sanity checks:
@@ -241,7 +241,7 @@
 	return attack_hand(user)
 
 /obj/machinery/magnetic_controller/attack_hand(mob/user as mob)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)
 	var/dat = {"<b>Magnetic Control Console</b><br><br>"}
@@ -271,7 +271,7 @@
 	onclose(user, "magnet")
 
 /obj/machinery/magnetic_controller/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
@@ -336,7 +336,7 @@
 
 	while(moving && length(rpath) >= 1)
 
-		if(stat & (BROKEN|NOPOWER))
+		if(machine_stat & (BROKEN|NOPOWER))
 			break
 
 		looping = TRUE

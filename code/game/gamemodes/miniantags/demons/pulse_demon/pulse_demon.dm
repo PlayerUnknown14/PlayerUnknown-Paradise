@@ -344,7 +344,7 @@
 
 // can enter an apc at all?
 /mob/living/simple_animal/demon/pulse_demon/proc/is_valid_apc(obj/machinery/power/apc/A)
-	return istype(A) && !(A.stat & BROKEN) && !A.shorted
+	return istype(A) && !(A.machine_stat & BROKEN) && !A.shorted
 
 /mob/living/simple_animal/demon/pulse_demon/Move(atom/newloc, direct = NONE, glide_size_override = 0, update_dir = TRUE)
 	var/obj/machinery/power/new_power = locate(/obj/machinery/power) in newloc

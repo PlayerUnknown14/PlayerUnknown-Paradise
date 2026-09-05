@@ -39,7 +39,7 @@
 	GLOB.power_monitors = sortAtom(GLOB.power_monitors)
 	power_monitor = new(src)
 
-	if(!is_secret_monitor && !(stat & (NOPOWER|BROKEN)))
+	if(!is_secret_monitor && !(machine_stat & (NOPOWER|BROKEN)))
 		GLOB.powermonitor_repository.add_to_cache(src)
 	powernet = find_powernet()
 	history["supply"] = list()
@@ -55,7 +55,7 @@
 	. = ..()
 	if(is_secret_monitor)
 		return
-	if(!(stat & (NOPOWER|BROKEN)))
+	if(!(machine_stat & (NOPOWER|BROKEN)))
 		GLOB.powermonitor_repository.add_to_cache(src)
 	else
 		GLOB.powermonitor_repository.remove_from_cache(src)
@@ -70,7 +70,7 @@
 	attack_hand(user)
 
 /obj/machinery/computer/monitor/attack_hand(mob/user)
-	if(stat & (BROKEN|NOPOWER))
+	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
 	if(..())

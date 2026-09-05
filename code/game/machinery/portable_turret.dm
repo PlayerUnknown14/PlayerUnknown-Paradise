@@ -177,7 +177,7 @@
 		projectile = initial_projectile
 
 /obj/machinery/porta_turret/CanAStarPass(to_dir, datum/can_pass_info/pass_info)
-	return (stat & BROKEN) || !pass_info.is_living
+	return (machine_stat & BROKEN) || !pass_info.is_living
 
 GLOBAL_LIST_EMPTY(turret_icons)
 
@@ -189,7 +189,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 	underlays.Cut()
 	underlays += GLOB.turret_icons["open"]
 
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = "destroyed_target_prism"
 	else if(raised || raising)
 		if(powered() && enabled)
@@ -338,11 +338,11 @@ GLOBAL_LIST_EMPTY(turret_icons)
 /obj/machinery/porta_turret/crowbar_act(mob/living/user, obj/item/I)
 	//If the turret is destroyed, you can remove it with a crowbar to
 	//try and salvage its components
-	if(!(stat & BROKEN) || syndicate)
+	if(!(machine_stat & BROKEN) || syndicate)
 		return FALSE
 	. = TRUE
 	CALCULATE_SKILL_MOD(user, CONSTRUCTING_SPEED_MOD, construction_mod)
-	if(!I.use_tool(src, user, 2 SECONDS * construction_mod, volume = I.tool_volume) || !(stat & BROKEN))
+	if(!I.use_tool(src, user, 2 SECONDS * construction_mod, volume = I.tool_volume) || !(machine_stat & BROKEN))
 		return .
 	if(prob(70))
 		to_chat(user, span_notice("You remove the turret and salvage some components."))
@@ -413,7 +413,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 	M.do_attack_animation(src)
 	if(M.melee_damage_upper == 0 || (M.melee_damage_type != BRUTE && M.melee_damage_type != BURN))
 		return
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		take_damage(M.melee_damage_upper)
 	else
@@ -423,7 +423,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 /obj/machinery/porta_turret/attack_alien(mob/living/carbon/alien/humanoid/M)
 	M.changeNext_move(CLICK_CD_MELEE)
 	M.do_attack_animation(src)
-	if(!(stat & BROKEN))
+	if(!(machine_stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, TRUE, -1)
 		visible_message(span_danger("[M] has slashed at [src]!"))
 		take_damage(M.attack_damage)
@@ -507,10 +507,10 @@ GLOBAL_LIST_EMPTY(turret_icons)
 			take_damage(initial(health) * 8 / 3)
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	health = 0
-	stat |= BROKEN	//enables the BROKEN bit
+	machine_stat |= BROKEN	//enables the BROKEN bit
 	if(spark_system)
 		spark_system.start()	//creates some sparks because they look cool
 	update_icon(UPDATE_ICON_STATE)
@@ -518,7 +518,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 /obj/machinery/porta_turret/process()
 	//the main machinery process
 
-	if(stat & (NOPOWER|BROKEN))
+	if(machine_stat & (NOPOWER|BROKEN))
 		if(!always_up)
 			//if the turret has no power or is broken, make the turret pop down if it hasn't already
 			popDown()
@@ -658,7 +658,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 		return
 	if(raising || raised)
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	set_raised_raising(raised, TRUE)
 	playsound(get_turf(src), 'sound/effects/turret/open.wav', 60, TRUE)
@@ -679,7 +679,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 		return
 	if(raising || !raised)
 		return
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		return
 	set_raised_raising(raised, TRUE)
 	playsound(get_turf(src), 'sound/effects/turret/open.wav', 60, TRUE)
@@ -1079,7 +1079,7 @@ GLOBAL_LIST_EMPTY(turret_icons)
 	return ..(target)
 
 /obj/machinery/porta_turret/syndicate/update_icon_state()
-	if(stat & BROKEN)
+	if(machine_stat & BROKEN)
 		icon_state = icon_state_destroyed
 	else if(enabled)
 		icon_state = icon_state_active

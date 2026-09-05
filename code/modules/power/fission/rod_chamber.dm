@@ -185,7 +185,7 @@
 	if(linked_reactor && linked_reactor.admin_intervention)
 		to_chat(user, span_warning("An unusual force prevents you from moving the chamber!"))
 		return
-	if(stat & NOPOWER)
+	if(machine_stat & NOPOWER)
 		to_chat(user, span_warning("The chamber's locks wont disengage without power!"))
 		return
 
